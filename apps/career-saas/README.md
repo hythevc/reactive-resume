@@ -1,6 +1,6 @@
 # CareerOS local workspace
 
-A responsive Next.js career-workspace app inside Reactive Resume. It connects five preparation workflows to shared career facts: resumes, LinkedIn writing reviews, profile-photo preparation, job applications and recruiter outreach.
+A responsive Next.js career-workspace app inside Reactive Resume. It connects six preparation workflows to shared career facts: resumes, LinkedIn writing reviews, profile-photo preparation, role discovery, job applications and recruiter outreach.
 
 ## Run
 
@@ -46,7 +46,7 @@ The parent repository already has Better Auth, Drizzle/Postgres and resume/appli
 
 [Actual REA observations and source-to-component mapping](replica/observations/README.md) cover thirteen competitor attempts, twelve rendered public surfaces, one inaccessible site, and local improvements from observed patterns. The [MeetDex comparison](replica/observations/meetdex.md) distinguishes working public demonstrations from untested account features. This is selected market research, not full competitor parity; authenticated competitor products were not accessed.
 
-- [Recon and five workflows](replica/recon.md)
+- [Recon and six workflows](replica/recon.md)
 - [Production architecture and delivery semantics](replica/architecture.md)
 - [Reviewable future schema](replica/schema.sql)
 - [Evidence, pricing hypotheses, costs and honest launch copy](replica/business.md)
