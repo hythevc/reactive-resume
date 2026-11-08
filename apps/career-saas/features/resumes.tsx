@@ -1,13 +1,31 @@
 "use client";
 
-import { ArrowDownToLine, Check, Copy, FileText, Plus, Printer, Trash2, Upload } from "lucide-react";
+import {
+	ArrowDownToLine,
+	Check,
+	CircleAlert,
+	Copy,
+	FileText,
+	Plus,
+	Printer,
+	Sparkles,
+	Target,
+	Trash2,
+	Upload,
+} from "lucide-react";
 import { useRef, useState, type ChangeEvent } from "react";
 import {
+	compareResumeToJob,
+	extractJobKeywords,
 	exportResume,
 	importResume,
 	profileSchema,
 	resumeSchema,
 	MAX_RESUMES,
+	TARGET_KEYWORDS_MAX_LENGTH,
+	TARGET_KEYWORD_LIMIT,
+	splitSkills,
+	type Job,
 	type Profile,
 	type Resume,
 } from "@/lib/workspace";
@@ -80,6 +98,217 @@ function ProfileField({
 	);
 }
 
+type ResumeTargetPanelProps = {
+	resume: Resume;
+	jobs: Job[];
+	onChange: (updates: Partial<Resume>) => void;
+	onDuplicate: (job: Job) => void;
+};
+
+export function ResumeTargetPanel({ resume, jobs, onChange, onDuplicate }: ResumeTargetPanelProps) {
+	const [notice, setNotice] = useState("");
+	const [error, setError] = useState("");
+	const job = jobs.find((item) => item.id === resume.targetJobId);
+	const comparison = compareResumeToJob(resume.profile, resume.targetKeywords);
+
+	function updateKeywords(value: string) {
+		if (value.length > TARGET_KEYWORDS_MAX_LENGTH || splitSkills(value).length > TARGET_KEYWORD_LIMIT) {
+			setError(
+				`Use up to ${TARGET_KEYWORD_LIMIT} target terms and ${TARGET_KEYWORDS_MAX_LENGTH.toLocaleString()} characters. Remove a term before adding another.`,
+			);
+			return;
+		}
+		onChange({ targetKeywords: value });
+		setNotice("");
+		setError("");
+	}
+
+	function suggestKeywords() {
+		if (!job) return;
+		const suggestions = extractJobKeywords(job);
+		if (!suggestions.length) {
+			setNotice(
+				"No terms in the local skill dictionary were found in this posting. Add the specific terms you want to check below.",
+			);
+			return;
+		}
+		const current = splitSkills(resume.targetKeywords);
+		const existing = new Set(current.map((term) => term.toLowerCase()));
+		const added = suggestions.filter((term) => !existing.has(term.toLowerCase()));
+		const terms = [...current, ...added];
+		const value = terms.join(", ");
+		if (terms.length > TARGET_KEYWORD_LIMIT || value.length > TARGET_KEYWORDS_MAX_LENGTH) {
+			setError("The suggested terms would exceed the keyword limit. Remove some existing terms, then try again.");
+			return;
+		}
+		onChange({ targetKeywords: value });
+		setError("");
+		setNotice(
+			added.length
+				? `Added ${added.length} dictionary ${added.length === 1 ? "term" : "terms"} found in the job title or description. Your existing target terms were kept.`
+				: "The dictionary terms found in this posting are already in your list.",
+		);
+	}
+
+	return (
+		<section className="panel resume-target-panel" aria-label="Resume job targeting">
+			<div className="panel-heading">
+				<div>
+					<h2 className="section-title">Tailor this version to a role.</h2>
+					<p className="muted">Compare your resume with specific terms from a job you care about.</p>
+				</div>
+				<Target size={21} />
+			</div>
+			<div className="form-grid">
+				<div>
+					<label className="field" htmlFor="resume-target-job">
+						<span>Target job</span>
+						<select
+							id="resume-target-job"
+							className="input"
+							value={job?.id ?? ""}
+							onChange={(event) => {
+								onChange({ targetJobId: event.target.value || null });
+								setError("");
+								setNotice("Target job updated. Review your target terms or add suggestions from this posting.");
+							}}
+						>
+							<option value="">No target job</option>
+							{jobs.map((item) => (
+								<option key={item.id} value={item.id}>
+									{item.company} · {item.role}
+								</option>
+							))}
+						</select>
+					</label>
+					{resume.targetJobId && !job ? (
+						<p className="muted small-print">
+							The linked job is no longer in your workspace. Your saved target terms are retained; choose another job or
+							keep checking them.
+						</p>
+					) : null}
+					{!jobs.length ? (
+						<p className="muted small-print">
+							Save a role in{" "}
+							<a className="text-button" href="#jobs">
+								Job autopilot
+							</a>{" "}
+							to link its description. You can also enter target terms directly.
+						</p>
+					) : null}
+					{job ? (
+						<details>
+							<summary className="text-button">View job description</summary>
+							<p
+								className="muted preserve-lines small-print"
+								style={{ marginTop: 12, maxHeight: 180, overflowY: "auto" }}
+							>
+								{job.description ||
+									"This job has no description yet. Edit it in Job autopilot to add the requirements."}
+							</p>
+						</details>
+					) : null}
+					<div className="resume-actions" style={{ marginTop: 15 }}>
+						<button className="button secondary small" onClick={suggestKeywords} disabled={!job}>
+							<Sparkles size={15} />
+							Suggest from job
+						</button>
+						<button className="button secondary small" onClick={() => job && onDuplicate(job)} disabled={!job}>
+							<Copy size={15} />
+							Duplicate as job version
+						</button>
+					</div>
+					<p className="muted small-print" style={{ marginTop: 12 }}>
+						Suggestions use a fixed local skill dictionary and only add terms found in the posting. They never add
+						skills or claims to your resume.
+					</p>
+				</div>
+				<div>
+					<label className="field" htmlFor="resume-target-keywords">
+						<span>
+							Target terms{" "}
+							<small className="muted">
+								{comparison.total} / {TARGET_KEYWORD_LIMIT}
+							</small>
+						</span>
+						<textarea
+							id="resume-target-keywords"
+							className="textarea"
+							rows={4}
+							maxLength={TARGET_KEYWORDS_MAX_LENGTH}
+							value={resume.targetKeywords}
+							onChange={(event) => updateKeywords(event.target.value)}
+							placeholder="For example: Figma, user research, accessibility"
+						/>
+						<small className="muted">
+							Separate terms with commas or newlines. Edit this list to reflect the requirements you want to review.
+						</small>
+					</label>
+					<div className="target-summary" aria-live="polite">
+						<strong>
+							{comparison.coverage === null ? "No target terms yet" : `${comparison.coverage}% explicit-term coverage`}
+						</strong>
+						<span className="muted">
+							{comparison.total
+								? `${comparison.matched.length} of ${comparison.total} terms found in this resume`
+								: "Add terms to begin comparing your resume."}
+						</span>
+					</div>
+				</div>
+			</div>
+			{notice ? (
+				<div className="notice" role="status" style={{ marginTop: 18 }}>
+					<Check size={16} />
+					{notice}
+				</div>
+			) : null}
+			{error ? (
+				<div className="notice error" role="alert" style={{ marginTop: 18 }}>
+					{error}
+				</div>
+			) : null}
+			{comparison.total ? (
+				<div className="form-grid" style={{ marginTop: 20 }}>
+					<div>
+						<h3>In your resume</h3>
+						{comparison.matched.length ? (
+							<ul className="keyword-list">
+								{comparison.matched.map((term) => (
+									<li className="keyword-chip matched" key={term}>
+										<Check size={13} />
+										{term}
+									</li>
+								))}
+							</ul>
+						) : (
+							<p className="muted small-print">None of these terms were found yet.</p>
+						)}
+					</div>
+					<div>
+						<h3>To review</h3>
+						{comparison.missing.length ? (
+							<ul className="keyword-list">
+								{comparison.missing.map((term) => (
+									<li className="keyword-chip missing" key={term}>
+										<CircleAlert size={13} />
+										{term}
+									</li>
+								))}
+							</ul>
+						) : (
+							<p className="muted small-print">Every target term appears in the resume text.</p>
+						)}
+					</div>
+				</div>
+			) : null}
+			<p className="muted small-print" style={{ marginTop: 18 }}>
+				This check covers only the terms you enter, not every job qualification. It is not an ATS score or a hiring
+				prediction. Add a term to your resume only when your experience supports it.
+			</p>
+		</section>
+	);
+}
+
 type ResumePaperProps = { resume: Resume; template: "classic" | "modern" };
 
 function ResumePaper({ resume, template }: ResumePaperProps) {
@@ -144,6 +373,8 @@ export function ResumesView() {
 			title: `Resume ${data.resumes.length + 1}`,
 			updatedAt: new Date().toISOString(),
 			profile: { ...data.profile },
+			targetJobId: null,
+			targetKeywords: "",
 		};
 		setData((current) => ({
 			...current,
@@ -187,6 +418,27 @@ export function ResumesView() {
 		}));
 		setSelectedId(resume.id);
 		setMessage("Resume duplicated.");
+	}
+
+	function duplicateForJob(job: Job) {
+		if (!selected || !canAddResume()) return;
+		const jobTitle = `${job.company} · ${job.role}`;
+		const title =
+			jobTitle.length <= (resumeSchema.shape.title.maxLength ?? Infinity) ? jobTitle : "Job-specific resume";
+		const resume: Resume = {
+			...selected,
+			id: crypto.randomUUID(),
+			title,
+			targetJobId: job.id,
+			updatedAt: new Date().toISOString(),
+			profile: { ...selected.profile },
+		};
+		setData((current) => ({ ...current, resumes: [...current.resumes, resume] }));
+		setSelectedId(resume.id);
+		setError("");
+		setMessage(
+			"Job-specific version created. Your original resume is kept; edit this copy using only experience you can substantiate.",
+		);
 	}
 
 	function removeResume() {
@@ -285,6 +537,15 @@ export function ResumesView() {
 					</button>
 				))}
 			</div>
+			{selected ? (
+				<ResumeTargetPanel
+					key={selected.id}
+					resume={selected}
+					jobs={data.jobs}
+					onChange={updateResume}
+					onDuplicate={duplicateForJob}
+				/>
+			) : null}
 			{selected ? (
 				<div className="resume-workspace">
 					<section className="panel resume-editor" aria-label="Resume editor">

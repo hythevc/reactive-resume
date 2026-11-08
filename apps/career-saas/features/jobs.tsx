@@ -14,7 +14,7 @@ import {
 	X,
 } from "lucide-react";
 import { useMemo, useState, type FormEvent } from "react";
-import { scoreJob, type Job } from "@/lib/workspace";
+import { evaluatePreparationJob, type Job, type PreparationReason } from "@/lib/workspace";
 import { useWorkspace } from "@/lib/workspace-context";
 
 type JobForm = Pick<Job, "company" | "role" | "location" | "url" | "description" | "notes">;
@@ -27,6 +27,21 @@ const emptyJob: JobForm = {
 	notes: "",
 };
 const stages: Job["status"][] = ["Saved", "Draft", "Applied", "Interview"];
+const reasonLabels: Record<PreparationReason, string> = {
+	"not-saved": "Already in your pipeline",
+	"missing-description": "Add a description",
+	"excluded-company": "Excluded company",
+	"location-mismatch": "Outside preferred locations",
+	"below-minimum-match": "Below your match threshold",
+};
+
+function criteriaTerms(value: string) {
+	const terms = value
+		.split(/[,\n]/)
+		.map((item) => item.trim())
+		.filter(Boolean);
+	return [...new Map(terms.map((term) => [term.toLowerCase(), term])).values()];
+}
 
 function safeJobUrl(value: string) {
 	try {
@@ -48,7 +63,32 @@ export function JobsView() {
 	const [error, setError] = useState("");
 	const [notice, setNotice] = useState("");
 	const [deleteId, setDeleteId] = useState<string | null>(null);
+	const savedCompanyCriteria = data.autopilot.excludedCompanies.join(", ");
+	const savedLocationCriteria = data.autopilot.locations.join(", ");
+	const criteriaKey = JSON.stringify([savedCompanyCriteria, savedLocationCriteria]);
+	const [criteriaDraft, setCriteriaDraft] = useState<{ key: string; company: string; location: string } | null>(null);
+	const activeCriteria =
+		criteriaDraft?.key === criteriaKey
+			? criteriaDraft
+			: { key: criteriaKey, company: savedCompanyCriteria, location: savedLocationCriteria };
+	const companyCriteria = activeCriteria.company;
+	const locationCriteria = activeCriteria.location;
+	const [criteriaError, setCriteriaError] = useState("");
+	function setCompanyCriteria(company: string) {
+		setCriteriaDraft({ key: criteriaKey, company, location: locationCriteria });
+	}
+	function setLocationCriteria(location: string) {
+		setCriteriaDraft({ key: criteriaKey, company: companyCriteria, location });
+	}
 	const minimumMatch = data.autopilot.minMatch;
+	const filtersDirty =
+		companyCriteria !== data.autopilot.excludedCompanies.join(", ") ||
+		locationCriteria !== data.autopilot.locations.join(", ");
+	const evaluations = useMemo(
+		() => new Map(data.jobs.map((job) => [job.id, evaluatePreparationJob(data.profile, job, data.autopilot)])),
+		[data.jobs, data.profile, data.autopilot],
+	);
+	const eligibleCount = [...evaluations.values()].filter((evaluation) => evaluation.eligible).length;
 	const filtered = useMemo(() => {
 		const query = search.trim().toLowerCase();
 		return data.jobs.filter(
@@ -59,6 +99,36 @@ export function JobsView() {
 	}, [data.jobs, search, stage]);
 	const selected = data.jobs.find((job) => job.id === selectedId);
 	const prepared = data.jobs.filter((job) => job.status === "Draft").length;
+
+	function saveCriteria(event: FormEvent<HTMLFormElement>) {
+		event.preventDefault();
+		const excludedCompanies = criteriaTerms(companyCriteria);
+		const locations = criteriaTerms(locationCriteria);
+		if (
+			excludedCompanies.length > 100 ||
+			locations.length > 50 ||
+			[...excludedCompanies, ...locations].some((term) => term.length > 500)
+		) {
+			setCriteriaError("Use up to 100 excluded companies and 50 location terms, with at most 500 characters each.");
+			return;
+		}
+		setData((current) => ({ ...current, autopilot: { ...current.autopilot, excludedCompanies, locations } }));
+		setCriteriaDraft(null);
+		setCriteriaError("");
+		setNotice("Preparation filters saved. Your job list explains which roles are eligible.");
+	}
+
+	function eligibilityLabel(job: Job) {
+		if (job.status === "Draft") return "Ready for your review";
+		if (job.status !== "Saved") return "Manually tracked";
+		const evaluation = evaluationFor(job);
+		return evaluation.eligible
+			? "Eligible for preparation"
+			: evaluation.reasons.map((reason) => reasonLabels[reason]).join(" · ");
+	}
+	function evaluationFor(job: Job) {
+		return evaluations.get(job.id) ?? evaluatePreparationJob(data.profile, job, data.autopilot);
+	}
 
 	function openForm(job?: Job) {
 		setForm(
@@ -141,6 +211,10 @@ export function JobsView() {
 
 	function prepareMatches() {
 		setError("");
+		if (filtersDirty) {
+			setNotice("Save your filter changes before preparing jobs.");
+			return;
+		}
 		if (!data.autopilot.enabled) {
 			setNotice("Turn on preparation to create local application drafts.");
 			return;
@@ -155,11 +229,11 @@ export function JobsView() {
 			return;
 		}
 		const candidates = data.jobs
-			.filter((job) => job.status === "Saved" && job.description.trim() && scoreJob(data.profile, job) >= minimumMatch)
+			.filter((job) => evaluatePreparationJob(data.profile, job, data.autopilot).eligible)
 			.slice(0, remaining);
 		if (!candidates.length) {
 			setNotice(
-				"No saved jobs meet this threshold. Add a job description, update your profile, or lower the minimum match.",
+				"No saved jobs meet your preparation criteria. Review the reasons shown beside each role and adjust your filters or profile.",
 			);
 			return;
 		}
@@ -169,12 +243,7 @@ export function JobsView() {
 			const allowance = Math.max(0, current.autopilot.dailyLimit - currentUsed);
 			const ids = new Set(
 				current.jobs
-					.filter(
-						(job) =>
-							job.status === "Saved" &&
-							job.description.trim() &&
-							scoreJob(current.profile, job) >= current.autopilot.minMatch,
-					)
+					.filter((job) => evaluatePreparationJob(current.profile, job, current.autopilot).eligible)
 					.slice(0, allowance)
 					.map((job) => job.id),
 			);
@@ -418,8 +487,14 @@ export function JobsView() {
 										</td>
 										<td>
 											<span className="status">
-												{job.description.trim() ? `${scoreJob(data.profile, job)}%` : "Add details"}
+												{job.description.trim() ? `${evaluationFor(job).score}%` : "Add details"}
 											</span>
+											<small
+												className={`eligibility-reason ${evaluationFor(job).eligible ? "eligible" : ""}`}
+												style={{ display: "block", maxWidth: 170, marginTop: 7, fontSize: 11, whiteSpace: "normal" }}
+											>
+												{eligibilityLabel(job)}
+											</small>
 										</td>
 										<td>
 											<span className="status">{job.status}</span>
@@ -528,14 +603,66 @@ export function JobsView() {
 							style={{ width: "100%", accentColor: "#173f35" }}
 						/>
 					</label>
+					<form onSubmit={saveCriteria} className="preparation-filters">
+						<label className="field">
+							Exclude companies
+							<input
+								className="input"
+								value={companyCriteria}
+								maxLength={50100}
+								onChange={(event) => setCompanyCriteria(event.target.value)}
+								placeholder="e.g. Forma, Arcwell"
+							/>
+							<small className="muted">
+								Comma-separated names. Exact company-name matches are excluded, ignoring capitalization.
+							</small>
+						</label>
+						<label className="field">
+							Preferred locations
+							<input
+								className="input"
+								value={locationCriteria}
+								maxLength={25050}
+								onChange={(event) => setLocationCriteria(event.target.value)}
+								placeholder="e.g. Remote, San Francisco"
+							/>
+							<small className="muted">
+								Any listed phrase can match a job's location. Leave blank to allow all locations.
+							</small>
+						</label>
+						{criteriaError ? (
+							<p className="notice" role="alert">
+								{criteriaError}
+							</p>
+						) : null}
+						<button className="button secondary small" type="submit" disabled={!ready || !filtersDirty}>
+							<Check size={14} /> Save filters
+						</button>
+					</form>
+					<p className="muted" style={{ fontSize: 12, marginTop: 20 }}>
+						{eligibleCount} saved {eligibleCount === 1 ? "role meets" : "roles meet"} your current preparation criteria.
+					</p>
 					<button
 						className="button primary"
 						style={{ width: "100%", marginTop: 12 }}
 						type="button"
 						onClick={prepareMatches}
-						disabled={!ready || !data.autopilot.enabled}
+						disabled={!ready || !data.autopilot.enabled || filtersDirty}
 					>
 						{data.autopilot.enabled ? <Play size={15} /> : <Pause size={15} />} Prepare matching jobs
+					</button>
+					{filtersDirty ? (
+						<p className="muted" style={{ fontSize: 11 }}>
+							Save your filter changes to update eligibility and prepare matching jobs.
+						</p>
+					) : null}
+					<button
+						className="button secondary small"
+						type="button"
+						style={{ width: "100%", marginTop: 10 }}
+						onClick={() => setStage("Draft")}
+					>
+						Review draft queue ({prepared})
 					</button>
 					<p className="muted" style={{ fontSize: 11, marginTop: 15, lineHeight: 1.7 }}>
 						{prepared} {prepared === 1 ? "draft" : "drafts"} awaiting review. Match is a local keyword estimate, not an

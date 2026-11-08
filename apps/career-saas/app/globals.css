@@ -2080,3 +2080,217 @@ div.section-title {
 .table-wrap {
 	position: relative;
 }
+
+.resume-target-panel {
+	margin-bottom: 24px;
+}
+.resume-target-panel > .panel-heading {
+	align-items: flex-start;
+}
+.resume-target-panel details {
+	margin: 12px 0 20px;
+	font-size: 12px;
+}
+.resume-target-panel summary {
+	font-weight: 750;
+	cursor: pointer;
+}
+.resume-target-panel details p {
+	margin-top: 10px;
+	padding: 15px;
+	background: #f6f8f3;
+	border-radius: 8px;
+	font-size: 12px;
+	white-space: pre-line;
+}
+.target-summary {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+	border-top: 1px solid var(--border);
+	padding-top: 18px;
+	margin-top: 18px;
+}
+.target-summary strong {
+	font-size: 27px;
+	color: var(--green);
+}
+.target-summary p {
+	font-size: 12px;
+}
+.keyword-list {
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+	margin: 10px 0 18px;
+}
+.keyword-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 10px;
+	border-radius: 6px;
+	font-size: 11px;
+	line-height: 1.5;
+	background: #edf1ec;
+	border: 1px solid #dbe3d6;
+}
+.keyword-chip.matched {
+	background: #eaf2e0;
+	color: #33582d;
+	border-color: #d8e5cb;
+}
+.keyword-chip.missing {
+	background: #fbf2e5;
+	color: #865e2d;
+	border-color: #ebdbc3;
+}
+.linkedin-resume-source {
+	display: grid;
+	grid-template-columns: 1.2fr 1fr auto;
+	align-items: center;
+	gap: 24px;
+	margin-bottom: 24px;
+}
+.linkedin-resume-source h2 {
+	font-size: 18px;
+}
+.linkedin-resume-source p {
+	font-size: 12px;
+	margin-top: 6px;
+}
+.linkedin-resume-source .field {
+	margin: 0;
+}
+.photo-steps {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	list-style: none;
+	padding: 0;
+	margin: 0 0 24px;
+	gap: 16px;
+}
+.photo-step {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	padding: 12px 0;
+	border-bottom: 2px solid var(--border);
+	font-size: 12px;
+	color: var(--muted);
+}
+.photo-step > span {
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #edf0eb;
+	font-size: 11px;
+	flex-shrink: 0;
+}
+.photo-step.active,
+.photo-step.done {
+	color: var(--green);
+	border-color: #9bb57b;
+}
+.photo-step.active > span,
+.photo-step.done > span {
+	background: var(--lime);
+}
+.photo-compare-controls {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	flex-wrap: wrap;
+	margin: 0 0 16px;
+}
+.photo-compare-controls .tabs {
+	margin-bottom: 0;
+	gap: 3px;
+}
+.photo-compare-controls .tab {
+	font-size: 11px;
+	padding: 7px 9px;
+}
+.photo-canvas-stack {
+	overflow: hidden;
+	border-radius: 12px;
+	aspect-ratio: 1;
+}
+.photo-canvas-stack.circle-preview {
+	border-radius: 50%;
+}
+.photo-canvas-stack canvas {
+	width: 100%;
+	height: auto;
+}
+.eligibility-reason {
+	font-size: 10px;
+	color: var(--muted);
+	display: block;
+	max-width: 210px;
+	margin-top: 5px;
+}
+.filter-fields {
+	border-top: 1px solid var(--border);
+	padding-top: 14px;
+	margin-top: 14px;
+}
+.source-link {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+	font-size: 12px;
+	color: var(--green);
+	text-decoration: underline;
+}
+@media (max-width: 1000px) {
+	.linkedin-resume-source {
+		grid-template-columns: 1fr 1fr;
+	}
+	.linkedin-resume-source > div {
+		grid-column: 1/-1;
+	}
+}
+@media (max-width: 760px) {
+	.linkedin-resume-source {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+	.linkedin-resume-source > div {
+		grid-column: auto;
+	}
+	.linkedin-resume-source .button {
+		justify-self: start;
+	}
+	.photo-steps {
+		gap: 10px;
+	}
+	.photo-step {
+		font-size: 11px;
+		gap: 7px;
+	}
+	.target-summary {
+		gap: 12px;
+		align-items: flex-start;
+		flex-wrap: wrap;
+	}
+	.resume-target-panel > .panel-heading {
+		flex-wrap: wrap;
+	}
+	.keyword-chip {
+		font-size: 10px;
+	}
+}
+@media print {
+	.resume-target-panel {
+		display: none !important;
+	}
+}
+
+.field > span:has(> svg) {
+	justify-content: flex-start;
+	gap: 8px;
+}

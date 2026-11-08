@@ -10,15 +10,15 @@ Upload frame and export a profile photo,photos,should,yes,yes,Local image upload
 Generate a new professional AI headshot,photos,must,yes,no,Photo editor is not headshot generation; image provider absent; reference https://www.headshotpro.com/
 Choose generated headshot outfits and backgrounds,photos,should,yes,no,No generation engine or generated output gallery; reference https://www.aragon.ai/
 Manage saved jobs descriptions and notes,jobs,must,yes,yes,Local CRUD search and visible notes; reference https://www.tealhq.com/
-Compare a posting against profile skills,jobs,must,yes,partial,Local keyword-overlap estimate only; no ATS integration or semantic matching; reference https://www.jobscan.co/
+Compare a posting against profile skills,jobs,must,yes,partial,Local keyword-overlap estimate plus editable explicit-term resume gaps; no ATS integration or semantic matching; Teal/Rezi public previews observed by REA
 Prepare matching saved jobs within configured limits,jobs,must,yes,yes,Saved to Draft local queue with minMatch and persistent UTC daily allowance; reference https://www.loopcv.pro/
 Track application and interview stages,jobs,must,yes,yes,User-reported stages only; source features/jobs.tsx; reference https://simplify.jobs/
 Continuously discover live relevant jobs,jobs,must,yes,no,No live job feed crawler or scheduled discovery provider; reference https://www.sonara.ai/
 Apply to jobs unattended with resume and answers,jobs,must,yes,no,No submission adapter or scheduler; opening employer URL is not submission; reference https://www.loopcv.pro/
 Autofill employer application forms,jobs,should,yes,no,No browser extension or form integration; reference https://simplify.jobs/copilot
 Capture confirmed submission receipts and failures,jobs,must,yes,no,Local manual Applied status is not external proof; production automation requires receipts; requested SaaS requirement
-Filter automation by role location salary and company exclusions,jobs,should,yes,partial,Role/location/salary goals saved but only profile keyword threshold drives current preparation; company exclusions absent; reference https://www.loopcv.pro/
-Manage recruiter contacts and stages,outreach,must,yes,yes,Local contacts CRUD search manual statuses; reference https://www.wonsulting.ai/networkai
+Filter automation by role location salary and company exclusions,jobs,should,yes,partial,"Company exclusions and preferred location terms implemented from REA-observed LoopCV public pattern; single local preparation configuration, not named background searches"
+Manage recruiter contacts and stages,outreach,must,yes,yes,"Local CRUD, source URL and context; manual statuses; REA public Hunter/NetworkAI evidence; email verification not connected"
 Create personalized editable recruiter drafts,outreach,must,yes,yes,Deterministic template grounded in supplied profile and contact fields; not AI-generated; reference https://www.wonsulting.ai/networkai
 Copy drafts and open own email composer,outreach,should,yes,yes,Clipboard and mailto; user sends externally; reference https://www.wonsulting.ai/networkai
 Find recruiters and verify their email addresses,outreach,must,yes,no,No recruiter network email finder verifier or provenance integration; reference https://hunter.io/

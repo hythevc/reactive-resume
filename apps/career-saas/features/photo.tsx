@@ -93,6 +93,7 @@ function Adjustment({ id, label, value, min, max, step = 1, display, disabled, o
 export function PhotoView() {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const canvasRef = useRef<HTMLCanvasElement>(null);
+	const originalCanvasRef = useRef<HTMLCanvasElement>(null);
 	const sourceUrlRef = useRef<string | null>(null);
 	const uploadSequence = useRef(0);
 	const [image, setImage] = useState<HTMLImageElement | null>(null);
@@ -104,6 +105,9 @@ export function PhotoView() {
 	const [exposure, setExposure] = useState(100);
 	const [loading, setLoading] = useState(false);
 	const [downloading, setDownloading] = useState(false);
+	const [downloaded, setDownloaded] = useState(false);
+	const [comparison, setComparison] = useState<"original" | "edited">("edited");
+	const [previewShape, setPreviewShape] = useState<"square" | "circle">("square");
 	const [error, setError] = useState("");
 	const [message, setMessage] = useState("");
 
@@ -116,10 +120,11 @@ export function PhotoView() {
 	);
 
 	useEffect(() => {
-		if (!image || !canvasRef.current) return;
+		if (!image || !canvasRef.current || !originalCanvasRef.current) return;
 		const canvas = canvasRef.current;
 		const context = canvas.getContext("2d");
-		if (!context) {
+		const original = originalCanvasRef.current.getContext("2d");
+		if (!context || !original) {
 			setError("Photo editing is unavailable in this browser. Try a current Chrome, Firefox, or Safari browser.");
 			return;
 		}
@@ -131,9 +136,17 @@ export function PhotoView() {
 		context.clearRect(0, 0, OUTPUT_SIZE, OUTPUT_SIZE);
 		context.imageSmoothingEnabled = true;
 		context.imageSmoothingQuality = "high";
-		context.filter = `brightness(${exposure}%) ${presets.find((item) => item.id === preset)?.filter || ""}`.trim();
+		const finish = presets.find((item) => item.id === preset)?.filter || "";
+		context.filter = `${exposure === 100 ? "" : `brightness(${exposure}%)`} ${finish}`.trim() || "none";
 		context.drawImage(image, left, top, width, height);
 		context.filter = "none";
+		original.clearRect(0, 0, OUTPUT_SIZE, OUTPUT_SIZE);
+		original.imageSmoothingEnabled = true;
+		original.imageSmoothingQuality = "high";
+		original.filter = "none";
+		original.drawImage(image, left, top, width, height);
+		setDownloaded(false);
+		setMessage((current) => (current.startsWith("Your 1,024") ? "" : current));
 	}, [image, preset, zoom, focalX, focalY, exposure]);
 
 	function resetAdjustments() {
@@ -142,6 +155,8 @@ export function PhotoView() {
 		setFocalX(0);
 		setFocalY(0);
 		setExposure(100);
+		setDownloaded(false);
+		setMessage("");
 	}
 
 	async function uploadPhoto(event: ChangeEvent<HTMLInputElement>) {
@@ -179,6 +194,7 @@ export function PhotoView() {
 			if (sourceUrlRef.current) URL.revokeObjectURL(sourceUrlRef.current);
 			sourceUrlRef.current = objectUrl;
 			setImage(decoded);
+			setComparison("edited");
 			setFileName(file.name.replace(/\.[^.]+$/, ""));
 			resetAdjustments();
 			setMessage("Photo ready. Adjust the framing, then download your square profile photo.");
@@ -200,6 +216,8 @@ export function PhotoView() {
 		if (sourceUrlRef.current) URL.revokeObjectURL(sourceUrlRef.current);
 		sourceUrlRef.current = null;
 		setImage(null);
+		setComparison("edited");
+		setPreviewShape("square");
 		setLoading(false);
 		resetAdjustments();
 		setError("");
@@ -229,6 +247,7 @@ export function PhotoView() {
 				link.download = `${safeName}-profile.png`;
 				link.click();
 				window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+				setDownloaded(true);
 				setMessage("Your 1,024 × 1,024 PNG is ready. Check your downloads.");
 			}, "image/png");
 		} catch {
@@ -253,6 +272,23 @@ export function PhotoView() {
 				<ShieldCheck size={18} />
 				<span>Photo editing runs on this device. AI headshots require a connected image provider.</span>
 			</div>
+			<ol className="photo-steps" aria-label="Photo editing progress">
+				<li className={`photo-step ${image ? "done" : "active"}`} aria-current={!image ? "step" : undefined}>
+					<span>{image ? <Check size={15} /> : "1"}</span>
+					<strong>Upload</strong>
+				</li>
+				<li
+					className={`photo-step ${downloaded ? "done" : image ? "active" : ""}`}
+					aria-current={image && !downloaded ? "step" : undefined}
+				>
+					<span>{downloaded ? <Check size={15} /> : "2"}</span>
+					<strong>Polish</strong>
+				</li>
+				<li className={`photo-step ${downloaded ? "done active" : ""}`} aria-current={downloaded ? "step" : undefined}>
+					<span>{downloaded ? <Check size={15} /> : "3"}</span>
+					<strong>Download</strong>
+				</li>
+			</ol>
 			{error ? (
 				<div className="notice error" role="alert">
 					{error}
@@ -276,24 +312,75 @@ export function PhotoView() {
 				<section className="panel photo-preview-panel" aria-label="Profile photo preview">
 					<div className="panel-heading">
 						<h2 className="section-title">Your new first impression</h2>
-						<span className="status">1:1 square</span>
+						<span className="status">1:1 PNG export</span>
 					</div>
 					{image ? (
-						<div className="photo-preview">
-							<canvas
-								ref={canvasRef}
-								width={OUTPUT_SIZE}
-								height={OUTPUT_SIZE}
-								aria-label="Edited profile photo preview"
-								style={{
-									display: "block",
-									width: "100%",
-									height: "auto",
-									borderRadius: 12,
-								}}
-							>
-								Your browser cannot display the photo editor. Try a current browser.
-							</canvas>
+						<div>
+							<div className="photo-compare-controls">
+								<div className="tabs" role="group" aria-label="Compare photo finish">
+									{(["original", "edited"] as const).map((mode) => (
+										<button
+											key={mode}
+											type="button"
+											className={`tab ${comparison === mode ? "active" : ""}`}
+											aria-pressed={comparison === mode}
+											onClick={() => setComparison(mode)}
+										>
+											{mode === "original" ? "Original" : "Edited"}
+										</button>
+									))}
+								</div>
+								<div className="tabs" role="group" aria-label="Preview shape">
+									{(["square", "circle"] as const).map((shape) => (
+										<button
+											key={shape}
+											type="button"
+											className={`tab ${previewShape === shape ? "active" : ""}`}
+											aria-pressed={previewShape === shape}
+											onClick={() => setPreviewShape(shape)}
+										>
+											{shape === "square" ? "Square" : "Circle"}
+										</button>
+									))}
+								</div>
+							</div>
+							<div className="photo-preview">
+								<div
+									className={`photo-canvas-stack ${previewShape === "circle" ? "circle-preview" : ""}`}
+									style={{ width: "100%" }}
+								>
+									<canvas
+										ref={canvasRef}
+										width={OUTPUT_SIZE}
+										height={OUTPUT_SIZE}
+										aria-label="Edited profile photo preview"
+										style={{
+											display: comparison === "edited" ? "block" : "none",
+											width: "100%",
+											height: "auto",
+											borderRadius: 12,
+										}}
+									>
+										Your browser cannot display the photo editor. Try a current browser.
+									</canvas>
+									<canvas
+										ref={originalCanvasRef}
+										width={OUTPUT_SIZE}
+										height={OUTPUT_SIZE}
+										aria-label="Original photo with current crop"
+										style={{
+											display: comparison === "original" ? "block" : "none",
+											width: "100%",
+											height: "auto",
+											borderRadius: 12,
+										}}
+									/>
+								</div>
+							</div>
+							<p className="muted" style={{ fontSize: 12, marginTop: 12 }}>
+								Original uses the same crop without your finish or exposure edits. Circle is a preview only; downloads
+								always use your edited, square PNG.
+							</p>
 						</div>
 					) : (
 						<div className="photo-placeholder">

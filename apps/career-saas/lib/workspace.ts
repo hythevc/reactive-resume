@@ -30,12 +30,20 @@ export const profileSchema = z
 	.strict();
 export const RESUME_LIMIT = 200;
 export const MAX_RESUMES = RESUME_LIMIT;
+export const TARGET_KEYWORDS_MAX_LENGTH = 10_000;
+export const TARGET_KEYWORD_LIMIT = 100;
+export const targetKeywordsSchema = z
+	.string()
+	.max(TARGET_KEYWORDS_MAX_LENGTH)
+	.refine((value) => splitSkills(value).length <= TARGET_KEYWORD_LIMIT, "Use at most 100 target keywords.");
 export const resumeSchema = z
 	.object({
 		id,
 		title: shortText,
 		updatedAt: timestamp,
 		profile: profileSchema,
+		targetJobId: id.nullable().default(null),
+		targetKeywords: targetKeywordsSchema.default(""),
 	})
 	.strict();
 export const linkedinSchema = z.object({ headline: shortText, about: text, experience: text, skills: text }).strict();
@@ -52,7 +60,9 @@ const jobSchema = z
 		createdAt: timestamp,
 	})
 	.strict();
-const contactSchema = z
+export const CONTACT_CONTEXT_MAX_LENGTH = 5_000;
+export const CONTACT_SOURCE_MAX_LENGTH = 2_000;
+export const contactSchema = z
 	.object({
 		id,
 		name: shortText,
@@ -61,6 +71,21 @@ const contactSchema = z
 		email: shortText,
 		status: z.enum(["Draft", "Contacted", "Replied"]),
 		message: text,
+		sourceUrl: z
+			.string()
+			.trim()
+			.max(CONTACT_SOURCE_MAX_LENGTH)
+			.refine((value) => {
+				if (!value) return true;
+				try {
+					const url = new URL(value);
+					return /^https:\/\//i.test(value) && url.protocol === "https:" && !url.username && !url.password;
+				} catch {
+					return false;
+				}
+			}, "Use a full HTTPS URL without a username or password.")
+			.default(""),
+		context: z.string().max(CONTACT_CONTEXT_MAX_LENGTH).default(""),
 	})
 	.strict();
 export const workspaceSchema = z
@@ -92,6 +117,8 @@ export const workspaceSchema = z
 					.regex(/^(?:\d{4}-\d{2}-\d{2})?$/)
 					.default(""),
 				preparationCount: z.number().int().min(0).max(100_000).default(0),
+				excludedCompanies: z.array(z.string().trim().min(1).max(500)).max(100).default([]),
+				locations: z.array(z.string().trim().min(1).max(500)).max(50).default([]),
 			})
 			.strict(),
 		plan: z.enum(["Free", "Pro", "Momentum"]),
@@ -180,6 +207,8 @@ export function createWorkspace(): Workspace {
 				title: "Product design · Master resume",
 				updatedAt: now,
 				profile: { ...profile },
+				targetJobId: null,
+				targetKeywords: "",
 			},
 			{
 				id: "resume-systems",
@@ -189,6 +218,8 @@ export function createWorkspace(): Workspace {
 					...profile,
 					role: "Senior Product Designer · Design Systems",
 				},
+				targetJobId: null,
+				targetKeywords: "",
 			},
 		],
 		jobs: companies.map((company, index) => ({
@@ -211,6 +242,8 @@ export function createWorkspace(): Workspace {
 				email: "jamie@example.test",
 				status: "Draft",
 				message: "",
+				sourceUrl: "",
+				context: "",
 			},
 			{
 				id: "contact-2",
@@ -220,6 +253,8 @@ export function createWorkspace(): Workspace {
 				email: "taylor@example.test",
 				status: "Draft",
 				message: "",
+				sourceUrl: "",
+				context: "",
 			},
 			{
 				id: "contact-3",
@@ -229,6 +264,8 @@ export function createWorkspace(): Workspace {
 				email: "jordan@example.test",
 				status: "Draft",
 				message: "",
+				sourceUrl: "",
+				context: "",
 			},
 			{
 				id: "contact-4",
@@ -238,6 +275,8 @@ export function createWorkspace(): Workspace {
 				email: "sam@example.test",
 				status: "Draft",
 				message: "",
+				sourceUrl: "",
+				context: "",
 			},
 		],
 		goals: {
@@ -251,6 +290,8 @@ export function createWorkspace(): Workspace {
 			minMatch: 60,
 			preparationDate: "",
 			preparationCount: 0,
+			excludedCompanies: [],
+			locations: [],
 		},
 		plan: "Free",
 	};
@@ -351,8 +392,184 @@ export function splitSkills(value: string): string[] {
 	];
 }
 function includesTerm(text: string, term: string): boolean {
-	const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-	return new RegExp(`(?:^|[^a-z0-9])${escaped}(?=$|[^a-z0-9])`, "i").test(text);
+	return includesNormalizedTerm(normalizeTerm(text), term);
+}
+
+function includesNormalizedTerm(text: string, term: string): boolean {
+	const normalized = normalizeTerm(term);
+	if (!normalized) return false;
+	const escaped = normalized.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+	return new RegExp(`(?:^|[^\\p{L}\\p{N}])${escaped}(?=$|[^\\p{L}\\p{N}])`, "u").test(text);
+}
+
+function normalizeTerm(value: string): string {
+	return value.normalize("NFKC").trim().toLocaleLowerCase("en-US").replace(/\s+/g, " ");
+}
+
+export type ResumeJobComparison = {
+	matched: string[];
+	missing: string[];
+	coverage: number | null;
+	total: number;
+};
+
+/** Checks only the user's explicit target terms. No hiring probability or ATS score is inferred. */
+export function compareResumeToJob(profile: Profile, keywords: string): ResumeJobComparison {
+	const seen = new Set<string>();
+	const terms = splitSkills(targetKeywordsSchema.parse(keywords)).filter((term) => {
+		const key = normalizeTerm(term);
+		if (seen.has(key)) return false;
+		seen.add(key);
+		return true;
+	});
+	const resumeText = normalizeTerm(
+		[profile.role, profile.summary, profile.skills, profile.experience, profile.education].join("\n"),
+	);
+	const matched: string[] = [];
+	const missing: string[] = [];
+	for (const term of terms) (includesNormalizedTerm(resumeText, term) ? matched : missing).push(term);
+	return {
+		matched,
+		missing,
+		coverage: terms.length ? Math.round((matched.length / terms.length) * 100) : null,
+		total: terms.length,
+	};
+}
+
+// A small literal dictionary provides editable starting terms, not inferred requirements.
+// A posting can contain relevant terms outside this list, or mention a listed term in a negation.
+const COMMON_JOB_SKILLS = [
+	"Accessibility",
+	"Account management",
+	"Accounting",
+	"Accounts payable",
+	"Accounts receivable",
+	"Active listening",
+	"Agile",
+	"Angular",
+	"APIs",
+	"AWS",
+	"Azure",
+	"B2B",
+	"B2C",
+	"Budgeting",
+	"Business analysis",
+	"C#",
+	"C++",
+	"Case management",
+	"Clinical assessment",
+	"Cloud computing",
+	"Coaching",
+	"Communication",
+	"Content strategy",
+	"Copywriting",
+	"CPR",
+	"CRM",
+	"CSS",
+	"Customer service",
+	"Customer success",
+	"Data analysis",
+	"Data entry",
+	"Data visualization",
+	"Design systems",
+	"Docker",
+	"Electronic health records",
+	"Excel",
+	"Figma",
+	"Financial analysis",
+	"Financial reporting",
+	"Forecasting",
+	"Git",
+	"Google Analytics",
+	"Graphic design",
+	"HIPAA",
+	"HTML",
+	"Illustrator",
+	"Interaction design",
+	"Inventory management",
+	"Java",
+	"JavaScript",
+	"Jira",
+	"Kubernetes",
+	"Leadership",
+	"Machine learning",
+	"Marketing",
+	"Microsoft Office",
+	"Negotiation",
+	"Node.js",
+	"Nursing",
+	"Operations",
+	"Patient care",
+	"Payroll",
+	"Photoshop",
+	"PostgreSQL",
+	"Power BI",
+	"Presentation",
+	"Problem solving",
+	"Product design",
+	"Product management",
+	"Project management",
+	"Prototyping",
+	"Python",
+	"Quality assurance",
+	"React",
+	"Recruiting",
+	"Research",
+	"Risk management",
+	"Ruby",
+	"Sales",
+	"Salesforce",
+	"Scheduling",
+	"SEO",
+	"Social media",
+	"SQL",
+	"Stakeholder management",
+	"Strategic planning",
+	"Supply chain",
+	"Tableau",
+	"Teamwork",
+	"Technical writing",
+	"Terraform",
+	"Time management",
+	"TypeScript",
+	"Usability testing",
+	"User research",
+	"UX research",
+	"Visual design",
+	"Vue",
+	"Wireframing",
+	"WordPress",
+] as const;
+
+export function extractJobKeywords(job: Pick<Job, "role" | "description">): string[] {
+	const posting = normalizeTerm(`${job.role}\n${job.description}`);
+	return COMMON_JOB_SKILLS.filter((term) => includesNormalizedTerm(posting, term)).slice(0, TARGET_KEYWORD_LIMIT);
+}
+
+export type PreparationReason =
+	| "not-saved"
+	| "missing-description"
+	| "excluded-company"
+	| "location-mismatch"
+	| "below-minimum-match";
+export type PreparationEvaluation = { eligible: boolean; score: number; reasons: PreparationReason[] };
+
+/** Shared candidate rules; the caller separately enforces pause state and the daily allowance. */
+export function evaluatePreparationJob(
+	profile: Profile,
+	job: Job,
+	autopilot: Workspace["autopilot"],
+): PreparationEvaluation {
+	const reasons: PreparationReason[] = [];
+	const score = scoreJob(profile, job);
+	if (job.status !== "Saved") reasons.push("not-saved");
+	if (!job.description.trim()) reasons.push("missing-description");
+	if (autopilot.excludedCompanies.some((company) => normalizeTerm(company) === normalizeTerm(job.company)))
+		reasons.push("excluded-company");
+	if (autopilot.locations.length && !autopilot.locations.some((location) => includesTerm(job.location, location)))
+		reasons.push("location-mismatch");
+	if (score < autopilot.minMatch) reasons.push("below-minimum-match");
+	return { eligible: reasons.length === 0, score, reasons };
 }
 
 /** Local keyword overlap only. A score is not a hiring probability or an AI evaluation. */
@@ -361,8 +578,8 @@ export function scoreJob(profile: Profile, job: Job): number {
 		...new Set([...splitSkills(profile.skills), ...profile.role.split(/\s+/).filter((word) => word.length >= 4)]),
 	];
 	if (!terms.length) return 0;
-	const posting = `${job.role} ${job.description}`;
-	return Math.round((terms.filter((term) => includesTerm(posting, term)).length / terms.length) * 100);
+	const posting = normalizeTerm(`${job.role} ${job.description}`);
+	return Math.round((terms.filter((term) => includesNormalizedTerm(posting, term)).length / terms.length) * 100);
 }
 
 export function buildOutreach(profile: Profile, contact: Contact): string {
@@ -373,8 +590,11 @@ export function buildOutreach(profile: Profile, contact: Contact): string {
 	]
 		.filter(Boolean)
 		.join(", ");
-	const skills = splitSkills(profile.skills).slice(0, 3);
-	return `${greeting}\n\n${intro}.${skills.length ? ` My skills include ${skills.join(", ")}.` : ""}\n\nI'm interested in opportunities${contact.company.trim() ? ` at ${contact.company.trim()}` : " you are recruiting for"}. Would you be open to a short conversation about roles that might fit?\n\nThank you,\n${profile.name.trim()}`;
+	// Drafts select concise skill labels; the complete profile stays untouched.
+	const skills = splitSkills(profile.skills)
+		.filter((skill) => skill.length <= 500)
+		.slice(0, 3);
+	return `${greeting}\n\n${intro}.${skills.length ? ` My skills include ${skills.join(", ")}.` : ""}${contact.context.trim() ? `\n\n${contact.context.trim()}` : ""}\n\nI'm interested in opportunities${contact.company.trim() ? ` at ${contact.company.trim()}` : " you are recruiting for"}. Would you be open to a short conversation about roles that might fit?\n\nThank you,\n${profile.name.trim()}`;
 }
 
 // Reactive Resume v5/v6 exchange adapter. Design defaults mirror the MIT-licensed

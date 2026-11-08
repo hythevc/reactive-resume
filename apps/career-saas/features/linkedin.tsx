@@ -1,6 +1,16 @@
 "use client";
 
-import { ArrowRight, Check, CheckCircle2, CircleAlert, Copy, Linkedin, RefreshCw, Sparkles } from "lucide-react";
+import {
+	ArrowRight,
+	Check,
+	CheckCircle2,
+	CircleAlert,
+	Copy,
+	FileText,
+	Linkedin,
+	RefreshCw,
+	Sparkles,
+} from "lucide-react";
 import { useState } from "react";
 import { auditLinkedIn, linkedinSchema, type LinkedInProfile } from "@/lib/workspace";
 import { useWorkspace } from "@/lib/workspace-context";
@@ -11,6 +21,22 @@ export function LinkedInView() {
 	const [report, setReport] = useState<ReturnType<typeof auditLinkedIn> | null>(null);
 	const [message, setMessage] = useState("");
 	const [error, setError] = useState("");
+	const [sourceId, setSourceId] = useState(data.resumes[0]?.id ?? "");
+	const source = data.resumes.find((resume) => resume.id === sourceId);
+
+	function loadResume() {
+		if (!source) return;
+		const next = {
+			headline: source.profile.role,
+			about: source.profile.summary,
+			experience: source.profile.experience,
+			skills: source.profile.skills,
+		};
+		setData((current) => ({ ...current, linkedin: next }));
+		setReport(null);
+		setError("");
+		setMessage("Resume text loaded. Review each field, then run your writing checks.");
+	}
 
 	function update(field: keyof LinkedInProfile, value: string) {
 		const limit = linkedinSchema.shape[field].maxLength;
@@ -88,6 +114,35 @@ export function LinkedInView() {
 					{message}
 				</div>
 			) : null}
+			<section className="panel linkedin-resume-source" aria-label="Start LinkedIn draft from a resume">
+				<div>
+					<h2>Start with your experience.</h2>
+					<p className="muted">
+						Reuse a saved resume’s text for your headline, About, experience, and skills. Loading replaces the current
+						draft.
+					</p>
+				</div>
+				<label className="field" htmlFor="linkedin-resume-source">
+					<span>Saved resume</span>
+					<select
+						className="input"
+						id="linkedin-resume-source"
+						value={sourceId}
+						onChange={(event) => setSourceId(event.target.value)}
+					>
+						<option value="">Choose a resume</option>
+						{data.resumes.map((resume) => (
+							<option key={resume.id} value={resume.id}>
+								{resume.title}
+							</option>
+						))}
+					</select>
+				</label>
+				<button className="button secondary" disabled={!source} onClick={loadResume}>
+					<FileText size={16} />
+					Load resume text
+				</button>
+			</section>
 			<div className="audit-layout">
 				<section className="panel linkedin-editor">
 					<div className="panel-heading">

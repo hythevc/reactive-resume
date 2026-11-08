@@ -25,12 +25,12 @@ npm --workspaces=false run start
 
 ## What works locally
 
-- Edit career facts and create/duplicate/edit resume versions with a live preview.
+- Edit career facts and create/duplicate/edit resume versions with a live preview. Compare a saved posting against explicit editable target terms, inspect missing terms, and duplicate a job-specific version without changing your career facts.
 - Import/export supported Reactive Resume JSON text; print through the browser's Save as PDF dialog. This is not yet the shared PDF/DOCX rendering service.
-- Review pasted LinkedIn text using disclosed writing checks and editable suggestions. Scores are local heuristics, not LinkedIn ranking or ATS predictions.
-- Prepare your own photo in the browser and download the result. Local image processing is not AI headshot generation.
-- Add/edit/filter jobs, inspect keyword overlap, prepare matching drafts and manually update tracker stages. Preparation controls run while you use the app; there is no background scheduler or automatic submission.
-- Add researched contacts, create/edit factual template drafts, copy them or open your mail composer and track user-reported stages. No email is sent by the app.
+- Start from a saved resume or review pasted LinkedIn text using disclosed writing checks and editable suggestions. Scores are local heuristics, not LinkedIn ranking or ATS predictions.
+- Prepare your own photo in the browser, compare original/edited crops, preview square/circle framing, and download the edited square PNG. Local image processing is not AI headshot generation.
+- Add/edit/filter jobs, inspect keyword overlap, save company exclusions and preferred locations, review per-job eligibility reasons, prepare matching drafts and manually update tracker stages. Preparation controls run while you use the app; there is no background scheduler or automatic submission.
+- Add researched contacts with user-supplied source URLs and context, create/edit factual template drafts, copy them or open your mail composer and track user-reported stages. No email is sent by the app.
 - Keep workspace state in versioned local browser storage and use settings for backup/restore/reset. Browser storage is tied to the device/browser and can be cleared; exported backups contain your career data.
 
 Uploaded photo processing stays local. Photos and photo adjustments are not persisted in the workspace backup. LinkedIn drafts and daily preparation counts are included in workspace backups. Treat browser backups as private files. The local app has no account access boundary; people using the same browser profile may access its data.
@@ -42,6 +42,8 @@ Better Auth, PostgreSQL/Supabase, Stripe billing, AI text/image providers, job f
 The parent repository already has Better Auth, Drizzle/Postgres and resume/application services. [Architecture](replica/architecture.md) explains how to integrate them without enabling a second auth/database stack. [SQL](replica/schema.sql) is a future design draft only: not applied, generated or registered as a migration.
 
 ## Product and business design
+
+[Actual REA observations and source-to-component mapping](replica/observations/README.md) cover twelve competitor attempts, eleven rendered public surfaces, one inaccessible site, and the local improvements reconstructed from observed patterns. Authenticated competitor products were not accessed.
 
 - [Recon and five workflows](replica/recon.md)
 - [Production architecture and delivery semantics](replica/architecture.md)

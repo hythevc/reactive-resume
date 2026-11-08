@@ -15,18 +15,31 @@ import {
 	X,
 } from "lucide-react";
 import { useMemo, useState, type FormEvent } from "react";
-import { buildOutreach, type Contact } from "@/lib/workspace";
+import { buildOutreach, CONTACT_CONTEXT_MAX_LENGTH, CONTACT_SOURCE_MAX_LENGTH, type Contact } from "@/lib/workspace";
 import { useWorkspace } from "@/lib/workspace-context";
 
-type ContactForm = Pick<Contact, "name" | "company" | "role" | "email">;
+type ContactForm = Pick<Contact, "name" | "company" | "role" | "email" | "sourceUrl" | "context">;
 const emptyContact: ContactForm = {
 	name: "",
 	company: "",
 	role: "",
 	email: "",
+	sourceUrl: "",
+	context: "",
 };
 const contactStages: Contact["status"][] = ["Draft", "Contacted", "Replied"];
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function safeContactSource(value: string) {
+	try {
+		const url = new URL(value);
+		return /^https:\/\//i.test(value) && url.protocol === "https:" && !url.username && !url.password
+			? url.toString()
+			: null;
+	} catch {
+		return null;
+	}
+}
 
 export function OutreachView() {
 	const { data, setData, ready } = useWorkspace();
@@ -56,6 +69,8 @@ export function OutreachView() {
 						company: contact.company,
 						role: contact.role,
 						email: contact.email,
+						sourceUrl: contact.sourceUrl,
+						context: contact.context,
 					}
 				: emptyContact,
 		);
@@ -76,6 +91,10 @@ export function OutreachView() {
 		}
 		if (form.email.trim() && !emailPattern.test(form.email.trim())) {
 			setError("Enter a valid email address, or leave the email blank.");
+			return;
+		}
+		if (form.sourceUrl.trim() && !safeContactSource(form.sourceUrl.trim())) {
+			setError("Use a full HTTPS source URL without a username or password, or leave it blank.");
 			return;
 		}
 		const values: ContactForm = Object.fromEntries(
@@ -109,7 +128,9 @@ export function OutreachView() {
 	function regenerate(contact: Contact) {
 		updateMessage(contact.id, buildOutreach(data.profile, contact));
 		setRefreshId(null);
-		setNotice("Draft refreshed from your career profile. Review the wording and facts before using it.");
+		setNotice(
+			"Draft refreshed from your career profile and supplied context. Review the wording and facts before using it.",
+		);
 	}
 
 	async function copyMessage(contact: Contact) {
@@ -228,8 +249,36 @@ export function OutreachView() {
 								/>
 							</label>
 						</div>
+						<label className="field">
+							Source URL (optional)
+							<input
+								className="input"
+								type="url"
+								maxLength={CONTACT_SOURCE_MAX_LENGTH}
+								value={form.sourceUrl}
+								onChange={(event) => setForm({ ...form, sourceUrl: event.target.value })}
+								placeholder="https://company.example.test/team"
+							/>
+							<small className="muted">
+								Where did you find this contact? Add their company page or public profile.
+							</small>
+						</label>
+						<label className="field">
+							Reason to connect / notes
+							<textarea
+								className="textarea"
+								rows={3}
+								maxLength={CONTACT_CONTEXT_MAX_LENGTH}
+								value={form.context}
+								onChange={(event) => setForm({ ...form, context: event.target.value })}
+								placeholder="Add a specific, factual reason for reaching out. Your words will be included in a new or refreshed draft."
+							/>
+							<small className="muted">
+								Saved drafts stay unchanged when you edit these notes. Refresh a draft to include the new context.
+							</small>
+						</label>
 						<p className="muted" style={{ fontSize: 12, lineHeight: 1.7 }}>
-							Use a contact you have researched. Email addresses are not discovered or verified by this local workspace.
+							Source is user supplied; email has not been verified by this app.
 						</p>
 						{error ? (
 							<p className="notice" role="alert">
@@ -386,6 +435,31 @@ export function OutreachView() {
 								<Pencil size={14} />
 							</button>
 						</div>
+						<div className="contact-provenance" style={{ marginBottom: 20, fontSize: 12, lineHeight: 1.7 }}>
+							{safeContactSource(selected.sourceUrl) ? (
+								<a
+									className="text-button"
+									href={safeContactSource(selected.sourceUrl) ?? undefined}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Open contact source <ArrowUpRight size={13} />
+								</a>
+							) : (
+								<span className="muted">No contact source added.</span>
+							)}
+							<p className="muted" style={{ margin: "7px 0 0" }}>
+								Source is user supplied; email has not been verified by this app.
+							</p>
+							{selected.context ? (
+								<div style={{ marginTop: 14 }}>
+									<strong>Your reason to connect</strong>
+									<p className="muted" style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere", margin: "6px 0 0" }}>
+										{selected.context}
+									</p>
+								</div>
+							) : null}
+						</div>
 						<label className="field">
 							Your message
 							<textarea
@@ -443,8 +517,8 @@ export function OutreachView() {
 							</div>
 						) : null}
 						<p className="muted" style={{ fontSize: 12, lineHeight: 1.7, marginTop: 18 }}>
-							This template uses your profile and contact details. Check every fact, add a specific reason to connect,
-							and send from your own account. Refreshing replaces the current draft.
+							This template uses your profile, contact details and supplied context. Check every fact, add a specific
+							reason to connect, and send from your own account. Refreshing replaces the current draft.
 						</p>
 						<label className="field" style={{ marginTop: 24 }}>
 							Record contact stage
