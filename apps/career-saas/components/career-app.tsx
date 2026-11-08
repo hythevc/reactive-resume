@@ -5,6 +5,7 @@ import {
 	Camera,
 	ChevronDown,
 	Crown,
+	Compass,
 	FileText,
 	Home,
 	Laptop,
@@ -22,11 +23,13 @@ import { OutreachView } from "@/features/outreach";
 import { Overview } from "@/features/overview";
 import { PhotoView } from "@/features/photo";
 import { ResumesView } from "@/features/resumes";
+import { RoleDiscoveryView } from "@/features/role-discovery";
 import { SettingsView, PlansView } from "@/features/settings";
 import { useWorkspace } from "@/lib/workspace-context";
 
 const navigation = [
 	{ id: "overview", name: "Overview", icon: Home },
+	{ id: "discovery", name: "Role discovery", icon: Compass },
 	{ id: "resumes", name: "Resumes", icon: FileText },
 	{ id: "linkedin", name: "LinkedIn studio", icon: Linkedin },
 	{ id: "photo", name: "Photo studio", icon: Camera },
@@ -185,6 +188,8 @@ export function CareerApp() {
 						<Overview navigate={go} />
 					) : page === "resumes" ? (
 						<ResumesView />
+					) : page === "discovery" ? (
+						<RoleDiscoveryView />
 					) : page === "linkedin" ? (
 						<LinkedInView />
 					) : page === "photo" ? (

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
 	auditLinkedIn,
+	buildJobIntroduction,
 	buildOutreach,
 	compareResumeToJob,
 	createWorkspace,
@@ -14,6 +15,9 @@ import {
 	scoreJob,
 	TARGET_KEYWORD_LIMIT,
 	TARGET_KEYWORDS_MAX_LENGTH,
+	CAREER_BRIEF_MAX_LENGTH,
+	INTEREST_REASON_MAX_LENGTH,
+	JOB_INTRODUCTION_MAX_LENGTH,
 } from "./workspace";
 
 test("workspace backups reject malformed fields, invalid statuses and duplicate IDs", () => {
@@ -186,7 +190,19 @@ test("current version-one backups migrate new resume, preparation and contact fi
 				skills: profile.skills,
 			},
 			resumes: [{ id: "legacy-resume", title: "Existing resume", updatedAt: "2026-11-08T09:00:00.000Z", profile }],
-			jobs: [],
+			jobs: [
+				{
+					id: "legacy-job",
+					company: "Example Studio",
+					role: "Designer",
+					location: "Remote",
+					url: "",
+					description: "Design workflows.",
+					status: "Saved",
+					notes: "Existing job notes.",
+					createdAt: "2026-11-08T09:00:00.000Z",
+				},
+			],
 			contacts: [
 				{
 					id: "legacy-contact",
@@ -213,6 +229,15 @@ test("current version-one backups migrate new resume, preparation and contact fi
 	assert.equal(result.contacts[0].sourceUrl, "");
 	assert.equal(result.contacts[0].context, "");
 	assert.equal(result.contacts[0].message, "Existing user-authored draft.");
+	assert.equal(result.goals.problem, "");
+	assert.equal(result.goals.team, "");
+	assert.equal(result.goals.scope, "");
+	assert.equal(result.goals.environment, "");
+	assert.equal(result.jobs[0].interest, "Unreviewed");
+	assert.equal(result.jobs[0].interestReason, "");
+	assert.equal(result.jobs[0].introduction, "");
+	assert.equal(result.jobs[0].notes, "Existing job notes.");
+	assert.equal(result.jobs[0].status, "Saved");
 });
 
 test("targeting, exclusions and contact context survive backup and reject malformed present fields", () => {
@@ -330,4 +355,104 @@ test("outreach includes supplied context literally without inventing facts from 
 	const boundedDraft = buildOutreach(longProfile, { ...sourceOnly, context: "a".repeat(5_000) });
 	assert.ok(boundedDraft.length <= 50_000);
 	assert.equal(longProfile.skills.length, 50_000);
+});
+
+test("career briefs, role feedback and separate introduction drafts survive backup with bounded fields", () => {
+	const workspace = createWorkspace();
+	workspace.goals.problem = "Make complex public services easier to use.";
+	workspace.goals.team = "A collaborative product team.";
+	workspace.goals.scope = "Research through delivery.";
+	workspace.goals.environment = "Remote, with time for focused work.";
+	workspace.jobs[0].interest = "Shortlisted";
+	workspace.jobs[0].interestReason = "The described research scope interests me.";
+	workspace.jobs[0].introduction = "My editable draft for the first role.";
+	workspace.jobs[1].interest = "Passed";
+	workspace.jobs[1].interestReason = "The working arrangement does not meet my preferences.";
+	workspace.jobs[1].introduction = "A different draft retained for the second role.";
+	const restored = parseStoredWorkspace(JSON.parse(JSON.stringify({ version: 1, data: workspace })));
+	assert.deepEqual(restored, workspace);
+	assert.equal(restored.jobs[0].status, "Saved");
+	assert.notEqual(restored.jobs[0].introduction, restored.jobs[1].introduction);
+	for (const field of ["problem", "team", "scope", "environment"] as const) {
+		assert.throws(() =>
+			parseWorkspace({ ...workspace, goals: { ...workspace.goals, [field]: "x".repeat(CAREER_BRIEF_MAX_LENGTH + 1) } }),
+		);
+	}
+	assert.throws(() => parseWorkspace({ ...workspace, jobs: [{ ...workspace.jobs[0], interest: "Introduced" }] }));
+	assert.throws(() =>
+		parseWorkspace({
+			...workspace,
+			jobs: [{ ...workspace.jobs[0], interestReason: "x".repeat(INTEREST_REASON_MAX_LENGTH + 1) }],
+		}),
+	);
+	assert.throws(() =>
+		parseWorkspace({
+			...workspace,
+			jobs: [{ ...workspace.jobs[0], introduction: "x".repeat(JOB_INTRODUCTION_MAX_LENGTH + 1) }],
+		}),
+	);
+	assert.throws(() => parseWorkspace({ ...workspace, jobs: [{ ...workspace.jobs[0], introductionSent: true }] }));
+});
+
+test("passing a role blocks preparation despite a high match and retains other eligibility reasons", () => {
+	const workspace = createWorkspace();
+	const profile = { ...workspace.profile, role: "", skills: "Figma" };
+	const job = { ...workspace.jobs[0], company: "Example Studio", description: "Figma", interest: "Passed" as const };
+	const settings = { ...workspace.autopilot, minMatch: 100, excludedCompanies: ["Example Studio"] };
+	const result = evaluatePreparationJob(profile, job, settings);
+	assert.equal(result.score, 100);
+	assert.equal(result.eligible, false);
+	assert.deepEqual(result.reasons, ["passed-role", "excluded-company"]);
+	const shortlisted = { ...job, interest: "Shortlisted" as const };
+	assert.equal(evaluatePreparationJob(profile, shortlisted, { ...settings, excludedCompanies: [] }).eligible, true);
+	assert.equal(shortlisted.status, "Saved");
+});
+
+test("job introductions use only supplied facts and preferences while keeping saved drafts untouched", () => {
+	const workspace = createWorkspace();
+	workspace.goals.problem = "Support accessible public services.";
+	workspace.goals.team = "Research and engineering collaboration.";
+	workspace.goals.scope = "Work from discovery through delivery.";
+	workspace.goals.environment = "A remote team.";
+	const job = {
+		...workspace.jobs[0],
+		introduction: "My existing authored draft.",
+		description: "A world-leading partner network guarantees your ideal match.",
+	};
+	const before = structuredClone({ profile: workspace.profile, goals: workspace.goals, job });
+	const result = buildJobIntroduction(workspace.profile, workspace.goals, job);
+	assert.ok(result.text.includes(workspace.profile.name));
+	assert.ok(result.text.includes(job.company));
+	assert.ok(result.text.includes(job.role));
+	for (const field of ["problem", "team", "scope", "environment"] as const) {
+		assert.ok(result.text.includes(workspace.goals[field]));
+		assert.ok(result.facts.some((fact) => fact.value === workspace.goals[field]));
+	}
+	assert.ok(!/world-leading|guarantees|partner network|perfect fit|verified|introduced you/i.test(result.text));
+	assert.deepEqual({ profile: workspace.profile, goals: workspace.goals, job }, before);
+	const emptyProfile = Object.fromEntries(
+		Object.keys(workspace.profile).map((key) => [key, ""]),
+	) as typeof workspace.profile;
+	const emptyGoals = { ...workspace.goals, problem: "", team: "", scope: "", environment: "" };
+	const empty = buildJobIntroduction(emptyProfile, emptyGoals, { ...job, company: "", role: "" });
+	assert.deepEqual(empty.facts, []);
+	assert.ok(!empty.text.includes("undefined"));
+	const fullGoals = {
+		...workspace.goals,
+		problem: "p".repeat(2_000),
+		team: "t".repeat(2_000),
+		scope: "s".repeat(2_000),
+		environment: "e".repeat(2_000),
+	};
+	const bounded = buildJobIntroduction(
+		{
+			...workspace.profile,
+			name: "n".repeat(500),
+			role: "r".repeat(500),
+			skills: Array(3).fill("k".repeat(500)).join(", "),
+		},
+		fullGoals,
+		{ ...job, company: "c".repeat(500), role: "j".repeat(500) },
+	);
+	assert.ok(bounded.text.length <= JOB_INTRODUCTION_MAX_LENGTH);
 });

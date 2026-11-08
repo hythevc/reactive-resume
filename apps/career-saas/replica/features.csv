@@ -34,3 +34,7 @@ Use career workflows on responsive web,web,must,yes,yes,Responsive shell and fea
 Dedicated native mobile career app,mobile,should,yes,no,Existing Reactive Resume mobile app is not this career SaaS; no adapted native build; requested broader app scope
 Original marketing positioning and proposed pricing,marketing,should,yes,partial,About page and local proposed plans; no validated acquisition conversion or production checkout
 Measure actual application delivery and interview conversion,analytics,should,yes,partial,Local user-maintained counts only; no provider-confirmed delivery events; reference https://www.loopcv.pro/
+Record motivations for the next role,discovery,should,yes,yes,Career brief for problems/team/scope/environment; MeetDex public positioning and REA observation; no inferred culture fit
+Review one saved role at a time with shortlist and pass feedback,discovery,should,yes,yes,Local choices and reasons persist; passed roles are excluded from preparation; no ranking-model training
+Review a company-specific introduction before copying,discovery,should,yes,yes,Current facts and editable per-job text; acknowledgement gates clipboard copy; no sending or introduction receipt
+Arrange actual introductions to partner employers,discovery,must,yes,no,MeetDex partner network and real employer introduction are not connected or reproduced

@@ -1,6 +1,6 @@
 # CareerOS product recon
 
-Working product name: CareerOS. Audience: experienced professionals managing a job search. Platform: responsive web first. Scope: one reusable career profile serving five workflows—resumes, LinkedIn reviews, profile photos, application preparation, and recruiter outreach. This is an original implementation of observed functional patterns, not a replica of any single competitor's visual identity.
+Working product name: CareerOS. Audience: experienced professionals managing a job search. Platform: responsive web first. Scope: one reusable career profile serving six workflows—resumes, LinkedIn reviews, profile photos, application preparation, recruiter outreach, and preference-led role discovery. This is an original implementation of observed functional patterns, not a replica of any single competitor's visual identity.
 
 ## Evidence and boundary
 
@@ -72,4 +72,10 @@ Build shared factual context and control: show why a match appears, keep notes v
 
 Excluded: competitor branding/assets/code, proprietary contact/job networks, their users/data, inferred private endpoints, interview guarantees, autonomous external submission without a supported integration, native mobile release, live AI generation, email delivery, payments and cloud persistence in the local version. Existing Reactive Resume remains the source for its resume exchange format and future shared services.
 
-Size: eight workspace screens plus one product page, five core flows, local implementation medium; reliable multi-tenant production automation large. Hardest work: verified delivery across employer systems, safe identity/tenant integration, and provider economics/reliability. Architectural decisions and proposed SQL follow in [architecture.md](architecture.md) and [schema.sql](schema.sql).
+Size: nine workspace screens plus one product page, six core flows, local implementation medium; reliable multi-tenant production automation large. Hardest work: verified delivery across employer systems, safe identity/tenant integration, and provider economics/reliability. Architectural decisions and proposed SQL follow in [architecture.md](architecture.md) and [schema.sql](schema.sql).
+
+## MeetDex extension: S10 and F06
+
+S10 is Role discovery at `/#discovery`, with Your brief, Review roles and Shortlist states. F06 captures next-role motivations, reviews one eligible saved job at a time, records shortlist/pass reasons, and lets the candidate edit and review a company-specific introduction before copying. Passing a role also excludes it from preparation. Decisions remain independent of application stages; no details are sent.
+
+Actual public MeetDex demo interactions and boundaries are recorded in [the source comparison](observations/meetdex.md). Company culture, proprietary matching, AI conversations, partner jobs and actual employer introductions remain unobserved or unconnected.

@@ -1,4 +1,4 @@
-import { ArrowRight, FileText, Linkedin, Camera, Zap, Mail } from "lucide-react";
+import { ArrowRight, FileText, Linkedin, Camera, Compass, Zap, Mail } from "lucide-react";
 import Link from "next/link";
 export default function AboutPage() {
 	return (
@@ -41,6 +41,11 @@ export default function AboutPage() {
 					</h2>
 					<div>
 						{[
+							{
+								icon: Compass,
+								title: "Find work that feels like you.",
+								text: "Capture what matters next, review one saved role at a time, and choose what goes into your introduction.",
+							},
 							{
 								icon: FileText,
 								title: "Tell your story.",

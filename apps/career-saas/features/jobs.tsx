@@ -28,6 +28,7 @@ const emptyJob: JobForm = {
 };
 const stages: Job["status"][] = ["Saved", "Draft", "Applied", "Interview"];
 const reasonLabels: Record<PreparationReason, string> = {
+	"passed-role": "Passed by you",
 	"not-saved": "Already in your pipeline",
 	"missing-description": "Add a description",
 	"excluded-company": "Excluded company",
@@ -175,6 +176,9 @@ export function JobsView() {
 							id,
 							...values,
 							status: "Saved",
+							interest: "Unreviewed",
+							interestReason: "",
+							introduction: "",
 							createdAt: new Date().toISOString(),
 						},
 						...current.jobs,

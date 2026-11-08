@@ -47,7 +47,21 @@ export const resumeSchema = z
 	})
 	.strict();
 export const linkedinSchema = z.object({ headline: shortText, about: text, experience: text, skills: text }).strict();
-const jobSchema = z
+export const CAREER_BRIEF_MAX_LENGTH = 2_000;
+export const INTEREST_REASON_MAX_LENGTH = 2_000;
+export const JOB_INTRODUCTION_MAX_LENGTH = 20_000;
+export const goalsSchema = z
+	.object({
+		role: shortText,
+		location: shortText,
+		minSalary: z.number().finite().min(0).max(10_000_000),
+		problem: z.string().max(CAREER_BRIEF_MAX_LENGTH).default(""),
+		team: z.string().max(CAREER_BRIEF_MAX_LENGTH).default(""),
+		scope: z.string().max(CAREER_BRIEF_MAX_LENGTH).default(""),
+		environment: z.string().max(CAREER_BRIEF_MAX_LENGTH).default(""),
+	})
+	.strict();
+export const jobSchema = z
 	.object({
 		id,
 		company: shortText,
@@ -58,6 +72,9 @@ const jobSchema = z
 		status: z.enum(["Saved", "Draft", "Applied", "Interview"]),
 		notes: text,
 		createdAt: timestamp,
+		interest: z.enum(["Unreviewed", "Shortlisted", "Passed"]).default("Unreviewed"),
+		interestReason: z.string().max(INTEREST_REASON_MAX_LENGTH).default(""),
+		introduction: z.string().max(JOB_INTRODUCTION_MAX_LENGTH).default(""),
 	})
 	.strict();
 export const CONTACT_CONTEXT_MAX_LENGTH = 5_000;
@@ -100,13 +117,7 @@ export const workspaceSchema = z
 		resumes: z.array(resumeSchema).max(RESUME_LIMIT),
 		jobs: z.array(jobSchema).max(2_000),
 		contacts: z.array(contactSchema).max(2_000),
-		goals: z
-			.object({
-				role: shortText,
-				location: shortText,
-				minSalary: z.number().finite().min(0).max(10_000_000),
-			})
-			.strict(),
+		goals: goalsSchema,
 		autopilot: z
 			.object({
 				enabled: z.boolean(),
@@ -139,6 +150,7 @@ export const workspaceSchema = z
 export type Profile = z.infer<typeof profileSchema>;
 export type Resume = z.infer<typeof resumeSchema>;
 export type Job = z.infer<typeof jobSchema>;
+export type JobInterest = Job["interest"];
 export type Contact = z.infer<typeof contactSchema>;
 export type Workspace = z.infer<typeof workspaceSchema>;
 
@@ -232,6 +244,9 @@ export function createWorkspace(): Workspace {
 			status: statuses[index],
 			notes: index === 2 ? "Example interview stage. Add your own interview details here." : "",
 			createdAt: now,
+			interest: "Unreviewed",
+			interestReason: "",
+			introduction: "",
 		})),
 		contacts: [
 			{
@@ -283,6 +298,10 @@ export function createWorkspace(): Workspace {
 			role: "Senior Product Designer",
 			location: "Remote · US",
 			minSalary: 150_000,
+			problem: "",
+			team: "",
+			scope: "",
+			environment: "",
 		},
 		autopilot: {
 			enabled: false,
@@ -547,6 +566,7 @@ export function extractJobKeywords(job: Pick<Job, "role" | "description">): stri
 }
 
 export type PreparationReason =
+	| "passed-role"
 	| "not-saved"
 	| "missing-description"
 	| "excluded-company"
@@ -562,6 +582,7 @@ export function evaluatePreparationJob(
 ): PreparationEvaluation {
 	const reasons: PreparationReason[] = [];
 	const score = scoreJob(profile, job);
+	if (job.interest === "Passed") reasons.push("passed-role");
 	if (job.status !== "Saved") reasons.push("not-saved");
 	if (!job.description.trim()) reasons.push("missing-description");
 	if (autopilot.excludedCompanies.some((company) => normalizeTerm(company) === normalizeTerm(job.company)))
@@ -595,6 +616,47 @@ export function buildOutreach(profile: Profile, contact: Contact): string {
 		.filter((skill) => skill.length <= 500)
 		.slice(0, 3);
 	return `${greeting}\n\n${intro}.${skills.length ? ` My skills include ${skills.join(", ")}.` : ""}${contact.context.trim() ? `\n\n${contact.context.trim()}` : ""}\n\nI'm interested in opportunities${contact.company.trim() ? ` at ${contact.company.trim()}` : " you are recruiting for"}. Would you be open to a short conversation about roles that might fit?\n\nThank you,\n${profile.name.trim()}`;
+}
+
+export type JobIntroduction = { text: string; facts: { label: string; value: string }[] };
+
+/** A candidate-controlled template from current inputs, never a claim of fit or an introduction being sent. */
+export function buildJobIntroduction(profile: Profile, goals: Workspace["goals"], job: Job): JobIntroduction {
+	const name = profile.name.trim();
+	const role = profile.role.trim();
+	const company = job.company.trim();
+	const targetRole = job.role.trim();
+	const skills = splitSkills(profile.skills)
+		.filter((skill) => skill.length <= 500)
+		.slice(0, 3)
+		.join(", ");
+	const preferences = [
+		{ label: "Problems I want to solve", value: goals.problem.trim() },
+		{ label: "Team preferences", value: goals.team.trim() },
+		{ label: "Scope I want", value: goals.scope.trim() },
+		{ label: "Work environment preferences", value: goals.environment.trim() },
+	].filter((fact) => fact.value);
+	const facts = [
+		{ label: "Your name", value: name },
+		{ label: "Your role", value: role },
+		{ label: "Your listed skills", value: skills },
+		{ label: "Target company", value: company },
+		{ label: "Target role", value: targetRole },
+		...preferences,
+	].filter((fact) => fact.value);
+	const identity = name
+		? `I'm ${name}${role ? `, a ${role}` : ""}.`
+		: role
+			? `I'm a ${role}.`
+			: "I'm exploring my next opportunity.";
+	const target = targetRole ? `the ${targetRole} role` : "this opportunity";
+	const preferenceText = preferences.length
+		? `\n\nFor my next role, these are my preferences:\n${preferences.map((fact) => `${fact.label}: ${fact.value}`).join("\n")}`
+		: "";
+	return {
+		text: `Hello,\n\n${identity}${skills ? ` My listed skills include ${skills}.` : ""}\n\nI'm interested in learning more about ${target}${company ? ` at ${company}` : ""}.${preferenceText}\n\nWould you be open to a conversation?\n\nThank you${name ? `,\n${name}` : "."}`,
+		facts,
+	};
 }
 
 // Reactive Resume v5/v6 exchange adapter. Design defaults mirror the MIT-licensed

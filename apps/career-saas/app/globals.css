@@ -2294,3 +2294,430 @@ div.section-title {
 	justify-content: flex-start;
 	gap: 8px;
 }
+
+/* Role discovery keeps the existing workspace shell and surface tokens. */
+.sidebar {
+	overflow-y: auto;
+}
+.discovery-view > .feature-heading h1 {
+	font-family: Georgia, serif;
+	font-weight: 700;
+	font-size: 46px;
+	letter-spacing: -1.8px;
+}
+.discovery-tabs {
+	display: flex;
+	gap: 12px;
+	border-bottom: 1px solid var(--border);
+	padding-bottom: 15px;
+	margin: 0 0 24px;
+	flex-wrap: wrap;
+}
+.discovery-tabs button {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	min-height: 40px;
+	padding: 11px 20px;
+	border: 0;
+	border-radius: 8px;
+	background: transparent;
+	font-size: 13px;
+	font-weight: 750;
+	color: var(--green);
+}
+.discovery-tabs button.active {
+	background: var(--green);
+	color: white;
+}
+.discovery-tabs button:not(.active):hover {
+	background: #edf2e9;
+}
+.discovery-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+	gap: 20px;
+	align-items: start;
+}
+.discovery-layout > * {
+	min-width: 0;
+}
+.role-review-card {
+	padding: 26px;
+}
+.role-company {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin: 20px 0 15px;
+	font-weight: 800;
+	font-size: 17px;
+}
+.role-company .company-logo {
+	width: 44px;
+	height: 44px;
+	background: var(--lime);
+}
+.role-title {
+	font-family: Georgia, serif;
+	font-size: 33px;
+	font-weight: 700;
+	letter-spacing: -1px;
+	line-height: 1.22;
+	margin: 10px 0 12px;
+	overflow-wrap: anywhere;
+}
+.role-location {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	color: var(--muted);
+	font-size: 13px;
+	margin-bottom: 16px;
+}
+.role-description {
+	font-size: 14px;
+	line-height: 1.7;
+	margin-bottom: 24px;
+	white-space: pre-line;
+	overflow-wrap: anywhere;
+}
+.fit-evidence {
+	list-style: none;
+	margin: 14px 0 22px;
+	padding: 0;
+}
+.fit-evidence li {
+	display: flex;
+	gap: 12px;
+	align-items: flex-start;
+	border-bottom: 1px solid var(--border);
+	padding: 13px 0;
+	font-size: 12px;
+	line-height: 1.7;
+}
+.fit-evidence li svg {
+	color: #597e42;
+	background: var(--lime);
+	padding: 3px;
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	margin-top: 1px;
+}
+.role-questions {
+	padding: 18px 20px;
+	background: #f1f6e4;
+	border-radius: 8px;
+	margin: 20px 0;
+}
+.role-questions p {
+	font-size: 12px;
+	color: #566448;
+	margin-top: 6px;
+}
+.role-actions {
+	display: flex;
+	gap: 14px;
+	flex-wrap: wrap;
+	margin-top: 20px;
+}
+.role-actions .button {
+	flex: 1;
+	min-width: 150px;
+}
+.brief-summary h2,
+.intro-card h2 {
+	font-family: Georgia, serif;
+	font-size: 25px;
+	font-weight: 700;
+	line-height: 1.3;
+	letter-spacing: -0.6px;
+}
+.brief-summary dl {
+	margin: 18px 0 16px;
+}
+.brief-summary dl > div {
+	display: grid;
+	grid-template-columns: 105px minmax(0, 1fr);
+	gap: 14px;
+	padding: 15px 0;
+	border-bottom: 1px solid var(--border);
+}
+.brief-summary dt {
+	font-size: 11px;
+	font-weight: 800;
+	align-self: start;
+	background: var(--lime);
+	border-radius: 5px;
+	padding: 5px 8px;
+	justify-self: start;
+}
+.brief-summary dd {
+	margin: 0;
+	font-size: 12px;
+	line-height: 1.7;
+	white-space: pre-line;
+	overflow-wrap: anywhere;
+}
+.brief-summary .muted {
+	font-size: 12px;
+}
+.intro-card {
+	margin-top: 20px;
+}
+.intro-card p {
+	font-size: 13px;
+	margin: 12px 0 0;
+}
+.brief-form h2 {
+	font-size: 20px;
+}
+.brief-form .textarea {
+	min-height: 100px;
+}
+.brief-form .field {
+	margin: 20px 0;
+}
+.discovery-history {
+	margin-top: 24px;
+}
+.discovery-history ul {
+	list-style: none;
+	margin: 16px 0 0;
+	padding: 0;
+}
+.discovery-history li {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 18px;
+	padding: 16px 0;
+	border-bottom: 1px solid var(--border);
+}
+.discovery-history li:last-child {
+	border-bottom: 0;
+}
+.discovery-history strong {
+	font-size: 13px;
+}
+.discovery-history p {
+	font-size: 12px;
+	color: var(--muted);
+	margin-top: 4px;
+	white-space: pre-line;
+	overflow-wrap: anywhere;
+}
+.shortlist-list {
+	display: grid;
+	gap: 8px;
+	margin: 18px 0;
+}
+.shortlist-item {
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	background: white;
+	padding: 14px 16px;
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	text-align: left;
+	font-size: 12px;
+}
+.shortlist-item.active {
+	border-color: #789c72;
+	background: #f0f5e8;
+}
+.shortlist-item strong,
+.shortlist-item small {
+	display: block;
+}
+.shortlist-item small {
+	margin-top: 4px;
+	color: var(--muted);
+}
+.intro-facts {
+	margin: 18px 0;
+	padding: 16px;
+	background: #f8faf5;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	font-size: 12px;
+}
+.intro-facts dl {
+	display: grid;
+	gap: 10px;
+	margin: 12px 0 0;
+}
+.intro-facts dl > div {
+	display: grid;
+	grid-template-columns: 100px minmax(0, 1fr);
+	gap: 12px;
+}
+.intro-facts dt {
+	font-weight: 750;
+	color: #516349;
+}
+.intro-facts dd {
+	margin: 0;
+	white-space: pre-line;
+	overflow-wrap: anywhere;
+}
+.intro-review-check {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	font-size: 12px;
+	line-height: 1.7;
+	margin: 18px 0;
+}
+.intro-review-check input {
+	accent-color: var(--green);
+	width: 16px;
+	height: 16px;
+	flex-shrink: 0;
+	margin-top: 3px;
+}
+.discovery-empty {
+	padding: 45px 25px;
+	text-align: center;
+}
+.discovery-empty svg {
+	margin: 0 auto 20px;
+	color: #789169;
+}
+.discovery-empty h2 {
+	font-family: Georgia, serif;
+	font-size: 31px;
+	font-weight: 400;
+}
+.discovery-empty p {
+	margin: 14px auto 22px;
+	max-width: 480px;
+	color: var(--muted);
+}
+@media (max-width: 1100px) {
+	.discovery-view > .feature-heading h1 {
+		font-size: 40px;
+	}
+	.discovery-layout {
+		grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+	}
+	.brief-summary dl > div {
+		grid-template-columns: 1fr;
+		gap: 9px;
+	}
+	.role-title {
+		font-size: 30px;
+	}
+}
+@media (max-width: 760px) {
+	.discovery-view > .feature-heading h1 {
+		font-size: 38px;
+		line-height: 1.1;
+		letter-spacing: -1.5px;
+	}
+	.discovery-tabs {
+		gap: 5px;
+		margin-bottom: 20px;
+		padding-bottom: 12px;
+	}
+	.discovery-tabs button {
+		font-size: 11px;
+		padding: 10px 11px;
+		gap: 7px;
+	}
+	.discovery-tabs button svg {
+		width: 15px;
+		height: 15px;
+	}
+	.discovery-layout {
+		grid-template-columns: 1fr;
+	}
+	.role-review-card {
+		padding: 20px;
+	}
+	.role-title {
+		font-size: 29px;
+	}
+	.role-company {
+		font-size: 15px;
+	}
+	.role-actions {
+		gap: 10px;
+	}
+	.role-actions .button {
+		min-width: 125px;
+		font-size: 11px;
+		padding: 10px 9px;
+	}
+	.brief-summary dl > div {
+		grid-template-columns: 95px minmax(0, 1fr);
+	}
+	.discovery-history li {
+		flex-wrap: wrap;
+	}
+	.intro-facts dl > div {
+		grid-template-columns: 1fr;
+		gap: 4px;
+	}
+	.shortlist-item {
+		padding: 12px;
+	}
+	.intro-review-check {
+		font-size: 11px;
+	}
+}
+
+.role-company strong,
+.intro-card h2 {
+	overflow-wrap: anywhere;
+	min-width: 0;
+}
+
+.role-review-card {
+	padding: 22px;
+}
+.role-review-card > p:first-child {
+	margin: 0 0 12px;
+}
+.role-review-card .role-company {
+	margin: 12px 0 10px;
+}
+.role-review-card .role-title {
+	font-size: 36px;
+}
+.role-review-card .role-description {
+	margin-bottom: 18px;
+}
+.role-review-card .fit-evidence {
+	margin: 8px 0 10px;
+}
+.role-review-card .fit-evidence li {
+	padding: 9px 0;
+}
+.role-review-card .role-questions {
+	margin: 16px 0;
+	padding: 15px 18px;
+}
+.role-review-card .role-actions {
+	margin-top: 14px;
+}
+.decision-note {
+	font-size: 12px;
+	color: var(--muted);
+	margin: 15px 0;
+}
+.decision-note summary {
+	cursor: pointer;
+	font-weight: 700;
+	color: var(--green);
+}
+@media (max-width: 760px) {
+	.role-review-card {
+		padding: 20px;
+	}
+	.role-review-card .role-title {
+		font-size: 29px;
+	}
+}

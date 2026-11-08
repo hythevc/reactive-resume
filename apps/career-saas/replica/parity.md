@@ -4,11 +4,11 @@ Generated 8 November 2026 with the installed Replica `replica-diff/parity.py` fr
 
 `yes` records implemented local functionality by source inspection; runtime browser results belong in the separate QA report. Local behavior is not evidence of cloud/provider delivery. No rows were skipped to hide production gaps.
 
-## Parity: 46.2 / 100
+## Parity: 48.0 / 100
 
-features 46.2 (35 counted, must-haves 10 of 23 done)
+features 48.0 (39 counted, must-haves 10 of 24 done)
 
-Not shippable yet: 13 must-have features are not done.
+Not shippable yet: 14 must-have features are not done.
 
 ## By area, weakest first
 
@@ -19,12 +19,14 @@ Not shippable yet: 13 must-have features are not done.
 - outreach 50.0 (6 features)
 - marketing 50.0 (1 features)
 - analytics 50.0 (1 features)
+- discovery 66.7 (4 features)
 - linkedin 75.0 (2 features)
 - resumes 78.6 (5 features)
 - web 100.0 (1 features)
 
 ## Missing, in build order
 
+- [must] discovery: Arrange actual introductions to partner employers, no (MeetDex partner network and real employer introduction are not connected or reproduced)
 - [must] jobs: Apply to jobs unattended with resume and answers, no (No submission adapter or scheduler; opening employer URL is not submission; reference https://www.loopcv.pro/)
 - [must] jobs: Capture confirmed submission receipts and failures, no (Local manual Applied status is not external proof; production automation requires receipts; requested SaaS requirement)
 - [must] jobs: Continuously discover live relevant jobs, no (No live job feed crawler or scheduled discovery provider; reference https://www.sonara.ai/)
@@ -36,7 +38,7 @@ Not shippable yet: 13 must-have features are not done.
 - [must] saas platform: Paid checkout subscriptions and entitlements, no (Plans are local previews; no charge checkout or active entitlement enforcement; requested SaaS requirement)
 - [must] saas platform: Persist and synchronize career data across devices, no (Browser localStorage only; no live cloud database; requested SaaS requirement)
 - [must] saas platform: Tenant ownership and role authorization, no (Proposed SQL schema is not applied or exercised; local browser workspace has no tenant boundary; requested multi-tenant SaaS requirement)
-- [must] jobs: Compare a posting against profile skills, partial (Local keyword-overlap estimate only; no ATS integration or semantic matching; reference https://www.jobscan.co/)
+- [must] jobs: Compare a posting against profile skills, partial (Local keyword-overlap estimate plus editable explicit-term resume gaps; no ATS integration or semantic matching; Teal/Rezi public previews observed by REA)
 - [must] linkedin: Review LinkedIn profile with actionable checks, partial (Local disclosed writing checklist implemented; no authenticated LinkedIn scan or model-backed analysis; reference https://www.careerflow.ai/)
 - [should] jobs: Autofill employer application forms, no (No browser extension or form integration; reference https://simplify.jobs/copilot)
 - [should] mobile: Dedicated native mobile career app, no (Existing Reactive Resume mobile app is not this career SaaS; no adapted native build; requested broader app scope)
@@ -44,7 +46,7 @@ Not shippable yet: 13 must-have features are not done.
 - [should] photos: Choose generated headshot outfits and backgrounds, no (No generation engine or generated output gallery; reference https://www.aragon.ai/)
 - [should] saas platform: Self-serve billing portal and payment webhooks, no (Archived starter billing is not wired to CareerOS; requested SaaS requirement)
 - [should] analytics: Measure actual application delivery and interview conversion, partial (Local user-maintained counts only; no provider-confirmed delivery events; reference https://www.loopcv.pro/)
-- [should] jobs: Filter automation by role location salary and company exclusions, partial (Role/location/salary goals saved but only profile keyword threshold drives current preparation; company exclusions absent; reference https://www.loopcv.pro/)
+- [should] jobs: Filter automation by role location salary and company exclusions, partial (Company exclusions and preferred location terms implemented from REA-observed LoopCV public pattern; single local preparation configuration, not named background searches)
 - [should] marketing: Original marketing positioning and proposed pricing, partial (About page and local proposed plans; no validated acquisition conversion or production checkout)
 - [should] saas platform: Export restore and delete workspace data, partial (Local backup validated restore and reset; no server/account deletion; requested SaaS requirement)
 

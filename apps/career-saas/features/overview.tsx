@@ -29,7 +29,7 @@ export function Overview({ navigate }: { navigate: (page: string) => void }) {
 					<h1>Your next chapter starts here.</h1>
 					<p>One workspace. A more confident next move.</p>
 				</div>
-				<button className="button secondary goals-button" onClick={() => navigate("settings")}>
+				<button className="button secondary goals-button" onClick={() => navigate("discovery")}>
 					Set career goals <ArrowRight size={20} />
 				</button>
 			</div>
