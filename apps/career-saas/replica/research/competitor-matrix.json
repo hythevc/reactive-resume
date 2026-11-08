@@ -1,0 +1,449 @@
+{
+  "researchedAt": "2026-11-08",
+  "method": "Read-only primary public website extraction using Exa; no authenticated product sessions or proprietary code inspected.",
+  "coverageLegend": "Categories indicate features observed or advertised in cited public pages; absence is not proof the competitor lacks a feature.",
+  "competitors": [
+    {
+      "id": "teal",
+      "name": "Teal",
+      "url": "https://www.tealhq.com/",
+      "categories": [
+        "resume",
+        "ats",
+        "tracking"
+      ],
+      "observedFeatures": [
+        "Unlimited resume versions",
+        "Job-description keyword matching",
+        "Job bookmarking extension",
+        "Application tracking",
+        "Job-stage email templates"
+      ],
+      "workflow": "Set goals → save jobs → attach a job description → tailor a resume → submit on employer site → track status.",
+      "reference": "Per-job workspace with resume versions beside the job description.",
+      "pricing": {
+        "verified": true,
+        "currency": "USD",
+        "plans": [
+          {
+            "name": "Free",
+            "amount": 0,
+            "period": "forever"
+          },
+          {
+            "name": "Teal+",
+            "amount": 13,
+            "period": "7 days"
+          },
+          {
+            "name": "Teal+",
+            "amount": 29,
+            "period": "30 days"
+          },
+          {
+            "name": "Teal+",
+            "amount": 79,
+            "period": "90 days"
+          }
+        ],
+        "url": "https://www.tealhq.com/pricing"
+      },
+      "sources": [
+        "https://www.tealhq.com/",
+        "https://www.tealhq.com/pricing",
+        "https://www.tealhq.com/post/teal-vs-loopcv"
+      ],
+      "caveats": [
+        "No claim that Teal auto-submits; its own comparison says it does not."
+      ]
+    },
+    {
+      "id": "rezi",
+      "name": "Rezi",
+      "url": "https://www.rezi.ai/",
+      "categories": [
+        "resume",
+        "ats"
+      ],
+      "observedFeatures": [
+        "Structured resume section editor",
+        "Live preview",
+        "Resume score by category",
+        "Job-description keyword targeting",
+        "PDF and DOCX export on paid plan"
+      ],
+      "workflow": "Build → score → paste target job → fix keyword gaps → export.",
+      "reference": "Explanatory section-level checks and clean document editing.",
+      "pricing": {
+        "verified": true,
+        "currency": "USD",
+        "plans": [
+          {
+            "name": "Free",
+            "amount": 0,
+            "period": "month"
+          },
+          {
+            "name": "Pro",
+            "amount": 29,
+            "period": "month"
+          },
+          {
+            "name": "Enterprise",
+            "amount": 99,
+            "period": "month per 200 users"
+          }
+        ],
+        "url": "https://www.rezi.ai/pricing"
+      },
+      "sources": [
+        "https://www.rezi.ai/",
+        "https://www.rezi.ai/pricing"
+      ],
+      "caveats": [
+        "Scores are proprietary product metrics, not verified employer ATS outcomes."
+      ]
+    },
+    {
+      "id": "jobscan",
+      "name": "Jobscan",
+      "url": "https://www.jobscan.co/",
+      "categories": [
+        "resume",
+        "ats",
+        "linkedin",
+        "applications"
+      ],
+      "observedFeatures": [
+        "Resume versus job-description scan",
+        "Hard and soft skill gaps",
+        "Match-rate report",
+        "ATS-friendly builder",
+        "LinkedIn optimization",
+        "Review-before-send auto-apply advertised"
+      ],
+      "workflow": "Upload resume + paste job listing → inspect match report → edit → rescan.",
+      "reference": "Two-input matching and actionable missing-skill report.",
+      "pricing": {
+        "verified": false,
+        "notes": "Not captured from a dedicated pricing page."
+      },
+      "sources": [
+        "https://www.jobscan.co/"
+      ],
+      "caveats": [
+        "ATS-specific performance and interview multipliers are vendor claims; do not repeat as our guarantees."
+      ]
+    },
+    {
+      "id": "resume-worded",
+      "name": "Resume Worded",
+      "url": "https://resumeworded.com/linkedin-review/",
+      "categories": [
+        "linkedin",
+        "resume"
+      ],
+      "observedFeatures": [
+        "AI LinkedIn profile review entry point",
+        "Free account signup",
+        "Related resume review tools"
+      ],
+      "workflow": "Start LinkedIn review → create account → profile review (authenticated steps not observed).",
+      "reference": "Dedicated LinkedIn review entry point tied to resume quality.",
+      "pricing": {
+        "verified": false,
+        "notes": "Pricing and signed-in review details not observed."
+      },
+      "sources": [
+        "https://resumeworded.com/linkedin-review/"
+      ],
+      "caveats": [
+        "The fetched public page exposed mainly signup; do not claim detailed private workflow parity."
+      ]
+    },
+    {
+      "id": "careerflow",
+      "name": "Careerflow",
+      "url": "https://www.careerflow.ai/",
+      "categories": [
+        "resume",
+        "ats",
+        "linkedin",
+        "applications",
+        "outreach",
+        "tracking"
+      ],
+      "observedFeatures": [
+        "Resume builder and analyzer",
+        "LinkedIn headline/summary/skills improvement",
+        "Application autofill",
+        "Application tracker",
+        "Recruiter/hiring-manager search",
+        "Networking tracker"
+      ],
+      "workflow": "Upload resume or start LinkedIn optimization → repair profile/document → save roles → autofill → track applications and networking.",
+      "reference": "One shared profile powers the resume, LinkedIn and job-search tools.",
+      "pricing": {
+        "verified": false,
+        "notes": "Homepage shows Free and Premium tiers but responsive pricing extraction interleaves amounts; no reliable plan amount asserted."
+      },
+      "sources": [
+        "https://www.careerflow.ai/"
+      ],
+      "caveats": [
+        "Autofill is distinct from unattended auto-submission."
+      ]
+    },
+    {
+      "id": "headshotpro",
+      "name": "HeadshotPro",
+      "url": "https://www.headshotpro.com/",
+      "categories": [
+        "headshots"
+      ],
+      "observedFeatures": [
+        "Selfie upload with validation",
+        "Backdrop and outfit selection",
+        "Generation queue",
+        "Favorites/download selection",
+        "JPEG/ZIP downloads",
+        "Platform crop editor"
+      ],
+      "workflow": "Upload selfies → choose style → generate → select favorites → crop/download.",
+      "reference": "Explicit upload quality checks, style selection and download gallery.",
+      "pricing": {
+        "verified": true,
+        "currency": "USD",
+        "plans": [
+          {
+            "name": "Individual packages",
+            "amount": 29,
+            "maxAmount": 59,
+            "period": "one-time"
+          }
+        ],
+        "url": "https://www.headshotpro.com/"
+      },
+      "sources": [
+        "https://www.headshotpro.com/"
+      ],
+      "caveats": [
+        "Generation speed, realism, privacy and satisfaction claims are vendor statements; implement only promises the app can honor."
+      ]
+    },
+    {
+      "id": "aragon",
+      "name": "Aragon",
+      "url": "https://www.aragon.ai/",
+      "categories": [
+        "headshots"
+      ],
+      "observedFeatures": [
+        "Professional AI headshots",
+        "Background and attire choices",
+        "Photo editing tools",
+        "Individual and team use cases"
+      ],
+      "workflow": "Upload photos → select attire/background → generate → edit/download.",
+      "reference": "A limited set of professional styles and optional edits after generation.",
+      "pricing": {
+        "verified": true,
+        "currency": "USD",
+        "plans": [
+          {
+            "name": "40 headshots",
+            "amount": 35,
+            "period": "package"
+          },
+          {
+            "name": "60 headshots",
+            "amount": 45,
+            "period": "package"
+          },
+          {
+            "name": "Higher package",
+            "amount": 75,
+            "period": "package"
+          }
+        ],
+        "url": "https://www.aragon.ai/",
+        "notes": "Promotional and crossed-out prices coexist in capture; verify checkout before purchase."
+      },
+      "sources": [
+        "https://www.aragon.ai/"
+      ],
+      "caveats": [
+        "Current page also markets a wider image/video suite; focus on headshots for this product."
+      ]
+    },
+    {
+      "id": "simplify",
+      "name": "Simplify",
+      "url": "https://simplify.jobs/",
+      "categories": [
+        "resume",
+        "applications",
+        "outreach",
+        "tracking"
+      ],
+      "observedFeatures": [
+        "AI job matching",
+        "Resume tailoring",
+        "Copilot application autofill extension",
+        "Application tracker",
+        "Recruiter introductions advertised"
+      ],
+      "workflow": "Create career profile → receive matches → tailor resume → autofill employer form → track.",
+      "reference": "Reusable profile and browser-assisted applications.",
+      "pricing": {
+        "verified": false,
+        "notes": "Dedicated pricing not captured."
+      },
+      "sources": [
+        "https://www.simplify.jobs/",
+        "https://simplify.jobs/copilot",
+        "https://simplify.jobs/ai-talent-agent"
+      ],
+      "caveats": [
+        "Public homepage summary captured; authenticated extension behavior not tested."
+      ]
+    },
+    {
+      "id": "loopcv",
+      "name": "LoopCV",
+      "url": "https://www.loopcv.pro/",
+      "categories": [
+        "resume",
+        "applications",
+        "outreach",
+        "tracking"
+      ],
+      "observedFeatures": [
+        "Target role/location loops",
+        "Company and keyword exclusions",
+        "Automatic or manual-review application mode",
+        "Recruiter email templates",
+        "Multiple CV variants",
+        "Application analytics"
+      ],
+      "workflow": "Upload CV → set titles, locations and filters → review matches or activate auto-apply → track applications/emails and replies.",
+      "reference": "Visible automation settings, exclusions and a separate review queue.",
+      "pricing": {
+        "verified": true,
+        "currency": "EUR",
+        "plans": [
+          {
+            "name": "Free",
+            "amount": 0,
+            "period": "forever"
+          },
+          {
+            "name": "Paid starts from",
+            "amount": 9.99,
+            "period": "month"
+          }
+        ],
+        "url": "https://www.loopcv.pro/pricing/",
+        "notes": "Direct pricing FAQ says €9.99; other regional/competitive sources show different tiers. Treat as locale-sensitive starting price."
+      },
+      "sources": [
+        "https://www.loopcv.pro/",
+        "https://www.loopcv.pro/pricing/"
+      ],
+      "caveats": [
+        "Separate matches, queued tasks, emails and confirmed form submissions in our app; do not count them as one metric."
+      ]
+    },
+    {
+      "id": "sonara",
+      "name": "Sonara",
+      "url": "https://www.sonara.ai/",
+      "categories": [
+        "applications"
+      ],
+      "observedFeatures": [
+        "Profile/preferences onboarding",
+        "Continuous job matching",
+        "Auto-apply",
+        "Daily matched-role feed"
+      ],
+      "workflow": "Tell the service about your background → receive matches → service applies → monitor.",
+      "reference": "Simple preference-driven daily matching.",
+      "pricing": {
+        "verified": false,
+        "notes": "No pricing captured."
+      },
+      "sources": [
+        "https://www.sonara.ai/"
+      ],
+      "caveats": [
+        "No logged-in use, application correctness, or actual submission delivery tested."
+      ]
+    },
+    {
+      "id": "networkai",
+      "name": "Wonsulting NetworkAI",
+      "url": "https://www.wonsulting.ai/networkai",
+      "categories": [
+        "outreach"
+      ],
+      "observedFeatures": [
+        "Target role/company networking goals",
+        "Personalized LinkedIn introductions",
+        "Recruiter/hiring-manager navigation",
+        "Saved messages and favorites",
+        "Email finder",
+        "Resume-powered cold email drafts"
+      ],
+      "workflow": "Set networking goal → identify contact → draft from resume → copy/open LinkedIn or email flow → save and track.",
+      "reference": "Resume-supported personalized outreach with editable saved drafts.",
+      "pricing": {
+        "verified": false,
+        "notes": "Suite subscription is advertised, but no reliably extracted numeric price."
+      },
+      "sources": [
+        "https://www.wonsulting.ai/networkai"
+      ],
+      "caveats": [
+        "Guaranteed-interview language is vendor marketing; not adopted."
+      ]
+    },
+    {
+      "id": "hunter",
+      "name": "Hunter",
+      "url": "https://hunter.io/",
+      "categories": [
+        "outreach",
+        "api"
+      ],
+      "observedFeatures": [
+        "Domain search",
+        "Email finder",
+        "Email verifier",
+        "Contact provenance",
+        "Email sequences",
+        "API and MCP"
+      ],
+      "workflow": "Choose company/contact → find and verify email with sources → draft sequence → send through connected inbox → track.",
+      "reference": "Verification status and source provenance before outreach.",
+      "pricing": {
+        "verified": true,
+        "plans": [
+          {
+            "name": "Free leads",
+            "amount": 50,
+            "period": "leads/month"
+          }
+        ],
+        "url": "https://hunter.io/",
+        "notes": "50 is a lead quota, not a price. No paid pricing captured."
+      },
+      "sources": [
+        "https://hunter.io/"
+      ],
+      "caveats": [
+        "Adjacent B2B outreach tool, not exclusively a job-seeker platform; no fabricated recruiter emails."
+      ]
+    }
+  ]
+}

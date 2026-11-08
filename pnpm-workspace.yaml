@@ -1,5 +1,7 @@
 packages:
   - apps/*
+  # Standalone Next.js starter keeps its own npm lockfile and deployment.
+  - "!apps/career-saas"
   - packages/*
   - tooling
 catalogMode: prefer

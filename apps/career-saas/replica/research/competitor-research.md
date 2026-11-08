@@ -1,0 +1,70 @@
+# Career SaaS competitor research
+
+Researched 8 November 2026. Primary public pages were read through Exa. The linked product pages are evidence of publicly advertised functionality, not proof that each feature works. No paid accounts, private application code, unpublished APIs, or authenticated product screens were inspected. The machine-readable record is `competitor-matrix.json`. Raw vendor page captures are intentionally omitted from this repository; source URLs and research summaries are retained.
+
+## Product direction
+
+The market already combines several parts of this idea. Careerflow, Simplify and LoopCV are closer to the intended integrated product than a standalone resume builder. Teal and Rezi provide clearer resume-specific workflows; HeadshotPro provides a strong upload → style → results flow; NetworkAI provides a resume → contact → personalized message flow.
+
+Use these as functional references while implementing an original brand, interface, code and assets. A focused launch can connect one verified career profile to five tools: resume editor, LinkedIn review, professional photo preparation, application queue and recruiter outreach drafts. The differentiator should be clear evidence and control: explain recommendations, preserve resume facts, show why a role matches, and distinguish preparation from confirmed delivery.
+
+## Competitor map
+
+| Competitor | Publicly observed strengths | Pattern to implement | Price observed |
+|---|---|---|---|
+| [Teal](https://www.tealhq.com/) | Resume versions, job-description matching, bookmarking, application tracking, stage email templates | One job workspace with the description, tailored resume and status together | [Teal+](https://www.tealhq.com/pricing): $13/7 days, $29/30 days, $79/90 days; free tier |
+| [Rezi](https://www.rezi.ai/) | Build, score, target; section editor, preview, category scoring and keyword gaps | Small, explainable checks alongside an editable document | [Pricing](https://www.rezi.ai/pricing): free; Pro $29/month |
+| [Jobscan](https://www.jobscan.co/) | Resume versus job-description comparison, missing hard/soft skills, LinkedIn optimization, review-before-send auto-apply advertised | Two-input comparison and actionable report | Not verified |
+| [Resume Worded](https://resumeworded.com/linkedin-review/) | Dedicated LinkedIn review entry point and resume tools | Give profile review its own clear starting point | Not verified; fetched review page mainly exposed signup |
+| [Careerflow](https://www.careerflow.ai/) | Resume analysis, LinkedIn optimizer, autofill, job and networking tracking, recruiter search | Share profile facts across the career toolset | Free/Premium tiers visible; numeric pricing extraction ambiguous |
+| [HeadshotPro](https://www.headshotpro.com/) | Selfie validation, styles, generation queue, gallery, platform crops and downloads | Quality guidance → style choice → generation → favorites/download | Homepage: one-time $29–$59 packages |
+| [Aragon](https://www.aragon.ai/) | Headshots, attire/background choices and image edits | Professional presets plus edits after generation | Homepage promotional package prices $35/$45/$75; checkout not verified |
+| [Simplify](https://www.simplify.jobs/) | Matched jobs, tailored resumes, Copilot autofill, tracker, recruiter introductions | Reusable profile with assisted applications | Not verified |
+| [LoopCV](https://www.loopcv.pro/) | Target-title/location loops, exclusions, automatic/manual review modes, recruiter emails, analytics | Automation settings with explicit exclusions and review queue | [Direct pricing FAQ](https://www.loopcv.pro/pricing/): free, paid from €9.99/month; regional prices may differ |
+| [Sonara](https://www.sonara.ai/) | Preference onboarding, continuous matching and applications | Simple daily matches based on explicit preferences | Not verified |
+| [NetworkAI](https://www.wonsulting.ai/networkai) | Networking goals, LinkedIn intros, contact finding, saved messages, email finder and resume-powered drafts | Contact → factual personalized draft → edit/copy → track | Suite subscription advertised; numeric price not verified |
+| [Hunter](https://hunter.io/) | Email discovery/verification, provenance, sequences, API and MCP | Contact verification and source evidence before sending | Homepage offers 50 free leads/month; paid price not verified |
+
+Prices are snapshots of visible pages, not quotes. Dollar amounts above are USD unless the source says otherwise. Performance multipliers, ATS success rates, interview guarantees and satisfaction statistics are vendor marketing claims and should not become our product promises.
+
+## Five workflows to rebuild with our own implementation
+
+1. **Resume:** import or enter career facts → edit structured sections with live preview → paste a target job → highlight keyword gaps with explanations → save a job-specific version → export. Start with existing Reactive Resume capabilities rather than replacing the resume engine. Rezi, Jobscan and Teal are the main functional references.
+2. **LinkedIn:** paste the user's own headline, About text and experience → evaluate completeness, specificity and relevance → show a checklist and editable alternatives → copy the chosen wording. Careerflow is the strongest observed integrated reference. A numeric score must be an explained local heuristic, never a claim to know LinkedIn's ranking algorithm.
+3. **Photo:** upload the user's own image → show quality guidelines and professional style presets → allow a crop/download locally; connect actual image generation later. HeadshotPro is the main sequence reference. A local crop is not an AI-generated headshot and must be labeled accurately.
+4. **Applications:** set roles, location, work model, salary, exclusions and limits → import jobs → explain matches → prepare documents → queue for review → track status. Keep `matched`, `queued`, `ready`, `submitted` and `failed` distinct. An application becomes `submitted` only with external confirmation. LoopCV, Simplify and Sonara are the functional references.
+5. **Outreach:** add a recruiter/contact and source → select purpose → draft using verified career facts → edit and save → copy/export or send through a later authorized integration → track replies/follow-ups. NetworkAI and Hunter are the references. Never invent email addresses or claim a message was sent when it was merely generated.
+
+## User feedback → concrete differentiation
+
+This is a small qualitative sample, not a statistically representative review study. Statements below are attributed user reports, not independently proven defects. Trustpilot explicitly says it does not fact-check review claims.
+
+| Direct evidence | Design implication |
+|---|---|
+| [Teal Trustpilot](https://www.trustpilot.com/review/tealhq.com), Steve Koonce, 21 July 2026: tailoring is tedious and the reviewer wants more automation | Batch prepare drafts, preserve context across tools and make changes reviewable |
+| Same page, Sherouk Abdelsalam, 15 July 2026: wants notes visible in the main tracker table | Put useful notes and next action in the job list, not only a detail screen |
+| Same page, Koflan D, 10 May 2026: cover letters can sound robotic; Teal replied acknowledging the feedback | Ground suggestions in supplied facts and provide edit/accept controls |
+| Same page, James Kessenich, 24 October 2026, and Sara Canright, 15 October 2026, value unified tracking and keyword insights | Make the central workspace genuinely useful before adding more generation tools |
+| [LoopCV Trustpilot](https://www.trustpilot.com/review/loopcv.pro), Juan Aguirre, 13 November 2025: a matched role failed with “Easy apply button wasn't found”; vendor offered support | Expose failure reasons and retry/manual fallback; show confirmed submission separately |
+| Same page, Elena, 14 April 2026, reports irrelevant matches; vendor says settings affected relevance | Preview matching before enabling automation and make exclusion filters obvious |
+| Same page, Dave Adler, 18 August 2026, praises multiple loops and dashboards | Allow named searches with their own resume, preferences and status |
+
+No counts or percentages were inferred from this sample, and third-party affiliate roundups were excluded from these product decisions. A larger review corpus should store review-level permalinks and dates before any frequency claims.
+
+## Business model hypothesis
+
+This section is a proposal, not observed market fact. Start with a free tier for one profile, resume editing/export and basic tracking. Test a monthly Career plan around the market's observed $29/month resume tier, with explicit usage limits and easy cancellation. Sell headshot generation as a separate one-time credit package because compute costs and one-off usage differ from ongoing tracking. A higher automation tier should wait for reliable provider integrations, confirmed delivery receipts and support capacity. Avoid annual billing pressure on customers who may finish a job search quickly.
+
+Initial audience: experienced professionals coordinating multiple tailored applications and recruiter conversations. Positioning: “One career profile. Every next step.” Measure activation as a saved profile plus one job-specific resume and a queued application, then measure application-to-interview conversion only from real user records. Do not present synthetic demos as business traction.
+
+## Requested reverse-engineering references
+
+- [REA](https://rea.tools/) describes an inspect → explain → rebuild workflow. Its public setup command is `npx rea-agents@latest setup`. Its examples recover narrow behavioral rules with evidence. Relevant to our work: inspect one feature, record evidence, reproduce the behavior and verify it. Native binary analysis is not needed to understand public SaaS marketing pages.
+- [Craft Anything](https://github.com/storytold/craft-anything/tree/main) describes Study → Build → Check → Ready, clean-room visible behavior by default, and comparison at three widths. Its README distinguishes visible inspection from deep code/file inspection. Use public behavior and original implementation for this SaaS.
+- The [linked X post](https://x.com/0xcodila/status/2109623431763292649) could not be read: Exa returned `SOURCE_NOT_AVAILABLE`. Its content is not asserted or used as evidence.
+- The [Replica explainer article](https://theaiadventurer.com/blog/replica-skill-clone-app-claude-explained-simply) extraction returned site navigation rather than article content. The user's provided eleven-step description is usable as requested workflow context, but was not independently verified from that article.
+- Adopt the requested sequence as project artifacts: Recon (this report and matrix), Architect (stack/schema), Design (our tokens and references), Build, Backend, Test, Diff (feature coverage), Entrepreneur (attributed review evidence), Brand (original identity), Launch (honest positioning), Deploy (verified preview).
+
+## Evidence limits and next validation
+
+This research supports functional product planning, not a claim of pixel parity or complete feature parity. Public pages change and extracts can omit interactive details. Next validation should use visible desktop/mobile browser sessions for selected reference flows, then test our app's own routes and responsive behavior. Provider-backed AI, email sending, job submission, payments, auth and database persistence each require live integration checks before launch claims.
