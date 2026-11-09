@@ -20,6 +20,8 @@ export default defineConfig({
 			correctness: "error",
 		},
 		ignorePatterns: [
+			// Archived upstream reference code is not served or compiled by the CareerOS app.
+			"apps/career-saas/starter/**",
 			"**/.turbo/**",
 			"**/.output/**",
 			"**/dist/**",
@@ -165,6 +167,7 @@ export default defineConfig({
 			functions: ["clsx", "cva", "cn"],
 		},
 		ignorePatterns: [
+			"apps/career-saas/starter/**",
 			"**/.turbo/**",
 			"**/.output/**",
 			"**/dist/**",

@@ -1,0 +1,52 @@
+---
+title: "CareerOS deployment and acceptance"
+description: "Run the standalone career workspace and verify its optional account connection before release."
+---
+
+CareerOS in `apps/career-saas` is a standalone Next.js frontend with its own npm lockfile. The repository root is a different Vite/Node deployment. Never deploy the root as a Next.js application or overwrite an existing backend's configuration with the frontend's settings.
+
+## Local frontend
+
+Use Node 24 and run in `apps/career-saas`:
+
+```sh
+npm --workspaces=false ci
+npm --workspaces=false test
+npm --workspaces=false run typecheck
+npm --workspaces=false run build
+npm --workspaces=false run start
+```
+
+The test runner uses Node's tsx import loader rather than the tsx CLI, so restricted environments do not need its IPC listener. Tests include real rendered provider/URL-input regressions as well as domain, storage, backup and gateway contracts. No test uses a real career profile or sends email/applications.
+
+Frontend deployment settings: root directory `apps/career-saas`, framework Next.js, Node 24, install/build commands from that directory's `vercel.json`. Bind the deployment to the exact tested Git commit. `/api/health` reports the application version and Vercel Git SHA without credentials. Verify those values after deployment.
+
+The local workspace remains usable without a backend. Its Cloud account screen must say unavailable when no backend is configured. Do not advertise this mode as a protected account service.
+
+## Optional existing backend
+
+On the frontend set server-only `CAREEROS_BACKEND_URL` to a fixed HTTPS backend origin. On the existing backend set `APP_URL` to the frontend's canonical public origin. Configure strong independent auth/encryption secrets, PostgreSQL, private durable file storage and genuine SMTP. Better Auth cookies must remain host-only and Secure. Do not add a shared service token or expose database/provider credentials to the browser.
+
+Keep signup and email authentication disabled until genuine email verification/recovery and private data handling are proven. Backend `/flags` must report the frontend canonical origin and truthful auth availability. A configured URL is not evidence of working cloud storage or account isolation.
+
+The frontend gateway permits existing email authentication, verification, two-factor and password recovery paths plus a small set of owned resume operations. Existing server-side ownership is authoritative; client account headers only bind a view to that identity and never grant access. Social/passkey flows and whole-workspace synchronization are not implemented by this frontend.
+
+Uploading a selected resume creates a cloud copy. Jobs, contacts, career briefs, LinkedIn drafts and photos remain local. On uncertain upload results, refresh the cloud list before retrying. Never manufacture submission or email receipts from local tracker labels.
+
+## Required acceptance
+
+1. In two fresh browser tabs, independent edits must survive or produce a visible conflict. Reset in one tab must not be undone by the other. Include an old v1 client writing its obsolete key.
+2. Export the downloaded backup file and restore it into a fresh test profile. Compare every supported field, including Unicode backups above 4 MiB. Invalid/cancelled imports must preserve current state. Photos are explicitly excluded.
+3. Exercise quota/read/delete failures. Continuous unsaved text stays exportable; failed discrete create/import leaves forms retryable without phantom duplicates. Recovery deletion cannot discard unsaved work. Verify reset removes all owned personal-data keys.
+4. Import a CV fixture and explicitly promote its facts. Verify no seeded identity appears in drafts. Check phone, links, dates, metrics, page breaks and extracted text in JSON/PDF output.
+5. Test desktop and 390-pixel mobile flows, keyboard navigation, ordinary URL typing and local photo crop/export. Capture network traffic to verify no unintended career-text/image uploads.
+6. Against an isolated live backend, verify signup/verification/signin/two-factor/recovery/logout; two-user ownership; revoked sessions; private PDF/file access; export/deletion and restore. User A's records and stale UI metadata must never appear under B's identity.
+7. Keep automated submissions, recruiter sending and payments unavailable until their own supported-provider, exact-approval, receipt, idempotency/reconciliation and billing entitlement tests pass.
+
+## Operations and commercial release
+
+The parent root configuration includes a scheduled career runner. A staging deployment must omit that schedule until its workload, authentication and hosting plan are deliberately verified. Private storage and SMTP fallback logs are not substitutes for real durable storage or delivered recovery email.
+
+Before accepting customers, supply the operator/support identity, final privacy/retention terms and approved pricing; verify monitoring without career payloads, recovery and incident handling, cancellation/refunds and all marketed service capabilities. The app's plans remain demonstration state until actual billing and server entitlements are integrated. Passing a frontend build or merging the workspace does not complete these commercial gates.
+
+The standalone frontend currently uses English copy and separate deployment tooling; the parent web/mobile app retains its existing Lingui catalogs and shared service contracts. Changes to parent features must preserve web/mobile parity and API compatibility.

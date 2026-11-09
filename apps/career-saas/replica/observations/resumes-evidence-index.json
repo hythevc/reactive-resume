@@ -1,0 +1,554 @@
+[
+	{
+		"name": "teal-desktop",
+		"request": "/workspace/competitor-observation/resumes/teal-desktop-request.json",
+		"summary": {
+			"-response.json": {
+				"evidence_id": "ev_44dece392db56dbddc77d9bcdc1ce73ce637be0a367a778366253c001d914501",
+				"limitations": [
+					"Artifact identity is unavailable for this observation.",
+					"Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+					"Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+					"Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+					"Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+					"Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+					"Storage values are hashed only after declared-secret redaction.",
+					"CDP attachment cannot recover pre-attach events or guarantee launch-time context options.",
+					"Attached locale en-US applies to Intl formatting only; navigator.language(s) and Accept-Language remain caller-controlled. Use launch mode for matching page and request languages.",
+					"Detaching a CDP page session may clear caller-owned navigator.platform emulation. REA cannot snapshot the caller's complete user-agent/client-hint state before attachment; use launch mode to avoid mutating that external browser.",
+					"Browser host platform and architecture were not observed."
+				],
+				"browser": {
+					"mode": "connect",
+					"process_ownership": "external",
+					"cleanup": "disconnected-external",
+					"product": "Chromium",
+					"version": "156.0.8078.79"
+				},
+				"completeness": {
+					"status": "incomplete",
+					"equality_eligible": false,
+					"missing_sections": ["events"],
+					"truncated_sections": []
+				},
+				"steps": [
+					{
+						"step_id": "scenario_start",
+						"action": "goto_start",
+						"status": "completed",
+						"after_url": {
+							"url": "https://www.tealhq.com/",
+							"origin": "https://www.tealhq.com",
+							"query_parameter_names": [],
+							"redacted": false
+						},
+						"error": null
+					},
+					{
+						"step_id": "heading",
+						"action": "wait_for",
+						"status": "completed",
+						"after_url": {
+							"url": "https://www.tealhq.com/",
+							"origin": "https://www.tealhq.com",
+							"query_parameter_names": [],
+							"redacted": false
+						},
+						"error": null
+					},
+					{
+						"step_id": "settle",
+						"action": "wait_for_timeout",
+						"status": "completed",
+						"after_url": {
+							"url": "https://www.tealhq.com/",
+							"origin": "https://www.tealhq.com",
+							"query_parameter_names": [],
+							"redacted": false
+						},
+						"error": null
+					}
+				]
+			},
+			"-screenshot-response.json": {
+				"evidence_id": "ev_482533d0c6de60bd2bb91b2171c3127a10b47f556ec7da298cf8874b8e8f9b42",
+				"limitations": [
+					"Artifact identity is unavailable for this observation.",
+					"The screenshot contains the visible viewport, including on-screen content.",
+					"REA does not scroll, evaluate JavaScript, or capture beyond the current viewport.",
+					"Browser host platform and architecture were not observed."
+				],
+				"browser": {
+					"product": "Chrome/156.0.8078.79",
+					"protocol_version": "1.3",
+					"revision": "537.36 (@a21ce95c24ce3964416f09ae1862f53f319eb4d0)",
+					"user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+					"js_version": "15.6.75.27"
+				},
+				"completeness": {
+					"status": "complete_within_window",
+					"conditions": ["complete_within_window"],
+					"policy_filtered_sections": [],
+					"attach_limited_sections": [],
+					"truncated_sections": [],
+					"unavailable_sections": [],
+					"excluded": [],
+					"dropped_events": {
+						"scripts": 0,
+						"network_requests": 0,
+						"console_events": 0,
+						"websocket_connections": 0,
+						"websocket_frames": 0,
+						"webmcp_tools": 0,
+						"timeline_events": 0,
+						"total": 0
+					}
+				}
+			}
+		}
+	},
+	{
+		"name": "teal-matching",
+		"request": "/workspace/competitor-observation/resumes/teal-matching-request.json",
+		"summary": {
+			"-response.json": {
+				"evidence_id": "ev_40fe31e010aecc0de4513c24c3ce1b949a5d926d460238208675e542caabf4e5",
+				"limitations": [
+					"Artifact identity is unavailable for this observation.",
+					"Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+					"Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+					"Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+					"Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+					"Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+					"Storage values are hashed only after declared-secret redaction.",
+					"CDP attachment cannot recover pre-attach events or guarantee launch-time context options.",
+					"Attached locale en-US applies to Intl formatting only; navigator.language(s) and Accept-Language remain caller-controlled. Use launch mode for matching page and request languages.",
+					"Detaching a CDP page session may clear caller-owned navigator.platform emulation. REA cannot snapshot the caller's complete user-agent/client-hint state before attachment; use launch mode to avoid mutating that external browser.",
+					"Browser host platform and architecture were not observed."
+				],
+				"browser": {
+					"mode": "connect",
+					"process_ownership": "external",
+					"cleanup": "disconnected-external",
+					"product": "Chromium",
+					"version": "156.0.8078.79"
+				},
+				"completeness": {
+					"status": "incomplete",
+					"equality_eligible": false,
+					"missing_sections": ["events"],
+					"truncated_sections": []
+				},
+				"steps": [
+					{
+						"step_id": "scenario_start",
+						"action": "goto_start",
+						"status": "completed",
+						"after_url": {
+							"url": "https://www.tealhq.com/",
+							"origin": "https://www.tealhq.com",
+							"query_parameter_names": [],
+							"redacted": false
+						},
+						"error": null
+					},
+					{
+						"step_id": "heading",
+						"action": "wait_for",
+						"status": "completed",
+						"after_url": {
+							"url": "https://www.tealhq.com/",
+							"origin": "https://www.tealhq.com",
+							"query_parameter_names": [],
+							"redacted": false
+						},
+						"error": null
+					},
+					{
+						"step_id": "matching_tab",
+						"action": "click",
+						"status": "completed",
+						"after_url": {
+							"url": "https://www.tealhq.com/",
+							"origin": "https://www.tealhq.com",
+							"query_parameter_names": [],
+							"redacted": false
+						},
+						"error": null
+					},
+					{
+						"step_id": "settle",
+						"action": "wait_for_timeout",
+						"status": "completed",
+						"after_url": {
+							"url": "https://www.tealhq.com/",
+							"origin": "https://www.tealhq.com",
+							"query_parameter_names": [],
+							"redacted": false
+						},
+						"error": null
+					}
+				]
+			},
+			"-screenshot-response.json": {
+				"evidence_id": "ev_34423cd611c42be7a6a61f0cc021c7ff93e2d3226fa43363e087dec3083a1db8",
+				"limitations": [
+					"Artifact identity is unavailable for this observation.",
+					"The screenshot contains the visible viewport, including on-screen content.",
+					"REA does not scroll, evaluate JavaScript, or capture beyond the current viewport.",
+					"Browser host platform and architecture were not observed."
+				],
+				"browser": {
+					"product": "Chrome/156.0.8078.79",
+					"protocol_version": "1.3",
+					"revision": "537.36 (@a21ce95c24ce3964416f09ae1862f53f319eb4d0)",
+					"user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+					"js_version": "15.6.75.27"
+				},
+				"completeness": {
+					"status": "complete_within_window",
+					"conditions": ["complete_within_window"],
+					"policy_filtered_sections": [],
+					"attach_limited_sections": [],
+					"truncated_sections": [],
+					"unavailable_sections": [],
+					"excluded": [],
+					"dropped_events": {
+						"scripts": 0,
+						"network_requests": 0,
+						"console_events": 0,
+						"websocket_connections": 0,
+						"websocket_frames": 0,
+						"webmcp_tools": 0,
+						"timeline_events": 0,
+						"total": 0
+					}
+				}
+			}
+		}
+	},
+	{
+		"name": "teal-job-match-observed",
+		"request": "/workspace/competitor-observation/resumes/teal-job-match-observed-request.json",
+		"summary": {
+			"-response.json": {
+				"evidence_id": "ev_25dc7fc7665e5484765fa25dc2ed732ee579f5b970c83c5c16c1a70e94af730a",
+				"limitations": [
+					"Artifact identity is unavailable for this observation.",
+					"Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+					"Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+					"Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+					"Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+					"Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+					"Storage values are hashed only after declared-secret redaction.",
+					"CDP attachment cannot recover pre-attach events or guarantee launch-time context options.",
+					"Attached locale en-US applies to Intl formatting only; navigator.language(s) and Accept-Language remain caller-controlled. Use launch mode for matching page and request languages.",
+					"Detaching a CDP page session may clear caller-owned navigator.platform emulation. REA cannot snapshot the caller's complete user-agent/client-hint state before attachment; use launch mode to avoid mutating that external browser.",
+					"Browser host platform and architecture were not observed."
+				],
+				"browser": {
+					"mode": "connect",
+					"process_ownership": "external",
+					"cleanup": "disconnected-external",
+					"product": "Chromium",
+					"version": "156.0.8078.79"
+				},
+				"completeness": {
+					"status": "incomplete",
+					"equality_eligible": false,
+					"missing_sections": ["events"],
+					"truncated_sections": []
+				},
+				"steps": [
+					{
+						"step_id": "scenario_start",
+						"action": "goto_start",
+						"status": "completed",
+						"after_url": {
+							"url": "https://www.tealhq.com/tool/resume-job-description-match",
+							"origin": "https://www.tealhq.com",
+							"query_parameter_names": [],
+							"redacted": false
+						},
+						"error": null
+					},
+					{
+						"step_id": "heading",
+						"action": "wait_for",
+						"status": "completed",
+						"after_url": {
+							"url": "https://www.tealhq.com/tool/resume-job-description-match",
+							"origin": "https://www.tealhq.com",
+							"query_parameter_names": [],
+							"redacted": false
+						},
+						"error": null
+					},
+					{
+						"step_id": "settle",
+						"action": "wait_for_timeout",
+						"status": "completed",
+						"after_url": {
+							"url": "https://www.tealhq.com/tool/resume-job-description-match",
+							"origin": "https://www.tealhq.com",
+							"query_parameter_names": [],
+							"redacted": false
+						},
+						"error": null
+					}
+				]
+			},
+			"-screenshot-response.json": {
+				"evidence_id": "ev_4729284db2ba8c708ec69f4687b13f211252e8a92a58e4fd95fd2cc476ba2c88",
+				"limitations": [
+					"Artifact identity is unavailable for this observation.",
+					"The screenshot contains the visible viewport, including on-screen content.",
+					"REA does not scroll, evaluate JavaScript, or capture beyond the current viewport.",
+					"Browser host platform and architecture were not observed."
+				],
+				"browser": {
+					"product": "Chrome/156.0.8078.79",
+					"protocol_version": "1.3",
+					"revision": "537.36 (@a21ce95c24ce3964416f09ae1862f53f319eb4d0)",
+					"user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+					"js_version": "15.6.75.27"
+				},
+				"completeness": {
+					"status": "complete_within_window",
+					"conditions": ["complete_within_window"],
+					"policy_filtered_sections": [],
+					"attach_limited_sections": [],
+					"truncated_sections": [],
+					"unavailable_sections": [],
+					"excluded": [],
+					"dropped_events": {
+						"scripts": 0,
+						"network_requests": 0,
+						"console_events": 0,
+						"websocket_connections": 0,
+						"websocket_frames": 0,
+						"webmcp_tools": 0,
+						"timeline_events": 0,
+						"total": 0
+					}
+				}
+			}
+		}
+	},
+	{
+		"name": "rezi-home",
+		"request": "/workspace/competitor-observation/resumes/rezi-home-request.json",
+		"summary": {
+			"-response.json": {
+				"evidence_id": "ev_e529c45033f8e9ea6b988e92e8f42dae08cb7cfb724b8d620286d303b89b1e56",
+				"limitations": [
+					"Artifact identity is unavailable for this observation.",
+					"Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+					"Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+					"Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+					"Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+					"Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+					"Storage values are hashed only after declared-secret redaction.",
+					"CDP attachment cannot recover pre-attach events or guarantee launch-time context options.",
+					"Attached locale en-US applies to Intl formatting only; navigator.language(s) and Accept-Language remain caller-controlled. Use launch mode for matching page and request languages.",
+					"Detaching a CDP page session may clear caller-owned navigator.platform emulation. REA cannot snapshot the caller's complete user-agent/client-hint state before attachment; use launch mode to avoid mutating that external browser.",
+					"Browser host platform and architecture were not observed."
+				],
+				"browser": {
+					"mode": "connect",
+					"process_ownership": "external",
+					"cleanup": "disconnected-external",
+					"product": "Chromium",
+					"version": "156.0.8078.79"
+				},
+				"completeness": {
+					"status": "incomplete",
+					"equality_eligible": false,
+					"missing_sections": ["events"],
+					"truncated_sections": []
+				},
+				"steps": [
+					{
+						"step_id": "scenario_start",
+						"action": "goto_start",
+						"status": "completed",
+						"after_url": {
+							"url": "https://www.rezi.ai/",
+							"origin": "https://www.rezi.ai",
+							"query_parameter_names": [],
+							"redacted": false
+						},
+						"error": null
+					},
+					{
+						"step_id": "heading",
+						"action": "wait_for",
+						"status": "completed",
+						"after_url": {
+							"url": "https://www.rezi.ai/",
+							"origin": "https://www.rezi.ai",
+							"query_parameter_names": [],
+							"redacted": false
+						},
+						"error": null
+					},
+					{
+						"step_id": "settle",
+						"action": "wait_for_timeout",
+						"status": "completed",
+						"after_url": {
+							"url": "https://www.rezi.ai/",
+							"origin": "https://www.rezi.ai",
+							"query_parameter_names": [],
+							"redacted": false
+						},
+						"error": null
+					}
+				]
+			},
+			"-screenshot-response.json": {
+				"evidence_id": "ev_0aba46978849d04f94606bb11afccf31f76a7e8c7c94e23b91b0072e30cdeae2",
+				"limitations": [
+					"Artifact identity is unavailable for this observation.",
+					"The screenshot contains the visible viewport, including on-screen content.",
+					"REA does not scroll, evaluate JavaScript, or capture beyond the current viewport.",
+					"Browser host platform and architecture were not observed."
+				],
+				"browser": {
+					"product": "Chrome/156.0.8078.79",
+					"protocol_version": "1.3",
+					"revision": "537.36 (@a21ce95c24ce3964416f09ae1862f53f319eb4d0)",
+					"user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+					"js_version": "15.6.75.27"
+				},
+				"completeness": {
+					"status": "complete_within_window",
+					"conditions": ["complete_within_window"],
+					"policy_filtered_sections": [],
+					"attach_limited_sections": [],
+					"truncated_sections": [],
+					"unavailable_sections": [],
+					"excluded": [],
+					"dropped_events": {
+						"scripts": 0,
+						"network_requests": 0,
+						"console_events": 0,
+						"websocket_connections": 0,
+						"websocket_frames": 0,
+						"webmcp_tools": 0,
+						"timeline_events": 0,
+						"total": 0
+					}
+				}
+			}
+		}
+	},
+	{
+		"name": "jobscan-home",
+		"request": "/workspace/competitor-observation/resumes/jobscan-home-request.json",
+		"summary": {
+			"-response.json": {
+				"evidence_id": "ev_7dd8e833c42e81077f9c86eeaa5da1d4cbd93b28d63186eb391e09e87c638273",
+				"limitations": [
+					"Artifact identity is unavailable for this observation.",
+					"Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+					"Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+					"Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+					"Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+					"Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+					"Storage values are hashed only after declared-secret redaction.",
+					"CDP attachment cannot recover pre-attach events or guarantee launch-time context options.",
+					"Attached locale en-US applies to Intl formatting only; navigator.language(s) and Accept-Language remain caller-controlled. Use launch mode for matching page and request languages.",
+					"Detaching a CDP page session may clear caller-owned navigator.platform emulation. REA cannot snapshot the caller's complete user-agent/client-hint state before attachment; use launch mode to avoid mutating that external browser.",
+					"Browser host platform and architecture were not observed."
+				],
+				"browser": {
+					"mode": "connect",
+					"process_ownership": "external",
+					"cleanup": "disconnected-external",
+					"product": "Chromium",
+					"version": "156.0.8078.79"
+				},
+				"completeness": {
+					"status": "incomplete",
+					"equality_eligible": false,
+					"missing_sections": ["accessibility", "action", "events", "screenshot", "url"],
+					"truncated_sections": []
+				},
+				"steps": [
+					{
+						"step_id": "scenario_start",
+						"action": "goto_start",
+						"status": "completed",
+						"after_url": {
+							"url": "https://www.jobscan.co/",
+							"origin": "https://www.jobscan.co",
+							"query_parameter_names": [],
+							"redacted": false
+						},
+						"error": null
+					},
+					{
+						"step_id": "heading",
+						"action": "wait_for",
+						"status": "failed",
+						"after_url": {
+							"url": "https://www.jobscan.co/",
+							"origin": "https://www.jobscan.co",
+							"query_parameter_names": [],
+							"redacted": false
+						},
+						"error": "Analysis operation timed out after 20000ms: capture_browser_scenario"
+					},
+					{
+						"step_id": "settle",
+						"action": "wait_for_timeout",
+						"status": "cancelled",
+						"after_url": {
+							"url": "https://www.jobscan.co/",
+							"origin": "https://www.jobscan.co",
+							"query_parameter_names": [],
+							"redacted": false
+						},
+						"error": "not executed after an earlier action failure"
+					}
+				]
+			},
+			"-screenshot-response.json": {
+				"evidence_id": "ev_56d6d40fbd35aff33921ba1acddff39c0992a0ab744efd7d8591053c77e6a8f6",
+				"limitations": [
+					"Artifact identity is unavailable for this observation.",
+					"The screenshot contains the visible viewport, including on-screen content.",
+					"REA does not scroll, evaluate JavaScript, or capture beyond the current viewport.",
+					"Browser host platform and architecture were not observed."
+				],
+				"browser": {
+					"product": "Chrome/156.0.8078.79",
+					"protocol_version": "1.3",
+					"revision": "537.36 (@a21ce95c24ce3964416f09ae1862f53f319eb4d0)",
+					"user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+					"js_version": "15.6.75.27"
+				},
+				"completeness": {
+					"status": "complete_within_window",
+					"conditions": ["complete_within_window"],
+					"policy_filtered_sections": [],
+					"attach_limited_sections": [],
+					"truncated_sections": [],
+					"unavailable_sections": [],
+					"excluded": [],
+					"dropped_events": {
+						"scripts": 0,
+						"network_requests": 0,
+						"console_events": 0,
+						"websocket_connections": 0,
+						"websocket_frames": 0,
+						"webmcp_tools": 0,
+						"timeline_events": 0,
+						"total": 0
+					}
+				}
+			}
+		}
+	}
+]

@@ -1,0 +1,272 @@
+[
+	{
+		"target": "loopcv-home",
+		"url": "https://www.loopcv.pro/",
+		"evidence_id": "ev_5c26311d0cb2cdcf35bd4acaea3af1b05b1b62729828c7d56575e40ffbaabdce",
+		"complete": {
+			"status": "incomplete",
+			"equality_eligible": false,
+			"missing_sections": ["events"],
+			"truncated_sections": []
+		},
+		"actions": [
+			{
+				"step": "scenario_start",
+				"status": "completed",
+				"error": null
+			},
+			{
+				"step": "settle",
+				"status": "completed",
+				"error": null
+			},
+			{
+				"step": "consent-opt-out",
+				"status": "completed",
+				"error": null
+			},
+			{
+				"step": "view-options",
+				"status": "completed",
+				"error": null
+			}
+		],
+		"screenshots": ["loopcv-home.png"],
+		"events_captured": 0,
+		"network_content": {
+			"request_body": false,
+			"response_body": false,
+			"header_values": false
+		}
+	},
+	{
+		"target": "loopcv-exclusions",
+		"url": "https://www.loopcv.pro/exclude",
+		"evidence_id": "ev_039dc20602d56fb363ebd41aca74d5de0e25b6dbd362c1b5b8fd34f8a14d17e9",
+		"complete": {
+			"status": "incomplete",
+			"equality_eligible": false,
+			"missing_sections": ["events"],
+			"truncated_sections": []
+		},
+		"actions": [
+			{
+				"step": "scenario_start",
+				"status": "completed",
+				"error": null
+			},
+			{
+				"step": "settle",
+				"status": "completed",
+				"error": null
+			}
+		],
+		"screenshots": ["loopcv-exclusions.png"],
+		"events_captured": 0,
+		"network_content": {
+			"request_body": false,
+			"response_body": false,
+			"header_values": false
+		}
+	},
+	{
+		"target": "simplify-home",
+		"url": "https://simplify.jobs/",
+		"evidence_id": "ev_8412861983f934ef9dac133ffc540b1595e60c02c55a2b49e03f8273924afe2c",
+		"complete": {
+			"status": "incomplete",
+			"equality_eligible": false,
+			"missing_sections": ["events"],
+			"truncated_sections": []
+		},
+		"actions": [
+			{
+				"step": "scenario_start",
+				"status": "completed",
+				"error": null
+			},
+			{
+				"step": "settle",
+				"status": "completed",
+				"error": null
+			}
+		],
+		"screenshots": ["simplify-home.png"],
+		"events_captured": 0,
+		"network_content": {
+			"request_body": false,
+			"response_body": false,
+			"header_values": false
+		}
+	},
+	{
+		"target": "sonara-home",
+		"url": "https://www.sonara.ai/",
+		"evidence_id": "ev_be967b92a3f797f0902ab68b3a17574201f9646a2f00b4ad0cda7e7dd75628eb",
+		"complete": {
+			"status": "incomplete",
+			"equality_eligible": false,
+			"missing_sections": ["events"],
+			"truncated_sections": []
+		},
+		"actions": [
+			{
+				"step": "scenario_start",
+				"status": "completed",
+				"error": null
+			},
+			{
+				"step": "settle",
+				"status": "completed",
+				"error": null
+			}
+		],
+		"screenshots": ["sonara-home.png"],
+		"events_captured": 0,
+		"network_content": {
+			"request_body": false,
+			"response_body": false,
+			"header_values": false
+		}
+	},
+	{
+		"target": "networkai-home",
+		"url": "https://www.wonsulting.ai/networkai",
+		"evidence_id": "ev_271027f326bc758ac78730386dbfa6a0a0ab9e0f42d3f76c100d292305e0d42b",
+		"complete": {
+			"status": "incomplete",
+			"equality_eligible": false,
+			"missing_sections": ["events"],
+			"truncated_sections": []
+		},
+		"actions": [
+			{
+				"step": "scenario_start",
+				"status": "completed",
+				"error": null
+			},
+			{
+				"step": "settle",
+				"status": "completed",
+				"error": null
+			}
+		],
+		"screenshots": ["networkai-home.png"],
+		"events_captured": 0,
+		"network_content": {
+			"request_body": false,
+			"response_body": false,
+			"header_values": false
+		}
+	},
+	{
+		"target": "hunter-home",
+		"url": "https://hunter.io/",
+		"evidence_id": "ev_409be0c5798d5688c628c018fc5b68ec7f878123135be81e0f72657ad6295aaa",
+		"complete": {
+			"status": "incomplete",
+			"equality_eligible": false,
+			"missing_sections": ["events"],
+			"truncated_sections": []
+		},
+		"actions": [
+			{
+				"step": "scenario_start",
+				"status": "completed",
+				"error": null
+			},
+			{
+				"step": "settle",
+				"status": "completed",
+				"error": null
+			}
+		],
+		"screenshots": ["hunter-home.png"],
+		"events_captured": 0,
+		"network_content": {
+			"request_body": false,
+			"response_body": false,
+			"header_values": false
+		}
+	},
+	{
+		"target": "networkai-finder",
+		"url": "https://www.wonsulting.ai/networkai",
+		"evidence_id": "ev_0ed32c4332b51343a6b850daaa3a261b6bbdf18000ed834830532dfdfe70cba0",
+		"complete": {
+			"status": "incomplete",
+			"equality_eligible": false,
+			"missing_sections": ["accessibility", "action", "events", "screenshot", "url"],
+			"truncated_sections": []
+		},
+		"actions": [
+			{
+				"step": "scenario_start",
+				"status": "completed",
+				"error": null
+			},
+			{
+				"step": "settle",
+				"status": "completed",
+				"error": null
+			},
+			{
+				"step": "select-tab",
+				"status": "failed",
+				"error": "Analysis operation timed out after 10000ms: capture_browser_scenario"
+			},
+			{
+				"step": "tab-rendered",
+				"status": "cancelled",
+				"error": "not executed after an earlier action failure"
+			}
+		],
+		"screenshots": [],
+		"events_captured": 0,
+		"network_content": {
+			"request_body": false,
+			"response_body": false,
+			"header_values": false
+		}
+	},
+	{
+		"target": "networkai-cold-email",
+		"url": "https://www.wonsulting.ai/networkai",
+		"evidence_id": "ev_042f8c5e8ad147294176f2086da6f91e9e7e62370f2a7e20395846a2477949aa",
+		"complete": {
+			"status": "incomplete",
+			"equality_eligible": false,
+			"missing_sections": ["accessibility", "action", "events", "screenshot", "url"],
+			"truncated_sections": []
+		},
+		"actions": [
+			{
+				"step": "scenario_start",
+				"status": "completed",
+				"error": null
+			},
+			{
+				"step": "settle",
+				"status": "completed",
+				"error": null
+			},
+			{
+				"step": "select-tab",
+				"status": "failed",
+				"error": "Analysis operation timed out after 10000ms: capture_browser_scenario"
+			},
+			{
+				"step": "tab-rendered",
+				"status": "cancelled",
+				"error": "not executed after an earlier action failure"
+			}
+		],
+		"screenshots": [],
+		"events_captured": 0,
+		"network_content": {
+			"request_body": false,
+			"response_body": false,
+			"header_values": false
+		}
+	}
+]

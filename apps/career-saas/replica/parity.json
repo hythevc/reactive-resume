@@ -1,0 +1,230 @@
+{
+	"feature_score": 48.0,
+	"counted": 39,
+	"must_have_done": 10,
+	"must_have_total": 24,
+	"by_area": [
+		{
+			"area": "mobile",
+			"score": 0.0,
+			"features": 1
+		},
+		{
+			"area": "saas platform",
+			"score": 6.2,
+			"features": 6
+		},
+		{
+			"area": "photos",
+			"score": 28.6,
+			"features": 3
+		},
+		{
+			"area": "jobs",
+			"score": 46.0,
+			"features": 9
+		},
+		{
+			"area": "outreach",
+			"score": 50.0,
+			"features": 6
+		},
+		{
+			"area": "marketing",
+			"score": 50.0,
+			"features": 1
+		},
+		{
+			"area": "analytics",
+			"score": 50.0,
+			"features": 1
+		},
+		{
+			"area": "discovery",
+			"score": 66.7,
+			"features": 4
+		},
+		{
+			"area": "linkedin",
+			"score": 75.0,
+			"features": 2
+		},
+		{
+			"area": "resumes",
+			"score": 78.6,
+			"features": 5
+		},
+		{
+			"area": "web",
+			"score": 100.0,
+			"features": 1
+		}
+	],
+	"missing": [
+		{
+			"feature": "Arrange actual introductions to partner employers",
+			"area": "discovery",
+			"priority": "must",
+			"clone": "no",
+			"notes": "MeetDex partner network and real employer introduction are not connected or reproduced"
+		},
+		{
+			"feature": "Apply to jobs unattended with resume and answers",
+			"area": "jobs",
+			"priority": "must",
+			"clone": "no",
+			"notes": "No submission adapter or scheduler; opening employer URL is not submission; reference https://www.loopcv.pro/"
+		},
+		{
+			"feature": "Capture confirmed submission receipts and failures",
+			"area": "jobs",
+			"priority": "must",
+			"clone": "no",
+			"notes": "Local manual Applied status is not external proof; production automation requires receipts; requested SaaS requirement"
+		},
+		{
+			"feature": "Continuously discover live relevant jobs",
+			"area": "jobs",
+			"priority": "must",
+			"clone": "no",
+			"notes": "No live job feed crawler or scheduled discovery provider; reference https://www.sonara.ai/"
+		},
+		{
+			"feature": "Find recruiters and verify their email addresses",
+			"area": "outreach",
+			"priority": "must",
+			"clone": "no",
+			"notes": "No recruiter network email finder verifier or provenance integration; reference https://hunter.io/"
+		},
+		{
+			"feature": "Send recruiter emails through a connected account",
+			"area": "outreach",
+			"priority": "must",
+			"clone": "no",
+			"notes": "No email provider connected; mailto does not deliver a message; reference https://www.loopcv.pro/"
+		},
+		{
+			"feature": "Generate a new professional AI headshot",
+			"area": "photos",
+			"priority": "must",
+			"clone": "no",
+			"notes": "Photo editor is not headshot generation; image provider absent; reference https://www.headshotpro.com/"
+		},
+		{
+			"feature": "AI tailor resume wording to a target job",
+			"area": "resumes",
+			"priority": "must",
+			"clone": "no",
+			"notes": "No connected text model; editor and job scores do not generate tailored resumes; reference https://www.tealhq.com/"
+		},
+		{
+			"feature": "Cloud sign-up sign-in and account recovery",
+			"area": "saas platform",
+			"priority": "must",
+			"clone": "no",
+			"notes": "Current career app has no live auth; starter auth archived not active; requested SaaS requirement"
+		},
+		{
+			"feature": "Paid checkout subscriptions and entitlements",
+			"area": "saas platform",
+			"priority": "must",
+			"clone": "no",
+			"notes": "Plans are local previews; no charge checkout or active entitlement enforcement; requested SaaS requirement"
+		},
+		{
+			"feature": "Persist and synchronize career data across devices",
+			"area": "saas platform",
+			"priority": "must",
+			"clone": "no",
+			"notes": "Browser localStorage only; no live cloud database; requested SaaS requirement"
+		},
+		{
+			"feature": "Tenant ownership and role authorization",
+			"area": "saas platform",
+			"priority": "must",
+			"clone": "no",
+			"notes": "Proposed SQL schema is not applied or exercised; local browser workspace has no tenant boundary; requested multi-tenant SaaS requirement"
+		},
+		{
+			"feature": "Compare a posting against profile skills",
+			"area": "jobs",
+			"priority": "must",
+			"clone": "partial",
+			"notes": "Local keyword-overlap estimate plus editable explicit-term resume gaps; no ATS integration or semantic matching; Teal/Rezi public previews observed by REA"
+		},
+		{
+			"feature": "Review LinkedIn profile with actionable checks",
+			"area": "linkedin",
+			"priority": "must",
+			"clone": "partial",
+			"notes": "Local disclosed writing checklist implemented; no authenticated LinkedIn scan or model-backed analysis; reference https://www.careerflow.ai/"
+		},
+		{
+			"feature": "Autofill employer application forms",
+			"area": "jobs",
+			"priority": "should",
+			"clone": "no",
+			"notes": "No browser extension or form integration; reference https://simplify.jobs/copilot"
+		},
+		{
+			"feature": "Dedicated native mobile career app",
+			"area": "mobile",
+			"priority": "should",
+			"clone": "no",
+			"notes": "Existing Reactive Resume mobile app is not this career SaaS; no adapted native build; requested broader app scope"
+		},
+		{
+			"feature": "Schedule followups and track actual replies",
+			"area": "outreach",
+			"priority": "should",
+			"clone": "no",
+			"notes": "Manual Replied label only; no inbound sync or scheduler; reference https://hunter.io/"
+		},
+		{
+			"feature": "Choose generated headshot outfits and backgrounds",
+			"area": "photos",
+			"priority": "should",
+			"clone": "no",
+			"notes": "No generation engine or generated output gallery; reference https://www.aragon.ai/"
+		},
+		{
+			"feature": "Self-serve billing portal and payment webhooks",
+			"area": "saas platform",
+			"priority": "should",
+			"clone": "no",
+			"notes": "Archived starter billing is not wired to CareerOS; requested SaaS requirement"
+		},
+		{
+			"feature": "Measure actual application delivery and interview conversion",
+			"area": "analytics",
+			"priority": "should",
+			"clone": "partial",
+			"notes": "Local user-maintained counts only; no provider-confirmed delivery events; reference https://www.loopcv.pro/"
+		},
+		{
+			"feature": "Filter automation by role location salary and company exclusions",
+			"area": "jobs",
+			"priority": "should",
+			"clone": "partial",
+			"notes": "Company exclusions and preferred location terms implemented from REA-observed LoopCV public pattern; single local preparation configuration, not named background searches"
+		},
+		{
+			"feature": "Original marketing positioning and proposed pricing",
+			"area": "marketing",
+			"priority": "should",
+			"clone": "partial",
+			"notes": "About page and local proposed plans; no validated acquisition conversion or production checkout"
+		},
+		{
+			"feature": "Export restore and delete workspace data",
+			"area": "saas platform",
+			"priority": "should",
+			"clone": "partial",
+			"notes": "Local backup validated restore and reset; no server/account deletion; requested SaaS requirement"
+		}
+	],
+	"skipped": [],
+	"extras": [],
+	"problems": [],
+	"overall": 48.0
+}

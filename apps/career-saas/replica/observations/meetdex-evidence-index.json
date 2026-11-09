@@ -1,0 +1,298 @@
+{
+	"observed_on": "2026-11-08",
+	"target": "https://meetdex.ai/",
+	"tool": "REA 6.8.0 MCP stdio",
+	"scope": "rendered public marketing demonstration and unauthenticated entry only",
+	"report": "meetdex.md",
+	"captures": [
+		{
+			"name": "home",
+			"operation": "capture_browser_scenario",
+			"source_url": "https://meetdex.ai/",
+			"scenario_evidence_id": "ev_c0ce08c7b9bcc2d5e5aa4cd7271d1dab78f333e481220e5dc10788b2977f2cfc",
+			"screenshot_evidence_id": "ev_75008c0249aa4acabac87b5adb85dac563d0f519b6eee68ccff5054f49f7e53f",
+			"request_file": "/workspace/competitor-observation/meetdex-rea/home-request.json",
+			"response_file": "/workspace/competitor-observation/meetdex-rea/home-response.json",
+			"exported_bundle_file": "/workspace/competitor-observation/meetdex-rea/home-evidence-bundle.json",
+			"summary_file": "/workspace/competitor-observation/meetdex-rea/home-summary.json",
+			"scenario_screenshot": "/workspace/competitor-observation/meetdex-rea/home-settle.png",
+			"followup_screenshot": "/workspace/competitor-observation/meetdex-rea/home-screenshot.png",
+			"accessibility_file": "/workspace/competitor-observation/meetdex-rea/home-settle-accessibility.txt",
+			"statuses": [
+				{
+					"step_id": "scenario_start",
+					"status": "completed"
+				},
+				{
+					"step_id": "heading",
+					"status": "completed"
+				},
+				{
+					"step_id": "settle",
+					"status": "completed"
+				}
+			],
+			"request_sha256": "3d32edd701bc7b4c9e975c98f674f8ace8bce8960d874c5972fb0269e44a71d2",
+			"declared_actions": [
+				{
+					"step_id": "heading",
+					"action": "wait_for",
+					"locator": {
+						"kind": "css",
+						"selector": "h1"
+					},
+					"state": "visible",
+					"timeout_ms": 20000
+				},
+				{
+					"step_id": "settle",
+					"action": "wait_for_timeout",
+					"duration_ms": 1500
+				}
+			],
+			"capture_requested": {
+				"at_end": ["url", "accessibility", "screenshot"],
+				"events": []
+			},
+			"completeness": {
+				"status": "incomplete",
+				"equality_eligible": false,
+				"missing_sections": ["events"],
+				"truncated_sections": []
+			}
+		},
+		{
+			"name": "applications",
+			"operation": "capture_browser_scenario",
+			"source_url": "https://meetdex.ai/",
+			"scenario_evidence_id": "ev_3f7611dd8c12136483cb4fb10961a422c23109328b9991e99833b5520d6b9eaa",
+			"screenshot_evidence_id": "ev_bde38c01a60d2a2a06f4c7b7d35024c510a91afdcb6816550c1e1ba80c244545",
+			"request_file": "/workspace/competitor-observation/meetdex-rea/applications-request.json",
+			"response_file": "/workspace/competitor-observation/meetdex-rea/applications-response.json",
+			"exported_bundle_file": "/workspace/competitor-observation/meetdex-rea/applications-evidence-bundle.json",
+			"summary_file": "/workspace/competitor-observation/meetdex-rea/applications-summary.json",
+			"scenario_screenshot": "/workspace/competitor-observation/meetdex-rea/applications-settle.png",
+			"followup_screenshot": "/workspace/competitor-observation/meetdex-rea/applications-screenshot.png",
+			"accessibility_file": "/workspace/competitor-observation/meetdex-rea/applications-settle-accessibility.txt",
+			"statuses": [
+				{
+					"step_id": "scenario_start",
+					"status": "completed"
+				},
+				{
+					"step_id": "heading",
+					"status": "completed"
+				},
+				{
+					"step_id": "applications",
+					"status": "completed"
+				},
+				{
+					"step_id": "settle",
+					"status": "completed"
+				}
+			],
+			"request_sha256": "9a7051e3fe9ca8ece71b3539ab1a6e3b299134df899c557d240dde42a0e95206",
+			"declared_actions": [
+				{
+					"step_id": "heading",
+					"action": "wait_for",
+					"locator": {
+						"kind": "css",
+						"selector": "h1"
+					},
+					"state": "visible",
+					"timeout_ms": 20000
+				},
+				{
+					"step_id": "applications",
+					"action": "click",
+					"locator": {
+						"kind": "role",
+						"role": "button",
+						"name": "Applications"
+					},
+					"timeout_ms": 10000
+				},
+				{
+					"step_id": "settle",
+					"action": "wait_for_timeout",
+					"duration_ms": 1200
+				}
+			],
+			"capture_requested": {
+				"at_end": ["url", "accessibility", "screenshot"],
+				"events": []
+			},
+			"completeness": {
+				"status": "incomplete",
+				"equality_eligible": false,
+				"missing_sections": ["events"],
+				"truncated_sections": []
+			}
+		},
+		{
+			"name": "next-match",
+			"operation": "capture_browser_scenario",
+			"source_url": "https://meetdex.ai/",
+			"scenario_evidence_id": "ev_2a2421559408fffc96964759b01e25f3ff0bdd79cddeca2fc0b2cd36650ba592",
+			"screenshot_evidence_id": "ev_af4e4881c7b7a63fd2294f524d2995b2277d1daa42c25a946a1b277336a6f406",
+			"request_file": "/workspace/competitor-observation/meetdex-rea/next-match-request.json",
+			"response_file": "/workspace/competitor-observation/meetdex-rea/next-match-response.json",
+			"exported_bundle_file": "/workspace/competitor-observation/meetdex-rea/next-match-evidence-bundle.json",
+			"summary_file": "/workspace/competitor-observation/meetdex-rea/next-match-summary.json",
+			"scenario_screenshot": "/workspace/competitor-observation/meetdex-rea/next-match-settle.png",
+			"followup_screenshot": "/workspace/competitor-observation/meetdex-rea/next-match-screenshot.png",
+			"accessibility_file": "/workspace/competitor-observation/meetdex-rea/next-match-settle-accessibility.txt",
+			"statuses": [
+				{
+					"step_id": "scenario_start",
+					"status": "completed"
+				},
+				{
+					"step_id": "heading",
+					"status": "completed"
+				},
+				{
+					"step_id": "next-match",
+					"status": "completed"
+				},
+				{
+					"step_id": "settle",
+					"status": "completed"
+				}
+			],
+			"request_sha256": "b87ee0093c053bcef747132378c7a735540adb5bc22643d7d4096fac9621f832",
+			"declared_actions": [
+				{
+					"step_id": "heading",
+					"action": "wait_for",
+					"locator": {
+						"kind": "css",
+						"selector": "h1"
+					},
+					"state": "visible",
+					"timeout_ms": 20000
+				},
+				{
+					"step_id": "next-match",
+					"action": "click",
+					"locator": {
+						"kind": "role",
+						"role": "button",
+						"name": "Show the next match"
+					},
+					"timeout_ms": 10000
+				},
+				{
+					"step_id": "settle",
+					"action": "wait_for_timeout",
+					"duration_ms": 1200
+				}
+			],
+			"capture_requested": {
+				"after_each_step": ["url", "accessibility", "screenshot"],
+				"at_end": ["url", "accessibility", "screenshot"],
+				"events": []
+			},
+			"completeness": {
+				"status": "incomplete",
+				"equality_eligible": false,
+				"missing_sections": ["events"],
+				"truncated_sections": []
+			}
+		},
+		{
+			"name": "entry",
+			"operation": "capture_browser_scenario",
+			"source_url": "https://app.meetdex.ai/",
+			"scenario_evidence_id": "ev_624fae622f8507953fdfb1dc81cf8df113563ea1885792d064428b35b658490f",
+			"screenshot_evidence_id": "ev_dcc9c7441b03c54e08449cb3d68a71ad5f7595d3caf5fc5755dd696dac5f3c50",
+			"request_file": "/workspace/competitor-observation/meetdex-rea/entry-request.json",
+			"response_file": "/workspace/competitor-observation/meetdex-rea/entry-response.json",
+			"exported_bundle_file": "/workspace/competitor-observation/meetdex-rea/entry-evidence-bundle.json",
+			"summary_file": "/workspace/competitor-observation/meetdex-rea/entry-summary.json",
+			"scenario_screenshot": "/workspace/competitor-observation/meetdex-rea/entry-settle.png",
+			"followup_screenshot": "/workspace/competitor-observation/meetdex-rea/entry-screenshot.png",
+			"accessibility_file": "/workspace/competitor-observation/meetdex-rea/entry-settle-accessibility.txt",
+			"statuses": [
+				{
+					"step_id": "scenario_start",
+					"status": "completed"
+				},
+				{
+					"step_id": "entry-body",
+					"status": "completed"
+				},
+				{
+					"step_id": "settle",
+					"status": "completed"
+				}
+			],
+			"request_sha256": "69c25e0295f604651f7fcff0fcab7aea5d2115f788c2c03de1d14474439b8459",
+			"declared_actions": [
+				{
+					"step_id": "entry-body",
+					"action": "wait_for",
+					"locator": {
+						"kind": "css",
+						"selector": "body"
+					},
+					"state": "visible",
+					"timeout_ms": 10000
+				},
+				{
+					"step_id": "settle",
+					"action": "wait_for_timeout",
+					"duration_ms": 1500
+				}
+			],
+			"capture_requested": {
+				"at_end": ["url", "accessibility", "screenshot"],
+				"events": []
+			},
+			"completeness": {
+				"status": "incomplete",
+				"equality_eligible": false,
+				"missing_sections": ["events"],
+				"truncated_sections": []
+			}
+		}
+	],
+	"unknowns": [
+		"authenticated onboarding",
+		"live conversation inference",
+		"candidate matching backend",
+		"actual submission or recruiter delivery",
+		"CV tailoring",
+		"voice calls",
+		"employer portal"
+	],
+	"event_capture_requested": false,
+	"dom_script_network_body_capture_requested": false,
+	"local_artifact_root": "/workspace/competitor-observation/meetdex-rea",
+	"competitor_position_in_research_set": 13,
+	"research_set": {
+		"attempted_competitors": 13,
+		"rendered_public_surfaces": 12,
+		"upstream_failures": 1,
+		"full_competitor_parity_established": false
+	},
+	"pricing_source": {
+		"url": "https://meetdex.ai/candidate-terms",
+		"accessed_on": "2026-11-08",
+		"updated": "September 2026",
+		"section": "4.1",
+		"candidate_price": "currently free; future paid features possible with advance notice",
+		"employer_fee_established": false
+	},
+	"claims_not_established": [
+		"authenticated onboarding",
+		"live matching quality",
+		"real introductions",
+		"live CV tailoring",
+		"job submission receipts",
+		"employer fee percentage",
+		"full competitor parity"
+	]
+}

@@ -1,0 +1,601 @@
+[
+	{
+		"input": "/workspace/competitor-observation/resumes/jobscan-home-request.json",
+		"input_sha256": "c5fc264fc369040c610785241f303cec2d8ed4c3efb7b510fdc526c1451494d8",
+		"url": "https://www.jobscan.co/",
+		"actions": [
+			{
+				"step_id": "heading",
+				"action": "wait_for",
+				"locator": {
+					"kind": "css",
+					"selector": "h1"
+				},
+				"state": "visible",
+				"timeout_ms": 20000
+			},
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 1500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": []
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/resumes/rezi-home-request.json",
+		"input_sha256": "3698ce7b08c59ff3a29dc15ea934f09885515b459aa0644afbdbc59754f21c2d",
+		"url": "https://www.rezi.ai/",
+		"actions": [
+			{
+				"step_id": "heading",
+				"action": "wait_for",
+				"locator": {
+					"kind": "css",
+					"selector": "h1"
+				},
+				"state": "visible",
+				"timeout_ms": 20000
+			},
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 1500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": []
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/resumes/rezi-score-request.json",
+		"input_sha256": "485acdad78f13305544a1f1afdf5dee11ee98aea7a8a4cda245bcbe9fcb5aa24",
+		"url": "https://www.rezi.ai/",
+		"actions": [
+			{
+				"step_id": "heading",
+				"action": "wait_for",
+				"locator": {
+					"kind": "css",
+					"selector": "h1"
+				},
+				"state": "visible",
+				"timeout_ms": 20000
+			},
+			{
+				"step_id": "score_resume",
+				"action": "click",
+				"locator": {
+					"kind": "role",
+					"role": "button",
+					"name": "Score resume"
+				},
+				"timeout_ms": 10000
+			},
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 1500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": []
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/resumes/rezi-target-request.json",
+		"input_sha256": "a809b38af6394595ebe154b4ab77845328d7df73de02353ba3bd232fb0579705",
+		"url": "https://www.rezi.ai/",
+		"actions": [
+			{
+				"step_id": "heading",
+				"action": "wait_for",
+				"locator": {
+					"kind": "css",
+					"selector": "h1"
+				},
+				"state": "visible",
+				"timeout_ms": 20000
+			},
+			{
+				"step_id": "target_demo",
+				"action": "click",
+				"locator": {
+					"kind": "role",
+					"role": "button",
+					"name": "Target"
+				},
+				"timeout_ms": 10000
+			},
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 1500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": []
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/resumes/teal-desktop-request.json",
+		"input_sha256": "bb28531ca83bb0a2f446b8e569607675b7da3516f8088cfb39a0d963c639e095",
+		"url": "https://www.tealhq.com/",
+		"actions": [
+			{
+				"step_id": "heading",
+				"action": "wait_for",
+				"locator": {
+					"kind": "css",
+					"selector": "h1"
+				},
+				"state": "visible",
+				"timeout_ms": 20000
+			},
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 1500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": []
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/resumes/teal-job-match-observed-request.json",
+		"input_sha256": "a77a31bcf10cda2814cddf0139d778ebd4b5b7c84fbcc77b1cd61cc37ea9603c",
+		"url": "https://www.tealhq.com/tool/resume-job-description-match",
+		"actions": [
+			{
+				"step_id": "heading",
+				"action": "wait_for",
+				"locator": {
+					"kind": "css",
+					"selector": "h1"
+				},
+				"state": "visible",
+				"timeout_ms": 20000
+			},
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 1500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": []
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/resumes/teal-matching-request.json",
+		"input_sha256": "2a4e70855c717031b1cb9c6f27ab9c0a182eb7c631fee925cf3210ce7a4d2ae9",
+		"url": "https://www.tealhq.com/",
+		"actions": [
+			{
+				"step_id": "heading",
+				"action": "wait_for",
+				"locator": {
+					"kind": "css",
+					"selector": "h1"
+				},
+				"state": "visible",
+				"timeout_ms": 20000
+			},
+			{
+				"step_id": "matching_tab",
+				"action": "click",
+				"locator": {
+					"kind": "role",
+					"role": "tab",
+					"name": "Matching Mode"
+				},
+				"timeout_ms": 10000
+			},
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 2000
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": []
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/resumes/teal-proxy-request.json",
+		"input_sha256": "9ade2b8ff9a7c4167b7588e8f2c51cb898bf0a741210a109d8b7181019fe6699",
+		"url": "https://www.tealhq.com/",
+		"actions": [
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 2500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "dom", "accessibility", "screenshot"],
+			"events": []
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/resumes/teal-request.json",
+		"input_sha256": "d52a6288a8d422097c3ed71e43039593535c911863d72314f8c95815221f1358",
+		"url": "https://www.tealhq.com/",
+		"actions": [
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 2500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "dom", "accessibility", "screenshot"],
+			"events": []
+		},
+		"browser_mode": "launch"
+	},
+	{
+		"input": "/workspace/competitor-observation/photos-linkedin/aragon-focused-request.json",
+		"input_sha256": "45743ee25d385351dc6ba40c362b67ae2fe86159736b8eb647e738cb66b52402",
+		"url": "https://www.aragon.ai/",
+		"actions": [
+			{
+				"step_id": "heading",
+				"action": "wait_for",
+				"locator": {
+					"kind": "css",
+					"selector": "h1"
+				},
+				"state": "visible",
+				"timeout_ms": 20000
+			},
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 1500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": []
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/photos-linkedin/careerflow-linkedin-tool-request.json",
+		"input_sha256": "96995a911041382e2473bbacaf129bac17a04c4c3e12c968cfd771c1c7c9b889",
+		"url": "https://www.careerflow.ai/linkedin-optimizer",
+		"actions": [
+			{
+				"step_id": "heading",
+				"action": "wait_for",
+				"locator": {
+					"kind": "css",
+					"selector": "h1"
+				},
+				"state": "visible",
+				"timeout_ms": 20000
+			},
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 1500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": []
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/photos-linkedin/headshotpro-profile-tool-request.json",
+		"input_sha256": "3b1c945694767a1bf02af1ebdb0a55fad1a2bf9f1a317f98131777d631e02a62",
+		"url": "https://www.headshotpro.com/tools/free-linkedin-profile-generator",
+		"actions": [
+			{
+				"step_id": "heading",
+				"action": "wait_for",
+				"locator": {
+					"kind": "css",
+					"selector": "h1"
+				},
+				"state": "visible",
+				"timeout_ms": 20000
+			},
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 1500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": []
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/jobs-outreach/hunter-home.request.json",
+		"input_sha256": "47fcd375e9639d435ba35afc3abc3812491d348f632942d9ea44aad5207a8792",
+		"url": "https://hunter.io/",
+		"actions": [
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 2500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": [],
+			"network": {
+				"request_body": false,
+				"response_body": false,
+				"header_values": false
+			}
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/jobs-outreach/loopcv-exclusions.request.json",
+		"input_sha256": "ebc92ef899aae494850f8ae2f16ac1da8fd40a2916de1bb0f1e59193db91e6e7",
+		"url": "https://www.loopcv.pro/exclude",
+		"actions": [
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 2500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": [],
+			"network": {
+				"request_body": false,
+				"response_body": false,
+				"header_values": false
+			}
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/jobs-outreach/loopcv-home.request.json",
+		"input_sha256": "d56b27d0f99a1ba89ff968a4a5417c149701f7d0de8c40e0c25461df931cfc8c",
+		"url": "https://www.loopcv.pro/",
+		"actions": [
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 2500
+			},
+			{
+				"step_id": "consent-opt-out",
+				"action": "click",
+				"locator": {
+					"kind": "role",
+					"role": "button",
+					"name": "Opt Out"
+				},
+				"timeout_ms": 10000
+			},
+			{
+				"step_id": "view-options",
+				"action": "wait_for_timeout",
+				"duration_ms": 500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": [],
+			"network": {
+				"request_body": false,
+				"response_body": false,
+				"header_values": false
+			}
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/jobs-outreach/loopcv-proxy.request.json",
+		"input_sha256": "41d1f3acd9cc5a38574a777be846908190d06f85abdbb1c8dd908fd54cbf44c7",
+		"url": "https://www.loopcv.pro/",
+		"actions": [
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 2500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": [],
+			"network": {
+				"request_body": false,
+				"response_body": false,
+				"header_values": false
+			}
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/jobs-outreach/loopcv.request.json",
+		"input_sha256": "f8598878669bd42e64867cb38214318adca5adefb4955c09aa07598a87f93889",
+		"url": "https://www.loopcv.pro/",
+		"actions": [
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 2500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": [],
+			"network": {
+				"request_body": false,
+				"response_body": false,
+				"header_values": false
+			}
+		},
+		"browser_mode": "launch"
+	},
+	{
+		"input": "/workspace/competitor-observation/jobs-outreach/networkai-cold-email.request.json",
+		"input_sha256": "546205030a828b7808fa1cb0a948c1ba883a125b51bf8097f2191bb5089878c1",
+		"url": "https://www.wonsulting.ai/networkai",
+		"actions": [
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 2000
+			},
+			{
+				"step_id": "select-tab",
+				"action": "click",
+				"locator": {
+					"kind": "role",
+					"role": "tab",
+					"name": "Cold Email Generator"
+				},
+				"timeout_ms": 10000
+			},
+			{
+				"step_id": "tab-rendered",
+				"action": "wait_for_timeout",
+				"duration_ms": 500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": [],
+			"network": {
+				"request_body": false,
+				"response_body": false,
+				"header_values": false
+			}
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/jobs-outreach/networkai-finder.request.json",
+		"input_sha256": "885db5deb6f3407f8e765d0f8eb9564ec3796527daee2d735f32b6fe7cf39b1e",
+		"url": "https://www.wonsulting.ai/networkai",
+		"actions": [
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 2000
+			},
+			{
+				"step_id": "select-tab",
+				"action": "click",
+				"locator": {
+					"kind": "role",
+					"role": "tab",
+					"name": "Email Finder"
+				},
+				"timeout_ms": 10000
+			},
+			{
+				"step_id": "tab-rendered",
+				"action": "wait_for_timeout",
+				"duration_ms": 500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": [],
+			"network": {
+				"request_body": false,
+				"response_body": false,
+				"header_values": false
+			}
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/jobs-outreach/networkai-home.request.json",
+		"input_sha256": "227fe05f2658753bc1aa1594489999419b523e0014aa63aa069c336a0efdef5e",
+		"url": "https://www.wonsulting.ai/networkai",
+		"actions": [
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 2500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": [],
+			"network": {
+				"request_body": false,
+				"response_body": false,
+				"header_values": false
+			}
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/jobs-outreach/simplify-home.request.json",
+		"input_sha256": "712d111ff8eec62c20f31f0e96e2623c0950743e07283a7ef3b26a939499e114",
+		"url": "https://simplify.jobs/",
+		"actions": [
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 2500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": [],
+			"network": {
+				"request_body": false,
+				"response_body": false,
+				"header_values": false
+			}
+		},
+		"browser_mode": "connect"
+	},
+	{
+		"input": "/workspace/competitor-observation/jobs-outreach/sonara-home.request.json",
+		"input_sha256": "4d986ac1c5ff801b18e1d38e4461da27301ac44488c1d18791e8ac8e6120ae77",
+		"url": "https://www.sonara.ai/",
+		"actions": [
+			{
+				"step_id": "settle",
+				"action": "wait_for_timeout",
+				"duration_ms": 2500
+			}
+		],
+		"capture": {
+			"at_end": ["url", "accessibility", "screenshot"],
+			"events": [],
+			"network": {
+				"request_body": false,
+				"response_body": false,
+				"header_values": false
+			}
+		},
+		"browser_mode": "connect"
+	}
+]

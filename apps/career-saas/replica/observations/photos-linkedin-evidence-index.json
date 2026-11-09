@@ -1,0 +1,179 @@
+[
+	{
+		"name": "headshotpro-profile-tool",
+		"evidence_id": "ev_b856274af29bae90d79e6ddec4204beaafc139b323f2a7fbded3dd447d96bb77",
+		"screenshot_evidence_id": "ev_90cc246028a1b16fd79be11c213ae110717686c36c90aac74f6040a46da732ca",
+		"url": {
+			"url": "https://www.headshotpro.com/tools/free-linkedin-profile-generator",
+			"origin": "https://www.headshotpro.com",
+			"query_parameter_names": [],
+			"redacted": false
+		},
+		"confidence": "observed",
+		"completeness": {
+			"status": "incomplete",
+			"equality_eligible": false,
+			"missing_sections": ["events"],
+			"truncated_sections": []
+		},
+		"limitations": [
+			"Artifact identity is unavailable for this observation.",
+			"Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+			"Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+			"Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+			"Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+			"Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+			"Storage values are hashed only after declared-secret redaction.",
+			"CDP attachment cannot recover pre-attach events or guarantee launch-time context options.",
+			"Attached locale en-US applies to Intl formatting only; navigator.language(s) and Accept-Language remain caller-controlled. Use launch mode for matching page and request languages.",
+			"Detaching a CDP page session may clear caller-owned navigator.platform emulation. REA cannot snapshot the caller's complete user-agent/client-hint state before attachment; use launch mode to avoid mutating that external browser.",
+			"Browser host platform and architecture were not observed."
+		]
+	},
+	{
+		"name": "careerflow-linkedin-tool",
+		"evidence_id": "ev_82a06cf2e135d8ff17b4f301765a5a2fe280def5deb01893b6cae6e54ff6e25f",
+		"screenshot_evidence_id": "ev_02260809666fc9b05e5d48174d562087a58a2ddd2b0de004c10fb2948a058032",
+		"url": {
+			"url": "https://www.careerflow.ai/linkedin-optimizer",
+			"origin": "https://www.careerflow.ai",
+			"query_parameter_names": [],
+			"redacted": false
+		},
+		"confidence": "observed",
+		"completeness": {
+			"status": "incomplete",
+			"equality_eligible": false,
+			"missing_sections": ["events"],
+			"truncated_sections": []
+		},
+		"limitations": [
+			"Artifact identity is unavailable for this observation.",
+			"Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+			"Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+			"Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+			"Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+			"Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+			"Storage values are hashed only after declared-secret redaction.",
+			"CDP attachment cannot recover pre-attach events or guarantee launch-time context options.",
+			"Attached locale en-US applies to Intl formatting only; navigator.language(s) and Accept-Language remain caller-controlled. Use launch mode for matching page and request languages.",
+			"Detaching a CDP page session may clear caller-owned navigator.platform emulation. REA cannot snapshot the caller's complete user-agent/client-hint state before attachment; use launch mode to avoid mutating that external browser.",
+			"Browser host platform and architecture were not observed."
+		]
+	},
+	{
+		"name": "aragon-focused",
+		"evidence_id": "ev_8911c5a121624d2a220b95889fc149d1002d4b93ef21b580db584be4f1ff74ff",
+		"screenshot_evidence_id": "ev_6d4eeace6349bd063635d4d70bd4fa1ff6e890d094e856655bdb32c6ba6e785d",
+		"url": {
+			"url": "https://www.aragon.ai/",
+			"origin": "https://www.aragon.ai",
+			"query_parameter_names": [],
+			"redacted": false
+		},
+		"confidence": "observed",
+		"completeness": {
+			"status": "incomplete",
+			"equality_eligible": false,
+			"missing_sections": ["events"],
+			"truncated_sections": []
+		},
+		"limitations": [
+			"Artifact identity is unavailable for this observation.",
+			"Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+			"Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+			"Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+			"Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+			"Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+			"Storage values are hashed only after declared-secret redaction.",
+			"CDP attachment cannot recover pre-attach events or guarantee launch-time context options.",
+			"Attached locale en-US applies to Intl formatting only; navigator.language(s) and Accept-Language remain caller-controlled. Use launch mode for matching page and request languages.",
+			"Detaching a CDP page session may clear caller-owned navigator.platform emulation. REA cannot snapshot the caller's complete user-agent/client-hint state before attachment; use launch mode to avoid mutating that external browser.",
+			"Browser host platform and architecture were not observed."
+		]
+	},
+	{
+		"name": "headshotpro",
+		"evidence_id": "ev_a867d6db06844bf35362bf73b02a15dfb0031a7b16aed40f2d6ff7d3fba0ce95",
+		"url": {
+			"url": "https://www.headshotpro.com/",
+			"query": []
+		},
+		"confidence": "observed",
+		"completeness": {
+			"status": "incomplete",
+			"equality_eligible": false,
+			"missing_sections": ["events"],
+			"truncated_sections": []
+		},
+		"limitations": [
+			"Artifact identity is unavailable for this observation.",
+			"Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+			"Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+			"Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+			"Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+			"Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+			"Storage values are hashed only after declared-secret redaction.",
+			"CDP attachment cannot recover pre-attach events or guarantee launch-time context options.",
+			"Attached locale en-US applies to Intl formatting only; navigator.language(s) and Accept-Language remain caller-controlled. Use launch mode for matching page and request languages.",
+			"Detaching a CDP page session may clear caller-owned navigator.platform emulation. REA cannot snapshot the caller's complete user-agent/client-hint state before attachment; use launch mode to avoid mutating that external browser.",
+			"Browser host platform and architecture were not observed."
+		]
+	},
+	{
+		"name": "careerflow",
+		"evidence_id": "ev_db58b824d1ee383769a98385812584f17cd9c07b5754c88749437d6d2d896cfc",
+		"url": {
+			"url": "https://www.careerflow.ai/",
+			"query": []
+		},
+		"confidence": "observed",
+		"completeness": {
+			"status": "incomplete",
+			"equality_eligible": false,
+			"missing_sections": ["events"],
+			"truncated_sections": []
+		},
+		"limitations": [
+			"Artifact identity is unavailable for this observation.",
+			"Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+			"Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+			"Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+			"Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+			"Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+			"Storage values are hashed only after declared-secret redaction.",
+			"CDP attachment cannot recover pre-attach events or guarantee launch-time context options.",
+			"Attached locale en-US applies to Intl formatting only; navigator.language(s) and Accept-Language remain caller-controlled. Use launch mode for matching page and request languages.",
+			"Detaching a CDP page session may clear caller-owned navigator.platform emulation. REA cannot snapshot the caller's complete user-agent/client-hint state before attachment; use launch mode to avoid mutating that external browser.",
+			"Browser host platform and architecture were not observed."
+		]
+	},
+	{
+		"name": "resumeworded",
+		"evidence_id": "ev_6e443c110d0445bea82ce539606c299a1e3876d52eb86135ecee24ce5a2345da",
+		"url": {
+			"url": "https://resumeworded.com/linkedin-review/",
+			"query": []
+		},
+		"confidence": "observed",
+		"completeness": {
+			"status": "incomplete",
+			"equality_eligible": false,
+			"missing_sections": ["events"],
+			"truncated_sections": []
+		},
+		"limitations": [
+			"Artifact identity is unavailable for this observation.",
+			"Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+			"Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+			"Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+			"Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+			"Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+			"Storage values are hashed only after declared-secret redaction.",
+			"CDP attachment cannot recover pre-attach events or guarantee launch-time context options.",
+			"Attached locale en-US applies to Intl formatting only; navigator.language(s) and Accept-Language remain caller-controlled. Use launch mode for matching page and request languages.",
+			"Detaching a CDP page session may clear caller-owned navigator.platform emulation. REA cannot snapshot the caller's complete user-agent/client-hint state before attachment; use launch mode to avoid mutating that external browser.",
+			"Browser host platform and architecture were not observed."
+		]
+	}
+]

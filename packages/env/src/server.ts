@@ -73,6 +73,8 @@ export const env = createEnv({
 		// Application
 		CLOUDFLARE: z.stringbool().default(false),
 		APP_URL: z.url({ protocol: /https?/ }),
+		// Standalone CareerOS owns this optional gateway; the active proxy applies stricter origin validation.
+		CAREEROS_BACKEND_URL: z.url({ protocol: /https?/ }).optional(),
 		APP_REVISION: z
 			.string()
 			.regex(/^[a-f0-9]{40}$/)
