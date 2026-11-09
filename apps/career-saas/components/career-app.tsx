@@ -5,6 +5,7 @@ import {
 	Camera,
 	ChevronDown,
 	Crown,
+	Cloud,
 	Compass,
 	FileText,
 	Home,
@@ -17,6 +18,7 @@ import {
 	Zap,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { CloudView } from "@/features/cloud";
 import { JobsView } from "@/features/jobs";
 import { LinkedInView } from "@/features/linkedin";
 import { OutreachView } from "@/features/outreach";
@@ -33,8 +35,9 @@ const navigation = [
 	{ id: "resumes", name: "Resumes", icon: FileText },
 	{ id: "linkedin", name: "LinkedIn studio", icon: Linkedin },
 	{ id: "photo", name: "Photo studio", icon: Camera },
-	{ id: "jobs", name: "Job autopilot", icon: Zap },
+	{ id: "jobs", name: "Applications", icon: Zap },
 	{ id: "outreach", name: "Recruiter outreach", icon: Mail },
+	{ id: "cloud", name: "Cloud account", icon: Cloud },
 ];
 const valid = new Set([...navigation.map((n) => n.id), "settings", "plans"]);
 
@@ -182,6 +185,12 @@ export function CareerApp() {
 					</div>
 				</header>
 				<main className="main-content" id="main-content">
+					<div className="notice">
+						<span>
+							Local workspace: people using this browser profile may access its data. Cloud saving is a separate action.{" "}
+							<a href="/privacy">Your information</a>
+						</span>
+					</div>
 					{!ready ? (
 						<div className="loading-state">Opening your workspace…</div>
 					) : page === "overview" ? (
@@ -198,6 +207,8 @@ export function CareerApp() {
 						<JobsView />
 					) : page === "outreach" ? (
 						<OutreachView />
+					) : page === "cloud" ? (
+						<CloudView />
 					) : page === "plans" ? (
 						<PlansView />
 					) : (

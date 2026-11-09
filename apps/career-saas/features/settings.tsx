@@ -1,11 +1,13 @@
 "use client";
 import { ArrowDownToLine, Check, CheckCircle2, ExternalLink, RotateCcw, Upload } from "lucide-react";
 import { useRef, useState, type ChangeEvent } from "react";
-import { parseWorkspace, type Profile } from "@/lib/workspace";
+import { ProfileUrlField } from "@/components/career-ui";
+import { profileFieldMaxLength, type Profile } from "@/lib/workspace";
+import { decodeWorkspaceBackup, encodeWorkspaceBackup, WORKSPACE_BACKUP_MAX_BYTES } from "@/lib/workspace-backup";
 import { useWorkspace } from "@/lib/workspace-context";
 
 export function SettingsView() {
-	const { data, setData, reset } = useWorkspace();
+	const { data, setData, mutate, reset, restore: restoreWorkspace, persistenceStatus } = useWorkspace();
 	const [message, setMessage] = useState("");
 	const [error, setError] = useState("");
 	const importRef = useRef<HTMLInputElement>(null);
@@ -13,13 +15,25 @@ export function SettingsView() {
 		setData((d) => ({ ...d, profile: { ...d.profile, [field]: value } }));
 	}
 	function backup() {
-		const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }));
-		const a = document.createElement("a");
-		a.href = url;
-		a.download = "careeros-workspace.json";
-		a.click();
-		setTimeout(() => URL.revokeObjectURL(url), 1000);
-		setMessage("Workspace backup downloaded. Store it somewhere private.");
+		setError("");
+		try {
+			const text = encodeWorkspaceBackup(data);
+			const url = URL.createObjectURL(new Blob([text], { type: "application/json" }));
+			const anchor = document.createElement("a");
+			anchor.href = url;
+			anchor.download = "careeros-workspace.json";
+			document.body.appendChild(anchor);
+			anchor.click();
+			anchor.remove();
+			setTimeout(() => URL.revokeObjectURL(url), 1000);
+			setMessage(
+				"Workspace backup downloaded. It contains private career data; store it somewhere private. Photos are excluded.",
+			);
+		} catch {
+			setError(
+				"Couldn't export this workspace. Shorten or remove entries to stay within the 64 MiB backup limit, then try again.",
+			);
+		}
 	}
 	async function restore(event: ChangeEvent<HTMLInputElement>) {
 		const file = event.target.files?.[0];
@@ -28,14 +42,23 @@ export function SettingsView() {
 		setError("");
 		setMessage("");
 		try {
-			if (file.size > 4 * 1024 * 1024) throw new Error("Choose a backup smaller than 4 MB.");
-			const next = parseWorkspace(JSON.parse(await file.text()));
-			if (window.confirm("Replace this device’s workspace with this backup?")) {
-				setData(next);
-				setMessage("Workspace restored.");
+			if (file.size > WORKSPACE_BACKUP_MAX_BYTES) {
+				setError("Choose a backup within the 64 MiB limit. Existing workspace data has been kept.");
+				return;
 			}
+			const next = decodeWorkspaceBackup(await file.text());
+			if (
+				!window.confirm(
+					"Replace this browser's workspace with this backup? Export the current workspace first if needed.",
+				)
+			)
+				return;
+			if (await restoreWorkspace(next)) setMessage("Workspace restored and saved in this browser.");
+			else setError("Workspace couldn't be saved. Check the storage notice before leaving this page.");
 		} catch {
-			setError("Couldn’t read this backup. Choose a valid CareerOS workspace JSON file.");
+			setError(
+				"Couldn't read this backup. Choose a valid CareerOS backup or known-format recovery file. Existing workspace data has been kept.",
+			);
 		}
 	}
 	return (
@@ -66,20 +89,35 @@ export function SettingsView() {
 							{ key: "name", label: "Full name" },
 							{ key: "role", label: "Professional title" },
 							{ key: "email", label: "Email" },
+							{ key: "phone", label: "Phone" },
 							{ key: "location", label: "Location" },
 						].map((f) => (
 							<label className="field" key={f.key}>
 								<span>{f.label}</span>
 								<input
 									className="input"
-									maxLength={500}
-									type={f.key === "email" ? "email" : "text"}
+									maxLength={profileFieldMaxLength(f.key as keyof Profile)}
+									type={f.key === "email" ? "email" : f.key === "phone" ? "tel" : "text"}
 									value={data.profile[f.key as keyof Profile]}
 									onChange={(e) => update(f.key as keyof Profile, e.target.value)}
 								/>
 							</label>
 						))}
 					</div>
+					<ProfileUrlField
+						key={`website-${data.profile.website}`}
+						label="Website"
+						value={data.profile.website}
+						onCommit={(website) => mutate((current) => ({ ...current, profile: { ...current.profile, website } }))}
+					/>
+					<ProfileUrlField
+						key={`linkedin-${data.profile.linkedinUrl}`}
+						label="LinkedIn URL"
+						value={data.profile.linkedinUrl}
+						onCommit={(linkedinUrl) =>
+							mutate((current) => ({ ...current, profile: { ...current.profile, linkedinUrl } }))
+						}
+					/>
 					{[
 						{ key: "summary", label: "Professional summary" },
 						{ key: "experience", label: "Experience" },
@@ -131,7 +169,7 @@ export function SettingsView() {
 							/>
 						</label>
 						<label className="field">
-							<span>Minimum annual salary (USD)</span>
+							<span>Minimum annual salary ({data.goals.currency})</span>
 							<input
 								className="input"
 								type="number"
@@ -149,15 +187,38 @@ export function SettingsView() {
 								}
 							/>
 						</label>
+						<label className="field">
+							<span>Salary currency</span>
+							<select
+								className="input"
+								value={data.goals.currency}
+								onChange={(event) =>
+									setData((current) => ({
+										...current,
+										goals: { ...current.goals, currency: event.target.value as "GBP" | "USD" | "EUR" },
+									}))
+								}
+							>
+								<option value="GBP">GBP — British pound</option>
+								<option value="USD">USD — US dollar</option>
+								<option value="EUR">EUR — Euro</option>
+							</select>
+						</label>
 						<span className="autosave-label">
 							<CheckCircle2 size={15} />
-							Saved locally
+							{persistenceStatus === "saved"
+								? "Saved in this browser"
+								: persistenceStatus === "saving"
+									? "Saving…"
+									: "Changes aren't saved"}
 						</span>
 					</section>
 					<section className="panel">
 						<h2>Your data, in your hands.</h2>
 						<p className="muted">
-							This demo stores information in this browser. Back up your workspace before clearing browser data.
+							This browser profile can access your career data without an account. Backups contain private career data;
+							photos are excluded. Keep a private backup before clearing browser data. Reset doesn't remove downloaded
+							files, clipboard contents or email drafts.
 						</p>
 						<div className="button-row">
 							<button className="button secondary small" onClick={backup}>
@@ -172,19 +233,26 @@ export function SettingsView() {
 						<input
 							hidden
 							type="file"
-							accept="application/json,.json"
+							accept="application/json,text/plain,.json,.txt"
 							aria-label="Restore workspace backup"
 							ref={importRef}
 							onChange={restore}
 						/>
 						<button
 							className="text-button danger reset-button"
-							onClick={() => {
-								if (window.confirm("Delete your local workspace and restore sample data?")) {
-									localStorage.removeItem("careeros:linkedin:v1");
-									reset();
-									setMessage("Sample workspace restored.");
-								}
+							onClick={async () => {
+								if (
+									!window.confirm(
+										"Delete this browser's workspace and recovery data, and load sample data? Downloaded files and other external copies aren't deleted.",
+									)
+								)
+									return;
+								setMessage("");
+								if (await reset()) setMessage("Local workspace and recovery data deleted. Sample data loaded.");
+								else
+									setError(
+										"Saved data couldn't be fully deleted. Check the storage notice and clear this site's browser data.",
+									);
 							}}
 						>
 							<RotateCcw size={15} />
@@ -193,14 +261,13 @@ export function SettingsView() {
 					</section>
 					<section className="panel integrations">
 						<h2>Connected services</h2>
-						<p className="muted">Local tools work now. These services are not connected.</p>
-						{[
-							"Cloud account & sync",
-							"AI writing & headshots",
-							"Job submission provider",
-							"Email delivery",
-							"Billing",
-						].map((s) => (
+						<p className="muted">
+							Check Cloud account for optional resume-copy storage. The services below are not connected.
+						</p>
+						<a className="button secondary small" href="#cloud">
+							Open Cloud account
+						</a>
+						{["AI writing & headshots", "Job submission provider", "Email delivery", "Billing"].map((s) => (
 							<div key={s}>
 								<span>{s}</span>
 								<span className="status">Not connected</span>

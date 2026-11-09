@@ -20,6 +20,75 @@ import {
 	JOB_INTRODUCTION_MAX_LENGTH,
 } from "./workspace";
 
+test("resume exchange preserves supplied contact details and LinkedIn links", () => {
+	const resume = createWorkspace().resumes[0];
+	Object.assign(resume.profile, {
+		phone: "+44 20 7946 0000",
+		website: "https://candidate.example.test/",
+		linkedinUrl: "https://www.linkedin.com/in/example-candidate/",
+	});
+	const exported = exportResume(resume);
+	assert.equal(exported.basics.phone, "+44 20 7946 0000");
+	assert.equal(exported.basics.website.url, "https://candidate.example.test/");
+	assert.deepEqual(importResume(exported).profile, resume.profile);
+	const legacyLinks = JSON.parse(JSON.stringify(exported));
+	legacyLinks.basics.website = "https://candidate.example.test/";
+	legacyLinks.sections.profiles.items[0] = {
+		network: "LinkedIn",
+		url: "https://www.linkedin.com/in/example-candidate/",
+	};
+	assert.equal(importResume(legacyLinks).profile.linkedinUrl, resume.profile.linkedinUrl);
+	assert.equal(importResume(legacyLinks).profile.website, resume.profile.website);
+	const hostile = JSON.parse(JSON.stringify(exported));
+	hostile.basics.website.url = "javascript:alert(1)";
+	assert.throws(() => importResume(hostile));
+});
+
+test("old backups gain empty contact fields and preserve the original USD salary meaning", () => {
+	const legacy = JSON.parse(JSON.stringify(createWorkspace()));
+	for (const profile of [legacy.profile, ...legacy.resumes.map((resume: { profile: object }) => resume.profile)]) {
+		delete profile.phone;
+		delete profile.website;
+		delete profile.linkedinUrl;
+	}
+	delete legacy.goals.currency;
+	for (const job of legacy.jobs) {
+		delete job.interviewAt;
+		delete job.interviewTimezone;
+	}
+	const migrated = parseWorkspace(legacy);
+	assert.equal(migrated.profile.phone, "");
+	assert.equal(migrated.resumes[0].profile.linkedinUrl, "");
+	assert.equal(migrated.goals.currency, "USD");
+	assert.equal(migrated.goals.minSalary, 150_000);
+	assert.equal(migrated.jobs[0].interviewAt, null);
+	assert.equal(migrated.jobs[0].interviewTimezone, "Europe/London");
+});
+
+test("manual hiring outcomes and interview instants survive backups without changing application evidence", () => {
+	const workspace = createWorkspace();
+	const saved = parseWorkspace({
+		...workspace,
+		goals: { ...workspace.goals, currency: "GBP" },
+		jobs: ["Offer", "Rejected", "Withdrawn"].map((status, index) => ({
+			...workspace.jobs[index],
+			status,
+			interviewAt: "2026-11-20T14:30:00.000Z",
+			interviewTimezone: "Europe/London",
+		})),
+	});
+	assert.deepEqual(
+		saved.jobs.map((job) => job.status),
+		["Offer", "Rejected", "Withdrawn"],
+	);
+	assert.equal(saved.jobs[0].interviewAt, "2026-11-20T14:30:00.000Z");
+	assert.equal(saved.goals.currency, "GBP");
+	assert.deepEqual(parseWorkspace(JSON.parse(JSON.stringify(saved))), saved);
+	assert.throws(() => parseWorkspace({ ...saved, goals: { ...saved.goals, currency: "XYZ" } }));
+	assert.throws(() => parseWorkspace({ ...saved, jobs: [{ ...saved.jobs[0], interviewAt: "tomorrow" }] }));
+	assert.throws(() => parseWorkspace({ ...saved, jobs: [{ ...saved.jobs[0], interviewTimezone: "Not/A_Zone" }] }));
+});
+
 test("workspace backups reject malformed fields, invalid statuses and duplicate IDs", () => {
 	const original = createWorkspace();
 	assert.deepEqual(parseWorkspace(JSON.parse(JSON.stringify(original))), original);
@@ -220,8 +289,8 @@ test("current version-one backups migrate new resume, preparation and contact fi
 		},
 	};
 	const result = parseStoredWorkspace(JSON.parse(JSON.stringify(backup)));
-	assert.deepEqual(result.profile, profile);
-	assert.deepEqual(result.resumes[0].profile, profile);
+	assert.deepEqual(result.profile, { ...profile, phone: "", website: "", linkedinUrl: "" });
+	assert.deepEqual(result.resumes[0].profile, { ...profile, phone: "", website: "", linkedinUrl: "" });
 	assert.equal(result.resumes[0].targetJobId, null);
 	assert.equal(result.resumes[0].targetKeywords, "");
 	assert.deepEqual(result.autopilot.excludedCompanies, []);

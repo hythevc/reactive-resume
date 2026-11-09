@@ -97,6 +97,7 @@ export default function AboutPage() {
 					CareerOS
 				</Link>
 				<span>Built on Reactive Resume and the Next.js SaaS Starter.</span>
+				<Link href="/privacy">Your information</Link>
 				<Link href="/">
 					Open workspace <ArrowRight size={15} />
 				</Link>

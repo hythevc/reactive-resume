@@ -14,10 +14,12 @@ import {
 	X,
 } from "lucide-react";
 import { useMemo, useState, type FormEvent } from "react";
+import { parseInterviewSchedule } from "@/lib/workflow-safety";
 import { evaluatePreparationJob, type Job, type PreparationReason } from "@/lib/workspace";
 import { useWorkspace } from "@/lib/workspace-context";
 
-type JobForm = Pick<Job, "company" | "role" | "location" | "url" | "description" | "notes">;
+type JobDetails = Pick<Job, "company" | "role" | "location" | "url" | "description" | "notes">;
+type JobForm = JobDetails & { interviewAt: string; interviewTimezone: string };
 const emptyJob: JobForm = {
 	company: "",
 	role: "",
@@ -25,8 +27,10 @@ const emptyJob: JobForm = {
 	url: "",
 	description: "",
 	notes: "",
+	interviewAt: "",
+	interviewTimezone: "Europe/London",
 };
-const stages: Job["status"][] = ["Saved", "Draft", "Applied", "Interview"];
+const stages: Job["status"][] = ["Saved", "Draft", "Applied", "Interview", "Offer", "Rejected", "Withdrawn"];
 const reasonLabels: Record<PreparationReason, string> = {
 	"passed-role": "Passed by you",
 	"not-saved": "Already in your pipeline",
@@ -54,7 +58,7 @@ function safeJobUrl(value: string) {
 }
 
 export function JobsView() {
-	const { data, setData, ready } = useWorkspace();
+	const { data, setData, mutate, ready } = useWorkspace();
 	const [search, setSearch] = useState("");
 	const [stage, setStage] = useState<"All" | Job["status"]>("All");
 	const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -101,7 +105,7 @@ export function JobsView() {
 	const selected = data.jobs.find((job) => job.id === selectedId);
 	const prepared = data.jobs.filter((job) => job.status === "Draft").length;
 
-	function saveCriteria(event: FormEvent<HTMLFormElement>) {
+	async function saveCriteria(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 		const excludedCompanies = criteriaTerms(companyCriteria);
 		const locations = criteriaTerms(locationCriteria);
@@ -113,7 +117,15 @@ export function JobsView() {
 			setCriteriaError("Use up to 100 excluded companies and 50 location terms, with at most 500 characters each.");
 			return;
 		}
-		setData((current) => ({ ...current, autopilot: { ...current.autopilot, excludedCompanies, locations } }));
+		setNotice("");
+		if (
+			!(await mutate((current) => ({ ...current, autopilot: { ...current.autopilot, excludedCompanies, locations } })))
+		) {
+			setCriteriaError(
+				"Couldn't save these filters. Your entries are kept; check the storage notice before trying again.",
+			);
+			return;
+		}
 		setCriteriaDraft(null);
 		setCriteriaError("");
 		setNotice("Preparation filters saved. Your job list explains which roles are eligible.");
@@ -141,6 +153,8 @@ export function JobsView() {
 						url: job.url,
 						description: job.description,
 						notes: job.notes,
+						interviewAt: job.interviewAt ?? "",
+						interviewTimezone: job.interviewTimezone,
 					}
 				: emptyJob,
 		);
@@ -149,7 +163,7 @@ export function JobsView() {
 		setError("");
 	}
 
-	function saveJob(event: FormEvent<HTMLFormElement>) {
+	async function saveJob(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 		if (!form.company.trim() || !form.role.trim()) {
 			setError("Add a company and role to save this job.");
@@ -163,27 +177,47 @@ export function JobsView() {
 			setError("Use a full HTTPS application link, or leave the link blank.");
 			return;
 		}
-		const values: JobForm = Object.fromEntries(
-			Object.entries(form).map(([key, value]) => [key, value.trim()]),
-		) as JobForm;
+		let schedule: ReturnType<typeof parseInterviewSchedule>;
+		try {
+			schedule = parseInterviewSchedule(form.interviewAt, form.interviewTimezone);
+		} catch (cause) {
+			setError(cause instanceof Error ? cause.message : "Check your interview date and time zone.");
+			return;
+		}
+		const values = {
+			company: form.company.trim(),
+			role: form.role.trim(),
+			location: form.location.trim(),
+			url: form.url.trim(),
+			description: form.description.trim(),
+			notes: form.notes.trim(),
+			...schedule,
+		};
 		const id = editingId ?? crypto.randomUUID();
-		setData((current) => ({
-			...current,
-			jobs: editingId
-				? current.jobs.map((job) => (job.id === editingId ? { ...job, ...values } : job))
-				: [
-						{
-							id,
-							...values,
-							status: "Saved",
-							interest: "Unreviewed",
-							interestReason: "",
-							introduction: "",
-							createdAt: new Date().toISOString(),
-						},
-						...current.jobs,
-					],
-		}));
+		setNotice("");
+		if (
+			!(await mutate((current) => ({
+				...current,
+				jobs: editingId
+					? current.jobs.map((job) => (job.id === editingId ? { ...job, ...values } : job))
+					: [
+							{
+								id,
+								...values,
+								status: "Saved",
+								interest: "Unreviewed",
+								interestReason: "",
+								introduction: "",
+								createdAt: new Date().toISOString(),
+							},
+							...current.jobs,
+						],
+			})))
+		) {
+			setError("Couldn't save this job. Your form is kept; check the storage notice before trying again.");
+			return;
+		}
+		setError("");
 		setShowForm(false);
 		setSelectedId(id);
 		setNotice(
@@ -191,11 +225,18 @@ export function JobsView() {
 		);
 	}
 
-	function updateStage(id: string, status: Job["status"]) {
-		setData((current) => ({
-			...current,
-			jobs: current.jobs.map((job) => (job.id === id ? { ...job, status } : job)),
-		}));
+	async function updateStage(id: string, status: Job["status"]) {
+		setNotice("");
+		if (
+			!(await mutate((current) => ({
+				...current,
+				jobs: current.jobs.map((job) => (job.id === id ? { ...job, status } : job)),
+			})))
+		) {
+			setError("Couldn't save the application stage. Check the storage notice before trying again.");
+			return;
+		}
+		setError("");
 		setNotice(
 			status === "Applied"
 				? "Marked as applied in your tracker. This app did not submit an application."
@@ -203,24 +244,31 @@ export function JobsView() {
 		);
 	}
 
-	function removeJob(id: string) {
-		setData((current) => ({
-			...current,
-			jobs: current.jobs.filter((job) => job.id !== id),
-		}));
+	async function removeJob(id: string) {
+		setNotice("");
+		if (
+			!(await mutate((current) => ({
+				...current,
+				jobs: current.jobs.filter((job) => job.id !== id),
+			})))
+		) {
+			setError("Couldn't delete this job. Check the storage notice before trying again.");
+			return;
+		}
 		if (selectedId === id) setSelectedId(null);
 		setDeleteId(null);
+		setError("");
 		setNotice("Job removed from your workspace.");
 	}
 
-	function prepareMatches() {
+	async function prepareMatches() {
 		setError("");
 		if (filtersDirty) {
 			setNotice("Save your filter changes before preparing jobs.");
 			return;
 		}
 		if (!data.autopilot.enabled) {
-			setNotice("Turn on preparation to create local application drafts.");
+			setNotice("Turn on preparation to create local preparation tasks.");
 			return;
 		}
 		const today = new Date().toISOString().slice(0, 10);
@@ -241,28 +289,44 @@ export function JobsView() {
 			);
 			return;
 		}
-		setData((current) => {
-			if (!current.autopilot.enabled) return current;
-			const currentUsed = current.autopilot.preparationDate === today ? current.autopilot.preparationCount : 0;
-			const allowance = Math.max(0, current.autopilot.dailyLimit - currentUsed);
-			const ids = new Set(
-				current.jobs
-					.filter((job) => evaluatePreparationJob(current.profile, job, current.autopilot).eligible)
-					.slice(0, allowance)
-					.map((job) => job.id),
+		setNotice("");
+		let preparedCount = 0;
+		if (
+			!(await mutate((current) => {
+				if (!current.autopilot.enabled) return current;
+				const currentUsed = current.autopilot.preparationDate === today ? current.autopilot.preparationCount : 0;
+				const allowance = Math.max(0, current.autopilot.dailyLimit - currentUsed);
+				const ids = new Set(
+					current.jobs
+						.filter((job) => evaluatePreparationJob(current.profile, job, current.autopilot).eligible)
+						.slice(0, allowance)
+						.map((job) => job.id),
+				);
+				if (!ids.size) return current;
+				preparedCount = ids.size;
+				return {
+					...current,
+					autopilot: {
+						...current.autopilot,
+						preparationDate: today,
+						preparationCount: currentUsed + ids.size,
+					},
+					jobs: current.jobs.map((job) => (ids.has(job.id) ? { ...job, status: "Draft" } : job)),
+				};
+			}))
+		) {
+			setError("Couldn't save preparation tasks. Check the storage notice before trying again.");
+			return;
+		}
+		if (!preparedCount) {
+			setNotice(
+				"No preparation tasks were added. Your filters, limits or saved jobs changed; review them before trying again.",
 			);
-			if (!ids.size) return current;
-			return {
-				...current,
-				autopilot: {
-					...current.autopilot,
-					preparationDate: today,
-					preparationCount: currentUsed + ids.size,
-				},
-				jobs: current.jobs.map((job) => (ids.has(job.id) ? { ...job, status: "Draft" } : job)),
-			};
-		});
-		setNotice("Matching saved jobs are ready in your draft queue. No applications were submitted.");
+			return;
+		}
+		setNotice(
+			"Matching saved jobs were added to your preparation tasks. No application documents, answers, attachments or submissions were created.",
+		);
 	}
 
 	return (
@@ -276,6 +340,10 @@ export function JobsView() {
 					<Plus size={16} /> Add a job
 				</button>
 			</div>
+			<p className="muted small-print">
+				Keyword estimates use your shared career profile in Settings: {data.profile.name || "No name added"} ·{" "}
+				{data.profile.role || "No role added"}. Your target-role brief and salary are not eligibility filters.
+			</p>
 			{notice ? (
 				<div className="notice" role="status">
 					{notice}
@@ -368,6 +436,35 @@ export function JobsView() {
 								placeholder="What interests you? Who can introduce you?"
 							/>
 						</label>
+						<div className="form-grid">
+							<label className="field">
+								Interview start (include UTC offset)
+								<input
+									className="input"
+									type="text"
+									value={form.interviewAt}
+									onChange={(event) => setForm({ ...form, interviewAt: event.target.value })}
+									placeholder="2026-11-20T14:00:00+00:00"
+									maxLength={40}
+								/>
+								<small className="muted">
+									Optional. Copy the confirmed date and time with its offset, or use Z for UTC. This stores a note; it
+									does not create a calendar event or reminder.
+								</small>
+							</label>
+							<label className="field">
+								Interview display time zone
+								<input
+									className="input"
+									type="text"
+									value={form.interviewTimezone}
+									onChange={(event) => setForm({ ...form, interviewTimezone: event.target.value })}
+									placeholder="Europe/London"
+									maxLength={100}
+								/>
+								<small className="muted">The display zone changes how the saved instant is shown, not its time.</small>
+							</label>
+						</div>
 						{error ? (
 							<p role="alert" className="notice">
 								{error}
@@ -533,12 +630,12 @@ export function JobsView() {
 
 				<aside className="panel" style={{ background: "#edf5d5" }}>
 					<div className="section-title">
-						<h2>Preparation autopilot</h2>
+						<h2>Preparation tasks</h2>
 						<FileText size={19} />
 					</div>
 					<p className="muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-						Move matching saved roles into your draft queue. You review each application and submit it on the employer's
-						website.
+						Move matching saved roles into a preparation task queue. This does not create application documents, answers
+						or attachments. You prepare each application and submit it on the employer's website.
 					</p>
 					<label
 						className="field"
@@ -582,7 +679,7 @@ export function JobsView() {
 						>
 							{[1, 3, 5, 10, 20].map((limit) => (
 								<option key={limit} value={limit}>
-									{limit} {limit === 1 ? "draft" : "drafts"} / day
+									{limit} {limit === 1 ? "task" : "tasks"} / day
 								</option>
 							))}
 						</select>
@@ -653,11 +750,11 @@ export function JobsView() {
 						onClick={prepareMatches}
 						disabled={!ready || !data.autopilot.enabled || filtersDirty}
 					>
-						{data.autopilot.enabled ? <Play size={15} /> : <Pause size={15} />} Prepare matching jobs
+						{data.autopilot.enabled ? <Play size={15} /> : <Pause size={15} />} Create preparation tasks
 					</button>
 					{filtersDirty ? (
 						<p className="muted" style={{ fontSize: 11 }}>
-							Save your filter changes to update eligibility and prepare matching jobs.
+							Save your filter changes to update eligibility and create preparation tasks.
 						</p>
 					) : null}
 					<button
@@ -666,11 +763,11 @@ export function JobsView() {
 						style={{ width: "100%", marginTop: 10 }}
 						onClick={() => setStage("Draft")}
 					>
-						Review draft queue ({prepared})
+						Review preparation tasks ({prepared})
 					</button>
 					<p className="muted" style={{ fontSize: 11, marginTop: 15, lineHeight: 1.7 }}>
-						{prepared} {prepared === 1 ? "draft" : "drafts"} awaiting review. Match is a local keyword estimate, not an
-						employer's ATS score. No background applications or messages are sent.
+						{prepared} {prepared === 1 ? "task" : "tasks"} awaiting preparation. Match is a local keyword estimate, not
+						an employer's ATS score. No background applications or messages are sent.
 					</p>
 				</aside>
 			</div>
@@ -706,6 +803,20 @@ export function JobsView() {
 							>
 								{selected.description || "Add a job description to compare requirements with your career profile."}
 							</p>
+							{selected.interviewAt ? (
+								<div className="notice" style={{ display: "block" }}>
+									<strong>Recorded interview</strong>
+									<p>
+										{new Intl.DateTimeFormat("en-GB", {
+											dateStyle: "full",
+											timeStyle: "long",
+											timeZone: selected.interviewTimezone,
+										}).format(new Date(selected.interviewAt))}{" "}
+										· {selected.interviewTimezone}
+									</p>
+									<p className="muted small-print">Keep your confirmed invitation and calendar reminder separately.</p>
+								</div>
+							) : null}
 							<h3 style={{ fontSize: 14, marginTop: 24 }}>Your notes</h3>
 							<p className="muted" style={{ whiteSpace: "pre-wrap", fontSize: 13 }}>
 								{selected.notes || "No notes yet. Edit this job to add your research and next steps."}

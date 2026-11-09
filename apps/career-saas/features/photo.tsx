@@ -270,7 +270,11 @@ export function PhotoView() {
 			</div>
 			<div className="notice">
 				<ShieldCheck size={18} />
-				<span>Photo editing runs on this device. AI headshots require a connected image provider.</span>
+				<span>
+					Photo editing runs on this device. Download your result before leaving Photo studio: the photo and adjustments
+					are cleared when you navigate away and are not included in workspace backups. AI headshots require a connected
+					image provider.
+				</span>
 			</div>
 			<ol className="photo-steps" aria-label="Photo editing progress">
 				<li className={`photo-step ${image ? "done" : "active"}`} aria-current={!image ? "step" : undefined}>

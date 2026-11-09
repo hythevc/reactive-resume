@@ -14,6 +14,7 @@ import {
 	RotateCcw,
 } from "lucide-react";
 import { useMemo, useState } from "react";
+import { introductionReviewKey, outboundBlockReason } from "@/lib/workflow-safety";
 import {
 	buildJobIntroduction,
 	CAREER_BRIEF_MAX_LENGTH,
@@ -105,7 +106,7 @@ function CareerBrief() {
 	function updateSalary(value: string) {
 		const salary = Number(value);
 		if (!Number.isFinite(salary) || salary < 0 || salary > 10_000_000) {
-			setError("Enter an annual salary between 0 and 10,000,000 USD.");
+			setError("Enter an annual salary between 0 and 10,000,000 in your selected currency.");
 			return;
 		}
 		setData((current) => ({ ...current, goals: { ...current.goals, minSalary: salary } }));
@@ -146,8 +147,27 @@ function CareerBrief() {
 						onChange={(event) => updateText("location", event.target.value)}
 					/>
 				</label>
+				<label className="field" htmlFor="discovery-currency">
+					<span>Salary currency</span>
+					<select
+						id="discovery-currency"
+						className="input"
+						value={data.goals.currency}
+						onChange={(event) =>
+							setData((current) => ({
+								...current,
+								goals: { ...current.goals, currency: event.target.value as CareerGoals["currency"] },
+							}))
+						}
+					>
+						<option value="GBP">GBP — British pound</option>
+						<option value="USD">USD — US dollar</option>
+						<option value="EUR">EUR — Euro</option>
+					</select>
+					<small className="muted">Changing currency does not convert the amount.</small>
+				</label>
 				<label className="field" htmlFor="discovery-salary">
-					<span>Minimum annual salary (USD)</span>
+					<span>Minimum annual salary ({data.goals.currency})</span>
 					<input
 						id="discovery-salary"
 						className="input"
@@ -185,7 +205,7 @@ function CareerBrief() {
 				Your brief is included in the local workspace and its backups. Review eligibility uses the profile keyword
 				estimate and company/location filters in{" "}
 				<a className="text-button" href="#jobs">
-					Job autopilot
+					Applications
 				</a>
 				; team culture and working conditions are not inferred.
 			</p>
@@ -324,9 +344,10 @@ function ReviewHistory({ jobs, onUndo }: ReviewHistoryProps) {
 
 type IntroductionEditorProps = { job: Job };
 function IntroductionEditor({ job }: IntroductionEditorProps) {
-	const { data, setData } = useWorkspace();
+	const { data, setData, mutate } = useWorkspace();
 	const [reviewedFor, setReviewedFor] = useState<string | null>(null);
-	const acknowledgementKey = JSON.stringify([job.id, job.company, job.role, job.introduction]);
+	const acknowledgementKey = introductionReviewKey(data.profile, data.goals, job);
+	const blockedReason = outboundBlockReason(data.profile, job.introduction, { url: job.url });
 	const reviewed = reviewedFor === acknowledgementKey;
 	const [confirmRefresh, setConfirmRefresh] = useState(false);
 	const [message, setMessage] = useState("");
@@ -346,17 +367,34 @@ function IntroductionEditor({ job }: IntroductionEditorProps) {
 		setMessage("");
 		setError("");
 	}
-	function generateDraft() {
+	async function generateDraft() {
 		if (current.text.length > JOB_INTRODUCTION_MAX_LENGTH) {
 			setError("The current template exceeds the draft limit. Shorten your brief or profile before generating.");
 			return;
 		}
-		updateDraft(current.text);
+		setMessage("");
+		if (
+			!(await mutate((workspace) => ({
+				...workspace,
+				jobs: workspace.jobs.map((item) => {
+					if (item.id !== job.id) return item;
+					const text = buildJobIntroduction(workspace.profile, workspace.goals, item).text;
+					if (text.length > JOB_INTRODUCTION_MAX_LENGTH) throw new Error("Draft exceeds the limit.");
+					return { ...item, introduction: text };
+				}),
+			})))
+		) {
+			setError(
+				"Couldn't save the introduction. Your existing draft is kept; check the storage notice before trying again.",
+			);
+			return;
+		}
+		setReviewedFor(null);
 		setConfirmRefresh(false);
 		setMessage("Draft created from your current inputs. Review and edit it before copying.");
 	}
 	async function copyIntroduction() {
-		if (!reviewed || !job.introduction.trim()) return;
+		if (!reviewed || !job.introduction.trim() || blockedReason) return;
 		try {
 			await navigator.clipboard.writeText(job.introduction);
 			setMessage("Introduction copied. No message was sent.");
@@ -386,6 +424,15 @@ function IntroductionEditor({ job }: IntroductionEditorProps) {
 			{error ? (
 				<div className="notice error" role="alert">
 					{error}
+				</div>
+			) : null}
+			<p className="muted small-print">
+				Career fact source: your shared profile in Settings, {data.profile.name || "No name added"} ·{" "}
+				{data.profile.role || "No role added"}. Resume imports stay separate until you choose “Use as career profile”.
+			</p>
+			{blockedReason ? (
+				<div className="notice" role="alert">
+					{blockedReason}
 				</div>
 			) : null}
 			<details className="intro-facts">
@@ -448,12 +495,17 @@ function IntroductionEditor({ job }: IntroductionEditorProps) {
 				<input
 					type="checkbox"
 					checked={reviewed}
+					disabled={Boolean(blockedReason)}
 					onChange={(event) => setReviewedFor(event.target.checked ? acknowledgementKey : null)}
 					style={{ marginTop: 3 }}
 				/>
 				<span>I've reviewed what I want to share with {job.company}.</span>
 			</label>
-			<button className="button primary" disabled={!reviewed || !job.introduction.trim()} onClick={copyIntroduction}>
+			<button
+				className="button primary"
+				disabled={!reviewed || !job.introduction.trim() || Boolean(blockedReason)}
+				onClick={copyIntroduction}
+			>
 				<Copy size={16} />
 				Copy introduction
 			</button>
@@ -465,7 +517,7 @@ function IntroductionEditor({ job }: IntroductionEditorProps) {
 }
 
 export function RoleDiscoveryView() {
-	const { data, setData } = useWorkspace();
+	const { data, mutate } = useWorkspace();
 	const [tab, setTab] = useState<DiscoveryTab>(() =>
 		briefFields.every((field) => !data.goals[field.key].trim()) ? "brief" : "review",
 	);
@@ -487,28 +539,42 @@ export function RoleDiscoveryView() {
 	const shortlist = data.jobs.filter((job) => job.interest === "Shortlisted");
 	const reviewed = data.jobs.filter((job) => job.interest !== "Unreviewed");
 	const selected = shortlist.find((job) => job.id === selectedId) || shortlist[0];
-	function decide(job: Job, interest: JobInterest, reason: string) {
+	async function decide(job: Job, interest: JobInterest, reason: string) {
 		if (reason.length > INTEREST_REASON_MAX_LENGTH) {
 			setMessage(`Keep your reason within ${INTEREST_REASON_MAX_LENGTH.toLocaleString()} characters.`);
 			return;
 		}
-		setData((workspace) => ({
-			...workspace,
-			jobs: workspace.jobs.map((item) =>
-				item.id === job.id ? { ...item, interest, interestReason: reason.trim() } : item,
-			),
-		}));
+		setMessage("");
+		if (
+			!(await mutate((workspace) => ({
+				...workspace,
+				jobs: workspace.jobs.map((item) =>
+					item.id === job.id ? { ...item, interest, interestReason: reason.trim() } : item,
+				),
+			})))
+		) {
+			setMessage(
+				"Couldn't save this decision. Your role and note remain available; check the storage notice before trying again.",
+			);
+			return;
+		}
 		setMessage(
 			`${job.company} ${interest === "Shortlisted" ? "added to your shortlist" : "marked as passed"}. No application stage changed and no details were shared.`,
 		);
 	}
-	function undo(job: Job) {
-		setData((workspace) => ({
-			...workspace,
-			jobs: workspace.jobs.map((item) =>
-				item.id === job.id ? { ...item, interest: "Unreviewed", interestReason: "" } : item,
-			),
-		}));
+	async function undo(job: Job) {
+		setMessage("");
+		if (
+			!(await mutate((workspace) => ({
+				...workspace,
+				jobs: workspace.jobs.map((item) =>
+					item.id === job.id ? { ...item, interest: "Unreviewed", interestReason: "" } : item,
+				),
+			})))
+		) {
+			setMessage("Couldn't undo this decision. Check the storage notice before trying again.");
+			return;
+		}
 		setMessage(
 			`Decision cleared for ${job.company}. The role re-enters review when it is saved and meets your filters. Any edited introduction has been kept.`,
 		);
@@ -567,10 +633,10 @@ export function RoleDiscoveryView() {
 									<h2>No roles ready for review.</h2>
 									<p className="muted">
 										Save a job with a description, or adjust your profile and the keyword, location, or company filters
-										in Job autopilot. Already reviewed roles are in your decision history.
+										in Applications. Already reviewed roles are in your decision history.
 									</p>
 									<a className="button secondary" href="#jobs">
-										Open Job autopilot <ArrowRight size={16} />
+										Open Applications <ArrowRight size={16} />
 									</a>
 								</section>
 							)}

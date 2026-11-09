@@ -4,6 +4,17 @@ const text = z.string().max(50_000);
 const shortText = z.string().max(500);
 const id = z.string().min(1).max(100);
 const timestamp = z.string().datetime();
+const timezone = z
+	.string()
+	.max(100)
+	.refine((value) => {
+		try {
+			new Intl.DateTimeFormat("en", { timeZone: value });
+			return true;
+		} catch {
+			return false;
+		}
+	}, "Choose a valid timezone.");
 const webUrl = z
 	.string()
 	.max(2_000)
@@ -20,6 +31,9 @@ export const profileSchema = z
 	.object({
 		name: shortText,
 		email: shortText,
+		phone: shortText.default(""),
+		website: webUrl.default(""),
+		linkedinUrl: webUrl.default(""),
 		role: shortText,
 		location: shortText,
 		summary: text,
@@ -55,6 +69,7 @@ export const goalsSchema = z
 		role: shortText,
 		location: shortText,
 		minSalary: z.number().finite().min(0).max(10_000_000),
+		currency: z.enum(["GBP", "USD", "EUR"]).default("USD"),
 		problem: z.string().max(CAREER_BRIEF_MAX_LENGTH).default(""),
 		team: z.string().max(CAREER_BRIEF_MAX_LENGTH).default(""),
 		scope: z.string().max(CAREER_BRIEF_MAX_LENGTH).default(""),
@@ -69,7 +84,9 @@ export const jobSchema = z
 		location: shortText,
 		url: webUrl,
 		description: text,
-		status: z.enum(["Saved", "Draft", "Applied", "Interview"]),
+		status: z.enum(["Saved", "Draft", "Applied", "Interview", "Offer", "Rejected", "Withdrawn"]),
+		interviewAt: timestamp.nullable().default(null),
+		interviewTimezone: timezone.default("Europe/London"),
 		notes: text,
 		createdAt: timestamp,
 		interest: z.enum(["Unreviewed", "Shortlisted", "Passed"]).default("Unreviewed"),
@@ -148,6 +165,11 @@ export const workspaceSchema = z
 	});
 
 export type Profile = z.infer<typeof profileSchema>;
+
+export function profileFieldMaxLength(field: keyof Profile): number | undefined {
+	const schema = profileSchema.shape[field];
+	return (schema instanceof z.ZodDefault ? schema.unwrap() : schema).maxLength ?? undefined;
+}
 export type Resume = z.infer<typeof resumeSchema>;
 export type Job = z.infer<typeof jobSchema>;
 export type JobInterest = Job["interest"];
@@ -183,6 +205,9 @@ export function createWorkspace(): Workspace {
 	const profile: Profile = {
 		name: "Alex Morgan",
 		email: "alex.morgan@example.test",
+		phone: "",
+		website: "",
+		linkedinUrl: "",
 		role: "Senior Product Designer",
 		location: "San Francisco, CA",
 		summary:
@@ -242,6 +267,8 @@ export function createWorkspace(): Workspace {
 			url: `https://jobs.example.test/${company.toLowerCase().replaceAll(" ", "-")}`,
 			description: `${company} is a fictional example company seeking a ${roles[index]}. Work with product and engineering teams on ${index % 2 ? "user research, prototyping, and accessible interaction design" : "Figma, design systems, and product design"}. This is sample data; replace it with a real posting.`,
 			status: statuses[index],
+			interviewAt: null,
+			interviewTimezone: "Europe/London",
 			notes: index === 2 ? "Example interview stage. Add your own interview details here." : "",
 			createdAt: now,
 			interest: "Unreviewed",
@@ -298,6 +325,7 @@ export function createWorkspace(): Workspace {
 			role: "Senior Product Designer",
 			location: "Remote · US",
 			minSalary: 150_000,
+			currency: "USD",
 			problem: "",
 			team: "",
 			scope: "",
@@ -723,6 +751,19 @@ export function exportResume(resume: Resume) {
 		volunteer: section("hand-heart", "Volunteer"),
 		references: section("phone", "References"),
 	};
+	sections.profiles.items = profile.linkedinUrl
+		? [
+				{
+					id: "profile-linkedin",
+					hidden: false,
+					icon: "linkedin-logo",
+					iconColor: "",
+					network: "LinkedIn",
+					username: "",
+					website: { url: profile.linkedinUrl, label: "LinkedIn", inlineLink: false },
+				},
+			]
+		: [];
 	sections.experience.items = profile.experience.trim()
 		? profile.experience.split(/\n\s*\n/).map((block, index) => {
 				const [first, ...remaining] = block.split(/\r?\n/);
@@ -784,9 +825,9 @@ export function exportResume(resume: Resume) {
 			name: profile.name,
 			headline: profile.role,
 			email: profile.email,
-			phone: "",
+			phone: profile.phone,
 			location: profile.location,
-			website: { url: "", label: "" },
+			website: { url: profile.website, label: "" },
 			customFields: [],
 		},
 		summary: {
@@ -868,6 +909,9 @@ const exchangeItem = z
 		period: text.optional(),
 		description: text.optional(),
 		name: text.optional(),
+		network: shortText.optional(),
+		website: z.union([webUrl, z.object({ url: webUrl, label: shortText.optional() }).passthrough()]).optional(),
+		url: webUrl.optional(),
 		keywords: z.array(text).max(500).optional(),
 		roles: z
 			.array(
@@ -897,6 +941,8 @@ const exchangeSchema = z
 				name: shortText,
 				headline: shortText.optional(),
 				email: shortText.optional(),
+				phone: shortText.optional(),
+				website: z.union([webUrl, z.object({ url: webUrl, label: shortText.optional() }).passthrough()]).optional(),
 				location: shortText.optional(),
 			})
 			.passthrough(),
@@ -943,10 +989,17 @@ export function importResume(value: unknown): Resume {
 			block([item.school, item.degree, item.area, item.grade, item.location, item.period, item.description]),
 		)
 		.join("\n\n");
+	const linkedinProfile = parsed.sections.profiles
+		? visibleItems(parsed.sections.profiles).find((item) => item.network?.trim().toLowerCase() === "linkedin")
+		: undefined;
+	const itemUrl = linkedinProfile?.website ?? linkedinProfile?.url;
 	const profile: Profile = {
 		name: parsed.basics.name,
 		role: parsed.basics.headline ?? "",
 		email: parsed.basics.email ?? "",
+		phone: parsed.basics.phone ?? "",
+		website: typeof parsed.basics.website === "string" ? parsed.basics.website : (parsed.basics.website?.url ?? ""),
+		linkedinUrl: typeof itemUrl === "string" ? itemUrl : (itemUrl?.url ?? ""),
 		location: parsed.basics.location ?? "",
 		summary: parsed.summary.hidden ? "" : fromHtml(parsed.summary.content),
 		experience,

@@ -14,12 +14,14 @@ import {
 	Upload,
 } from "lucide-react";
 import { useRef, useState, type ChangeEvent } from "react";
+import { ProfileUrlField } from "@/components/career-ui";
+import { careerProfileFromResume, updateResumeProfile } from "@/lib/workflow-safety";
 import {
 	compareResumeToJob,
 	extractJobKeywords,
 	exportResume,
 	importResume,
-	profileSchema,
+	profileFieldMaxLength,
 	resumeSchema,
 	MAX_RESUMES,
 	TARGET_KEYWORDS_MAX_LENGTH,
@@ -79,7 +81,7 @@ function ProfileField({
 					className="textarea"
 					id={id}
 					rows={rows}
-					maxLength={profileSchema.shape[field].maxLength ?? undefined}
+					maxLength={profileFieldMaxLength(field)}
 					value={profile[field]}
 					onChange={(event) => onChange(field, event.target.value)}
 				/>
@@ -88,7 +90,7 @@ function ProfileField({
 					className="input"
 					id={id}
 					type={type}
-					maxLength={profileSchema.shape[field].maxLength ?? undefined}
+					maxLength={profileFieldMaxLength(field)}
 					value={profile[field]}
 					onChange={(event) => onChange(field, event.target.value)}
 				/>
@@ -102,10 +104,11 @@ type ResumeTargetPanelProps = {
 	resume: Resume;
 	jobs: Job[];
 	onChange: (updates: Partial<Resume>) => void;
+	onCommit: (updates: Partial<Resume>) => Promise<boolean>;
 	onDuplicate: (job: Job) => void;
 };
 
-export function ResumeTargetPanel({ resume, jobs, onChange, onDuplicate }: ResumeTargetPanelProps) {
+export function ResumeTargetPanel({ resume, jobs, onChange, onCommit, onDuplicate }: ResumeTargetPanelProps) {
 	const [notice, setNotice] = useState("");
 	const [error, setError] = useState("");
 	const job = jobs.find((item) => item.id === resume.targetJobId);
@@ -123,7 +126,7 @@ export function ResumeTargetPanel({ resume, jobs, onChange, onDuplicate }: Resum
 		setError("");
 	}
 
-	function suggestKeywords() {
+	async function suggestKeywords() {
 		if (!job) return;
 		const suggestions = extractJobKeywords(job);
 		if (!suggestions.length) {
@@ -141,7 +144,11 @@ export function ResumeTargetPanel({ resume, jobs, onChange, onDuplicate }: Resum
 			setError("The suggested terms would exceed the keyword limit. Remove some existing terms, then try again.");
 			return;
 		}
-		onChange({ targetKeywords: value });
+		setNotice("");
+		if (!(await onCommit({ targetKeywords: value }))) {
+			setError("Couldn't save the suggested terms. Check the storage notice before trying again.");
+			return;
+		}
 		setError("");
 		setNotice(
 			added.length
@@ -167,8 +174,12 @@ export function ResumeTargetPanel({ resume, jobs, onChange, onDuplicate }: Resum
 							id="resume-target-job"
 							className="input"
 							value={job?.id ?? ""}
-							onChange={(event) => {
-								onChange({ targetJobId: event.target.value || null });
+							onChange={async (event) => {
+								setNotice("");
+								if (!(await onCommit({ targetJobId: event.target.value || null }))) {
+									setError("Couldn't save the target job. Check the storage notice before trying again.");
+									return;
+								}
 								setError("");
 								setNotice("Target job updated. Review your target terms or add suggestions from this posting.");
 							}}
@@ -191,7 +202,7 @@ export function ResumeTargetPanel({ resume, jobs, onChange, onDuplicate }: Resum
 						<p className="muted small-print">
 							Save a role in{" "}
 							<a className="text-button" href="#jobs">
-								Job autopilot
+								Applications
 							</a>{" "}
 							to link its description. You can also enter target terms directly.
 						</p>
@@ -203,8 +214,7 @@ export function ResumeTargetPanel({ resume, jobs, onChange, onDuplicate }: Resum
 								className="muted preserve-lines small-print"
 								style={{ marginTop: 12, maxHeight: 180, overflowY: "auto" }}
 							>
-								{job.description ||
-									"This job has no description yet. Edit it in Job autopilot to add the requirements."}
+								{job.description || "This job has no description yet. Edit it in Applications to add the requirements."}
 							</p>
 						</details>
 					) : null}
@@ -318,7 +328,11 @@ function ResumePaper({ resume, template }: ResumePaperProps) {
 			<header>
 				<h2>{profile.name || "Your name"}</h2>
 				<p className="resume-role">{profile.role || "Your professional title"}</p>
-				<p className="resume-contact">{[profile.email, profile.location].filter(Boolean).join(" · ")}</p>
+				<p className="resume-contact">
+					{[profile.email, profile.phone, profile.location, profile.website, profile.linkedinUrl]
+						.filter(Boolean)
+						.join(" · ")}
+				</p>
 			</header>
 			{profile.summary ? (
 				<section className="resume-section">
@@ -349,7 +363,7 @@ function ResumePaper({ resume, template }: ResumePaperProps) {
 }
 
 export function ResumesView() {
-	const { data, setData } = useWorkspace();
+	const { data, setData, mutate, persistenceStatus } = useWorkspace();
 	const [selectedId, setSelectedId] = useState<string | null>(null);
 	const [template, setTemplate] = useState<"classic" | "modern">("classic");
 	const [message, setMessage] = useState("");
@@ -366,7 +380,7 @@ export function ResumesView() {
 		return false;
 	}
 
-	function createResume() {
+	async function createResume() {
 		if (!canAddResume()) return;
 		const resume: Resume = {
 			id: crypto.randomUUID(),
@@ -376,10 +390,19 @@ export function ResumesView() {
 			targetJobId: null,
 			targetKeywords: "",
 		};
-		setData((current) => ({
-			...current,
-			resumes: [...current.resumes, resume],
-		}));
+		setMessage("");
+		if (
+			!(await mutate((current) => ({
+				...current,
+				resumes: [
+					...current.resumes,
+					{ ...resume, title: `Resume ${current.resumes.length + 1}`, profile: { ...current.profile } },
+				],
+			})))
+		) {
+			setError("Couldn't save this resume. Keep your input and check the storage notice before trying again.");
+			return;
+		}
 		setSelectedId(resume.id);
 		setMessage("New resume created. Your edits are saved on this device.");
 		setError("");
@@ -395,13 +418,50 @@ export function ResumesView() {
 		}));
 	}
 
+	function commitResume(updates: Partial<Resume>): Promise<boolean> {
+		if (!selected) return Promise.resolve(false);
+		return mutate((current) => ({
+			...current,
+			resumes: current.resumes.map((resume) =>
+				resume.id === selected.id ? { ...resume, ...updates, updatedAt: new Date().toISOString() } : resume,
+			),
+		}));
+	}
+
 	function updateProfile(field: keyof Profile, value: string) {
 		if (!selected) return;
-		updateResume({ profile: { ...selected.profile, [field]: value } });
+		setData((current) => updateResumeProfile(current, selected.id, field, value));
 		setMessage("");
 	}
 
-	function duplicateResume() {
+	async function useAsCareerProfile() {
+		if (!selected) return;
+		if (
+			!window.confirm(
+				`Use “${selected.title}” as your shared career profile? Matching, new resumes, recruiter drafts and introductions will use these facts. Existing resume versions and edited drafts will stay unchanged.`,
+			)
+		)
+			return;
+		setMessage("");
+		if (
+			!(await mutate((current) => {
+				const source = current.resumes.find((resume) => resume.id === selected.id);
+				if (!source) throw new Error("Resume is no longer available.");
+				return careerProfileFromResume(current, source);
+			}))
+		) {
+			setError(
+				"Couldn't save the shared career profile. Your resume is kept; check the storage notice before trying again.",
+			);
+			return;
+		}
+		setMessage(
+			"Shared career profile updated from this resume. Review existing outreach and introduction drafts against your new facts.",
+		);
+		setError("");
+	}
+
+	async function duplicateResume() {
 		if (!selected || !canAddResume()) return;
 		const copyTitle = `${selected.title} (copy)`;
 		const title = copyTitle.length <= (resumeSchema.shape.title.maxLength ?? Infinity) ? copyTitle : selected.title;
@@ -412,15 +472,22 @@ export function ResumesView() {
 			updatedAt: new Date().toISOString(),
 			profile: { ...selected.profile },
 		};
-		setData((current) => ({
-			...current,
-			resumes: [...current.resumes, resume],
-		}));
+		setMessage("");
+		if (
+			!(await mutate((current) => ({
+				...current,
+				resumes: [...current.resumes, resume],
+			})))
+		) {
+			setError("Couldn't save this resume. Keep your input and check the storage notice before trying again.");
+			return;
+		}
 		setSelectedId(resume.id);
+		setError("");
 		setMessage("Resume duplicated.");
 	}
 
-	function duplicateForJob(job: Job) {
+	async function duplicateForJob(job: Job) {
 		if (!selected || !canAddResume()) return;
 		const jobTitle = `${job.company} · ${job.role}`;
 		const title =
@@ -433,7 +500,11 @@ export function ResumesView() {
 			updatedAt: new Date().toISOString(),
 			profile: { ...selected.profile },
 		};
-		setData((current) => ({ ...current, resumes: [...current.resumes, resume] }));
+		setMessage("");
+		if (!(await mutate((current) => ({ ...current, resumes: [...current.resumes, resume] })))) {
+			setError("Couldn't save this resume copy. Check the storage notice before trying again.");
+			return;
+		}
 		setSelectedId(resume.id);
 		setError("");
 		setMessage(
@@ -441,13 +512,20 @@ export function ResumesView() {
 		);
 	}
 
-	function removeResume() {
+	async function removeResume() {
 		if (!selected || !window.confirm(`Delete “${selected.title}”? This removes it from this device.`)) return;
-		setData((current) => ({
-			...current,
-			resumes: current.resumes.filter((resume) => resume.id !== selected.id),
-		}));
+		setMessage("");
+		if (
+			!(await mutate((current) => ({
+				...current,
+				resumes: current.resumes.filter((resume) => resume.id !== selected.id),
+			})))
+		) {
+			setError("Couldn't delete this resume. Check the storage notice before trying again.");
+			return;
+		}
 		setSelectedId(null);
+		setError("");
 		setMessage("Resume deleted.");
 	}
 
@@ -463,13 +541,21 @@ export function ResumesView() {
 		}
 		try {
 			const resume = importResume(JSON.parse(await file.text()));
-			setData((current) => ({
-				...current,
-				resumes: [...current.resumes, resume],
-			}));
+			setMessage("");
+			if (
+				!(await mutate((current) => ({
+					...current,
+					resumes: [...current.resumes, resume],
+				})))
+			) {
+				setError(
+					"Couldn't save the imported resume. Keep the original file and check the storage notice before trying again.",
+				);
+				return;
+			}
 			setSelectedId(resume.id);
 			setMessage(
-				"Supported resume text imported. Review the fields; unsupported sections and original formatting are not retained.",
+				"Supported resume text imported. Review the fields, then choose “Use as career profile” if matching and new outreach should use these facts. Existing shared facts have not changed.",
 			);
 		} catch {
 			setError("Couldn’t import this resume. Choose a valid Reactive Resume JSON file.");
@@ -495,8 +581,9 @@ export function ResumesView() {
 				</div>
 			</div>
 			<p className="muted small-print" style={{ marginBottom: 20 }}>
-				JSON import brings in your name, headline, email, location, summary, experience, education, and skills. Phone
-				numbers, links, other sections, and original formatting are not retained. Keep your original file.
+				JSON import brings in supported contact details, LinkedIn/website links, summary, experience, education, and
+				skills. Other sections and original formatting are not retained. Keep your original file, then check the
+				imported details before sharing.
 			</p>
 			<input
 				ref={importRef}
@@ -543,6 +630,7 @@ export function ResumesView() {
 					resume={selected}
 					jobs={data.jobs}
 					onChange={updateResume}
+					onCommit={commitResume}
 					onDuplicate={duplicateForJob}
 				/>
 			) : null}
@@ -551,8 +639,21 @@ export function ResumesView() {
 					<section className="panel resume-editor" aria-label="Resume editor">
 						<div className="panel-heading">
 							<h2 className="section-title">Your story, in your words</h2>
-							<span className="status">Autosaved locally</span>
+							<span className="status">
+								{persistenceStatus === "saved"
+									? "Saved locally"
+									: persistenceStatus === "saving"
+										? "Saving…"
+										: "Not saved — check the workspace notice"}
+							</span>
 						</div>
+						<p className="muted small-print">
+							Editing this resume changes this version only. Matching and outreach use your shared career profile:{" "}
+							{data.profile.name || "No name added"} · {data.profile.role || "No role added"}.
+						</p>
+						<button className="button secondary small" onClick={useAsCareerProfile}>
+							Use as career profile
+						</button>
 						<label className="field" htmlFor="resume-title">
 							<span>Resume name</span>
 							<input
@@ -578,7 +679,30 @@ export function ResumesView() {
 								profile={selected.profile}
 								onChange={updateProfile}
 							/>
+							<ProfileField
+								label="Phone"
+								field="phone"
+								type="tel"
+								profile={selected.profile}
+								onChange={updateProfile}
+							/>
 							<ProfileField label="Location" field="location" profile={selected.profile} onChange={updateProfile} />
+							<ProfileUrlField
+								key={selected.id + selected.profile.website}
+								label="Website"
+								value={selected.profile.website}
+								maxLength={profileFieldMaxLength("website")}
+								onCommit={(value) => mutate((current) => updateResumeProfile(current, selected.id, "website", value))}
+							/>
+							<ProfileUrlField
+								key={selected.id + selected.profile.linkedinUrl}
+								label="LinkedIn URL"
+								value={selected.profile.linkedinUrl}
+								maxLength={profileFieldMaxLength("linkedinUrl")}
+								onCommit={(value) =>
+									mutate((current) => updateResumeProfile(current, selected.id, "linkedinUrl", value))
+								}
+							/>
 						</div>
 						<ProfileField
 							label="Professional summary"
@@ -658,8 +782,9 @@ export function ResumesView() {
 						</div>
 						<ResumePaper resume={selected} template={template} />
 						<p className="muted resume-export-note">
-							Choose “Save as PDF” in the print dialog. JSON exports share these supported text fields with Reactive
-							Resume; the selected preview template is not exported.
+							Check your contact details, dates, metrics and every page before sharing. Choose “Save as PDF” in the
+							print dialog. JSON exports share these supported text fields with Reactive Resume; the selected preview
+							template is not exported.
 						</p>
 					</section>
 				</div>

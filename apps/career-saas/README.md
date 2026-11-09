@@ -26,19 +26,21 @@ npm --workspaces=false run start
 ## What works locally
 
 - Edit career facts and create/duplicate/edit resume versions with a live preview. Compare a saved posting against explicit editable target terms, inspect missing terms, and duplicate a job-specific version without changing your career facts.
-- Import/export supported Reactive Resume JSON text; print through the browser's Save as PDF dialog. This is not yet the shared PDF/DOCX rendering service.
+- Import/export supported Reactive Resume JSON text, including phone, website and LinkedIn links; print through the browser's Save as PDF dialog. This is not yet the shared PDF/DOCX rendering service.
 - Start from a saved resume or review pasted LinkedIn text using disclosed writing checks and editable suggestions. Scores are local heuristics, not LinkedIn ranking or ATS predictions.
 - Prepare your own photo in the browser, compare original/edited crops, preview square/circle framing, and download the edited square PNG. Local image processing is not AI headshot generation.
 - Use Role discovery to save a career brief about problems, team, scope and environment; review eligible saved jobs one at a time; and shortlist or pass with a reason. Decisions are separate from application stages, and passed roles are excluded from draft preparation. Create/edit a company-specific introduction from supplied facts, review it and copy it; no details are shared automatically.
 - Add/edit/filter jobs, inspect keyword overlap, save company exclusions and preferred locations, review per-job eligibility reasons, prepare matching drafts and manually update tracker stages. Preparation controls run while you use the app; there is no background scheduler or automatic submission.
 - Add researched contacts with user-supplied source URLs and context, create/edit factual template drafts, copy them or open your mail composer and track user-reported stages. No email is sent by the app.
-- Keep workspace state in versioned local browser storage and use settings for backup/restore/reset. Browser storage is tied to the device/browser and can be cleared; exported backups contain your career data.
+- Keep workspace state in revision-checked local browser storage and use settings for backup/restore/reset. Discrete actions wait for a persistence result before reporting saved state. Conflicting tabs cannot silently replace active state. Browser storage is tied to the device/browser and can be cleared; exported backups contain your career data.
 
 Uploaded photo processing stays local. Photos and photo adjustments are not persisted in the workspace backup. Career briefs, role decisions, introduction drafts, LinkedIn drafts and daily preparation counts are included in workspace backups. Treat browser backups as private files. The local app has no account access boundary; people using the same browser profile may access its data.
 
 ## Not connected
 
-Better Auth, PostgreSQL/Supabase, Stripe billing, AI text/image providers, job feeds/autofill/submission, contact discovery/verification, email sending, reply sync are **not active**. Plan selection is demonstration state, not payment or a server entitlement. `Applied`/`Contacted` tracker labels are user reports, not delivery receipts. A ChatGPT subscription is not used as an API credential.
+The optional Cloud account bridge reuses the parent Better Auth service and private resume APIs when an operator configures a verified backend. It supports email account access, existing two-factor checks and password recovery, plus explicit resume-copy upload/list/download. It does not synchronize jobs, contacts, LinkedIn drafts or the whole local workspace. With no backend configured, account actions fail closed and the UI says unavailable.
+
+Stripe billing, AI text/image providers, job feeds/autofill/submission, contact discovery/verification, email sending and reply sync are **not active** in this standalone workspace. Plan selection is demonstration state, not payment or a server entitlement. `Applied`/`Contacted` tracker labels are user reports, not delivery receipts. A ChatGPT subscription is not used as an API credential.
 
 The parent repository already has Better Auth, Drizzle/Postgres and resume/application services. [Architecture](replica/architecture.md) explains how to integrate them without enabling a second auth/database stack. [SQL](replica/schema.sql) is a future design draft only: not applied, generated or registered as a migration.
 
@@ -57,4 +59,25 @@ Public competitor research informs functionality; names, code, interface and ass
 
 Based on the requested [Next.js SaaS Starter template](https://vercel.com/templates/next.js/next-js-saas-starter) and its [MIT-licensed source](https://github.com/nextjs/saas-starter). Its original scaffold/auth/database/billing examples are retained under `starter/` for reference; Next.js does not serve those archived routes. The active app does not enable their services. Copyright and permission notice: [LICENSE.saas-starter](LICENSE.saas-starter).
 
-Reactive Resume remains MIT-licensed under the repository's root [LICENSE](../../LICENSE). The exchange adapter preserves the supported facts and escapes imported text; it does not preserve every template/layout/custom-section detail. Use shared package export maps when moving functionality into production services.
+Reactive Resume remains MIT-licensed under the repository's root [LICENSE](../../LICENSE). The exchange adapter preserves supported career and contact facts and escapes imported text; it does not preserve every template/layout/custom-section detail. Use shared package export maps when moving functionality into production services.
+
+## Data-safety behavior
+
+- The active workspace uses a separate v2 storage key. Legacy v1 data is read for migration and remains visibly recoverable until deliberately removed; old deployed scripts cannot replace active v2 state.
+- Web Locks serialize saves. Revision and reset-generation checks reject stale writers. Browsers without safe storage/locking remain memory-only and display a warning; export before leaving.
+- Backups have a format/version envelope and a consistent 64 MiB UTF-8 limit. Old raw workspace JSON, v1 storage and valid v2 recovery formats remain readable. Accepted changes stay within the export budget. Browser quota can be lower; unsaved continuous edits remain exportable.
+- Discrete create/import/delete actions wait for confirmed persistence. A failure keeps the form/candidate retryable. Continuous typing retains unsaved content on storage failure and warns before navigation.
+- Reset verifies deletion of primary, legacy and recovery keys. A nonpersonal reset generation prevents old clients from reviving deleted data. Close/reload already-running pre-upgrade tabs for erasure from their memory and obsolete writes.
+- Recovery deletion is blocked while edits are pending/unsaved. Reset cannot remove downloaded backups, clipboard contents, email drafts or OS copies.
+- Use a selected resume as the shared career profile only through the confirmed promotion action. Existing resume snapshots remain independent. Outbound draft actions require current review and reject seeded fictional identities.
+- Salary preferences support GBP, USD and EUR, without claiming salary-based matching. Manual Offer/Rejected/Withdrawn stages and explicit-offset interview instants do not schedule reminders.
+
+## Optional cloud connection
+
+Set the standalone frontend's server-only `CAREEROS_BACKEND_URL` to the fixed HTTPS origin of an existing Reactive Resume backend. Do not use a public browser environment variable or a service API key. The parent backend's `APP_URL` must equal the frontend's canonical public origin so Better Auth callbacks, CSRF checks and host-only Secure cookies agree. Keep cookie Domain unset.
+
+The gateway exposes a narrow route allowlist, checks caller origin and bound account, disables private-response caching, refuses HTML/foreign redirects and delegates ownership to existing authenticated backend services. Signing in never automatically uploads local information. An upload creates a separate resume copy; refresh the cloud list before retrying an uncertain upload.
+
+The backend requires real database/private-storage/auth configuration, genuine email delivery for account verification/recovery, and recorded two-user ownership/deletion/recovery checks. Keep signup/email login disabled until those checks pass. Do not treat a configured URL, proposed SQL or a successful local test as live-provider verification. See [deployment and acceptance](../../docs/contributing/careeros-deployment.mdx).
+
+The isolated frontend currently ships English copy; it does not participate in the parent web/mobile Lingui catalogs. Cloud backend changes continue to follow parent localization, ownership and compatibility rules.

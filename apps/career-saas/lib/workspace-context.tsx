@@ -11,133 +11,301 @@ import {
 	type ReactNode,
 	type SetStateAction,
 } from "react";
+import { createWorkspace, parseWorkspace, STORAGE_KEY, type Workspace } from "./workspace";
+import { encodeWorkspaceBackup } from "./workspace-backup";
 import {
-	createWorkspace,
-	parseStoredWorkspace,
-	workspaceSchema,
-	STORAGE_KEY,
-	STORAGE_VERSION,
-	type Workspace,
-} from "./workspace";
+	clearWorkspaceRecovery,
+	discardResetLegacyWorkspace,
+	loadWorkspaceStorage,
+	resetWorkspaceStorage,
+	saveWorkspaceStorage,
+	WORKSPACE_ACTIVE_KEY,
+	WORKSPACE_GENERATION_KEY,
+	WORKSPACE_RECOVERY_KEY,
+	WorkspaceConflictError,
+	type WorkspaceStorageSnapshot,
+} from "./workspace-storage";
 
+type PersistenceStatus = "loading" | "saved" | "saving" | "unsaved" | "conflict" | "unavailable";
 type WorkspaceContextValue = {
 	data: Workspace;
 	setData: Dispatch<SetStateAction<Workspace>>;
+	mutate: (value: SetStateAction<Workspace>) => Promise<boolean>;
 	ready: boolean;
-	reset: () => void;
+	persistenceStatus: PersistenceStatus;
+	restore: (data: Workspace) => Promise<boolean>;
+	reset: () => Promise<boolean>;
 };
+type WorkspaceProviderProps = { children: ReactNode };
 const WorkspaceContext = createContext<WorkspaceContextValue | null>(null);
-const RECOVERY_KEY = `${STORAGE_KEY}.recovery`;
-const AUXILIARY_KEYS = ["careeros:linkedin:v1", "career-saas:preparation-ledger:v1"];
 
-export function WorkspaceProvider({ children }: { children: ReactNode }) {
-	const [workspaceState, updateWorkspaceState] = useState<{
-		data: Workspace;
-		validationError: string | null;
-	}>(() => ({ data: createWorkspace(), validationError: null }));
-	const { data, validationError } = workspaceState;
+export function WorkspaceProvider({ children }: WorkspaceProviderProps) {
+	const [data, updateData] = useState<Workspace>(createWorkspace);
+	const dataRef = useRef(data);
+	const baseline = useRef<WorkspaceStorageSnapshot | null>(null);
 	const [ready, setReady] = useState(false);
+	const [persistenceStatus, setPersistenceStatus] = useState<PersistenceStatus>("loading");
 	const [recoveryValue, setRecoveryValue] = useState<string | null>(null);
-	const [storageUnavailable, setStorageUnavailable] = useState(false);
-	const originalValue = useRef<string | null>(null);
-	const readFailed = useRef(false);
-	const userChanged = useRef(false);
-	const setData = useCallback<Dispatch<SetStateAction<Workspace>>>((value) => {
-		userChanged.current = true;
-		updateWorkspaceState((current) => {
-			const result = workspaceSchema.safeParse(typeof value === "function" ? value(current.data) : value);
-			return result.success
-				? { data: result.data, validationError: null }
-				: {
-						data: current.data,
-						validationError:
-							"This change exceeds workspace limits or contains an invalid value. Your previous data has been kept. Shorten the field or export a backup from Settings.",
-					};
-		});
+	const [recoveryBlocked, setRecoveryBlocked] = useState(false);
+	const [notice, setNotice] = useState("");
+	const [error, setError] = useState("");
+	const queue = useRef<Promise<unknown>>(Promise.resolve());
+	const pending = useRef(0);
+	const externalEpoch = useRef(0);
+	const unsaved = useRef(false);
+	const mounted = useRef(false);
+	const resetting = useRef(false);
+
+	const publish = useCallback((snapshot: WorkspaceStorageSnapshot) => {
+		baseline.current = snapshot;
+		dataRef.current = snapshot.data;
+		updateData(snapshot.data);
+		setRecoveryValue(snapshot.recovery);
+		setRecoveryBlocked(snapshot.invalid);
+		unsaved.current = false;
+		setPersistenceStatus("saved");
 	}, []);
-	/* oxlint-disable react/set-state-in-effect -- These effects synchronize browser storage after SSR and expose external load/write failures. */
+
+	/* oxlint-disable react/set-state-in-effect -- Hydrate and synchronize external browser storage after SSR, with visible read failures. */
 	useEffect(() => {
+		mounted.current = true;
 		try {
-			const stored = localStorage.getItem(STORAGE_KEY);
-			if (stored !== null) {
-				try {
-					updateWorkspaceState({
-						data: parseStoredWorkspace(JSON.parse(stored)),
-						validationError: null,
-					});
-				} catch {
-					originalValue.current = stored;
-					setRecoveryValue(stored);
-					// Keep the primary key untouched until a deliberate edit or reset.
-					// A backup must succeed before a later edit may replace that key.
-					try {
-						localStorage.setItem(RECOVERY_KEY, stored);
-					} catch {
-						setStorageUnavailable(true);
-					}
-				}
-			}
-			const recovery = localStorage.getItem(RECOVERY_KEY);
-			if (recovery !== null && originalValue.current === null) setRecoveryValue(recovery);
+			discardResetLegacyWorkspace(localStorage);
+			publish(loadWorkspaceStorage(localStorage));
 		} catch {
-			readFailed.current = true;
-			setStorageUnavailable(true);
+			setPersistenceStatus("unavailable");
+			setError("Browser storage couldn't be read. Changes remain in this tab only. Export a backup before leaving.");
 		}
 		setReady(true);
-	}, []);
-	useEffect(() => {
-		if (!ready) return;
-		if ((originalValue.current !== null || readFailed.current) && !userChanged.current) return;
-		try {
-			// If reading initially failed, preserve any newly readable value before
-			// saving the user's explicit changes to the temporary sample workspace.
-			if (readFailed.current) {
-				const stored = localStorage.getItem(STORAGE_KEY);
-				if (stored !== null) {
-					originalValue.current = stored;
-					setRecoveryValue(stored);
+		const sync = (event: StorageEvent) => {
+			if (
+				event.key !== null &&
+				![STORAGE_KEY, WORKSPACE_ACTIVE_KEY, WORKSPACE_GENERATION_KEY, WORKSPACE_RECOVERY_KEY].includes(event.key)
+			)
+				return;
+			if (event.key === STORAGE_KEY) {
+				try {
+					if (localStorage.getItem(WORKSPACE_ACTIVE_KEY) !== null) {
+						// A pre-upgrade tab cannot change the active workspace.
+						discardResetLegacyWorkspace(localStorage);
+						return;
+					}
+				} catch {
+					setError("An older tab is retaining data. Close and reload older tabs before resetting again.");
+					return;
 				}
-				readFailed.current = false;
 			}
-			if (originalValue.current !== null) localStorage.setItem(RECOVERY_KEY, originalValue.current);
-			localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: STORAGE_VERSION, data }));
-			setStorageUnavailable(false);
-		} catch {
-			setStorageUnavailable(true);
-		}
-	}, [data, ready]);
+			externalEpoch.current += 1;
+			if (unsaved.current || pending.current > 0) {
+				setPersistenceStatus("conflict");
+				setError(
+					"Another tab changed or reset this workspace. Export this tab's unsaved work, then load the latest workspace.",
+				);
+				return;
+			}
+			try {
+				discardResetLegacyWorkspace(localStorage);
+				publish(loadWorkspaceStorage(localStorage));
+				setNotice("Another tab changed or reset this workspace. Its latest data is now loaded.");
+			} catch {
+				setPersistenceStatus("unavailable");
+				setError("Browser storage couldn't be read. Export a backup before leaving.");
+			}
+		};
+		const beforeUnload = (event: BeforeUnloadEvent) => {
+			if (!unsaved.current && pending.current === 0) return;
+			event.preventDefault();
+		};
+		window.addEventListener("storage", sync);
+		window.addEventListener("beforeunload", beforeUnload);
+		return () => {
+			mounted.current = false;
+			window.removeEventListener("storage", sync);
+			window.removeEventListener("beforeunload", beforeUnload);
+		};
+	}, [publish]);
 	/* oxlint-enable react/set-state-in-effect */
-	const reset = useCallback(() => {
+
+	const change = useCallback(
+		(value: SetStateAction<Workspace>, preserveFailed = false): Promise<boolean> => {
+			if (resetting.current) return Promise.resolve(false);
+			const epoch = externalEpoch.current;
+			pending.current += 1;
+			setPersistenceStatus("saving");
+			const operation = queue.current.then(async () => {
+				let attempted: Workspace | null = null;
+				try {
+					if (!mounted.current) return false;
+					const next = parseWorkspace(typeof value === "function" ? value(dataRef.current) : value);
+					encodeWorkspaceBackup(next);
+					attempted = next;
+					if (epoch !== externalEpoch.current) throw new WorkspaceConflictError();
+					if (!baseline.current || !navigator.locks) {
+						if (preserveFailed) {
+							dataRef.current = next;
+							updateData(next);
+							unsaved.current = true;
+						}
+						setPersistenceStatus("unavailable");
+						setError(
+							"Safe browser storage isn't available. Changes remain in this tab only. Export a backup before leaving.",
+						);
+						return false;
+					}
+					return await navigator.locks.request(STORAGE_KEY, () => {
+						if (epoch !== externalEpoch.current || !baseline.current) throw new WorkspaceConflictError();
+						try {
+							publish(saveWorkspaceStorage(localStorage, baseline.current, next));
+							setError("");
+							return true;
+						} catch (cause) {
+							if (preserveFailed && !(cause instanceof WorkspaceConflictError)) {
+								dataRef.current = next;
+								updateData(next);
+								unsaved.current = true;
+							}
+							throw cause;
+						}
+					});
+				} catch (cause) {
+					if (cause instanceof WorkspaceConflictError) {
+						if (preserveFailed && attempted !== null) {
+							dataRef.current = attempted;
+							updateData(attempted);
+							unsaved.current = true;
+						}
+						setPersistenceStatus("conflict");
+						setError(
+							"Another tab changed or reset this workspace. Load the latest data before editing. Export this tab first if needed.",
+						);
+					} else {
+						setPersistenceStatus(unsaved.current ? "unsaved" : "unavailable");
+						setError(
+							"Couldn't save this change. Previous saved data is retained. Check field limits and browser storage, or export a backup before leaving.",
+						);
+					}
+					return false;
+				} finally {
+					pending.current -= 1;
+				}
+			});
+			queue.current = operation;
+			return operation;
+		},
+		[publish],
+	);
+	const setData = useCallback<Dispatch<SetStateAction<Workspace>>>(
+		(value) => {
+			void change(value, true);
+		},
+		[change],
+	);
+
+	const reset = useCallback(async (): Promise<boolean> => {
+		if (resetting.current) return false;
+		resetting.current = true;
+		externalEpoch.current += 1;
 		try {
-			for (const key of [STORAGE_KEY, RECOVERY_KEY, ...AUXILIARY_KEYS]) localStorage.removeItem(key);
-			originalValue.current = null;
-			readFailed.current = false;
-			setRecoveryValue(null);
-			setStorageUnavailable(false);
+			await queue.current;
+			if (!navigator.locks) {
+				setError(
+					"Safe browser storage isn't available. Close other tabs and clear this site's browser data to remove saved copies.",
+				);
+				setPersistenceStatus("unavailable");
+				return false;
+			}
+			return await navigator.locks.request(STORAGE_KEY, () => {
+				const result = resetWorkspaceStorage(localStorage);
+				if (!result.ok) {
+					setPersistenceStatus("unavailable");
+					setError(
+						"Some saved data couldn't be deleted. Close other tabs and clear this site's browser data, then reload.",
+					);
+					return false;
+				}
+				externalEpoch.current += 1;
+				publish(loadWorkspaceStorage(localStorage));
+				setError("");
+				setNotice(
+					"Local workspace and recovery data deleted. Sample data is loaded. Downloaded files, clipboard contents and email drafts are separate copies.",
+				);
+				return true;
+			});
 		} catch {
-			setStorageUnavailable(true);
+			setPersistenceStatus("unavailable");
+			setError("Couldn't delete saved data. Clear this site's browser data, then reload.");
+			return false;
+		} finally {
+			resetting.current = false;
 		}
-		userChanged.current = true;
-		updateWorkspaceState({ data: createWorkspace(), validationError: null });
-	}, []);
+	}, [publish]);
+
+	function reloadLatest() {
+		if (
+			unsaved.current &&
+			!window.confirm(
+				"Discard this tab's unsaved changes and load the latest saved workspace? Export a backup first if needed.",
+			)
+		)
+			return;
+		externalEpoch.current += 1;
+		try {
+			publish(loadWorkspaceStorage(localStorage));
+			setError("");
+			setNotice("Latest saved workspace loaded.");
+		} catch {
+			setError("Couldn't load saved data. Export this tab's work and check browser storage.");
+		}
+	}
 	function exportRecovery() {
 		if (recoveryValue === null) return;
 		const url = URL.createObjectURL(new Blob([recoveryValue], { type: "text/plain;charset=utf-8" }));
 		const anchor = document.createElement("a");
 		anchor.href = url;
-		anchor.download = "career-os-workspace-recovery.txt";
-		document.body.appendChild(anchor);
+		anchor.download = "careeros-workspace-recovery.txt";
 		anchor.click();
-		anchor.remove();
-		setTimeout(() => URL.revokeObjectURL(url), 1_000);
+		setTimeout(() => URL.revokeObjectURL(url), 1000);
 	}
+	async function removeRecovery() {
+		if (unsaved.current || pending.current > 0 || resetting.current || persistenceStatus === "conflict") {
+			setError("Recovery wasn't deleted. Export unsaved work and load the latest saved workspace first.");
+			return;
+		}
+		if (!baseline.current || !navigator.locks) {
+			setError("Recovery couldn't be deleted. Check browser storage and try again.");
+			return;
+		}
+		if (!window.confirm("Delete the older recovery copy? Keep a private recovery export first if needed.")) return;
+		try {
+			await navigator.locks.request(STORAGE_KEY, () => {
+				if (!baseline.current || unsaved.current || pending.current > 0 || resetting.current) {
+					throw new Error("Unsaved work must be resolved first.");
+				}
+				const snapshot = clearWorkspaceRecovery(localStorage, baseline.current);
+				// Recovery deletion only updates storage metadata, never the user's current working draft.
+				baseline.current = snapshot;
+				setRecoveryValue(snapshot.recovery);
+				setRecoveryBlocked(snapshot.invalid);
+			});
+			setNotice("Recovery copy deleted.");
+			setError("");
+		} catch {
+			setError(
+				"Couldn't delete recovery data. Resolve unsaved changes and restore a valid workspace first, or reset all local data.",
+			);
+		}
+	}
+
 	return (
-		<WorkspaceContext.Provider value={{ data, setData, ready, reset }}>
+		<WorkspaceContext.Provider
+			value={{ data, setData, mutate: change, ready, persistenceStatus, restore: change, reset }}
+		>
 			{recoveryValue !== null ? (
 				<div className="storage-notice" role="alert">
 					<p>
-						A saved workspace could not be loaded. Your original data is retained for recovery. Export it before
-						resetting, or continue editing the sample workspace.
+						An older or unreadable workspace is retained for recovery. It may contain personal data removed from the
+						current view. Valid known-format recovery files can be restored in Settings; damaged files need repair.
+						Photos are excluded.
 					</p>
 					<div className="button-row">
 						<button className="button secondary small" onClick={exportRecovery}>
@@ -145,27 +313,25 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
 						</button>
 						<button
 							className="button secondary small"
-							onClick={() => {
-								if (window.confirm("Delete saved workspace data and recovery copy, and restore the sample workspace?"))
-									reset();
-							}}
+							disabled={recoveryBlocked || persistenceStatus !== "saved"}
+							onClick={() => void removeRecovery()}
 						>
-							Reset demo
+							Delete recovery copy
 						</button>
 					</div>
 				</div>
 			) : null}
-			{storageUnavailable ? (
+			{error ? (
 				<div className="storage-notice" role="alert">
-					<p>
-						Browser storage is unavailable or full. Changes may be lost when you leave. Export a backup from Settings
-						before closing this page.
-					</p>
+					<p>{error}</p>
+					<button className="button secondary small" onClick={reloadLatest}>
+						Load latest saved workspace
+					</button>
 				</div>
 			) : null}
-			{validationError ? (
-				<div className="storage-notice" role="alert">
-					<p>{validationError}</p>
+			{notice ? (
+				<div className="storage-notice" role="status">
+					<p>{notice}</p>
 				</div>
 			) : null}
 			{children}

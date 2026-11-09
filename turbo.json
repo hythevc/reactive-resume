@@ -250,6 +250,7 @@
 	},
 	"globalDependencies": ["vitest.shared.mts", "vitest.setup.ts", "vite.config.ts"],
 	"globalPassThroughEnv": [
+		"CAREEROS_BACKEND_URL",
 		"PORT",
 		"SERVER_PORT",
 		"APP_URL",

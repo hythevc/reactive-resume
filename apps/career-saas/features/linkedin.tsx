@@ -16,15 +16,16 @@ import { auditLinkedIn, linkedinSchema, type LinkedInProfile } from "@/lib/works
 import { useWorkspace } from "@/lib/workspace-context";
 
 export function LinkedInView() {
-	const { data, setData } = useWorkspace();
+	const { data, setData, mutate } = useWorkspace();
 	const profile = data.linkedin;
 	const [report, setReport] = useState<ReturnType<typeof auditLinkedIn> | null>(null);
 	const [message, setMessage] = useState("");
 	const [error, setError] = useState("");
+	const [previousDraft, setPreviousDraft] = useState<LinkedInProfile | null>(null);
 	const [sourceId, setSourceId] = useState(data.resumes[0]?.id ?? "");
 	const source = data.resumes.find((resume) => resume.id === sourceId);
 
-	function loadResume() {
+	async function loadResume() {
 		if (!source) return;
 		const next = {
 			headline: source.profile.role,
@@ -32,10 +33,41 @@ export function LinkedInView() {
 			experience: source.profile.experience,
 			skills: source.profile.skills,
 		};
-		setData((current) => ({ ...current, linkedin: next }));
+		if (
+			Object.entries(profile).some(
+				([field, value]) => value.trim() && value !== next[field as keyof LinkedInProfile],
+			) &&
+			!window.confirm(
+				"Replace your current LinkedIn draft with this resume's text? You can undo this replacement while this page stays open.",
+			)
+		)
+			return;
+		setMessage("");
+		if (!(await mutate((current) => ({ ...current, linkedin: next })))) {
+			setError("Couldn't save the replacement draft. Check the storage notice before trying again.");
+			return;
+		}
+		setPreviousDraft({ ...profile });
 		setReport(null);
 		setError("");
 		setMessage("Resume text loaded. Review each field, then run your writing checks.");
+	}
+
+	async function undoReplacement() {
+		if (!previousDraft) return;
+		if (!window.confirm("Restore the previous LinkedIn draft? Changes made since loading the resume will be replaced."))
+			return;
+		setMessage("");
+		if (!(await mutate((current) => ({ ...current, linkedin: previousDraft })))) {
+			setError(
+				"Couldn't restore the previous draft. Your undo copy is kept; check the storage notice before trying again.",
+			);
+			return;
+		}
+		setPreviousDraft(null);
+		setReport(null);
+		setError("");
+		setMessage("Previous LinkedIn draft restored.");
 	}
 
 	function update(field: keyof LinkedInProfile, value: string) {
@@ -68,7 +100,7 @@ export function LinkedInView() {
 		}
 	}
 
-	function applyDraft() {
+	async function applyDraft() {
 		if (!report) return;
 		const updated = {
 			...profile,
@@ -80,7 +112,11 @@ export function LinkedInView() {
 			setError("The draft exceeds a field limit. Edit the text before applying it.");
 			return;
 		}
-		setData((current) => ({ ...current, linkedin: parsed.data }));
+		setMessage("");
+		if (!(await mutate((current) => ({ ...current, linkedin: parsed.data })))) {
+			setError("Couldn't save this draft. Check the storage notice before trying again.");
+			return;
+		}
 		setError("");
 		setReport(auditLinkedIn(updated));
 		setMessage("Draft applied to this workspace. Copy it to LinkedIn when you are ready.");
@@ -142,6 +178,11 @@ export function LinkedInView() {
 					<FileText size={16} />
 					Load resume text
 				</button>
+				{previousDraft ? (
+					<button className="button secondary" onClick={undoReplacement}>
+						Undo resume replacement
+					</button>
+				) : null}
 			</section>
 			<div className="audit-layout">
 				<section className="panel linkedin-editor">

@@ -1,0 +1,44 @@
+name: CareerOS
+
+on:
+  pull_request:
+    paths:
+      - "apps/career-saas/**"
+      - ".github/workflows/careeros.yml"
+  push:
+    branches: [main]
+    paths:
+      - "apps/career-saas/**"
+      - ".github/workflows/careeros.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: careeros-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    if: ${{ github.event_name != 'pull_request' || !github.event.pull_request.draft }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: apps/career-saas
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: apps/career-saas/package-lock.json
+      - run: npm --workspaces=false ci --no-audit --no-fund
+      - run: npm --workspaces=false test
+      - run: npm --workspaces=false run typecheck
+      - run: npm --workspaces=false run build

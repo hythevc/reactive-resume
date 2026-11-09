@@ -15,6 +15,7 @@ import {
 	X,
 } from "lucide-react";
 import { useMemo, useState, type FormEvent } from "react";
+import { outboundBlockReason, outreachReviewKey } from "@/lib/workflow-safety";
 import { buildOutreach, CONTACT_CONTEXT_MAX_LENGTH, CONTACT_SOURCE_MAX_LENGTH, type Contact } from "@/lib/workspace";
 import { useWorkspace } from "@/lib/workspace-context";
 
@@ -42,7 +43,7 @@ function safeContactSource(value: string) {
 }
 
 export function OutreachView() {
-	const { data, setData, ready } = useWorkspace();
+	const { data, setData, mutate, ready, persistenceStatus } = useWorkspace();
 	const [search, setSearch] = useState("");
 	const [selectedId, setSelectedId] = useState<string | null>(null);
 	const [showForm, setShowForm] = useState(false);
@@ -52,6 +53,7 @@ export function OutreachView() {
 	const [notice, setNotice] = useState("");
 	const [deleteId, setDeleteId] = useState<string | null>(null);
 	const [refreshId, setRefreshId] = useState<string | null>(null);
+	const [reviewedFor, setReviewedFor] = useState<string | null>(null);
 	const filtered = useMemo(() => {
 		const query = search.trim().toLowerCase();
 		return data.contacts.filter(
@@ -60,6 +62,12 @@ export function OutreachView() {
 		);
 	}, [data.contacts, search]);
 	const selected = data.contacts.find((contact) => contact.id === selectedId) ?? filtered[0];
+
+	const reviewKey = selected ? outreachReviewKey(data.profile, selected) : null;
+	const reviewed = reviewKey !== null && reviewedFor === reviewKey;
+	const blockedReason = selected
+		? outboundBlockReason(data.profile, selected.message, { email: selected.email })
+		: null;
 
 	function openForm(contact?: Contact) {
 		setForm(
@@ -79,7 +87,7 @@ export function OutreachView() {
 		setError("");
 	}
 
-	function saveContact(event: FormEvent<HTMLFormElement>) {
+	async function saveContact(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 		if (!form.name.trim() || !form.company.trim()) {
 			setError("Add a name and company to save this contact.");
@@ -102,18 +110,23 @@ export function OutreachView() {
 		) as ContactForm;
 		const id = editingId ?? crypto.randomUUID();
 		const newContact: Contact = { id, ...values, status: "Draft", message: "" };
-		newContact.message = buildOutreach(data.profile, newContact);
-		setData((current) => ({
-			...current,
-			contacts: editingId
-				? current.contacts.map((contact) => (contact.id === editingId ? { ...contact, ...values } : contact))
-				: [newContact, ...current.contacts],
-		}));
+		setNotice("");
+		if (
+			!(await mutate((current) => ({
+				...current,
+				contacts: editingId
+					? current.contacts.map((contact) => (contact.id === editingId ? { ...contact, ...values } : contact))
+					: [{ ...newContact, message: buildOutreach(current.profile, newContact) }, ...current.contacts],
+			})))
+		) {
+			setError("Couldn't save this contact. Your form is kept; check the storage notice before trying again.");
+			return;
+		}
 		setSelectedId(id);
 		setShowForm(false);
 		setNotice(
 			editingId
-				? "Contact updated. Your existing draft has been kept."
+				? "Contact updated. Your existing draft has been kept; review its recipient, company and wording again before using it."
 				: "Contact saved with an editable draft. No message was sent.",
 		);
 	}
@@ -125,8 +138,22 @@ export function OutreachView() {
 		}));
 	}
 
-	function regenerate(contact: Contact) {
-		updateMessage(contact.id, buildOutreach(data.profile, contact));
+	async function regenerate(contact: Contact) {
+		setNotice("");
+		if (
+			!(await mutate((current) => ({
+				...current,
+				contacts: current.contacts.map((item) =>
+					item.id === contact.id ? { ...item, message: buildOutreach(current.profile, item) } : item,
+				),
+			})))
+		) {
+			setNotice(
+				"Couldn't save the refreshed draft. Your confirmation and input are kept; check the storage notice before trying again.",
+			);
+			return;
+		}
+		setReviewedFor(null);
 		setRefreshId(null);
 		setNotice(
 			"Draft refreshed from your career profile and supplied context. Review the wording and facts before using it.",
@@ -134,6 +161,11 @@ export function OutreachView() {
 	}
 
 	async function copyMessage(contact: Contact) {
+		const blocked = outboundBlockReason(data.profile, contact.message, { email: contact.email });
+		if (blocked || reviewedFor !== outreachReviewKey(data.profile, contact)) {
+			setNotice(blocked || "Review the current career facts, recipient and message before copying.");
+			return;
+		}
 		if (!contact.message.trim()) {
 			setNotice("Write a message or create a draft before copying.");
 			return;
@@ -146,11 +178,17 @@ export function OutreachView() {
 		}
 	}
 
-	function updateStage(contact: Contact, status: Contact["status"]) {
-		setData((current) => ({
-			...current,
-			contacts: current.contacts.map((item) => (item.id === contact.id ? { ...item, status } : item)),
-		}));
+	async function updateStage(contact: Contact, status: Contact["status"]) {
+		setNotice("");
+		if (
+			!(await mutate((current) => ({
+				...current,
+				contacts: current.contacts.map((item) => (item.id === contact.id ? { ...item, status } : item)),
+			})))
+		) {
+			setNotice("Couldn't save the contact stage. Check the storage notice before trying again.");
+			return;
+		}
 		setNotice(
 			status === "Contacted"
 				? "Marked as contacted in your tracker. This app did not send a message."
@@ -158,18 +196,24 @@ export function OutreachView() {
 		);
 	}
 
-	function removeContact(id: string) {
-		setData((current) => ({
-			...current,
-			contacts: current.contacts.filter((contact) => contact.id !== id),
-		}));
+	async function removeContact(id: string) {
+		setNotice("");
+		if (
+			!(await mutate((current) => ({
+				...current,
+				contacts: current.contacts.filter((contact) => contact.id !== id),
+			})))
+		) {
+			setNotice("Couldn't delete this contact. Check the storage notice before trying again.");
+			return;
+		}
 		if (selectedId === id) setSelectedId(null);
 		setDeleteId(null);
 		setNotice("Contact and draft removed from your workspace.");
 	}
 
 	const composeUrl =
-		selected && emailPattern.test(selected.email)
+		selected && reviewed && !blockedReason && emailPattern.test(selected.email)
 			? `mailto:${encodeURIComponent(selected.email)}?subject=${encodeURIComponent(`A conversation about ${data.profile.role || "new opportunities"}`)}&body=${encodeURIComponent(selected.message)}`
 			: null;
 
@@ -184,6 +228,10 @@ export function OutreachView() {
 					<Plus size={16} /> Add a contact
 				</button>
 			</div>
+			<p className="muted small-print">
+				Draft facts come from your shared career profile in Settings: {data.profile.name || "No name added"} ·{" "}
+				{data.profile.role || "No role added"}. Importing a resume alone does not replace this profile.
+			</p>
 			{notice ? (
 				<div className="notice" role="status">
 					{notice}
@@ -407,6 +455,23 @@ export function OutreachView() {
 							</div>
 							<MessageSquare size={19} />
 						</div>
+						{blockedReason ? (
+							<div className="notice" role="alert">
+								{blockedReason}
+							</div>
+						) : null}
+						<label className="intro-review-check" style={{ marginTop: 14 }}>
+							<input
+								type="checkbox"
+								checked={reviewed}
+								disabled={Boolean(blockedReason) || !selected.message.trim()}
+								onChange={(event) => setReviewedFor(event.target.checked ? reviewKey : null)}
+							/>
+							<span>
+								I've checked the current career facts, recipient {selected.email || selected.name}, company and message.
+								Review is required again after any of these change.
+							</span>
+						</label>
 						<div
 							style={{
 								display: "flex",
@@ -473,7 +538,12 @@ export function OutreachView() {
 							/>
 						</label>
 						<p className="muted" style={{ fontSize: 11, marginTop: 8 }}>
-							Saved on this device as you type · {selected.message.length}
+							{persistenceStatus === "saved"
+								? "Saved locally"
+								: persistenceStatus === "saving"
+									? "Saving…"
+									: "Not saved — check the workspace notice"}{" "}
+							· {selected.message.length}
 							/50,000 characters
 						</p>
 						<div
@@ -488,7 +558,7 @@ export function OutreachView() {
 								className="button primary small"
 								type="button"
 								onClick={() => copyMessage(selected)}
-								disabled={!selected.message.trim()}
+								disabled={!selected.message.trim() || !reviewed || Boolean(blockedReason)}
 							>
 								<Copy size={14} /> Copy message
 							</button>
