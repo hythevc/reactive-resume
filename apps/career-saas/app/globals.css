@@ -2721,3 +2721,351 @@ div.section-title {
 		font-size: 29px;
 	}
 }
+
+/* Application preparation stays within the selected job and the existing design system. */
+.application-workspace {
+	margin-top: 32px;
+	padding-top: 28px;
+	border-top: 1px solid var(--border);
+	min-width: 0;
+}
+.application-heading > p:first-child {
+	font-size: 12px;
+	font-weight: 750;
+	margin-bottom: 17px;
+}
+.application-heading h2 {
+	font-family: "Instrument Serif", Georgia, serif;
+	font-size: 44px;
+	line-height: 1.12;
+	font-weight: 400;
+	letter-spacing: -1px;
+	margin-bottom: 10px;
+}
+.application-heading > p:last-child {
+	font-size: 14px;
+}
+.application-tabs {
+	margin: 24px 0 20px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid var(--border);
+	gap: 6px;
+}
+.application-tabs .tab {
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	min-width: 78px;
+	padding: 10px 17px;
+	background: white;
+	color: var(--green);
+	font-size: 12px;
+}
+.application-tabs .tab.active {
+	background: var(--green);
+	color: white;
+	border-color: var(--green);
+}
+.application-template-notice {
+	background: var(--lime);
+	border-color: #e1ebca;
+	font-size: 13px;
+	padding: 13px 17px;
+	margin-bottom: 18px;
+}
+.application-source {
+	display: flex;
+	align-items: flex-end;
+	gap: 16px;
+	margin-bottom: 23px;
+	flex-wrap: wrap;
+}
+.application-source > .field {
+	margin: 0;
+	min-width: 210px;
+	flex: 1;
+	max-width: 430px;
+}
+.application-source > .button {
+	min-height: 43px;
+}
+.application-overwrite {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	align-items: center;
+}
+.application-overwrite p {
+	font-size: 12px;
+	margin-top: 5px;
+}
+.application-overwrite > .button-row {
+	flex-shrink: 0;
+}
+.application-drafts {
+	display: grid;
+	grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+	gap: 18px;
+	align-items: stretch;
+}
+.application-drafts > .panel {
+	padding: 21px;
+	min-width: 0;
+}
+.application-drafts h3 {
+	font-size: 21px;
+	font-weight: 750;
+	line-height: 1.3;
+	letter-spacing: -0.5px;
+}
+.application-resume > p {
+	font-size: 12px;
+	margin: 5px 0 19px;
+}
+.application-field {
+	display: grid;
+	grid-template-columns: 93px minmax(0, 1fr);
+	align-items: start;
+	gap: 14px;
+	margin: 14px 0;
+	font-size: 12px;
+	font-weight: 650;
+	min-width: 0;
+}
+.application-field > span {
+	padding-top: 10px;
+}
+.application-field .input,
+.application-field .textarea {
+	font-size: 12px;
+	padding: 9px 11px;
+	line-height: 1.55;
+}
+.application-field .textarea {
+	min-height: 65px;
+}
+.application-contact-links {
+	font-size: 12px;
+	margin-top: 18px;
+}
+.application-contact-links .field {
+	margin: 15px 0 0;
+}
+.application-letter {
+	display: flex;
+	flex-direction: column;
+}
+.application-letter > .field {
+	flex: 1;
+	margin: 24px 0 18px;
+}
+.application-letter .textarea {
+	flex: 1;
+	min-height: 460px;
+	line-height: 1.7;
+	padding: 14px;
+	font-size: 13px;
+}
+.application-letter > .button-row {
+	align-items: center;
+	gap: 16px;
+}
+.application-letter > .small-print {
+	font-size: 11px;
+	line-height: 1.65;
+	margin: 15px 0 0;
+}
+.application-bottom-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 18px;
+	flex-wrap: wrap;
+	margin-top: 24px;
+}
+.application-fit > .panel-heading p {
+	font-size: 12px;
+}
+.application-fit .application-coverage {
+	margin: 12px 0 22px;
+	font-size: 15px;
+	font-weight: 750;
+}
+.application-fit > .small-print {
+	margin: 22px 0;
+}
+.application-fit .form-grid {
+	gap: 24px;
+}
+.application-review > .muted {
+	margin: 10px 0 20px;
+	font-size: 12px;
+}
+.application-checks {
+	padding: 0;
+	margin: 20px 0 24px;
+	list-style: none;
+}
+.application-checks li {
+	display: flex;
+	gap: 12px;
+	padding: 13px 0;
+	border-bottom: 1px solid var(--border);
+	font-size: 12px;
+	align-items: flex-start;
+}
+.application-checks li > svg {
+	margin-top: 3px;
+	color: #7b867c;
+}
+.application-checks .passed > svg {
+	color: #547a40;
+}
+.application-checks .blocking > svg {
+	color: #a35a45;
+}
+.application-checks li strong {
+	font-weight: 750;
+	font-size: 12px;
+}
+.application-checks li p {
+	font-size: 11px;
+	line-height: 1.65;
+	margin-top: 3px;
+}
+.application-report {
+	background: #f7faf3;
+	border: 1px solid var(--border);
+	border-radius: 9px;
+	padding: 16px;
+	margin: 20px 0;
+	overflow-wrap: anywhere;
+}
+.application-report h3 {
+	font-size: 14px;
+}
+.application-report p,
+.application-report li {
+	font-size: 12px;
+	line-height: 1.7;
+	margin-top: 8px;
+}
+.application-report ul {
+	padding-left: 20px;
+}
+.application-acknowledgement {
+	display: flex;
+	align-items: flex-start;
+	gap: 11px;
+	line-height: 1.7;
+	font-size: 12px;
+	margin: 24px 0 18px;
+	max-width: 740px;
+}
+.application-acknowledgement input {
+	accent-color: var(--green);
+	width: 16px;
+	height: 16px;
+	flex-shrink: 0;
+	margin-top: 3px;
+}
+.application-review > .small-print {
+	margin: 18px 0 0;
+}
+.application-import {
+	margin-top: 22px;
+}
+.application-import > p {
+	font-size: 12px;
+	margin: 8px 0 18px;
+}
+.application-import .textarea {
+	font-family: "Manrope Variable", Arial, sans-serif;
+	font-size: 12px;
+}
+@media (max-width: 1100px) {
+	.application-heading h2 {
+		font-size: 38px;
+	}
+	.application-field {
+		grid-template-columns: 1fr;
+		gap: 6px;
+	}
+	.application-field > span {
+		padding: 0;
+	}
+	.application-drafts {
+		grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+	}
+	.application-overwrite {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+}
+@media (max-width: 760px) {
+	.job-details {
+		padding: 18px;
+	}
+	.application-workspace {
+		padding-top: 24px;
+		margin-top: 26px;
+	}
+	.application-heading h2 {
+		font-size: 34px;
+		letter-spacing: -0.6px;
+	}
+	.application-heading > p:first-child {
+		font-size: 11px;
+		margin-bottom: 14px;
+	}
+	.application-heading > p:last-child {
+		font-size: 12px;
+	}
+	.application-tabs {
+		margin-top: 20px;
+	}
+	.application-source {
+		gap: 12px;
+	}
+	.application-source > .field {
+		max-width: none;
+		min-width: 0;
+		width: 100%;
+	}
+	.application-source > .button {
+		width: 100%;
+	}
+	.application-drafts {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.application-drafts > .panel {
+		padding: 17px;
+	}
+	.application-letter .textarea {
+		min-height: 370px;
+	}
+	.application-field {
+		margin: 16px 0;
+	}
+	.application-bottom-actions {
+		gap: 10px;
+	}
+	.application-bottom-actions > .button {
+		flex: 1;
+		font-size: 11px;
+		padding: 10px;
+	}
+	.application-template-notice {
+		font-size: 11px;
+	}
+	.application-acknowledgement {
+		font-size: 11px;
+	}
+	.application-fit .form-grid {
+		gap: 22px;
+	}
+	.application-checks li p {
+		font-size: 11px;
+	}
+	.application-import .button-row {
+		gap: 10px;
+	}
+}
