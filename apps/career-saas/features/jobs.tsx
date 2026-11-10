@@ -913,7 +913,7 @@ export function JobsView() {
 							</div>
 							{deleteId === selected.id ? (
 								<div className="notice" role="alert">
-									<p>Remove this job and its notes?</p>
+									<p>Remove this job and all its saved details, including application drafts and reviews?</p>
 									<button className="button primary small" type="button" onClick={() => removeJob(selected.id)}>
 										Remove job
 									</button>{" "}
