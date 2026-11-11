@@ -76,6 +76,34 @@ export const goalsSchema = z
 		environment: z.string().max(CAREER_BRIEF_MAX_LENGTH).default(""),
 	})
 	.strict();
+export const APPLICATION_COVER_LETTER_MAX_LENGTH = 20_000;
+export const APPLICATION_REVIEW_SUMMARY_MAX_LENGTH = 5_000;
+export const APPLICATION_REVIEW_ISSUE_MAX_LENGTH = 2_000;
+export const APPLICATION_REVIEW_ISSUE_LIMIT = 50;
+export const applicationSourceJobSchema = z
+	.object({ company: shortText, role: shortText, location: shortText, url: webUrl, description: text })
+	.strict();
+export const applicationAgentReviewSchema = z
+	.object({
+		summary: z.string().max(APPLICATION_REVIEW_SUMMARY_MAX_LENGTH),
+		issues: z.array(z.string().max(APPLICATION_REVIEW_ISSUE_MAX_LENGTH)).max(APPLICATION_REVIEW_ISSUE_LIMIT),
+		reviewedResume: profileSchema,
+		reviewedCoverLetter: z.string().max(APPLICATION_COVER_LETTER_MAX_LENGTH),
+	})
+	.strict();
+export const applicationSchema = z
+	.object({
+		id,
+		createdAt: timestamp,
+		sourceResumeId: id.nullable(),
+		sourceProfile: profileSchema,
+		sourceJob: applicationSourceJobSchema,
+		targetKeywords: targetKeywordsSchema,
+		resume: profileSchema,
+		coverLetter: z.string().max(APPLICATION_COVER_LETTER_MAX_LENGTH),
+		agentReview: applicationAgentReviewSchema.nullable().default(null),
+	})
+	.strict();
 export const jobSchema = z
 	.object({
 		id,
@@ -92,6 +120,7 @@ export const jobSchema = z
 		interest: z.enum(["Unreviewed", "Shortlisted", "Passed"]).default("Unreviewed"),
 		interestReason: z.string().max(INTEREST_REASON_MAX_LENGTH).default(""),
 		introduction: z.string().max(JOB_INTRODUCTION_MAX_LENGTH).default(""),
+		application: applicationSchema.nullable().default(null),
 	})
 	.strict();
 export const CONTACT_CONTEXT_MAX_LENGTH = 5_000;
@@ -162,6 +191,14 @@ export const workspaceSchema = z
 				});
 			}
 		}
+		const applicationIds = value.jobs.flatMap((job) => (job.application ? [job.application.id] : []));
+		if (new Set(applicationIds).size !== applicationIds.length) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				path: ["jobs"],
+				message: "Application packages must have unique IDs.",
+			});
+		}
 	});
 
 export type Profile = z.infer<typeof profileSchema>;
@@ -173,6 +210,9 @@ export function profileFieldMaxLength(field: keyof Profile): number | undefined 
 export type Resume = z.infer<typeof resumeSchema>;
 export type Job = z.infer<typeof jobSchema>;
 export type JobInterest = Job["interest"];
+export type Application = z.infer<typeof applicationSchema>;
+export type ApplicationAgentReview = z.infer<typeof applicationAgentReviewSchema>;
+export type ApplicationSourceJob = z.infer<typeof applicationSourceJobSchema>;
 export type Contact = z.infer<typeof contactSchema>;
 export type Workspace = z.infer<typeof workspaceSchema>;
 
@@ -274,6 +314,7 @@ export function createWorkspace(): Workspace {
 			interest: "Unreviewed",
 			interestReason: "",
 			introduction: "",
+			application: null,
 		})),
 		contacts: [
 			{

@@ -13,7 +13,8 @@ import {
 	Trash2,
 	X,
 } from "lucide-react";
-import { useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import { ApplicationWorkspace } from "@/features/application-workspace";
 import { parseInterviewSchedule } from "@/lib/workflow-safety";
 import { evaluatePreparationJob, type Job, type PreparationReason } from "@/lib/workspace";
 import { useWorkspace } from "@/lib/workspace-context";
@@ -62,6 +63,25 @@ export function JobsView() {
 	const [search, setSearch] = useState("");
 	const [stage, setStage] = useState<"All" | Job["status"]>("All");
 	const [selectedId, setSelectedId] = useState<string | null>(null);
+	const detailsRef = useRef<HTMLElement>(null);
+	useEffect(() => {
+		if (!selectedId) return;
+		const frame = requestAnimationFrame(() => {
+			detailsRef.current?.scrollIntoView({
+				block: "start",
+				behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+			});
+		});
+		return () => cancelAnimationFrame(frame);
+	}, [selectedId]);
+	function reviewJob(id: string) {
+		setSelectedId(id);
+		if (id === selectedId)
+			detailsRef.current?.scrollIntoView({
+				block: "start",
+				behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+			});
+	}
 	const [editingId, setEditingId] = useState<string | null>(null);
 	const [showForm, setShowForm] = useState(false);
 	const [form, setForm] = useState<JobForm>(emptyJob);
@@ -71,7 +91,11 @@ export function JobsView() {
 	const savedCompanyCriteria = data.autopilot.excludedCompanies.join(", ");
 	const savedLocationCriteria = data.autopilot.locations.join(", ");
 	const criteriaKey = JSON.stringify([savedCompanyCriteria, savedLocationCriteria]);
-	const [criteriaDraft, setCriteriaDraft] = useState<{ key: string; company: string; location: string } | null>(null);
+	const [criteriaDraft, setCriteriaDraft] = useState<{
+		key: string;
+		company: string;
+		location: string;
+	} | null>(null);
 	const activeCriteria =
 		criteriaDraft?.key === criteriaKey
 			? criteriaDraft
@@ -119,7 +143,10 @@ export function JobsView() {
 		}
 		setNotice("");
 		if (
-			!(await mutate((current) => ({ ...current, autopilot: { ...current.autopilot, excludedCompanies, locations } })))
+			!(await mutate((current) => ({
+				...current,
+				autopilot: { ...current.autopilot, excludedCompanies, locations },
+			})))
 		) {
 			setCriteriaError(
 				"Couldn't save these filters. Your entries are kept; check the storage notice before trying again.",
@@ -208,6 +235,7 @@ export function JobsView() {
 								interest: "Unreviewed",
 								interestReason: "",
 								introduction: "",
+								application: null,
 								createdAt: new Date().toISOString(),
 							},
 							...current.jobs,
@@ -546,7 +574,7 @@ export function JobsView() {
 										<td>
 											<button
 												type="button"
-												onClick={() => setSelectedId(job.id)}
+												onClick={() => reviewJob(job.id)}
 												style={{
 													background: "none",
 													border: 0,
@@ -592,7 +620,13 @@ export function JobsView() {
 											</span>
 											<small
 												className={`eligibility-reason ${evaluationFor(job).eligible ? "eligible" : ""}`}
-												style={{ display: "block", maxWidth: 170, marginTop: 7, fontSize: 11, whiteSpace: "normal" }}
+												style={{
+													display: "block",
+													maxWidth: 170,
+													marginTop: 7,
+													fontSize: 11,
+													whiteSpace: "normal",
+												}}
 											>
 												{eligibilityLabel(job)}
 											</small>
@@ -604,7 +638,7 @@ export function JobsView() {
 											<button
 												className="button secondary small"
 												type="button"
-												onClick={() => setSelectedId(job.id)}
+												onClick={() => reviewJob(job.id)}
 												aria-label={`Review ${job.role} at ${job.company}`}
 											>
 												<ArrowUpRight size={15} />
@@ -773,7 +807,12 @@ export function JobsView() {
 			</div>
 
 			{selected ? (
-				<section className="panel" style={{ marginTop: 24 }} aria-label="Job details">
+				<section
+					ref={detailsRef}
+					className="panel job-details"
+					style={{ marginTop: 24, scrollMarginTop: 20 }}
+					aria-label="Job details"
+				>
 					<div className="section-title">
 						<div>
 							<p className="muted" style={{ fontSize: 12, marginBottom: 6 }}>
@@ -874,7 +913,7 @@ export function JobsView() {
 							</div>
 							{deleteId === selected.id ? (
 								<div className="notice" role="alert">
-									<p>Remove this job and its notes?</p>
+									<p>Remove this job and all its saved details, including application drafts and reviews?</p>
 									<button className="button primary small" type="button" onClick={() => removeJob(selected.id)}>
 										Remove job
 									</button>{" "}
@@ -885,6 +924,7 @@ export function JobsView() {
 							) : null}
 						</div>
 					</div>
+					<ApplicationWorkspace key={selected.id} job={selected} />
 				</section>
 			) : null}
 		</div>

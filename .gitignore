@@ -56,6 +56,16 @@ temp
 .agents/skills/*
 !.agents/skills/fill-translations/
 !.agents/skills/release/
+# Repository-owned CareerOS adapter; upstream checkouts and candidate files stay local.
+!.agents/skills/ai-job-search/
+.agents/skills/ai-job-search/*
+!.agents/skills/ai-job-search/SKILL.md
+!.agents/skills/ai-job-search/SOURCE.md
+!.agents/skills/ai-job-search/LICENSE
+!.agents/skills/ai-job-search/references/
+.agents/skills/ai-job-search/references/*
+!.agents/skills/ai-job-search/references/packet-contract.md
+!.agents/skills/ai-job-search/references/review-guide.md
 .claude
 .cursor
 .mcp.json
