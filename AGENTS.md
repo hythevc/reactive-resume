@@ -26,6 +26,8 @@ Boundaries: code/commits/PRs written normal.
 
 ## Hard rules
 
+- **Frontend design:** Follow the [frontend design and verification workflow](.agents/docs/frontend-design-workflow.md) for user-facing UI changes. Apply the named checks by surface, search 21st.dev and the relevant shadcn registry before adding a primitive, and record any unavailable or inapplicable check with evidence in the PR.
+
 - Check `git status --short` before editing and preserve unrelated changes. Set work aside with a WIP commit; plain
   `git stash` shares one stack across every worktree.
 - **Web and mobile parity**: a user-facing change in `apps/web` gets the matching change in `apps/mobile` in the same

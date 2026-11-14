@@ -1,10 +1,8 @@
 "use client";
 
 import {
-	ArrowRight,
 	Camera,
 	ChevronDown,
-	Crown,
 	Cloud,
 	Compass,
 	FileText,
@@ -43,12 +41,15 @@ const valid = new Set([...navigation.map((n) => n.id), "settings", "plans"]);
 
 export function CareerApp() {
 	const [page, setPage] = useState("overview");
+	const [jobId, setJobId] = useState<string | null>(null);
 	const [mobileOpen, setMobileOpen] = useState(false);
 	const sidebarRef = useRef<HTMLElement>(null);
 	const { data, ready } = useWorkspace();
 	useEffect(() => {
 		const sync = () => {
-			const id = window.location.hash.slice(1);
+			const [id, query] = window.location.hash.slice(1).split("?");
+			setJobId(id === "jobs" ? new URLSearchParams(query).get("job") : null);
+			setMobileOpen(false);
 			setPage(valid.has(id) ? id : "overview");
 		};
 		sync();
@@ -84,8 +85,9 @@ export function CareerApp() {
 			previous?.focus();
 		};
 	}, [mobileOpen]);
-	function go(id: string) {
-		window.location.hash = id;
+	function go(id: string, selectedJob?: string) {
+		window.location.hash = selectedJob ? `${id}?job=${encodeURIComponent(selectedJob)}` : id;
+		setJobId(selectedJob ?? null);
 		setPage(id);
 		setMobileOpen(false);
 		window.scrollTo(0, 0);
@@ -99,8 +101,9 @@ export function CareerApp() {
 			.join("") || "AM";
 	return (
 		<div className="app-shell">
+			<a className="skip-workspace" href="#main-content" onClick={(event) => { event.preventDefault(); document.getElementById("main-content")?.focus(); }}>Skip to workspace</a>
 			{mobileOpen ? (
-				<button aria-label="Close navigation" className="nav-backdrop" onClick={() => setMobileOpen(false)} />
+				<button aria-label="Close navigation" tabIndex={-1} className="nav-backdrop" onClick={() => setMobileOpen(false)} />
 			) : null}
 			<aside
 				ref={sidebarRef}
@@ -113,6 +116,7 @@ export function CareerApp() {
 				<a className="brand" href="#overview" onClick={() => go("overview")}>
 					<span className="brand-mark">C</span>CareerOS
 				</a>
+				<button className="icon-button drawer-close" aria-label="Close menu" onClick={() => setMobileOpen(false)}><X size={20} /></button>
 				<div className="sidebar-label">Workspace</div>
 				<nav aria-label="Workspace">
 					{navigation.map((n) => (
@@ -129,16 +133,8 @@ export function CareerApp() {
 					))}
 				</nav>
 				<div className="sidebar-bottom">
-					<div className="upgrade-panel">
-						<div>
-							<Crown size={20} />
-							<strong>Make your next move</strong>
-						</div>
-						<p>Explore the plans behind your career workspace.</p>
-						<button className="button primary" onClick={() => go("plans")}>
-							Explore plans <ArrowRight size={15} />
-						</button>
-					</div>
+					<a className="nav-item" href="/about">About CareerOS</a>
+					<a className="nav-item" href="#plans" aria-current={page === "plans" ? "page" : undefined} onClick={() => go("plans")}>Plans</a>
 					<a
 						href="#settings"
 						className={`nav-item ${page === "settings" ? "active" : ""}`}
@@ -184,13 +180,17 @@ export function CareerApp() {
 						</button>
 					</div>
 				</header>
-				<main className="main-content" id="main-content">
-					<div className="notice">
-						<span>
-							Local workspace: people using this browser profile may access its data. Cloud saving is a separate action.{" "}
-							<a href="/privacy">Your information</a>
-						</span>
-					</div>
+				<nav className="mobile-destinations" aria-label="Main screens">
+					{navigation.filter(({ id }) => ["overview", "jobs", "resumes"].includes(id)).map(({ id, name, icon: Icon }) => (
+						<a key={id} href={`#${id}`} aria-current={page === id ? "page" : undefined} onClick={() => go(id)}>
+							<Icon size={18} aria-hidden />{name}
+						</a>
+					))}
+				</nav>
+				<main className="main-content" id="main-content" tabIndex={-1}>
+					{page === "overview" || page === "settings" ? (
+						<p className="workspace-disclosure">This workspace saves in your browser profile. <a href="/privacy">How your data is stored</a></p>
+					) : null}
 					{!ready ? (
 						<div className="loading-state">Opening your workspace…</div>
 					) : page === "overview" ? (
@@ -204,7 +204,7 @@ export function CareerApp() {
 					) : page === "photo" ? (
 						<PhotoView />
 					) : page === "jobs" ? (
-						<JobsView />
+						<JobsView key={jobId ?? "tracker"} initialJobId={jobId} />
 					) : page === "outreach" ? (
 						<OutreachView />
 					) : page === "cloud" ? (

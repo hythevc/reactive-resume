@@ -58,11 +58,13 @@ function safeJobUrl(value: string) {
 	}
 }
 
-export function JobsView() {
+type JobsViewProps = { initialJobId?: string | null };
+
+export function JobsView({ initialJobId = null }: JobsViewProps) {
 	const { data, setData, mutate, ready } = useWorkspace();
 	const [search, setSearch] = useState("");
 	const [stage, setStage] = useState<"All" | Job["status"]>("All");
-	const [selectedId, setSelectedId] = useState<string | null>(null);
+	const [selectedId, setSelectedId] = useState<string | null>(initialJobId);
 	const detailsRef = useRef<HTMLElement>(null);
 	useEffect(() => {
 		if (!selectedId) return;
