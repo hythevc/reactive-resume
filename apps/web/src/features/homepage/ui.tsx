@@ -41,7 +41,7 @@ export function SignInLink() {
 	return (
 		<Link
 			to="/auth/login"
-			className="touch-target relative inline-flex min-h-11 min-w-11 items-center justify-center rounded-sm px-2 font-ui text-sm font-medium text-ink-2 underline-offset-3 transition-colors hover:text-ink hover:underline max-[479px]:px-1 max-[479px]:text-xs"
+			className="touch-target relative inline-flex min-h-11 min-w-11 items-center justify-center rounded-sm px-2 font-ui text-sm font-medium text-inherit underline-offset-3 transition-colors hover:underline max-[479px]:px-1 max-[479px]:text-xs"
 		>
 			<Trans>Sign in</Trans>
 		</Link>

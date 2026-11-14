@@ -45,7 +45,11 @@ export function LandingHeader({ story = true }: LandingHeaderProps) {
 				)}
 			/>
 
-			<a href={story ? "#top" : "/"} className="flex items-center gap-2.5 rounded-md">
+			<a
+				href={story ? "#top" : "/"}
+				aria-label="Reactive Resume"
+				className="flex min-h-11 min-w-11 items-center justify-center gap-2.5 rounded-md"
+			>
 				<img
 					src="/icon/light.svg"
 					alt=""
@@ -60,7 +64,7 @@ export function LandingHeader({ story = true }: LandingHeaderProps) {
 					height={30}
 					className={cn("hidden size-[30px] dark:block", night && "block")}
 				/>
-				{/* The wordmark stays in the DOM for screen readers and crawlers; the logomark is what shows. */}
+				{/* The link's brand name remains available when this visual wordmark is hidden on phones. */}
 				<span className="hidden font-display text-[23px] leading-none sm:block">Reactive Resume</span>
 			</a>
 
