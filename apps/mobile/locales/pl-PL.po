@@ -1216,11 +1216,9 @@ msgstr "Działanie"
 msgid "Actions"
 msgstr "Działania"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "Działania dla {0} w {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "Działania dla stanowiska {role} w firmie {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "Klucze API"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Wygląd"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "Wygląd jest stosowany w tej sesji. Spróbuj zapisać ponownie, aby zachować ten wybór."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Nie można zapisać notatek. Twój tekst nadal tu jest."
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Nie udało się zapisać tagów. Spróbuj ponownie."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Nie można zapisać motywu. Spróbuj ponownie."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -8938,6 +8936,7 @@ msgid "Open AI assistant"
 msgstr "Otwórz asystenta AI"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10928,6 +10927,10 @@ msgstr "Ponów wczytywanie zapisanych odpowiedzi"
 msgid "Retry saving"
 msgstr "Spróbuj zapisać ponownie"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Ponów zapisywanie wyglądu"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "Spróbuj ponownie przez {nativeSearchLabel}"
@@ -10968,6 +10971,10 @@ msgstr "Przejrzyj kontrole"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "Zaznaczenia kontroli zapisano przy pierwszym wysłaniu aplikacji."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Zobacz szczegóły"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13926,6 +13933,7 @@ msgstr "Dzisiaj"
 msgid "Today, {hour}"
 msgstr "Dzisiaj, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Przełącz wybór"

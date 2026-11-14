@@ -1216,11 +1216,9 @@ msgstr "Tindakan"
 msgid "Actions"
 msgstr "Tindakan"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "Tindakan untuk {0} di {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "Tindakan untuk jawatan {role} di {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "Kekunci API"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Penampilan"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "Tetapan penampilan digunakan untuk sesi ini. Cuba simpan semula untuk mengekalkan pilihan ini."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Tidak dapat menyimpan nota. Teks anda masih ada di sini."
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Tidak dapat menyimpan teg. Cuba lagi."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Tidak dapat menyimpan tema. Cuba lagi."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -8938,6 +8936,7 @@ msgid "Open AI assistant"
 msgstr "Buka pembantu AI"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10928,6 +10927,10 @@ msgstr "Cuba semula jawapan tersimpan"
 msgid "Retry saving"
 msgstr "Cuba simpan semula"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Cuba simpan penampilan semula"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "Cuba lagi dengan {nativeSearchLabel}"
@@ -10968,6 +10971,10 @@ msgstr "Semak semakan"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "Tanda semakan direkodkan semasa permohonan pertama kali dihantar."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Lihat butiran"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13926,6 +13933,7 @@ msgstr "Hari ini"
 msgid "Today, {hour}"
 msgstr "Hari ini, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Togol pilihan"

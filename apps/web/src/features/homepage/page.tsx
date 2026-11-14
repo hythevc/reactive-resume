@@ -17,7 +17,7 @@ import { Write } from "./write";
 
 /**
  * The public landing page: one scroll-driven story, "Everything you've done, on one page." A single resume page is
- * assembled, written, restyled, checked, tailored and sent as the visitor scrolls. The reply that comes back turns
+ * shown beside the opening promise, then written, restyled, checked, tailored and sent as the visitor scrolls. The reply that comes back turns
  * into interview day in the application's folder, and the story behind it is told once and reused. Then community
  * proof, languages, support, common questions, a closing call to action and the footer. The server prerenders it
  * (prerender.tsx), so every word is in the first response.

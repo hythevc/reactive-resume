@@ -37,11 +37,13 @@ import {
 	useHapticsEnabled,
 	useTheme,
 	useThemePreference,
+	useThemePersistenceStatus,
 } from "@/ui";
 
 export default function PreferencesScreen() {
 	const { t, i18n } = useLingui();
 	const theme = useThemePreference();
+	const themePersistence = useThemePersistenceStatus();
 	const hapticsOn = useHapticsEnabled();
 	const toggleHaptics = (value: boolean) => {
 		setHapticsEnabled(value);
@@ -108,19 +110,20 @@ export default function PreferencesScreen() {
 				label={t`Theme`}
 				orientation={fontScale > 1.3 ? "vertical" : "horizontal"}
 				value={theme}
-				onChange={(value) => {
-					try {
-						setThemePreference(value);
-					} catch {
-						showToast({ message: t`Couldn't save the theme. Try again.` });
-					}
-				}}
+				onChange={setThemePreference}
 				options={[
 					{ value: "system", label: t`System` },
 					{ value: "light", label: t`Light` },
 					{ value: "dark", label: t`Dark` },
 				]}
 			/>
+			{themePersistence === "session-only" ? (
+				<Banner
+					tone="warn"
+					message={t`Appearance applies for this session. Retry saving to keep this choice.`}
+					action={{ label: t`Retry saving appearance`, onPress: () => setThemePreference(theme) }}
+				/>
+			) : null}
 			<Text variant="callout" color="ink3">{t`Resumes always render on white paper, whatever the theme.`}</Text>
 			<SettingsGroup title={t`Keyboard shortcuts`}>
 				<CharacterShortcutSetting />

@@ -126,7 +126,15 @@ export function applicationSourceChanged(sourceProfile: Profile | null, job: Job
 }
 
 export type ApplicationCheck = { id: string; label: string; passed: boolean; detail: string; blocking: boolean };
-export type ApplicationReview = { checks: ApplicationCheck[]; comparison: ResumeJobComparison; canExport: boolean };
+export type ApplicationReview = {
+	checks: ApplicationCheck[];
+	comparison: ResumeJobComparison;
+	canExport: boolean;
+	/** Local guards only; the caller must still require an explicit review of the current documents. */
+	canExportManually: boolean;
+};
+
+const importedReportCheckIds = new Set(["report-present", "report-current", "report-summary", "report-issues"]);
 
 function numericTokens(value: string): string[] {
 	return value.match(/\d+(?:[.,]\d+)*(?:%|\+)?/g) ?? [];
@@ -289,6 +297,7 @@ export function reviewApplication(sourceProfile: Profile | null, job: Job, value
 		checks,
 		comparison: compareResumeToJob(application.resume, application.targetKeywords),
 		canExport: checks.every((check) => !check.blocking || check.passed),
+		canExportManually: checks.every((check) => !check.blocking || importedReportCheckIds.has(check.id) || check.passed),
 	};
 }
 

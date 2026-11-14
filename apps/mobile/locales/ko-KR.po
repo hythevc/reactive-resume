@@ -1216,11 +1216,9 @@ msgstr "행동"
 msgid "Actions"
 msgstr "행위"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "{1}에서 {0}에 대한 작업"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "{company}의 {role} 직무 관련 작업"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API 키"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "모습"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "모양 설정이 현재 세션에 적용됩니다. 이 선택을 유지하려면 저장을 다시 시도하세요."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "메모를 저장할 수 없습니다. 당신의 문자는 아직 여기�
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "태그를 저장할 수 없습니다. 다시 시도해 보세요."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "테마를 저장할 수 없습니다. 다시 시도해 보세요."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -8938,6 +8936,7 @@ msgid "Open AI assistant"
 msgstr "AI 도우미 열기"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10928,6 +10927,10 @@ msgstr "저장된 답변 다시 시도"
 msgid "Retry saving"
 msgstr "다시 저장해 보세요"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "모양 설정 저장 다시 시도"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "{nativeSearchLabel}(으)로 다시 시도"
@@ -10968,6 +10971,10 @@ msgstr "검토 항목"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "최초 지원서 제출 시 검토 체크 항목이 기록되었습니다."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "세부 정보 보기"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13926,6 +13933,7 @@ msgstr "오늘"
 msgid "Today, {hour}"
 msgstr "오늘, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "선택 전환"

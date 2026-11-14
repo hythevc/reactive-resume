@@ -1164,10 +1164,6 @@ msgstr "/ 년"
 msgid "+{extra} more"
 msgstr "+{extra} 더보기"
 
-#: src/features/homepage/hero.tsx
-msgid "+13 pts activation"
-msgstr "+13 포인트 활성화"
-
 #: src/features/resume/editor/check/check-panel.tsx
 msgid "<0>Nothing to fix.</0> Every check passes."
 msgstr "<0>고칠 것이 없습니다.</0> 모든 검사가 통과되었습니다."
@@ -1243,10 +1239,6 @@ msgstr "3개 뒷받침됨 · 1개 일부 · 1개 없음"
 #: src/features/settings/ai/api-keys.tsx
 msgid "30 days"
 msgstr "30일"
-
-#: src/features/homepage/hero.tsx
-msgid "40% faster reviews"
-msgstr "40% 더 빠른 검토 속도"
 
 #: src/features/homepage/faq.tsx
 msgid "9 short answers to what people ask before they start. Anything else, ask on <0>Discord</0>."
@@ -1520,7 +1512,6 @@ msgid "Access your account through the API, including reading, changing and dele
 msgstr "문서 및 입사 지원서 읽기, 변경 및 삭제를 포함하여 API를 통해 계정에 액세스하세요."
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Accessibility"
 msgstr "접근성"
@@ -2926,7 +2917,6 @@ msgid "Azerbaijani"
 msgstr "아제르바이잔어"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "BA, Communication Design"
 msgstr "학사, 커뮤니케이션 디자인"
@@ -3020,10 +3010,6 @@ msgstr "기치"
 msgctxt "Entry header accent: a bar beside the header"
 msgid "Bar"
 msgstr "막대"
-
-#: src/features/homepage/hero.tsx
-msgid "Barista, 2012"
-msgstr "바리스타, 2012"
 
 #. placeholder {0}: formatMoney(i18n.locale, offer.currency, offer.base ?? 0)
 #. placeholder {1}: periodLabel(offer.period)
@@ -5854,6 +5840,7 @@ msgstr "{0} 역할 설명"
 
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-components/design-panel.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -5878,7 +5865,6 @@ msgid "Design system trade-offs"
 msgstr "디자인 시스템의 트레이드오프"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Design systems"
 msgstr "디자인 시스템"
@@ -7034,10 +7020,6 @@ msgstr "Fieldnote"
 #: src/features/homepage/tailor.tsx
 msgid "Fieldnote · Remote, EU"
 msgstr "Fieldnote · 원격, EU"
-
-#: src/features/homepage/hero.tsx
-msgid "Figma"
-msgstr "Figma"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -8860,7 +8842,6 @@ msgid "Lead across functions"
 msgstr "부서 간 협업 주도"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 #: src/features/homepage/write.tsx
 msgid "Lead Product Designer"
@@ -9232,10 +9213,6 @@ msgstr "모래밭"
 #: src/features/settings/account/profile.tsx
 msgid "Links you've already shared keep working for 30 days, then stop. Share the new ones before then."
 msgstr "이미 공유한 링크는 30일 동안 작동한 후 중단됩니다. 그 전에 새 링크를 공유하세요."
-
-#: src/features/homepage/hero.tsx
-msgid "Lisbon"
-msgstr "Lisbon"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -11575,7 +11552,6 @@ msgid "paragraph {n}"
 msgstr "단락 {n}"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 msgid "Parcel & Co."
 msgstr "Parcel & Co."
 
@@ -12302,10 +12278,6 @@ msgstr "진행률 표시줄"
 msgid "Projects"
 msgstr "프로젝트"
 
-#: src/features/homepage/hero.tsx
-msgid "Promoted to lead, 2021"
-msgstr "2021년 리드로 승진"
-
 #: src/features/career/workspace/fit.tsx
 msgid "Propose a resume bullet"
 msgstr "이력서 글머리 항목 제안"
@@ -12327,7 +12299,6 @@ msgid "Protect your resume with a password"
 msgstr "비밀번호로 이력서 보호하기"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Prototyping"
 msgstr "프로토타이핑"
@@ -13854,6 +13825,7 @@ msgid "Same you. Less starting over."
 msgstr "같은 당신, 다시 시작할 일은 줄어듭니다."
 
 #: src/features/documents/use-start-document.ts
+#: src/features/homepage/hero.tsx
 msgid "Sample resume"
 msgstr "샘플 이력서"
 
@@ -14830,10 +14802,6 @@ msgstr "WCAG 2.1 AA를 충족하는 웹 및 iOS용 <0>접근성이 뛰어난</0>
 msgid "Shipped checkout flows that meet WCAG 2.1 AA."
 msgstr "WCAG 2.1 AA를 충족하는 결제 흐름을 출시했습니다."
 
-#: src/features/homepage/hero.tsx
-msgid "Shipped checkout for iOS"
-msgstr "iOS에 대한 체크아웃 배송됨"
-
 #: src/routes/builder/letter/-components/write-panel.tsx
 msgid "Short and direct. Fine if the posting asks for brevity."
 msgstr "짧고 직접적입니다. 채용 공고에서 간결성을 요구하는 경우 괜찮습니다."
@@ -15195,10 +15163,6 @@ msgstr "상황, 행동, 결과"
 msgid "Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown outcomes blank."
 msgstr "상황, 과제, 행동, 결과, 성찰. 각 스토리를 뒷받침할 수 있는 사실과 연결하고, 모르는 결과는 비워 두세요."
 
-#: src/features/homepage/hero.tsx
-msgid "Six product teams"
-msgstr "6개 제품팀"
-
 #: src/features/resume/editor/write/picture-settings.tsx
 msgid "Size"
 msgstr "크기"
@@ -15375,10 +15339,6 @@ msgstr "스페인어"
 #: src/features/homepage/sheet.tsx
 msgid "Spanish (B2)"
 msgstr "스페인어(B2)"
-
-#: src/features/homepage/hero.tsx
-msgid "Spanish, B2"
-msgstr "스페인어, B2"
 
 #: src/features/career/workspace/practise.tsx
 msgid "Speak"
@@ -15687,6 +15647,7 @@ msgid "Stories to bring"
 msgstr "가져갈 스토리"
 
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Story"
 msgstr "이야기"
 
@@ -15909,6 +15870,7 @@ msgid "Tags…"
 msgstr "태그…"
 
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Tailor"
 msgstr "직업 설명에 적응"
@@ -17601,7 +17563,6 @@ msgid "Undo resume change"
 msgstr "이력서 변경 취소"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "University of Porto"
 msgstr "University of Porto"
@@ -18238,10 +18199,6 @@ msgstr "이전: {was}"
 msgid "Was: {0}"
 msgstr "이전: {0}"
 
-#: src/features/homepage/hero.tsx
-msgid "WCAG 2.1 AA"
-msgstr "WCAG 2.1 AA"
-
 #. Password reset email. appName: Reactive Resume
 #: src/features/auth/email-text.ts
 msgid "We received a request to reset your {appName} password."
@@ -18675,6 +18632,7 @@ msgstr "{0}에게 물어볼 만한 것"
 #. Homepage scene title, one word followed by a full stop
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/write.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
 #: src/routes/builder/$resumeId/-components/editor-shell.tsx

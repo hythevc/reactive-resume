@@ -49,7 +49,7 @@ export function LandingBackground() {
 			{/* Above the header (z-70) and the theme cord (z-72), below the skip link (z-100); it never takes a click. */}
 			<div
 				aria-hidden="true"
-				className="paper-grain pointer-events-none fixed inset-0 z-80 opacity-[.07] dark:opacity-[.05] dark:invert"
+				className="paper-grain pointer-events-none fixed inset-0 z-80 opacity-[.018] dark:opacity-[.012] dark:invert"
 			/>
 		</>
 	);

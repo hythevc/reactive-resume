@@ -1216,11 +1216,9 @@ msgstr "行動"
 msgid "Actions"
 msgstr "行動"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "{1} 的 {0} 操作"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "{company} 的 {role} 職缺操作"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API按鍵"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "外貌"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "外觀設定已套用至目前的工作階段。請重試儲存以保留此選擇。"
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "無法儲存筆記。你的文字還在這裡。"
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "無法儲存標籤。請再試一次。"
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "無法儲存主題。再試一次。"
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -8938,6 +8936,7 @@ msgid "Open AI assistant"
 msgstr "開啟 AI 助理"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10928,6 +10927,10 @@ msgstr "重試已儲存的回答"
 msgid "Retry saving"
 msgstr "重試保存"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "重試儲存外觀設定"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "使用 {nativeSearchLabel} 重試"
@@ -10968,6 +10971,10 @@ msgstr "審閱檢查結果"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "已在首次提交求職申請時記錄審閱勾選項。"
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "檢視詳細資料"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13926,6 +13933,7 @@ msgstr "今天"
 msgid "Today, {hour}"
 msgstr "今天 {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "切換選取狀態"

@@ -49,6 +49,8 @@ export type ListRowProps = {
 	accent?: boolean | undefined;
 	selected?: boolean | undefined;
 	disabled?: boolean | undefined;
+	/** Single-choice rows announce their checked state; action rows remain buttons. */
+	accessibilityRole?: "button" | "radio" | undefined;
 	accessibilityHint?: string | undefined;
 	/** iOS: a hairline above the row. ListGroup sets it on every row after the first. */
 	divider?: boolean | undefined;
@@ -69,6 +71,7 @@ export function ListRow({
 	accent,
 	selected,
 	disabled,
+	accessibilityRole = "button",
 	accessibilityHint,
 	divider,
 }: ListRowProps) {
@@ -85,7 +88,7 @@ export function ListRow({
 		flexDirection: stacked ? "column" : "row",
 		alignItems: stacked ? "stretch" : "center",
 		gap: stacked ? space.s2 : android ? space.s4 : space.s3,
-		paddingVertical: space.s2,
+		paddingVertical: space.s3,
 		paddingStart: space.s4,
 		paddingEnd: android ? space.s4 : space.s3,
 		backgroundColor: pressed && !android ? colors.press : selected ? colors.selectedFill : "transparent",
@@ -122,8 +125,12 @@ export function ListRow({
 	return (
 		<Container
 			accessible={pressable || trailing === undefined}
-			accessibilityRole={pressable ? "button" : undefined}
-			accessibilityState={{ disabled: !!disabled, selected: !!selected }}
+			accessibilityRole={pressable ? accessibilityRole : undefined}
+			accessibilityState={
+				accessibilityRole === "radio"
+					? { disabled: !!disabled, checked: !!selected }
+					: { disabled: !!disabled, selected: !!selected }
+			}
 			accessibilityHint={accessibilityHint}
 			disabled={disabled}
 			onPress={onPress}
@@ -162,7 +169,7 @@ export function ListRow({
 				leadingGraphic
 			)}
 			<View style={{ flex: stacked ? undefined : 1, minWidth: 0, gap: 1 }}>
-				<Text variant="bodyLarge" color={tone}>
+				<Text variant="bodyLarge" weight={selected ? 600 : 500} color={tone}>
 					{title}
 				</Text>
 				{subtitle ? (
@@ -244,7 +251,7 @@ export type CardProps = {
 export function Card({ children, onPress, onLongPress, selected, accessibilityLabel, style }: CardProps) {
 	const { colors, radius, shadows, space } = useTheme();
 	const cardStyle = {
-		padding: space.s3,
+		padding: space.s4,
 		borderRadius: radius.rLg,
 		borderWidth: 1,
 		borderColor: selected ? colors.accent : colors.line,
@@ -325,7 +332,7 @@ export function EmptyState({
 				}}
 			>
 				<View style={{ flexShrink: 1, gap: space.s1 }}>
-					<Text variant="callout" color="ink">
+					<Text variant="callout" weight={600} color="ink">
 						{title}
 					</Text>
 					{message ? (
@@ -353,8 +360,8 @@ export function EmptyState({
 							paddingHorizontal: space.s6,
 							borderRadius: radius.rLg,
 							borderWidth: 1,
-							borderStyle: "dashed",
-							borderColor: colors.line2,
+							borderColor: colors.line,
+							backgroundColor: colors.surface,
 						}
 					: {
 							alignItems: "center",
@@ -373,10 +380,10 @@ export function EmptyState({
 						borderRadius: radius.rLg,
 						alignItems: "center",
 						justifyContent: "center",
-						backgroundColor: colors.sunken,
+						backgroundColor: colors.accentSoft,
 					}}
 				>
-					<Icon name={icon} size={size.icon.bar + space.s2} color={colors.ink2} />
+					<Icon name={icon} size={size.icon.bar + space.s2} color={colors.accentText} />
 				</View>
 			) : null}
 			<Text accessibilityRole="header" variant="heading" align="center" style={{ alignSelf: "stretch" }}>
@@ -457,9 +464,11 @@ export function Banner({ tone, variant, message, title, icon, action, actions, o
 				alignItems: strip ? "center" : "flex-start",
 				gap: strip ? space.s2 : space.s3,
 				minHeight: strip ? size.hit - space.s2 : undefined,
-				paddingVertical: strip ? space.s1 + space.s0 : space.s3,
-				paddingHorizontal: strip ? space.s4 : space.s3,
+				paddingVertical: strip ? space.s1 + space.s0 : space.s4,
+				paddingHorizontal: space.s4,
 				borderRadius: strip ? 0 : radius.rLg,
+				borderWidth: strip ? 0 : 1,
+				borderColor: colors.line,
 				backgroundColor: colors[palette.background],
 			}}
 		>

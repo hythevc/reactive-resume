@@ -1216,11 +1216,9 @@ msgstr "Acción"
 msgid "Actions"
 msgstr "Comportamiento"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "Acciones para {0} en {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "Acciones para {role} en {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "Teclas API"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Apariencia"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "La apariencia se aplica durante esta sesión. Vuelva a intentar guardarla para mantener esta elección."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "No se pudieron guardar las notas. Tu texto todavía está aquí."
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "No se pudieron guardar las etiquetas. Inténtalo de nuevo."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "No se pudo guardar el tema. Intentar otra vez."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -8938,6 +8936,7 @@ msgid "Open AI assistant"
 msgstr "Abrir asistente de IA"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10928,6 +10927,10 @@ msgstr "Reintentar respuestas guardadas"
 msgid "Retry saving"
 msgstr "Reintentar guardar"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Reintentar guardar la apariencia"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "Reintentar con {nativeSearchLabel}"
@@ -10968,6 +10971,10 @@ msgstr "Revisar comprobaciones"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "Las marcas de revisión se guardaron al enviar la candidatura por primera vez."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Ver detalles"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13926,6 +13933,7 @@ msgstr "Hoy"
 msgid "Today, {hour}"
 msgstr "Hoy, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Alternar selección"

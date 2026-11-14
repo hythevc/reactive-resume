@@ -1216,11 +1216,9 @@ msgstr "செயல்"
 msgid "Actions"
 msgstr "செயல்கள்"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "{1} இல் {0}க்கான செயல்கள்"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "{company} நிறுவனத்தின் {role} பதவிக்கான செயல்கள்"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API விசைகள்"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "தோற்றம்"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "இந்தத் தோற்ற அமைப்பு தற்போதைய அமர்வுக்குப் பொருந்தும். இந்தத் தேர்வைத் தக்கவைக்க மீண்டும் சேமிக்க முயற்சிக்கவும்."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "குறிப்புகளைச் சேமிக்க முட�
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "குறிச்சொற்களைச் சேமிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "தீம் சேமிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -8938,6 +8936,7 @@ msgid "Open AI assistant"
 msgstr "AI உதவியாளரைத் திறக்கவும்"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10928,6 +10927,10 @@ msgstr "சேமித்த பதில்களை மீண்டும் 
 msgid "Retry saving"
 msgstr "மீண்டும் சேமிக்க முயற்சிக்கவும்"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "தோற்ற அமைப்பை மீண்டும் சேமிக்க முயற்சிக்கவும்"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "{nativeSearchLabel} மூலம் மீண்டும் முயலவும்"
@@ -10968,6 +10971,10 @@ msgstr "சரிபார்ப்புகளை மதிப்பாய்�
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "முதன்முதலில் விண்ணப்பத்தைச் சமர்ப்பித்தபோது மதிப்பாய்வுக் குறிகள் பதிவு செய்யப்பட்டன."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "விவரங்களைப் பார்க்கவும்"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13926,6 +13933,7 @@ msgstr "இன்று"
 msgid "Today, {hour}"
 msgstr "இன்று, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "தேர்வை நிலைமாற்று"

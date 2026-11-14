@@ -67,6 +67,7 @@ const mocks = {
 	"react-native-reanimated": {},
 	"react-native-worklets": {},
 	"./button": {},
+	"./bottom-bar": { useBottomBarHeight: () => 0 },
 	"./motion": { useIsWide: () => false, useReducedMotion: () => false },
 	"./safe-area": { useWindowSafeAreaInsets: () => ({ top: 44 }) },
 	"./text": { Text: "Text" },

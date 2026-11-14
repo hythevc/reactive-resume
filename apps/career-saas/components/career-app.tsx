@@ -1,14 +1,12 @@
 "use client";
 
 import {
-	ArrowRight,
 	Camera,
-	ChevronDown,
-	Crown,
 	Cloud,
 	Compass,
 	FileText,
 	Home,
+	Info,
 	Laptop,
 	Linkedin,
 	Mail,
@@ -44,8 +42,10 @@ const valid = new Set([...navigation.map((n) => n.id), "settings", "plans"]);
 export function CareerApp() {
 	const [page, setPage] = useState("overview");
 	const [mobileOpen, setMobileOpen] = useState(false);
+	const [jobToReview, setJobToReview] = useState<string | undefined>();
 	const sidebarRef = useRef<HTMLElement>(null);
-	const { data, ready } = useWorkspace();
+	const mainRef = useRef<HTMLElement>(null);
+	const { data, ready, persistenceStatus } = useWorkspace();
 	useEffect(() => {
 		const sync = () => {
 			const id = window.location.hash.slice(1);
@@ -84,11 +84,13 @@ export function CareerApp() {
 			previous?.focus();
 		};
 	}, [mobileOpen]);
-	function go(id: string) {
+	function go(id: string, jobId?: string) {
 		window.location.hash = id;
+		setJobToReview(jobId);
 		setPage(id);
 		setMobileOpen(false);
 		window.scrollTo(0, 0);
+		requestAnimationFrame(() => mainRef.current?.focus({ preventScroll: true }));
 	}
 	const title = navigation.find((n) => n.id === page)?.name ?? (page === "plans" ? "Plans" : "Settings");
 	const initials =
@@ -99,6 +101,16 @@ export function CareerApp() {
 			.join("") || "AM";
 	return (
 		<div className="app-shell">
+			<a
+				className="skip-link"
+				href="#main-content"
+				onClick={(event) => {
+					event.preventDefault();
+					mainRef.current?.focus();
+				}}
+			>
+				Skip to content
+			</a>
 			{mobileOpen ? (
 				<button aria-label="Close navigation" className="nav-backdrop" onClick={() => setMobileOpen(false)} />
 			) : null}
@@ -129,19 +141,18 @@ export function CareerApp() {
 					))}
 				</nav>
 				<div className="sidebar-bottom">
-					<div className="upgrade-panel">
-						<div>
-							<Crown size={20} />
-							<strong>Make your next move</strong>
-						</div>
-						<p>Explore the plans behind your career workspace.</p>
-						<button className="button primary" onClick={() => go("plans")}>
-							Explore plans <ArrowRight size={15} />
-						</button>
-					</div>
+					<a
+						href="#plans"
+						className="sidebar-plan-link"
+						aria-current={page === "plans" ? "page" : undefined}
+						onClick={() => go("plans")}
+					>
+						Plans preview
+					</a>
 					<a
 						href="#settings"
 						className={`nav-item ${page === "settings" ? "active" : ""}`}
+						aria-current={page === "settings" ? "page" : undefined}
 						onClick={() => go("settings")}
 					>
 						<Settings size={19} />
@@ -149,8 +160,7 @@ export function CareerApp() {
 					</a>
 					<button className="workspace-user" onClick={() => go("settings")}>
 						<span className="avatar subtle">{initials}</span>
-						<span>Demo workspace</span>
-						<ChevronDown size={15} />
+						<span>{data.profile.name || "Your workspace"}</span>
 					</button>
 					<div className="device-note">
 						<Laptop size={15} />
@@ -175,22 +185,37 @@ export function CareerApp() {
 						<span>{title}</span>
 					</div>
 					<div className="topbar-right">
-						<span className="demo-tag">
-							<Laptop size={15} />
-							Local demo
-						</span>
+						<details className="workspace-info">
+							<summary
+								className="demo-tag"
+								aria-label={`Local workspace information: ${persistenceStatus === "saved" ? "saved on this device" : persistenceStatus === "saving" ? "saving" : "storage needs attention"}`}
+							>
+								<Info size={16} aria-hidden="true" />
+								<span>
+									{persistenceStatus === "saved"
+										? "Saved on this device"
+										: persistenceStatus === "saving"
+											? "Saving…"
+											: "Storage needs attention"}
+								</span>
+							</summary>
+							<div className="workspace-info-panel">
+								<strong>Your local workspace</strong>
+								<p>
+									People using this browser profile can access its data. Keep a private backup in Settings. Cloud saving
+									is a separate action.
+								</p>
+								<a className="text-button" href="/privacy">
+									Your information
+								</a>
+							</div>
+						</details>
 						<button aria-label="Open account settings" className="avatar" onClick={() => go("settings")}>
 							{initials}
 						</button>
 					</div>
 				</header>
-				<main className="main-content" id="main-content">
-					<div className="notice">
-						<span>
-							Local workspace: people using this browser profile may access its data. Cloud saving is a separate action.{" "}
-							<a href="/privacy">Your information</a>
-						</span>
-					</div>
+				<main ref={mainRef} tabIndex={-1} className="main-content" id="main-content">
 					{!ready ? (
 						<div className="loading-state">Opening your workspace…</div>
 					) : page === "overview" ? (
@@ -204,7 +229,7 @@ export function CareerApp() {
 					) : page === "photo" ? (
 						<PhotoView />
 					) : page === "jobs" ? (
-						<JobsView />
+						<JobsView key={jobToReview ?? "list"} initialJobId={jobToReview} />
 					) : page === "outreach" ? (
 						<OutreachView />
 					) : page === "cloud" ? (

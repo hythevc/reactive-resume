@@ -1,6 +1,6 @@
 // Desk & Paper tokens for React Native.
 // Screens use these and nothing else; add a missing token here rather than hard-coding a value.
-import { Easing } from "react-native";
+import { Easing, Platform } from "react-native";
 
 export type ColorScheme = "light" | "dark";
 
@@ -10,17 +10,18 @@ const light = {
 	surface: "#FEFDFC",
 	raised: "#FFFFFF",
 	sunken: "#F0EFEB",
-	line: "#DFDEDA",
-	line2: "#C5C4BE",
-	lineStrong: "#888680",
-	ink: "#1C1B15",
-	ink2: "#4F4D47",
-	ink3: "#6D6C65",
-	accent: "#337344",
-	accentHover: "#206133",
-	onAccent: "#F7FEF8",
-	accentSoft: "#DCF2DF",
-	accentText: "#195C2E",
+	line: "#DCE2DA",
+	line2: "#BECBBF",
+	lineStrong: "#7B8B7D",
+	ink: "#202B25",
+	ink2: "#4F5A53",
+	ink3: "#626B65",
+	accent: "#286343",
+	accentHover: "#1F5036",
+	onAccent: "#FFFFFF",
+	onDanger: "#FFFFFF",
+	accentSoft: "#E7EFE2",
+	accentText: "#1B4D34",
 	danger: "#BA3630",
 	dangerSoft: "#FFE7E4",
 	dangerText: "#A92321",
@@ -29,8 +30,8 @@ const light = {
 	warnText: "#81520A",
 	infoSoft: "#E0F1FF",
 	infoText: "#1D5B92",
-	hover: "#1C1B150D",
-	press: "#1C1B1517",
+	hover: "#202B250D",
+	press: "#202B2517",
 	scrim: "#17161152",
 	scrimSheet: "#1716112E",
 	paper: "#FFFFFF",
@@ -45,32 +46,33 @@ const light = {
 	stageInterv: "#AF8433",
 	stageOffer: "#579F68",
 	stageClosed: "#C67067",
-	pageSelectFill: "#3373441F",
-	pageSelectLine: "#337344",
+	pageSelectFill: "#2863431F",
+	pageSelectLine: "#286343",
 	pageIssueFill: "#D2992238",
 	pageProposalFill: "#3373441F",
-	selectedFill: "#DCF2DF",
+	selectedFill: "#E7EFE2",
 };
 
 export type ColorToken = keyof typeof light;
 export type Colors = Record<ColorToken, string>;
 
 const dark: Colors = {
-	bg: "#100F0C",
-	surface: "#171613",
-	raised: "#1F1E1A",
-	sunken: "#0B0A08",
-	line: "#2C2B27",
-	line2: "#494843",
-	lineStrong: "#73726C",
-	ink: "#EFEEEB",
-	ink2: "#BCBAB5",
-	ink3: "#979590",
-	accent: "#6FC082",
-	accentHover: "#83D494",
-	onAccent: "#07150A",
-	accentSoft: "#1A3520",
-	accentText: "#8FD89E",
+	bg: "#101713",
+	surface: "#17201B",
+	raised: "#202B24",
+	sunken: "#0D120F",
+	line: "#334639",
+	line2: "#59705E",
+	lineStrong: "#6E8372",
+	ink: "#EEF5EE",
+	ink2: "#C2CFC3",
+	ink3: "#9CAC9D",
+	accent: "#91CCA0",
+	accentHover: "#A4D9B0",
+	onAccent: "#102315",
+	onDanger: "#07150A",
+	accentSoft: "#223C2A",
+	accentText: "#A6DDB1",
 	danger: "#D9544B",
 	dangerSoft: "#47211D",
 	dangerText: "#FDA297",
@@ -99,7 +101,7 @@ const dark: Colors = {
 	pageSelectLine: "#337344",
 	pageIssueFill: "#D2992238",
 	pageProposalFill: "#3373441F",
-	selectedFill: "#1A3520",
+	selectedFill: "#223C2A",
 };
 
 export const colors: Record<ColorScheme, Colors> = { light, dark };
@@ -132,16 +134,16 @@ type TextStyleToken = {
 
 export const type = {
 	largeIOS: { fontFamily: fonts.display[400], fontSize: 34, lineHeight: 41, letterSpacing: -0.3 },
-	largeAnd: { fontFamily: fonts.display[400], fontSize: 28, lineHeight: 34, letterSpacing: 0 },
-	display: { fontFamily: fonts.display[400], fontSize: 28, lineHeight: 34, letterSpacing: -0.2 },
+	largeAnd: { fontFamily: fonts.display[400], fontSize: 34, lineHeight: 41, letterSpacing: -0.3 },
+	display: { fontFamily: fonts.display[400], fontSize: 34, lineHeight: 41, letterSpacing: -0.3 },
 	heading: { fontFamily: fonts.display[400], fontSize: 22, lineHeight: 28, letterSpacing: 0 },
-	title: { fontFamily: fonts.ui[600], fontSize: 17, lineHeight: 22, letterSpacing: 0 },
-	bodyLarge: { fontFamily: fonts.ui[400], fontSize: 16, lineHeight: 22, letterSpacing: 0 },
-	body: { fontFamily: fonts.ui[400], fontSize: 15, lineHeight: 21, letterSpacing: 0 },
-	label: { fontFamily: fonts.ui[600], fontSize: 15, lineHeight: 20, letterSpacing: 0 },
-	callout: { fontFamily: fonts.ui[400], fontSize: 13, lineHeight: 18, letterSpacing: 0 },
-	caption: { fontFamily: fonts.ui[500], fontSize: 12, lineHeight: 16, letterSpacing: 0 },
-	micro: { fontFamily: fonts.ui[600], fontSize: 11, lineHeight: 13, letterSpacing: 0.1, maxFontSizeMultiplier: 1.6 },
+	title: { fontFamily: fonts.ui[600], fontSize: 17, lineHeight: 24, letterSpacing: 0 },
+	bodyLarge: { fontFamily: fonts.ui[400], fontSize: 16, lineHeight: 24, letterSpacing: 0 },
+	body: { fontFamily: fonts.ui[400], fontSize: 16, lineHeight: 24, letterSpacing: 0 },
+	label: { fontFamily: fonts.ui[600], fontSize: 16, lineHeight: 22, letterSpacing: 0 },
+	callout: { fontFamily: fonts.ui[400], fontSize: 14, lineHeight: 20, letterSpacing: 0 },
+	caption: { fontFamily: fonts.ui[500], fontSize: 12, lineHeight: 18, letterSpacing: 0 },
+	micro: { fontFamily: fonts.ui[600], fontSize: 12, lineHeight: 16, letterSpacing: 0, maxFontSizeMultiplier: 1.6 },
 	mono: { fontFamily: fonts.mono[400], fontSize: 13, lineHeight: 18, letterSpacing: 0 },
 	/** Section labels and eyebrows, in sentence case. */
 	eyebrow: {
@@ -160,10 +162,11 @@ export const pageThumb = { fontFamily: fonts.display[400], widthRatio: 0.033 } a
 export const space = { s0: 2, s1: 4, s2: 8, s3: 12, s4: 16, s5: 20, s6: 24, s8: 32, s10: 40, s12: 48 } as const;
 
 // §3.1 Sizes.
+const minimumTarget = Platform.OS === "android" ? 48 : 44;
 export const size = {
-	hit: 44,
+	hit: minimumTarget,
 	row: 52,
-	input: 46,
+	input: Math.max(46, minimumTarget),
 	button: 48,
 	chip: 32,
 	tabBar: 52,
@@ -182,10 +185,13 @@ export const size = {
 
 // §4 Radii.
 export const radius = {
-	rSm: 2,
-	rMd: 3,
-	/** Every larger shape (cards, sheets, former pills): corners stay square-ish everywhere. */
-	rLg: 4,
+	rSm: 4,
+	/** Inputs, buttons and other controls. */
+	rMd: 8,
+	/** Cards, grouped lists and feedback surfaces. */
+	rLg: 12,
+	rXl: 16,
+	rSheet: 20,
 } as const;
 
 // §5 Shadows. `boxShadow` first; `ios` and `elevation` are the legacy fallback for Android below API 28.

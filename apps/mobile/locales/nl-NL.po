@@ -1216,11 +1216,9 @@ msgstr "Actie"
 msgid "Actions"
 msgstr "Acties"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "Acties voor {0} bij {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "Acties voor {role} bij {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API-sleutels"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Verschijning"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "Het uiterlijk geldt voor deze sessie. Probeer opnieuw op te slaan om deze keuze te behouden."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Kan de notities niet opslaan. Je tekst staat er nog."
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Kan de tags niet opslaan. Probeer het opnieuw."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Kan het thema niet opslaan. Probeer het opnieuw."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -8938,6 +8936,7 @@ msgid "Open AI assistant"
 msgstr "AI-assistent openen"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10928,6 +10927,10 @@ msgstr "Opgeslagen antwoorden opnieuw proberen"
 msgid "Retry saving"
 msgstr "Probeer opnieuw op te slaan"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Uiterlijk opnieuw opslaan"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "Opnieuw proberen met {nativeSearchLabel}"
@@ -10968,6 +10971,10 @@ msgstr "Controles beoordelen"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "Controlemarkeringen zijn bij de eerste indiening van de sollicitatie opgeslagen."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Details bekijken"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13926,6 +13933,7 @@ msgstr "Vandaag"
 msgid "Today, {hour}"
 msgstr "Vandaag, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Schakel selectie"

@@ -58,11 +58,11 @@ function safeJobUrl(value: string) {
 	}
 }
 
-export function JobsView() {
+export function JobsView({ initialJobId }: { initialJobId?: string } = {}) {
 	const { data, setData, mutate, ready } = useWorkspace();
 	const [search, setSearch] = useState("");
 	const [stage, setStage] = useState<"All" | Job["status"]>("All");
-	const [selectedId, setSelectedId] = useState<string | null>(null);
+	const [selectedId, setSelectedId] = useState<string | null>(initialJobId ?? null);
 	const detailsRef = useRef<HTMLElement>(null);
 	useEffect(() => {
 		if (!selectedId) return;
@@ -358,7 +358,7 @@ export function JobsView() {
 	}
 
 	return (
-		<div>
+		<div className="jobs-view">
 			<div className="feature-heading">
 				<div>
 					<h1>Your next opportunity.</h1>
@@ -510,8 +510,8 @@ export function JobsView() {
 				</section>
 			) : null}
 
-			<div className="two-column" style={{ alignItems: "start" }}>
-				<section className="panel">
+			<div className="two-column jobs-layout" style={{ alignItems: "start" }}>
+				<section className="panel jobs-pipeline">
 					<div className="section-title">
 						<h2>
 							Application pipeline{" "}
@@ -556,8 +556,42 @@ export function JobsView() {
 							placeholder="Company, role, location or notes"
 						/>
 					</label>
-					<div className="table-wrap">
-						<table className="data-table">
+					<ul className="mobile-job-list" aria-label="Saved opportunities">
+						{filtered.map((job) => (
+							<li key={job.id} className={selectedId === job.id ? "selected" : ""}>
+								<div className="mobile-job-heading">
+									<span className="company-logo" aria-hidden="true">
+										{job.company[0] || "?"}
+									</span>
+									<span>
+										<strong>{job.role || "Untitled role"}</strong>
+										<small>
+											{job.company || "Untitled company"} · {job.location || "Location not set"}
+										</small>
+									</span>
+								</div>
+								<div className="mobile-job-stage">
+									<span className={`status ${job.status.toLowerCase()}`}>{job.status}</span>
+									<button
+										type="button"
+										className="button secondary small"
+										aria-label={`Review ${job.role} at ${job.company}`}
+										onClick={() => reviewJob(job.id)}
+									>
+										Review <ArrowUpRight size={15} aria-hidden="true" />
+									</button>
+								</div>
+								<p className="muted mobile-job-match">
+									{job.description.trim()
+										? `${evaluationFor(job).score}% keyword overlap`
+										: "Add a description to compare"}{" "}
+									· {eligibilityLabel(job)}
+								</p>
+							</li>
+						))}
+					</ul>
+					<div className="table-wrap job-table-wrap">
+						<table className="data-table job-table">
 							<thead>
 								<tr>
 									<th>Opportunity</th>
@@ -570,7 +604,7 @@ export function JobsView() {
 							</thead>
 							<tbody>
 								{filtered.map((job) => (
-									<tr key={job.id} style={selectedId === job.id ? { background: "#f3f7ed" } : undefined}>
+									<tr key={job.id} style={selectedId === job.id ? { background: "var(--lime)" } : undefined}>
 										<td>
 											<button
 												type="button"
@@ -582,7 +616,7 @@ export function JobsView() {
 													textAlign: "left",
 													cursor: "pointer",
 													font: "inherit",
-													color: "#173f35",
+													color: "var(--green-dark)",
 												}}
 											>
 												<strong>{job.role}</strong>
@@ -602,7 +636,7 @@ export function JobsView() {
 													className="muted"
 													style={{
 														display: "block",
-														fontSize: 11,
+														fontSize: 12,
 														marginTop: 6,
 														maxWidth: 280,
 														whiteSpace: "nowrap",
@@ -624,7 +658,7 @@ export function JobsView() {
 													display: "block",
 													maxWidth: 170,
 													marginTop: 7,
-													fontSize: 11,
+													fontSize: 12,
 													whiteSpace: "normal",
 												}}
 											>
@@ -641,7 +675,8 @@ export function JobsView() {
 												onClick={() => reviewJob(job.id)}
 												aria-label={`Review ${job.role} at ${job.company}`}
 											>
-												<ArrowUpRight size={15} />
+												<span>Review</span>
+												<ArrowUpRight size={15} aria-hidden="true" />
 											</button>
 										</td>
 									</tr>
@@ -662,7 +697,7 @@ export function JobsView() {
 					) : null}
 				</section>
 
-				<aside className="panel" style={{ background: "#edf5d5" }}>
+				<aside className="panel" style={{ background: "var(--lime)" }}>
 					<div className="section-title">
 						<h2>Preparation tasks</h2>
 						<FileText size={19} />
@@ -787,7 +822,7 @@ export function JobsView() {
 						{data.autopilot.enabled ? <Play size={15} /> : <Pause size={15} />} Create preparation tasks
 					</button>
 					{filtersDirty ? (
-						<p className="muted" style={{ fontSize: 11 }}>
+						<p className="muted" style={{ fontSize: 12 }}>
 							Save your filter changes to update eligibility and create preparation tasks.
 						</p>
 					) : null}
@@ -799,7 +834,7 @@ export function JobsView() {
 					>
 						Review preparation tasks ({prepared})
 					</button>
-					<p className="muted" style={{ fontSize: 11, marginTop: 15, lineHeight: 1.7 }}>
+					<p className="muted" style={{ fontSize: 12, marginTop: 15, lineHeight: 1.7 }}>
 						{prepared} {prepared === 1 ? "task" : "tasks"} awaiting preparation. Match is a local keyword estimate, not
 						an employer's ATS score. No background applications or messages are sent.
 					</p>

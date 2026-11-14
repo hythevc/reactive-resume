@@ -1164,10 +1164,6 @@ msgstr "/ 年"
 msgid "+{extra} more"
 msgstr "+{extra} 詳細"
 
-#: src/features/homepage/hero.tsx
-msgid "+13 pts activation"
-msgstr "+13 ポイントのアクティベーション"
-
 #: src/features/resume/editor/check/check-panel.tsx
 msgid "<0>Nothing to fix.</0> Every check passes."
 msgstr "<0>修正する必要はありません。</0> すべてのチェックに合格しました。"
@@ -1243,10 +1239,6 @@ msgstr "裏付けあり 3 · 一部 1 · 不足 1"
 #: src/features/settings/ai/api-keys.tsx
 msgid "30 days"
 msgstr "30日"
-
-#: src/features/homepage/hero.tsx
-msgid "40% faster reviews"
-msgstr "レビューが 40% 高速化"
 
 #: src/features/homepage/faq.tsx
 msgid "9 short answers to what people ask before they start. Anything else, ask on <0>Discord</0>."
@@ -1520,7 +1512,6 @@ msgid "Access your account through the API, including reading, changing and dele
 msgstr "API を通じてアカウントにアクセスし、ドキュメントや求人応募の読み取り、変更、削除を行います。"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Accessibility"
 msgstr "アクセシビリティ"
@@ -2926,7 +2917,6 @@ msgid "Azerbaijani"
 msgstr "アゼルバイジャン語"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "BA, Communication Design"
 msgstr "学士、コミュニケーションデザイン"
@@ -3020,10 +3010,6 @@ msgstr "バナー"
 msgctxt "Entry header accent: a bar beside the header"
 msgid "Bar"
 msgstr "バー"
-
-#: src/features/homepage/hero.tsx
-msgid "Barista, 2012"
-msgstr "バリスタ、2012"
 
 #. placeholder {0}: formatMoney(i18n.locale, offer.currency, offer.base ?? 0)
 #. placeholder {1}: periodLabel(offer.period)
@@ -5854,6 +5840,7 @@ msgstr "役割の説明 {0}"
 
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-components/design-panel.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -5878,7 +5865,6 @@ msgid "Design system trade-offs"
 msgstr "デザインシステムのトレードオフ"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Design systems"
 msgstr "デザインシステム"
@@ -7034,10 +7020,6 @@ msgstr "Fieldnote"
 #: src/features/homepage/tailor.tsx
 msgid "Fieldnote · Remote, EU"
 msgstr "Fieldnote · リモート、EU"
-
-#: src/features/homepage/hero.tsx
-msgid "Figma"
-msgstr "Figma"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -8860,7 +8842,6 @@ msgid "Lead across functions"
 msgstr "部門を横断してリードする"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 #: src/features/homepage/write.tsx
 msgid "Lead Product Designer"
@@ -9232,10 +9213,6 @@ msgstr "リンク"
 #: src/features/settings/account/profile.tsx
 msgid "Links you've already shared keep working for 30 days, then stop. Share the new ones before then."
 msgstr "すでに共有したリンクは 30 日間使え、その後は使えなくなります。それまでに新しいリンクを共有してください。"
-
-#: src/features/homepage/hero.tsx
-msgid "Lisbon"
-msgstr "Lisbon"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -11575,7 +11552,6 @@ msgid "paragraph {n}"
 msgstr "段落{n}"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 msgid "Parcel & Co."
 msgstr "Parcel & Co."
 
@@ -12302,10 +12278,6 @@ msgstr "プログレスバー"
 msgid "Projects"
 msgstr "プロジェクト"
 
-#: src/features/homepage/hero.tsx
-msgid "Promoted to lead, 2021"
-msgstr "2021 年にリーダーに昇進"
-
 #: src/features/career/workspace/fit.tsx
 msgid "Propose a resume bullet"
 msgstr "履歴書の箇条書きを提案"
@@ -12327,7 +12299,6 @@ msgid "Protect your resume with a password"
 msgstr "履歴書をパスワードで保護する"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Prototyping"
 msgstr "プロトタイピング"
@@ -13854,6 +13825,7 @@ msgid "Same you. Less starting over."
 msgstr "いつものあなたのままで。ゼロからやり直す手間を減らして。"
 
 #: src/features/documents/use-start-document.ts
+#: src/features/homepage/hero.tsx
 msgid "Sample resume"
 msgstr "サンプルのレジュメ"
 
@@ -14830,10 +14802,6 @@ msgstr "WCAG 2.1 AAに準拠した、WebとiOS向けの<0>アクセシビリテ�
 msgid "Shipped checkout flows that meet WCAG 2.1 AA."
 msgstr "WCAG 2.1 AAに準拠した決済フローをリリース。"
 
-#: src/features/homepage/hero.tsx
-msgid "Shipped checkout for iOS"
-msgstr "iOS のチェックアウトを発送しました"
-
 #: src/routes/builder/letter/-components/write-panel.tsx
 msgid "Short and direct. Fine if the posting asks for brevity."
 msgstr "短くて直接的。求人情報に簡潔さが求められている場合は問題ありません。"
@@ -15195,10 +15163,6 @@ msgstr "状況、行動、結果"
 msgid "Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown outcomes blank."
 msgstr "状況、課題、行動、結果、学び。各ストーリーを裏付けられる事実にリンクし、わからない成果は空欄のままにしてください。"
 
-#: src/features/homepage/hero.tsx
-msgid "Six product teams"
-msgstr "6 つの製品チーム"
-
 #: src/features/resume/editor/write/picture-settings.tsx
 msgid "Size"
 msgstr "サイズ"
@@ -15375,10 +15339,6 @@ msgstr "スペイン語"
 #: src/features/homepage/sheet.tsx
 msgid "Spanish (B2)"
 msgstr "スペイン語(B2)"
-
-#: src/features/homepage/hero.tsx
-msgid "Spanish, B2"
-msgstr "スペイン語、B2"
 
 #: src/features/career/workspace/practise.tsx
 msgid "Speak"
@@ -15687,6 +15647,7 @@ msgid "Stories to bring"
 msgstr "持っていくストーリー"
 
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Story"
 msgstr "話"
 
@@ -15909,6 +15870,7 @@ msgid "Tags…"
 msgstr "タグ…"
 
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Tailor"
 msgstr "職務内容に適応する"
@@ -17601,7 +17563,6 @@ msgid "Undo resume change"
 msgstr "履歴書の変更を元に戻す"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "University of Porto"
 msgstr "University of Porto"
@@ -18238,10 +18199,6 @@ msgstr "変更前: {was}"
 msgid "Was: {0}"
 msgstr "変更前: {0}"
 
-#: src/features/homepage/hero.tsx
-msgid "WCAG 2.1 AA"
-msgstr "WCAG 2.1 AA"
-
 #. Password reset email. appName: Reactive Resume
 #: src/features/auth/email-text.ts
 msgid "We received a request to reset your {appName} password."
@@ -18675,6 +18632,7 @@ msgstr "{0}に確認したいこと"
 #. Homepage scene title, one word followed by a full stop
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/write.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
 #: src/routes/builder/$resumeId/-components/editor-shell.tsx

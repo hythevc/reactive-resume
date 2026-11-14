@@ -1,107 +1,112 @@
-import { ArrowRight, FileText, Linkedin, Camera, Compass, Zap, Mail } from "lucide-react";
+import type { Metadata } from "next";
+import { ArrowRight, FileText, Hand, NotebookPen } from "lucide-react";
 import Link from "next/link";
+import { MarketingLink, MarketingShell } from "@/components/marketing/shell";
+
+export const metadata: Metadata = {
+	title: "About — A more thoughtful job search",
+	description:
+		"Why CareerOS brings your career facts, documents and next steps together, with clear control over what you share.",
+};
+
 export default function AboutPage() {
 	return (
-		<div className="marketing-page">
-			<header className="marketing-nav">
-				<Link href="/" className="brand">
-					<span className="brand-mark">C</span>CareerOS
-				</Link>
-				<nav>
-					<a href="#workspace">The workspace</a>
-					<a href="/#plans">Plans</a>
-					<Link href="/" className="button primary">
-						Open demo <ArrowRight size={16} />
-					</Link>
-				</nav>
-			</header>
-			<main>
-				<section className="marketing-hero">
+		<MarketingShell>
+			<section className="m-container m-page-hero m-about-hero">
+				<div>
+					<p className="m-section-label">About CareerOS</p>
 					<h1>
-						One career profile.
+						A clearer desk for
 						<br />
-						<em>Every next step.</em>
+						your next chapter.
 					</h1>
-					<p>
-						Make your experience count. Build your resume, sharpen your profile, and bring your job search together in
-						one thoughtful workspace.
+					<p className="m-lead">
+						A job search asks you to tell your story in a dozen different places. CareerOS brings the preparation back
+						to one thoughtful workspace.
 					</p>
-					<Link href="/" className="button primary">
-						Find your next chapter <ArrowRight size={18} />
-					</Link>
-					<small>Explore the local demo. No account or payment required.</small>
-					<div className="marketing-paper">
-						<img src="/resume-sheets.png" alt="CareerOS resume templates" />
-					</div>
-				</section>
-				<section className="marketing-workflows" id="workspace">
+					<MarketingLink href="/app">Explore the workspace</MarketingLink>
+				</div>
+				<div className="m-about-note">
+					<NotebookPen size={36} strokeWidth={1.3} aria-hidden="true" />
 					<h2>
-						A little less scattered.
-						<br />A lot more you.
+						Good preparation starts
+						<br />
+						with your own story.
+					</h2>
+					<p>Your experience is the source. Your documents are editable. Your next step stays in your hands.</p>
+				</div>
+			</section>
+			<section className="m-container m-about-principles">
+				<div>
+					<span className="m-section-label">What guides the workspace</span>
+					<h2>
+						Clarity before
+						<br />
+						more activity.
+					</h2>
+				</div>
+				<div>
+					<article>
+						<FileText size={23} aria-hidden="true" />
+						<div>
+							<h3>One set of facts, room for different stories.</h3>
+							<p>
+								Keep a shared career profile and separate resume versions. Tailor the emphasis for a role without
+								inventing experience.
+							</p>
+						</div>
+					</article>
+					<article>
+						<NotebookPen size={23} aria-hidden="true" />
+						<div>
+							<h3>Preparation you can inspect.</h3>
+							<p>
+								See the text behind a check, the reason behind a saved role and the exact documents behind an imported
+								review.
+							</p>
+						</div>
+					</article>
+					<article>
+						<Hand size={23} aria-hidden="true" />
+						<div>
+							<h3>Your judgment has the final word.</h3>
+							<p>
+								Choose your edits, review what you share and record your own application stages. No automatic
+								applications or recruiter messages.
+							</p>
+						</div>
+					</article>
+				</div>
+			</section>
+			<section className="m-about-foundation">
+				<div className="m-container">
+					<h2>
+						An open foundation.
+						<br />A practical starting point.
 					</h2>
 					<div>
-						{[
-							{
-								icon: Compass,
-								title: "Find work that feels like you.",
-								text: "Capture what matters next, review one saved role at a time, and choose what goes into your introduction.",
-							},
-							{
-								icon: FileText,
-								title: "Tell your story.",
-								text: "Create and tailor resumes with a live preview. Print a PDF or bring your Reactive Resume JSON.",
-							},
-							{
-								icon: Linkedin,
-								title: "Make a stronger introduction.",
-								text: "Review your LinkedIn text with an explained writing checklist and edit your next draft.",
-							},
-							{
-								icon: Camera,
-								title: "Look like your next chapter.",
-								text: "Crop and polish your own profile photo. Connected AI headshots are planned.",
-							},
-							{
-								icon: Zap,
-								title: "Give your search direction.",
-								text: "Track roles, see skill matches, and prepare an application review queue.",
-							},
-							{
-								icon: Mail,
-								title: "Start the right conversation.",
-								text: "Keep recruiter contacts, write personal outreach, and compose messages in your email app.",
-							},
-						].map((f) => (
-							<article key={f.title}>
-								<f.icon size={24} />
-								<h3>{f.title}</h3>
-								<p>{f.text}</p>
-							</article>
-						))}
+						<p>
+							CareerOS is a standalone career workspace within Reactive Resume, built from the Next.js SaaS Starter. The
+							local tools work without an account. An optional account connection is separate and depends on a
+							configured Reactive Resume service.
+						</p>
+						<p>
+							The current product focuses on local preparation. Live job feeds, connected AI generation, payment and
+							message delivery are not active.
+						</p>
+						<div className="m-inline-links">
+							<Link href="https://github.com/hythevc/reactive-resume">
+								Explore the repository
+								<ArrowRight size={16} aria-hidden="true" />
+							</Link>
+							<Link href="/how-it-works">
+								How it works
+								<ArrowRight size={16} aria-hidden="true" />
+							</Link>
+						</div>
 					</div>
-				</section>
-				<section className="marketing-end">
-					<h2>Your next move deserves a clear starting point.</h2>
-					<p>Start with the tools that work locally today.</p>
-					<Link href="/" className="button lime">
-						Open your workspace <ArrowRight size={18} />
-					</Link>
-					<p className="small-print">
-						Demo data stays in your browser. AI generation, cloud accounts, payments, email delivery, and automatic job
-						submission require future service connections.
-					</p>
-				</section>
-			</main>
-			<footer>
-				<Link href="/" className="brand">
-					CareerOS
-				</Link>
-				<span>Built on Reactive Resume and the Next.js SaaS Starter.</span>
-				<Link href="/privacy">Your information</Link>
-				<Link href="/">
-					Open workspace <ArrowRight size={15} />
-				</Link>
-			</footer>
-		</div>
+				</div>
+			</section>
+		</MarketingShell>
 	);
 }

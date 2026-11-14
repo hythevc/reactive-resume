@@ -227,7 +227,7 @@ export function DocumentCard({
 						style={introIndex === undefined ? undefined : stagger(introIndex)}
 						className={cn(
 							// content-start: a neighbour's extra application line doesn't push this card's title down.
-							"group/card grid content-start gap-2",
+							"group/card grid content-start gap-3 rounded-lg border border-line bg-surface p-3 shadow-e1",
 							introIndex !== undefined && ENTER_CLASS,
 							isNew && "animate-arrive",
 							document.trashedAt && "opacity-70",
@@ -294,7 +294,7 @@ export function DocumentCard({
 							<RenameInput document={document} onDone={() => setRenaming(false)} />
 						) : (
 							// Right under the page's h1: an h2, so heading levels don't skip.
-							<h2 dir="auto" className="truncate text-sm leading-5 font-semibold">
+							<h2 dir="auto" className="line-clamp-2 text-[15px] leading-5 font-semibold">
 								{document.name}
 							</h2>
 						)}

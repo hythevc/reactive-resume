@@ -67,15 +67,19 @@ const router = {
 	},
 	back() {},
 };
+const tokens = harness.load("../src/ui/tokens.ts", {
+	"react-native": { Easing: { bezier: () => null }, Platform: { OS: "android" } },
+});
 const theme = {
 	space: { s0: 2, s1: 4, s2: 8, s3: 12, s4: 16, s12: 48 },
-	size: { sheetShare: 440 },
-	radius: { rLg: 4 },
+	size: tokens.size,
+	radius: tokens.radius,
 	motion: { d2: 200 },
 	colors: { bg: "#fff", ink: "#111", ink3: "#777", line: "#ddd" },
 };
 const ui = Object.fromEntries(
 	[
+		"Avatar",
 		"Banner",
 		"Button",
 		"Card",
@@ -1151,7 +1155,9 @@ const listLogic = load("features/applications/list.ts", {
 	"./stages": { LIST_ORDER: ["interview", "offer", "screening", "applied", "saved", "closed"] },
 	"./lanes": lanes,
 });
+const { ApplicationCard: ApplicationCardView } = load("features/applications/application-card.tsx");
 const { ApplicationsListScreen } = load("features/applications/list-screen.tsx", {
+	"./application-card": { ApplicationCard: "ApplicationCard" },
 	"@lingui/react/macro": { useLingui: () => ({ t: tag, i18n: { number: i18n.number.bind(i18n), locale: "en" } }) },
 	"./add-sheet": { AddApplicationSheet: "AddApplicationSheet" },
 	"./error": { applicationError: String },
@@ -1220,23 +1226,45 @@ const job = {
 	followUpAt: null,
 	followUpNote: null,
 };
-applications = [{ ...job, status: "saved" }];
+applications = [
+	{ ...job, status: "saved", location: "Example city", tags: ["design", "remote", "product"], resumeId: "resume-1" },
+];
 let listTree = listView();
 let sectionList = nodes(listTree).find((node) => node.type === "SectionList");
-nodes(sectionList.props.renderItem({ item: applications[0] }))
-	.find((node) => node.props.icon === "dots-three")
-	.props.onPress();
-const listRow = () => {
+const applicationCard = nodes(sectionList.props.renderItem({ item: applications[0] })).find(
+	(node) => node.type === "ApplicationCard",
+);
+const applicationCardTree = ApplicationCardView(applicationCard.props);
+const applicationCardAction = nodes(applicationCardTree).find((node) => node.type === "Pressable");
+for (const fact of ["Example", "Engineer", "Example city", "design, remote", "+1", "Resume"])
+	assert.ok(
+		applicationCardAction.props.accessibilityLabel.includes(fact),
+		`Application card retains accessible ${fact}`,
+	);
+assert.ok(nodes(applicationCardTree).some((node) => node.props.children?.includes("Review details")));
+applicationCard.props.onPress();
+assert.equal(
+	calls.pop(),
+	routes.applicationDetails("closed-job"),
+	"Card action keeps the real application destination",
+);
+applicationCard.props.onActions();
+const listCard = () => {
 	listTree = listView();
 	sectionList = nodes(listTree).find((node) => node.type === "SectionList");
-	return nodes(sectionList.props.renderItem({ item: applications[0] })).find((node) => node.type === "ListRow");
+	return nodes(sectionList.props.renderItem({ item: applications[0] })).find((node) => node.type === "ApplicationCard");
 };
-assert.equal(listRow().props.leading, "check-square", "ellipsis enters explicit bulk selection");
+assert.equal(listCard().props.selected, true, "ellipsis enters explicit bulk selection");
+assert.equal(listCard().props.selecting, true);
+assert.ok(
+	nodes(ApplicationCardView(listCard().props)).some((node) => node.props.children?.includes("Toggle selection")),
+	"Selection mode describes the actual card action",
+);
 applicationNeedsYou = true;
-listRow();
+listCard();
 assert.equal(sectionList.props.sections.length, 0, "Needs you hides the selected Saved application");
 applicationNeedsYou = false;
-assert.equal(listRow().props.leading, "square", "Clearing Needs you never restores a hidden bulk selection");
+assert.equal(listCard().props.selected, false, "Clearing Needs you never restores a hidden bulk selection");
 console.log("PASS Applications filters prune hidden rows from bulk selection");
 
 // ApplicationsViewFrame owns Save job in place on every view; setParams keeps the current route and clears on close.
@@ -1474,7 +1502,9 @@ const calendarSchedule = load("features/reminders/schedule.ts", { "@reactive-res
 const nativeCalendar = load("features/applications-board/calendar.ts", {
 	"../reminders/schedule.ts": calendarSchedule,
 });
-const calendarTokens = load("ui/tokens.ts", { "react-native": { Easing: { bezier: () => null } } });
+const calendarTokens = load("ui/tokens.ts", {
+	"react-native": { Easing: { bezier: () => null }, Platform: { OS: "ios" } },
+});
 let calendarNow = new Date("2026-10-31T22:59:30Z");
 const calendarRows = [
 	{

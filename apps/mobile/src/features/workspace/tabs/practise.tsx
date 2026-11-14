@@ -559,7 +559,7 @@ function Session({
 									name={recordingNow ? "stop" : "microphone"}
 									filled={recordingNow}
 									size={24}
-									color={colors.onAccent}
+									color={colors.onDanger}
 								/>
 							</Pressable>
 							<View style={{ flex: 1, gap: space.s0 }}>

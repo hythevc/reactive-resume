@@ -14,7 +14,7 @@ import {
 	Users,
 	X,
 } from "lucide-react";
-import { useMemo, useState, type FormEvent } from "react";
+import { useMemo, useRef, useState, type FormEvent } from "react";
 import { outboundBlockReason, outreachReviewKey } from "@/lib/workflow-safety";
 import { buildOutreach, CONTACT_CONTEXT_MAX_LENGTH, CONTACT_SOURCE_MAX_LENGTH, type Contact } from "@/lib/workspace";
 import { useWorkspace } from "@/lib/workspace-context";
@@ -54,6 +54,17 @@ export function OutreachView() {
 	const [deleteId, setDeleteId] = useState<string | null>(null);
 	const [refreshId, setRefreshId] = useState<string | null>(null);
 	const [reviewedFor, setReviewedFor] = useState<string | null>(null);
+	const draftRef = useRef<HTMLElement>(null);
+	function selectContact(id: string) {
+		setSelectedId(id);
+		requestAnimationFrame(() => {
+			draftRef.current?.focus({ preventScroll: true });
+			draftRef.current?.scrollIntoView({
+				block: "start",
+				behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+			});
+		});
+	}
 	const filtered = useMemo(() => {
 		const query = search.trim().toLowerCase();
 		return data.contacts.filter(
@@ -381,11 +392,11 @@ export function OutreachView() {
 							</thead>
 							<tbody>
 								{filtered.map((contact) => (
-									<tr key={contact.id} style={selected?.id === contact.id ? { background: "#f3f7ed" } : undefined}>
+									<tr key={contact.id} style={selected?.id === contact.id ? { background: "var(--lime)" } : undefined}>
 										<td>
 											<button
 												type="button"
-												onClick={() => setSelectedId(contact.id)}
+												onClick={() => selectContact(contact.id)}
 												style={{
 													background: "none",
 													border: 0,
@@ -393,7 +404,7 @@ export function OutreachView() {
 													textAlign: "left",
 													cursor: "pointer",
 													font: "inherit",
-													color: "#173f35",
+													color: "var(--green-dark)",
 												}}
 											>
 												<strong>{contact.name}</strong>
@@ -416,7 +427,7 @@ export function OutreachView() {
 											<button
 												className="button secondary small"
 												type="button"
-												onClick={() => setSelectedId(contact.id)}
+												onClick={() => selectContact(contact.id)}
 												aria-label={`Open draft for ${contact.name}`}
 											>
 												<ArrowUpRight size={15} />
@@ -438,14 +449,14 @@ export function OutreachView() {
 							</p>
 						</div>
 					) : null}
-					<p className="muted" style={{ fontSize: 11, lineHeight: 1.7, marginTop: 20 }}>
+					<p className="muted" style={{ fontSize: 12, lineHeight: 1.7, marginTop: 20 }}>
 						Your network is a personal tracker. Contact stages are recorded by you, and messages are never sent
 						automatically.
 					</p>
 				</section>
 
 				{selected ? (
-					<section className="panel" aria-label="Outreach draft">
+					<section ref={draftRef} tabIndex={-1} className="panel outreach-draft-panel" aria-label="Outreach draft">
 						<div className="section-title">
 							<div>
 								<p className="muted" style={{ fontSize: 12, marginBottom: 6 }}>
@@ -537,7 +548,7 @@ export function OutreachView() {
 								style={{ lineHeight: 1.8 }}
 							/>
 						</label>
-						<p className="muted" style={{ fontSize: 11, marginTop: 8 }}>
+						<p className="muted" style={{ fontSize: 12, marginTop: 8 }}>
 							{persistenceStatus === "saved"
 								? "Saved locally"
 								: persistenceStatus === "saving"
@@ -623,7 +634,7 @@ export function OutreachView() {
 						) : null}
 					</section>
 				) : (
-					<section className="panel empty" style={{ background: "#edf5d5" }}>
+					<section className="panel empty" style={{ background: "var(--lime)" }}>
 						<Mail size={30} />
 						<h2>A little context goes a long way.</h2>
 						<p className="muted">Add a contact to draft a thoughtful introduction using your career profile.</p>

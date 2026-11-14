@@ -1,5 +1,5 @@
 ---
-version: 6.0.0
+version: 7.0.0
 name: Reactive Resume · Desk & Paper
 description: A warm, quiet interface around bright paper. Moss green marks primary actions, selection, and progress. Light and dark themes keep document paper white.
 colors:
@@ -8,16 +8,18 @@ colors:
     surface: "#FEFDFC"
     raised: "#FFFFFF"
     sunken: "#F0EFEB"
-    line: "#DFDEDA"
-    line-2: "#C5C4BE"
-    ink: "#1C1B15"
-    ink-2: "#4F4D47"
-    ink-3: "#6D6C65"
-    accent: "#337344"
-    accent-hover: "#206133"
-    on-accent: "#F7FEF8"
-    accent-soft: "#DCF2DF"
-    accent-text: "#195C2E"
+    line: "#DCE2DA"
+    line-2: "#BECBBF"
+    control-border: "#7B8B7D"
+    ink: "#202B25"
+    ink-2: "#4F5A53"
+    ink-3: "#626B65"
+    accent: "#286343"
+    accent-hover: "#1F5036"
+    on-accent: "#FFFFFF"
+    accent-soft: "#E7EFE2"
+    accent-text: "#1B4D34"
+    on-danger: "#FFFFFF"
     danger: "#BA3630"
     danger-soft: "#FFE7E4"
     danger-text: "#A92321"
@@ -28,20 +30,22 @@ colors:
     info-soft: "#E0F1FF"
     info-text: "#1D5B92"
   dark:
-    bg: "#100F0C"
-    surface: "#171613"
-    raised: "#1F1E1A"
-    sunken: "#0B0A08"
-    line: "#2C2B27"
-    line-2: "#494843"
-    ink: "#EFEEEB"
-    ink-2: "#BCBAB5"
-    ink-3: "#979590"
-    accent: "#6FC082"
-    accent-hover: "#83D494"
-    on-accent: "#07150A"
-    accent-soft: "#1A3520"
-    accent-text: "#8FD89E"
+    bg: "#101713"
+    surface: "#17201B"
+    raised: "#202B24"
+    sunken: "#0D120F"
+    line: "#334639"
+    line-2: "#59705E"
+    control-border: "#6E8372"
+    ink: "#EEF5EE"
+    ink-2: "#C2CFC3"
+    ink-3: "#9CAC9D"
+    accent: "#91CCA0"
+    accent-hover: "#A4D9B0"
+    on-accent: "#102315"
+    accent-soft: "#223C2A"
+    accent-text: "#A6DDB1"
+    on-danger: "#07150A"
     danger: "#D9544B"
     danger-soft: "#47211D"
     danger-text: "#FDA297"
@@ -61,7 +65,7 @@ colors:
     closed: "#C67067"
 typography:
   display: { fontFamily: Instrument Serif, fontSize: 44px, lineHeight: 48px, fontWeight: 400, letterSpacing: -0.01em }
-  title: { fontFamily: Instrument Serif, fontSize: 30px, lineHeight: 36px, fontWeight: 400 }
+  title: { fontFamily: Instrument Serif, fontSize: "34px mobile / 44px desktop", lineHeight: 1.1, fontWeight: 400 }
   sheet-title: { fontFamily: Instrument Serif, fontSize: 22px, lineHeight: 28px, fontWeight: 400 }
   heading: { fontFamily: Figtree, fontSize: 20px, lineHeight: 28px, fontWeight: 600 }
   section-heading: { fontFamily: Figtree, fontSize: 17px, lineHeight: 24px, fontWeight: 600 }
@@ -73,14 +77,14 @@ typography:
   caption: { fontFamily: Figtree, fontSize: 12px, lineHeight: 16px, fontWeight: 500 }
   mono: { fontFamily: Geist Mono, fontSize: 12px, lineHeight: 16px, fontWeight: 500 }
 rounded:
-  xs: 2px
-  sm: 2px
-  md: 3px
-  lg: 4px
-  xl: 4px
-  2xl: 4px
-  3xl: 4px
-  4xl: 4px
+  xs: 4px
+  sm: 4px
+  md: 8px
+  lg: 12px
+  xl: 16px
+  2xl: 16px
+  3xl: 20px
+  4xl: 24px
 spacing: [4, 8, 12, 16, 24, 32, 48, 64]
 motion:
   quick: 120ms
@@ -139,7 +143,7 @@ Resume templates retain their Pokémon names, fonts, and palettes. App typograph
 
 ## Tokens
 
-`packages/ui/src/styles/globals.css` defines light tokens on `:root` and dark overrides on `.dark`. OKLCH values are authoritative; the front matter lists approximate sRGB equivalents. Tailwind exposes semantic utilities such as `bg-bg`, `bg-surface`, `border-line`, `text-ink`, and `bg-accent`.
+`packages/ui/src/styles/globals.css` defines light tokens on `:root` and dark overrides on `.dark`. The shared foundation uses the exact sRGB values in the front matter; scene and status colors may use OKLCH. Tailwind exposes semantic utilities such as `bg-bg`, `bg-surface`, `border-line`, `text-ink`, and `bg-accent`.
 
 - **Surfaces:** `bg` for the app desk; `surface` for panels and cards; `raised` for menus, dialogs, and inputs; `sunken` for wells, tracks, and the page canvas.
 - **Text:** `ink` for primary text, `ink-2` for secondary text, and `ink-3` for metadata and placeholders. Use no lighter text token, and check contrast on tinted backgrounds.
@@ -176,10 +180,10 @@ Icons inside resumes use Phosphor names stored in resume data, drawn by the Phos
 ## Space, shape, and elevation
 
 - **Spacing:** use the 4px scale in the front matter. Cards typically have 16px padding, panels 16–24px, mobile pages 16px margins, and desktop pages 32–40px margins.
-- **Radius:** 2px (`rounded-sm`) for chips, tags, avatars, switches and small marks; 3px (`rounded-md`) for inputs and controls; 4px (`rounded-lg` and up) for cards, menus, dialogs and sheets. Nothing is rounder than 4px; no pills. Only data-viz rings, radio buttons, spinners and landing illustrations stay circular.
+- **Radius:** 4px (`rounded-sm`) for small marks; 8px (`rounded-md`) for controls; 12px (`rounded-lg`) for surfaces and menus; 16px (`rounded-xl`) for dialogs. Native bottom sheets use 20px. Keep real document paper distinct from the surrounding app surface.
 - **Elevation:** `shadow-e1` for cards; `shadow-e2` for menus and popovers; `shadow-e3` for dialogs, sheets, and toasts; `shadow-page` for editor paper.
-- **Controls:** button heights are 28px (`sm`), 36px (`default`), and 44px (`lg`). Icon button sizes range from 28px to 44px. Inputs grow from 36px to 44px on touch devices; `touch-target` expands smaller controls' hit areas to at least 44×44px.
-- **Layout variables:** `--editor-bar: 56px`, `--editor-panel: 400px`, `--app-sidebar: 240px`, `--sheet-share: 440px`, `--sheet-detail: 480px`, and `--assistant: 400px`.
+- **Controls:** button heights are 32px (`sm`), 40px (`default`), and 44px (`lg`). Icon button sizes range from 28px to 44px. Inputs grow from 40px to 44px on touch devices; `touch-target` expands smaller controls' hit areas to at least 44×44px.
+- **Layout variables:** `--editor-bar: 56px`, `--editor-panel: 400px`, `--app-sidebar: 256px`, `--sheet-share: 440px`, `--sheet-detail: 480px`, and `--assistant: 400px`.
 
 ## Motion
 
@@ -204,10 +208,10 @@ The homepage has separate motion rules below.
 Generic primitives live in `packages/ui/src/components`, using Base UI and cmdk for the command palette. Feature-specific UI belongs in its owning `apps/web` feature.
 
 - **Buttons:** `primary`, `secondary`, `ghost`, `danger`, and `link`. `loading` adds a spinner, sets `aria-busy`, and blocks activation. Use a progress label such as “Preparing…”.
-- **Inputs:** `raised` background and `line-2` border; focus adds an accent border and a 3px `accent-soft` ring. Invalid fields use danger styling. Show errors after blur or submission, with an icon and a specific remedy.
-- **Switches:** prefer `SwitchRow` so the label is part of the target. Checkboxes are 18px with a 3px radius; radios are 18px with an 8px accent dot.
+- **Inputs:** `raised` background and `control-border` border; focus adds an accent border and a 3px `accent-soft` ring. Invalid fields use danger styling. Show errors after blur or submission, with an icon and a specific remedy.
+- **Switches:** prefer `SwitchRow` so the label is part of the target. Checkboxes are 18px with a 4px radius; radios are 18px with an 8px accent dot.
 - **Segments and tabs:** use `SegmentedControl` for 2–4 options in a radio group. Use `Tabs` to switch panels; set `TabsList variant="line"` for underline tabs.
-- **Menus:** 4px radius and 36px items. Size popups for their content and trigger; put destructive items last, after a separator.
+- **Menus:** 12px radius and 36px items. Size popups for their content and trigger; put destructive items last, after a separator.
 - **Layers:** menus and popovers provide lightweight choices; sheets hold tasks beside the document and use the bottom variant on mobile; dialogs hold decisions. Use `AlertDialog` for destructive confirmation and name what cancel keeps.
 - **Creating things:** a short create form (up to about six fields, such as New document or Save a job) is a dialog. New document uses a bottom sheet on phones, matching the native creation form; its presentation stays fixed while open so a resize cannot discard work. A long form, or one that needs the page behind it, is a sheet (New schedule, Add offer on Offers). A form tied to one item already on screen opens in place beside it (Add fact, Add offer in a job's Offer stage).
 - **Toasts:** one visible at a time, bottom center, with `bg-ink` and `text-bg`. The default timeout is six seconds; `timeout: 0` keeps a toast visible. Undo is an optional underlined action. Pressing an action closes its toast after the action's handler runs, and a second press while it leaves does nothing.
@@ -239,11 +243,13 @@ The shared `theme` cookie stores `light`, `dark`, or `system` (the default). Sys
 
 ## Marketing site
 
+The opening hero is a static split composition: the real translated promise and account-aware CTA sit beside the rendered Classic sample resume. It is present in server prerender, readable without scroll animation, and stacks on phones. The sample is illustrative rather than a customer result. Write, Design, and Tailor links enter the existing interactive story.
+
 The public homepage in `apps/web/src/features/homepage` shares app colors and themes but has its own typography, illustrations, and motion. `landing.css` defines its fonts, graphite color, paper shadows, and ambient animations. Other illustration colors in the front matter are scene values, not global app tokens.
 
 ### Brand and type
 
-- **Header:** a 30px logomark from `apps/web/public/icon/{light,dark}.svg`. Keep “Reactive Resume” as visually hidden text inside the home link.
+- **Header:** a 30px logomark from `apps/web/public/icon/{light,dark}.svg`. Show the Reactive Resume wordmark beside it from the small breakpoint; retain the name for assistive technology at every width.
 - **Footer:** a 140px logo from `apps/web/public/logo/{light,dark}.svg` above the hero's promise (its two highlighted phrases in `accent-text`), the link columns, then a line of community, MIT license and version copy.
 - **Footer desk:** two drawings of the same writing desk in front of an open window, day (`apps/web/public/illustrations/footer-desk-light.webp`, moss and charcoal on white) and night (`footer-desk-dark.webp`, silver and amber on black). The light one multiplies and the dark one lightens into the page, so their white or black wall vanishes and the desk seems to stand on the footer; their far edges fade out. As the desk scrolls into view it paints itself in from the window down, just ahead of the fold, while it rises and settles from a 4% zoom; it completes exactly when the page ends (`--dp`, written by `scroll.ts`; 1 under reduced motion). In the light theme a soft morning glow rises behind the window with it. Its objects are links back into the story, each showing its scene number and name on hover or focus: the resume to Write, the glasses to Check, the letters to Share, the calendar to Prepare, the window to Remember. The lamp switches the theme, like the header's cord. Below 700px the desk crops to its middle and the hotspots hide (the columns carry the same links). Hotspot boxes are percentages of the drawing (`getDeskSpots` in `footer.tsx`): re-measure them if the drawing changes. The wall must be pure white in the day drawing and pure black in the night one: multiply and lighten only make those disappear, and any tint shows as a band. Flatten with `magick in.png -background white -alpha remove -alpha off flat.png` (black for the night one); if the wall came back tinted, lift it to white per channel (e.g. `-channel R -level 0,97% -channel G -level 0,96.6% -channel B -level 0,95% +channel` for a #F8F7F3 wall), then `cwebp -q 74 -m 6 -sharp_yuv flat.png -o out.webp`. The 3200px drawing also ships at 1600px and 2400px (`footer-desk-<theme>-1600.webp`, `-2400.webp`; `magick -filter Lanczos -resize 1600x`, same `cwebp` settings), listed in the images' `srcSet`.
 - **Instrument Serif (`font-anybody`):** hero and closing headlines, selected scene titles, and large numerals. `font-anybody` is an alias of `font-display`.
@@ -253,7 +259,7 @@ The public homepage in `apps/web/src/features/homepage` shares app colors and th
 
 ### Controls
 
-- Repeat the same primary CTA, “Build your resume,” in the header, hero, and closing section. Buttons have 2px corners, in Figtree 600, at 38px, 54px, and 56px respectively.
+- Repeat the same primary CTA, “Build your resume,” in the header, hero, and closing section. Buttons have 8px corners and Figtree 600 labels: at least 44px in the header and 48px in the hero and closing section.
 - Scene navigation appears from 1240px. Sentence-case labels use `ink` when active and `ink-3` when inactive; a 6px accent dot marks the active scene. The Share night scene uses its own light inks.
 - The GitHub link appears from 1024px, with the GitHub mark and, when available, a filled gold star and live compact count. Format counts with the locale's `Intl.NumberFormat`; include the full count in the accessible name. Failed counts leave the GitHub link available without a star or number.
 - Community totals need at least two eligible rows. Hide failed totals and values below 100; reserve loading placeholders and announcements for pending queries.
@@ -261,17 +267,17 @@ The public homepage in `apps/web/src/features/homepage` shares app colors and th
 
 ### Motion
 
-Pinned scenes contain a sticky `100svh` stage. Scroll progress is `p = clamp(0, −top / max(1, height − viewportHeight), 1)`; `scroll.ts` writes it to `--p` through one animation-frame-throttled scroll listener. CSS derives continuous motion from progress; React receives only coarse scene and step changes.
+The hero flows with its content and does not pin. The later pinned scenes contain a sticky `100svh` stage. Scroll progress is `p = clamp(0, −top / max(1, height − viewportHeight), 1)`; `scroll.ts` writes it to `--p` through one animation-frame-throttled scroll listener. CSS derives continuous motion from progress; React receives only coarse scene and step changes.
 
-| Scene   | Below 900px | From 900px |
-| ------- | ----------- | ---------- |
-| Hero    | 170vh       | 220vh      |
-| Write   | 280vh       | 330vh      |
-| Design  | 280vh       | 320vh      |
-| Check   | 245vh       | 295vh      |
-| Tailor  | 260vh       | 300vh      |
-| Share   | 240vh       | 300vh      |
-| Prepare | 310vh       | 330vh      |
+| Scene   | Below 900px    | From 900px                  |
+| ------- | -------------- | --------------------------- |
+| Hero    | Content height | At least min(900px, 100svh) |
+| Write   | 280vh          | 330vh                       |
+| Design  | 280vh          | 320vh                       |
+| Check   | 245vh          | 295vh                       |
+| Tailor  | 260vh          | 300vh                       |
+| Share   | 240vh          | 300vh                       |
+| Prepare | 310vh          | 330vh                       |
 
 Light mode combines breathing window light (16 seconds), a drifting mullion shadow (90 seconds), and 18 dust motes. Dark mode adds a neutral 620px cursor glow at 6% opacity. These are decorative and must not obscure text.
 
@@ -317,6 +323,6 @@ Reduced motion fixes scenes at their end state and collapses pinned sections to 
 - **Do** keep text readable and pair color signals with words.
 - **Do** provide empty, loading, error, and success states; keep loading placeholders at their final size.
 - **Don't** introduce arbitrary app colors or palette classes such as `amber-600`; use semantic tokens.
-- **Don't** use Instrument Serif for small functional app text or at bold weights, set labels in all caps, or round anything past 4px. Homepage prose follows its separate type rules.
+- **Don't** use Instrument Serif for small functional app text or at bold weights, set labels in all caps, or use arbitrary corner radii. Homepage prose follows its separate type rules.
 - **Don't** confirm reversible actions; offer undo.
 - **Don't** omit `data-slot` on UI primitives; styles and tests rely on it.

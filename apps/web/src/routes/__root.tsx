@@ -72,6 +72,7 @@ function RootComponent() {
 	const { theme, locale, queryClient, session } = Route.useRouteContext();
 	const dir = isRTL(locale) ? "rtl" : "ltr";
 	const onMarketingPage = useMatch({ from: "/_home", shouldThrow: false }) !== undefined;
+	const onAuthPage = useMatch({ from: "/auth", shouldThrow: false }) !== undefined;
 
 	// WebMCP: browser agents can list and open the signed-in user's documents from any page.
 	useDocumentWebMcpTools(session !== null);
@@ -102,7 +103,7 @@ function RootComponent() {
 
 													<DialogManager />
 													<CommandPalette />
-													<KeyboardShortcuts showTrigger={!onMarketingPage} />
+													<KeyboardShortcuts showTrigger={!onMarketingPage && !onAuthPage} />
 													<LocalizedToaster />
 
 													{import.meta.env.DEV && <BreakpointIndicator />}

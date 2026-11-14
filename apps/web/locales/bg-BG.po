@@ -1164,10 +1164,6 @@ msgstr "/ година"
 msgid "+{extra} more"
 msgstr "+{extra} повече"
 
-#: src/features/homepage/hero.tsx
-msgid "+13 pts activation"
-msgstr "+13 точки активиране"
-
 #: src/features/resume/editor/check/check-panel.tsx
 msgid "<0>Nothing to fix.</0> Every check passes."
 msgstr "<0>Нищо за коригиране.</0> Всяка проверка минава."
@@ -1243,10 +1239,6 @@ msgstr "3 подкрепени · 1 частично · 1 липсващо"
 #: src/features/settings/ai/api-keys.tsx
 msgid "30 days"
 msgstr "30 дни"
-
-#: src/features/homepage/hero.tsx
-msgid "40% faster reviews"
-msgstr "40% по-бързи прегледи"
 
 #: src/features/homepage/faq.tsx
 msgid "9 short answers to what people ask before they start. Anything else, ask on <0>Discord</0>."
@@ -1520,7 +1512,6 @@ msgid "Access your account through the API, including reading, changing and dele
 msgstr "Достъп до вашия акаунт чрез API, включително четене, промяна и изтриване на вашите документи и кандидатури за работа."
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Accessibility"
 msgstr "Достъпност"
@@ -2926,7 +2917,6 @@ msgid "Azerbaijani"
 msgstr "Азербайджански"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "BA, Communication Design"
 msgstr "Бакалавърска степен, комуникационен дизайн"
@@ -3020,10 +3010,6 @@ msgstr "Банер"
 msgctxt "Entry header accent: a bar beside the header"
 msgid "Bar"
 msgstr "Странична лента"
-
-#: src/features/homepage/hero.tsx
-msgid "Barista, 2012"
-msgstr "Бариста, 2012 г"
 
 #. placeholder {0}: formatMoney(i18n.locale, offer.currency, offer.base ?? 0)
 #. placeholder {1}: periodLabel(offer.period)
@@ -5854,6 +5840,7 @@ msgstr "Описание на ролята {0}"
 
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-components/design-panel.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -5878,7 +5865,6 @@ msgid "Design system trade-offs"
 msgstr "Компромиси в дизайн системата"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Design systems"
 msgstr "Дизайн системи"
@@ -7034,10 +7020,6 @@ msgstr "Fieldnote"
 #: src/features/homepage/tailor.tsx
 msgid "Fieldnote · Remote, EU"
 msgstr "Fieldnote · Дистанционно, EU"
-
-#: src/features/homepage/hero.tsx
-msgid "Figma"
-msgstr "Figma"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -8860,7 +8842,6 @@ msgid "Lead across functions"
 msgstr "Ръководене между отделите"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 #: src/features/homepage/write.tsx
 msgid "Lead Product Designer"
@@ -9232,10 +9213,6 @@ msgstr "Връзки"
 #: src/features/settings/account/profile.tsx
 msgid "Links you've already shared keep working for 30 days, then stop. Share the new ones before then."
 msgstr "Връзките, които вече сте споделили, работят още 30 дни и спират. Споделете новите преди това."
-
-#: src/features/homepage/hero.tsx
-msgid "Lisbon"
-msgstr "Lisbon"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -11575,7 +11552,6 @@ msgid "paragraph {n}"
 msgstr "параграф {n}"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 msgid "Parcel & Co."
 msgstr "Parcel & Co."
 
@@ -12302,10 +12278,6 @@ msgstr "Лента за напредък"
 msgid "Projects"
 msgstr "Проекти"
 
-#: src/features/homepage/hero.tsx
-msgid "Promoted to lead, 2021"
-msgstr "Повишен до лидер, 2021 г"
-
 #: src/features/career/workspace/fit.tsx
 msgid "Propose a resume bullet"
 msgstr "Предложи точка за автобиографията"
@@ -12327,7 +12299,6 @@ msgid "Protect your resume with a password"
 msgstr "Защитете автобиографията си с парола"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Prototyping"
 msgstr "Прототипиране"
@@ -13854,6 +13825,7 @@ msgid "Same you. Less starting over."
 msgstr "Все вие. По-малко започване отначало."
 
 #: src/features/documents/use-start-document.ts
+#: src/features/homepage/hero.tsx
 msgid "Sample resume"
 msgstr "Примерна автобиография"
 
@@ -14830,10 +14802,6 @@ msgstr "Разработих <0>достъпни</0> процеси за пла�
 msgid "Shipped checkout flows that meet WCAG 2.1 AA."
 msgstr "Пуснах процеси за плащане, отговарящи на WCAG 2.1 AA."
 
-#: src/features/homepage/hero.tsx
-msgid "Shipped checkout for iOS"
-msgstr "Изпратено плащане за iOS"
-
 #: src/routes/builder/letter/-components/write-panel.tsx
 msgid "Short and direct. Fine if the posting asks for brevity."
 msgstr "Кратко и директно. Добре, ако обявата за работа изисква краткост."
@@ -15195,10 +15163,6 @@ msgstr "Ситуация, действие, резултат"
 msgid "Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown outcomes blank."
 msgstr "Ситуация, Задача, Действие, Резултат, Размисъл. Свържете всяка история с факти, които можете да подкрепите; оставете неизвестните резултати празни."
 
-#: src/features/homepage/hero.tsx
-msgid "Six product teams"
-msgstr "Шест продуктови екипа"
-
 #: src/features/resume/editor/write/picture-settings.tsx
 msgid "Size"
 msgstr "Размер"
@@ -15375,10 +15339,6 @@ msgstr "Испански"
 #: src/features/homepage/sheet.tsx
 msgid "Spanish (B2)"
 msgstr "испански (B2)"
-
-#: src/features/homepage/hero.tsx
-msgid "Spanish, B2"
-msgstr "Испански, B2"
 
 #: src/features/career/workspace/practise.tsx
 msgid "Speak"
@@ -15687,6 +15647,7 @@ msgid "Stories to bring"
 msgstr "Истории, които да разкажете"
 
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Story"
 msgstr "История"
 
@@ -15909,6 +15870,7 @@ msgid "Tags…"
 msgstr "етикети..."
 
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Tailor"
 msgstr "Адаптирайте се към длъжностната характеристика"
@@ -17601,7 +17563,6 @@ msgid "Undo resume change"
 msgstr "Отмяна на промяната на автобиографията"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "University of Porto"
 msgstr "University of Porto"
@@ -18238,10 +18199,6 @@ msgstr "беше {was}"
 msgid "Was: {0}"
 msgstr "Беше: {0}"
 
-#: src/features/homepage/hero.tsx
-msgid "WCAG 2.1 AA"
-msgstr "WCAG 2.1 AA"
-
 #. Password reset email. appName: Reactive Resume
 #: src/features/auth/email-text.ts
 msgid "We received a request to reset your {appName} password."
@@ -18675,6 +18632,7 @@ msgstr "Струва си да попитате {0}"
 #. Homepage scene title, one word followed by a full stop
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/write.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
 #: src/routes/builder/$resumeId/-components/editor-shell.tsx

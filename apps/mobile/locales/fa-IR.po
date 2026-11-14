@@ -1216,11 +1216,9 @@ msgstr "اقدام"
 msgid "Actions"
 msgstr "اقدامات"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "اقدامات برای {0} در {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "اقدامات مربوط به سمت {role} در {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "کلیدهای API"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "ظاهر"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "ظاهر انتخاب‌شده در این نشست اعمال می‌شود. برای حفظ این انتخاب، ذخیره‌سازی را دوباره امتحان کنید."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "یادداشت ها ذخیره نشد. متن شما هنوز اینجا
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "برچسب‌ها ذخیره نشد. دوباره امتحان کنید."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "موضوع ذخیره نشد. دوباره امتحان کنید."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -8938,6 +8936,7 @@ msgid "Open AI assistant"
 msgstr "باز کردن دستیار هوش مصنوعی"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10928,6 +10927,10 @@ msgstr "تلاش دوباره برای پاسخ‌های ذخیره‌شده"
 msgid "Retry saving"
 msgstr "دوباره سعی کنید ذخیره کنید"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "ذخیرهٔ تنظیم ظاهر را دوباره امتحان کنید"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "تلاش دوباره با {nativeSearchLabel}"
@@ -10968,6 +10971,10 @@ msgstr "بازبینی بررسی‌ها"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "علامت‌های بازبینی هنگام نخستین ارسال درخواست ثبت شدند."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "مشاهدهٔ جزئیات"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13926,6 +13933,7 @@ msgstr "امروز"
 msgid "Today, {hour}"
 msgstr "امروز، {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "انتخاب را تغییر دهید"

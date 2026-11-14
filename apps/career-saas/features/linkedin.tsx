@@ -150,40 +150,47 @@ export function LinkedInView() {
 					{message}
 				</div>
 			) : null}
-			<section className="panel linkedin-resume-source" aria-label="Start LinkedIn draft from a resume">
-				<div>
-					<h2>Start with your experience.</h2>
-					<p className="muted">
-						Reuse a saved resume’s text for your headline, About, experience, and skills. Loading replaces the current
-						draft.
-					</p>
-				</div>
-				<label className="field" htmlFor="linkedin-resume-source">
-					<span>Saved resume</span>
-					<select
-						className="input"
-						id="linkedin-resume-source"
-						value={sourceId}
-						onChange={(event) => setSourceId(event.target.value)}
-					>
-						<option value="">Choose a resume</option>
-						{data.resumes.map((resume) => (
-							<option key={resume.id} value={resume.id}>
-								{resume.title}
-							</option>
-						))}
-					</select>
-				</label>
-				<button className="button secondary" disabled={!source} onClick={loadResume}>
-					<FileText size={16} />
-					Load resume text
-				</button>
-				{previousDraft ? (
-					<button className="button secondary" onClick={undoReplacement}>
-						Undo resume replacement
+			<details className="context-disclosure">
+				<summary>
+					<FileText size={17} aria-hidden="true" />
+					<strong>Start from a saved resume</strong>
+					<span className="muted">Optional</span>
+				</summary>
+				<section className="panel linkedin-resume-source" aria-label="Start LinkedIn draft from a resume">
+					<div>
+						<h2>Start with your experience.</h2>
+						<p className="muted">
+							Reuse a saved resume’s text for your headline, About, experience, and skills. Loading replaces the current
+							draft.
+						</p>
+					</div>
+					<label className="field" htmlFor="linkedin-resume-source">
+						<span>Saved resume</span>
+						<select
+							className="input"
+							id="linkedin-resume-source"
+							value={sourceId}
+							onChange={(event) => setSourceId(event.target.value)}
+						>
+							<option value="">Choose a resume</option>
+							{data.resumes.map((resume) => (
+								<option key={resume.id} value={resume.id}>
+									{resume.title}
+								</option>
+							))}
+						</select>
+					</label>
+					<button className="button secondary" disabled={!source} onClick={loadResume}>
+						<FileText size={16} />
+						Load resume text
 					</button>
-				) : null}
-			</section>
+					{previousDraft ? (
+						<button className="button secondary" onClick={undoReplacement}>
+							Undo resume replacement
+						</button>
+					) : null}
+				</section>
+			</details>
 			<div className="audit-layout">
 				<section className="panel linkedin-editor">
 					<div className="panel-heading">

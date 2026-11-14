@@ -165,8 +165,8 @@
 }
 
 .dark .landing {
-	/* Paper under a dark room's light: a warm grey, not a glaring white. */
-	--paper: oklch(0.93 0.008 90);
+	/* A document stays white when the surrounding desk switches theme. */
+	--paper: #ffffff;
 	--paper-shadow: 0 1px 2px oklch(0 0 0 / 0.45), 0 30px 60px -28px oklch(0 0 0 / 0.65);
 	--graphite: oklch(0.9 0.01 95 / 0.18);
 }

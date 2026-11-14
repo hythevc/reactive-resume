@@ -8,13 +8,15 @@ export function AuthLayout() {
 		<div className="relative isolate min-h-svh">
 			<LandingBackground />
 
-			<div className="xs:px-0 relative mx-auto flex min-h-svh w-full max-w-sm flex-col justify-center gap-y-6 px-4 py-8">
-				<Link to="/" className="mb-3 self-center rounded-sm p-1 transition-opacity hover:opacity-80">
+			<div className="relative mx-auto flex min-h-svh w-full max-w-[460px] flex-col justify-center gap-y-7 px-4 py-10">
+				<Link to="/" className="self-center rounded-md p-1 transition-opacity hover:opacity-80">
 					{/* The visible image's alt text, "Reactive Resume", names the link. */}
 					<BrandIcon variant="icon" className="size-10 [view-transition-name:auth-brand]" />
 				</Link>
 
-				<Outlet />
+				<div className="grid gap-6 rounded-2xl border border-line bg-surface p-6 shadow-e1 sm:p-8">
+					<Outlet />
+				</div>
 			</div>
 		</div>
 	);

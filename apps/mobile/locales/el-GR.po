@@ -1216,11 +1216,9 @@ msgstr "Δράση"
 msgid "Actions"
 msgstr "Δράσεις"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "Ενέργειες για {0} στο {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "Ενέργειες για τη θέση {role} στην εταιρεία {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "Πλήκτρα API"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Εμφάνιση"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "Η εμφάνιση εφαρμόζεται για αυτή τη συνεδρία. Δοκιμάστε να την αποθηκεύσετε ξανά για να διατηρήσετε αυτή την επιλογή."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Δεν ήταν δυνατή η αποθήκευση των σημειώ
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Δεν ήταν δυνατή η αποθήκευση των ετικετών. Προσπαθήστε ξανά."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Δεν ήταν δυνατή η αποθήκευση του θέματος. Προσπαθήστε ξανά."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -8938,6 +8936,7 @@ msgid "Open AI assistant"
 msgstr "Άνοιγμα βοηθού AI"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10928,6 +10927,10 @@ msgstr "Επανάληψη αποθηκευμένων απαντήσεων"
 msgid "Retry saving"
 msgstr "Δοκιμάστε ξανά την αποθήκευση"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Αποθήκευση εμφάνισης ξανά"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "Δοκιμή ξανά με {nativeSearchLabel}"
@@ -10968,6 +10971,10 @@ msgstr "Επισκόπηση ελέγχων"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "Οι επιλογές ελέγχου καταγράφηκαν κατά την πρώτη υποβολή της αίτησης."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Προβολή λεπτομερειών"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13926,6 +13933,7 @@ msgstr "Σήμερα"
 msgid "Today, {hour}"
 msgstr "Σήμερα, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Εναλλαγή επιλογής"

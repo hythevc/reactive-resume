@@ -1164,10 +1164,6 @@ msgstr "/ वर्ष"
 msgid "+{extra} more"
 msgstr "+{extra} अधिक"
 
-#: src/features/homepage/hero.tsx
-msgid "+13 pts activation"
-msgstr "+13 अंक सक्रियण"
-
 #: src/features/resume/editor/check/check-panel.tsx
 msgid "<0>Nothing to fix.</0> Every check passes."
 msgstr "<0> ठीक करने के लिए कुछ नहीं है।</0> हर चेक पास हो जाता है।"
@@ -1243,10 +1239,6 @@ msgstr "3 समर्थित · 1 आंशिक · 1 अनुपलब्�
 #: src/features/settings/ai/api-keys.tsx
 msgid "30 days"
 msgstr "30 दिन"
-
-#: src/features/homepage/hero.tsx
-msgid "40% faster reviews"
-msgstr "40% तेज़ समीक्षाएँ"
 
 #: src/features/homepage/faq.tsx
 msgid "9 short answers to what people ask before they start. Anything else, ask on <0>Discord</0>."
@@ -1520,7 +1512,6 @@ msgid "Access your account through the API, including reading, changing and dele
 msgstr "API के माध्यम से अपने खाते तक पहुंचें, जिसमें आपके दस्तावेज़ों और नौकरी आवेदनों को पढ़ना, बदलना और हटाना शामिल है।"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Accessibility"
 msgstr "सुलभता"
@@ -2926,7 +2917,6 @@ msgid "Azerbaijani"
 msgstr "अज़रबैजानी"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "BA, Communication Design"
 msgstr "बीए, संचार डिजाइन"
@@ -3020,10 +3010,6 @@ msgstr "बैनर"
 msgctxt "Entry header accent: a bar beside the header"
 msgid "Bar"
 msgstr "बगल की पट्टी"
-
-#: src/features/homepage/hero.tsx
-msgid "Barista, 2012"
-msgstr "बरिस्ता, 2012"
 
 #. placeholder {0}: formatMoney(i18n.locale, offer.currency, offer.base ?? 0)
 #. placeholder {1}: periodLabel(offer.period)
@@ -5854,6 +5840,7 @@ msgstr "भूमिका का विवरण {0}"
 
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-components/design-panel.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -5878,7 +5865,6 @@ msgid "Design system trade-offs"
 msgstr "डिज़ाइन सिस्टम के समझौते"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Design systems"
 msgstr "डिज़ाइन सिस्टम"
@@ -7034,10 +7020,6 @@ msgstr "Fieldnote"
 #: src/features/homepage/tailor.tsx
 msgid "Fieldnote · Remote, EU"
 msgstr "Fieldnote · रिमोट, ईयू"
-
-#: src/features/homepage/hero.tsx
-msgid "Figma"
-msgstr "Figma"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -8860,7 +8842,6 @@ msgid "Lead across functions"
 msgstr "अलग-अलग टीमों में नेतृत्व"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 #: src/features/homepage/write.tsx
 msgid "Lead Product Designer"
@@ -9232,10 +9213,6 @@ msgstr "लिंक"
 #: src/features/settings/account/profile.tsx
 msgid "Links you've already shared keep working for 30 days, then stop. Share the new ones before then."
 msgstr "आपके साझा किए गए लिंक 30 दिन तक काम करते रहेंगे, फिर बंद हो जाएँगे। उससे पहले नए लिंक साझा करें।"
-
-#: src/features/homepage/hero.tsx
-msgid "Lisbon"
-msgstr "Lisbon"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -11575,7 +11552,6 @@ msgid "paragraph {n}"
 msgstr "अनुच्छेद {n}"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 msgid "Parcel & Co."
 msgstr "Parcel & Co."
 
@@ -12302,10 +12278,6 @@ msgstr "प्रगति पट्टी"
 msgid "Projects"
 msgstr "प्रोजेक्ट्स"
 
-#: src/features/homepage/hero.tsx
-msgid "Promoted to lead, 2021"
-msgstr "नेतृत्व के लिए पदोन्नत, 2021"
-
 #: src/features/career/workspace/fit.tsx
 msgid "Propose a resume bullet"
 msgstr "रेज़्यूमे का बुलेट सुझाएँ"
@@ -12327,7 +12299,6 @@ msgid "Protect your resume with a password"
 msgstr "अपने रेज़्यूमे को पासवर्ड से सुरक्षित करें"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Prototyping"
 msgstr "प्रोटोटाइपिंग"
@@ -13854,6 +13825,7 @@ msgid "Same you. Less starting over."
 msgstr "वही आप। बार-बार नई शुरुआत कम।"
 
 #: src/features/documents/use-start-document.ts
+#: src/features/homepage/hero.tsx
 msgid "Sample resume"
 msgstr "नमूना रेज़्यूमे"
 
@@ -14830,10 +14802,6 @@ msgstr "WCAG 2.1 AA मानक पूरे करते हुए वेब �
 msgid "Shipped checkout flows that meet WCAG 2.1 AA."
 msgstr "WCAG 2.1 AA मानकों पर खरे उतरने वाले चेकआउट फ़्लो लॉन्च किए।"
 
-#: src/features/homepage/hero.tsx
-msgid "Shipped checkout for iOS"
-msgstr "iOS के लिए चेकआउट भेजा गया"
-
 #: src/routes/builder/letter/-components/write-panel.tsx
 msgid "Short and direct. Fine if the posting asks for brevity."
 msgstr "लघु और प्रत्यक्ष. यदि नौकरी की पोस्टिंग संक्षिप्तता के लिए पूछती है तो ठीक है।"
@@ -15195,10 +15163,6 @@ msgstr "स्थिति, कार्रवाई, परिणाम"
 msgid "Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown outcomes blank."
 msgstr "स्थिति, कार्य, कार्रवाई, परिणाम, चिंतन। हर कहानी को उन तथ्यों से जोड़ें जिनका आप समर्थन कर सकते हैं; अज्ञात परिणाम खाली छोड़ें।"
 
-#: src/features/homepage/hero.tsx
-msgid "Six product teams"
-msgstr "छह उत्पाद टीमें"
-
 #: src/features/resume/editor/write/picture-settings.tsx
 msgid "Size"
 msgstr "आकार"
@@ -15375,10 +15339,6 @@ msgstr "स्पेनिश"
 #: src/features/homepage/sheet.tsx
 msgid "Spanish (B2)"
 msgstr "स्पैनिश (बी2)"
-
-#: src/features/homepage/hero.tsx
-msgid "Spanish, B2"
-msgstr "स्पैनिश, बी2"
 
 #: src/features/career/workspace/practise.tsx
 msgid "Speak"
@@ -15687,6 +15647,7 @@ msgid "Stories to bring"
 msgstr "साथ लाने वाली कहानियाँ"
 
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Story"
 msgstr "कहानी"
 
@@ -15909,6 +15870,7 @@ msgid "Tags…"
 msgstr "टैग..."
 
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Tailor"
 msgstr "नौकरी विवरण के अनुरूप ढलें"
@@ -17601,7 +17563,6 @@ msgid "Undo resume change"
 msgstr "बायोडाटा परिवर्तन पूर्ववत करें"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "University of Porto"
 msgstr "University of Porto"
@@ -18238,10 +18199,6 @@ msgstr "पहले {was}"
 msgid "Was: {0}"
 msgstr "पहले: {0}"
 
-#: src/features/homepage/hero.tsx
-msgid "WCAG 2.1 AA"
-msgstr "WCAG 2.1 AA"
-
 #. Password reset email. appName: Reactive Resume
 #: src/features/auth/email-text.ts
 msgid "We received a request to reset your {appName} password."
@@ -18675,6 +18632,7 @@ msgstr "{0} से पूछने लायक"
 #. Homepage scene title, one word followed by a full stop
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/write.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
 #: src/routes/builder/$resumeId/-components/editor-shell.tsx

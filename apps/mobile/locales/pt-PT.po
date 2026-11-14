@@ -1216,11 +1216,9 @@ msgstr "Ação"
 msgid "Actions"
 msgstr "Ações"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "Ações para {0} em {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "Ações para {role} em {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "Chaves API"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Aspeto"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "O aspeto aplica-se a esta sessão. Tente guardar novamente para manter esta escolha."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Não foi possível guardar as notas. O seu texto ainda está aqui."
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Não foi possível guardar as etiquetas. Tente novamente."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Não foi possível guardar o tema. Tente novamente."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -8938,6 +8936,7 @@ msgid "Open AI assistant"
 msgstr "Abrir assistente de IA"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10928,6 +10927,10 @@ msgstr "Tentar novamente as respostas guardadas"
 msgid "Retry saving"
 msgstr "Tentar guardar novamente"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Voltar a guardar o aspeto"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "Tentar novamente com {nativeSearchLabel}"
@@ -10968,6 +10971,10 @@ msgstr "Rever verificações"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "As marcas de revisão foram registadas no primeiro envio da candidatura."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Ver detalhes"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13926,6 +13933,7 @@ msgstr "Hoje"
 msgid "Today, {hour}"
 msgstr "Hoje, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Alternar seleção"

@@ -1164,10 +1164,6 @@ msgstr "/ 年"
 msgid "+{extra} more"
 msgstr "+{extra} 更多"
 
-#: src/features/homepage/hero.tsx
-msgid "+13 pts activation"
-msgstr "+13 點激活"
-
 #: src/features/resume/editor/check/check-panel.tsx
 msgid "<0>Nothing to fix.</0> Every check passes."
 msgstr "<0>無需修復。 </0> 每項檢查均通過。"
@@ -1243,10 +1239,6 @@ msgstr "3 項有證據 · 1 項部分 · 1 項缺少"
 #: src/features/settings/ai/api-keys.tsx
 msgid "30 days"
 msgstr "30天"
-
-#: src/features/homepage/hero.tsx
-msgid "40% faster reviews"
-msgstr "審核速度提升 40%"
 
 #: src/features/homepage/faq.tsx
 msgid "9 short answers to what people ask before they start. Anything else, ask on <0>Discord</0>."
@@ -1520,7 +1512,6 @@ msgid "Access your account through the API, including reading, changing and dele
 msgstr "透過 API 存取您的帳戶，包括讀取、修改和刪除您的文件及求職申請。"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Accessibility"
 msgstr "無障礙設計"
@@ -2926,7 +2917,6 @@ msgid "Azerbaijani"
 msgstr "亞塞拜然語"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "BA, Communication Design"
 msgstr "傳播設計學士"
@@ -3020,10 +3010,6 @@ msgstr "橫幅"
 msgctxt "Entry header accent: a bar beside the header"
 msgid "Bar"
 msgstr "色條"
-
-#: src/features/homepage/hero.tsx
-msgid "Barista, 2012"
-msgstr "咖啡師，2012"
 
 #. placeholder {0}: formatMoney(i18n.locale, offer.currency, offer.base ?? 0)
 #. placeholder {1}: periodLabel(offer.period)
@@ -5854,6 +5840,7 @@ msgstr "角色描述 {0}"
 
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-components/design-panel.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -5878,7 +5865,6 @@ msgid "Design system trade-offs"
 msgstr "設計系統中的取捨"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Design systems"
 msgstr "設計系統"
@@ -7034,10 +7020,6 @@ msgstr "Fieldnote"
 #: src/features/homepage/tailor.tsx
 msgid "Fieldnote · Remote, EU"
 msgstr "Fieldnote · 遠程，歐盟"
-
-#: src/features/homepage/hero.tsx
-msgid "Figma"
-msgstr "Figma"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -8860,7 +8842,6 @@ msgid "Lead across functions"
 msgstr "跨職能領導"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 #: src/features/homepage/write.tsx
 msgid "Lead Product Designer"
@@ -9232,10 +9213,6 @@ msgstr "連結"
 #: src/features/settings/account/profile.tsx
 msgid "Links you've already shared keep working for 30 days, then stop. Share the new ones before then."
 msgstr "您已分享的連結會在 30 天內繼續有效，之後便會失效。請在那之前分享新的連結。"
-
-#: src/features/homepage/hero.tsx
-msgid "Lisbon"
-msgstr "Lisbon"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -11575,7 +11552,6 @@ msgid "paragraph {n}"
 msgstr "第{n}款"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 msgid "Parcel & Co."
 msgstr "Parcel & Co."
 
@@ -12302,10 +12278,6 @@ msgstr "進度條"
 msgid "Projects"
 msgstr "專案"
 
-#: src/features/homepage/hero.tsx
-msgid "Promoted to lead, 2021"
-msgstr "2021 年晉升領導"
-
 #: src/features/career/workspace/fit.tsx
 msgid "Propose a resume bullet"
 msgstr "建議一條履歷要點"
@@ -12327,7 +12299,6 @@ msgid "Protect your resume with a password"
 msgstr "用密碼保護您的履歷"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Prototyping"
 msgstr "原型製作"
@@ -13854,6 +13825,7 @@ msgid "Same you. Less starting over."
 msgstr "還是您，少一點從頭來過。"
 
 #: src/features/documents/use-start-document.ts
+#: src/features/homepage/hero.tsx
 msgid "Sample resume"
 msgstr "範例履歷"
 
@@ -14830,10 +14802,6 @@ msgstr "推出符合 WCAG 2.1 AA 標準的 Web 和 iOS <0>無障礙</0>結帳流
 msgid "Shipped checkout flows that meet WCAG 2.1 AA."
 msgstr "推出符合 WCAG 2.1 AA 標準的結帳流程。"
 
-#: src/features/homepage/hero.tsx
-msgid "Shipped checkout for iOS"
-msgstr "iOS 已出貨結帳"
-
 #: src/routes/builder/letter/-components/write-panel.tsx
 msgid "Short and direct. Fine if the posting asks for brevity."
 msgstr "簡短而直接。如果招募啟事要求簡潔，那就沒問題。"
@@ -15195,10 +15163,6 @@ msgstr "情境、行動、結果"
 msgid "Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown outcomes blank."
 msgstr "情境、任務、行動、結果、反思。將每個故事連結到您能佐證的事實；未知的結果請留空。"
 
-#: src/features/homepage/hero.tsx
-msgid "Six product teams"
-msgstr "六大產品團隊"
-
 #: src/features/resume/editor/write/picture-settings.tsx
 msgid "Size"
 msgstr "尺寸"
@@ -15375,10 +15339,6 @@ msgstr "西班牙語"
 #: src/features/homepage/sheet.tsx
 msgid "Spanish (B2)"
 msgstr "西班牙語（B2）"
-
-#: src/features/homepage/hero.tsx
-msgid "Spanish, B2"
-msgstr "西班牙語，B2"
 
 #: src/features/career/workspace/practise.tsx
 msgid "Speak"
@@ -15687,6 +15647,7 @@ msgid "Stories to bring"
 msgstr "要準備的故事"
 
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Story"
 msgstr "故事"
 
@@ -15909,6 +15870,7 @@ msgid "Tags…"
 msgstr "標籤..."
 
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Tailor"
 msgstr "適應職位描述"
@@ -17601,7 +17563,6 @@ msgid "Undo resume change"
 msgstr "撤銷履歷更改"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "University of Porto"
 msgstr "University of Porto"
@@ -18238,10 +18199,6 @@ msgstr "原本為 {was}"
 msgid "Was: {0}"
 msgstr "原本：{0}"
 
-#: src/features/homepage/hero.tsx
-msgid "WCAG 2.1 AA"
-msgstr "WCAG 2.1 AA"
-
 #. Password reset email. appName: Reactive Resume
 #: src/features/auth/email-text.ts
 msgid "We received a request to reset your {appName} password."
@@ -18675,6 +18632,7 @@ msgstr "值得問問 {0}"
 #. Homepage scene title, one word followed by a full stop
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/write.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
 #: src/routes/builder/$resumeId/-components/editor-shell.tsx

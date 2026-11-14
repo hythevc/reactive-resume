@@ -63,4 +63,12 @@ export {
 export { usePullRefresh } from "./use-pull-refresh";
 export { Screen, Text, type ScreenProps, type TextProps, type TextVariant } from "./text";
 export { WindowSafeAreaProvider, useWindowSafeAreaInsets } from "./safe-area";
-export { setThemePreference, useTheme, useThemePreference, type Theme, type ThemePreference } from "./theme";
+export {
+	setThemePreference,
+	useTheme,
+	useThemePreference,
+	useThemePersistenceStatus,
+	type Theme,
+	type ThemePreference,
+	type ThemePersistenceStatus,
+} from "./theme";

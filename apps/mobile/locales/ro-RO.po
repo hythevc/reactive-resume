@@ -1216,11 +1216,9 @@ msgstr "Acțiune"
 msgid "Actions"
 msgstr "Acțiuni"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "Acțiuni pentru {0} la {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "Acțiuni pentru {role} la {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "Chei API"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Aspect"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "Aspectul se aplică pentru această sesiune. Încercați să salvați din nou pentru a păstra această alegere."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Nu s-au putut salva notele. Textul tău este încă aici."
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Nu s-au putut salva etichetele. Încearcă din nou."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Nu s-a putut salva tema. Încearcă din nou."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -8938,6 +8936,7 @@ msgid "Open AI assistant"
 msgstr "Deschide asistentul AI"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10928,6 +10927,10 @@ msgstr "Reîncercați răspunsurile salvate"
 msgid "Retry saving"
 msgstr "Reîncercați să salvați"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Reîncercați salvarea aspectului"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "Reîncearcă folosind {nativeSearchLabel}"
@@ -10968,6 +10971,10 @@ msgstr "Revizuiți verificările"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "Bifele de verificare au fost înregistrate la prima trimitere a candidaturii."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Vezi detaliile"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13926,6 +13933,7 @@ msgstr "Astăzi"
 msgid "Today, {hour}"
 msgstr "Astăzi, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Comutați selecția"

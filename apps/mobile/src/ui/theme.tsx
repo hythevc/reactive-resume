@@ -6,13 +6,20 @@ import { colors, fonts, motion, radius, shadows, size, space, type } from "./tok
 
 /** Settings → Preferences → Appearance. System is the default. */
 export type ThemePreference = "system" | "light" | "dark";
+export type ThemePersistenceStatus = "saved" | "session-only";
 
 const storageKey = "theme";
 const listeners = new Set<() => void>();
+let persistenceStatus: ThemePersistenceStatus = "saved";
 
 const readPreference = (): ThemePreference => {
-	const stored = Storage.getItemSync(storageKey);
-	return stored === "light" || stored === "dark" ? stored : "system";
+	try {
+		const stored = Storage.getItemSync(storageKey);
+		return stored === "light" || stored === "dark" ? stored : "system";
+	} catch {
+		persistenceStatus = "session-only";
+		return "system";
+	}
 };
 
 let preference = readPreference();
@@ -28,12 +35,19 @@ export function initTheme() {
 	applyPreference(preference);
 }
 
+/** Always apply the session choice; return whether it was persisted for the next launch. */
 export function setThemePreference(value: ThemePreference) {
 	preference = value;
-	if (value === "system") Storage.removeItemSync(storageKey);
-	else Storage.setItemSync(storageKey, value);
+	try {
+		if (value === "system") Storage.removeItemSync(storageKey);
+		else Storage.setItemSync(storageKey, value);
+		persistenceStatus = "saved";
+	} catch {
+		persistenceStatus = "session-only";
+	}
 	applyPreference(value);
 	for (const listener of listeners) listener();
+	return persistenceStatus === "saved";
 }
 
 const subscribe = (listener: () => void) => {
@@ -43,6 +57,10 @@ const subscribe = (listener: () => void) => {
 
 export function useThemePreference(): ThemePreference {
 	return useSyncExternalStore(subscribe, () => preference);
+}
+
+export function useThemePersistenceStatus(): ThemePersistenceStatus {
+	return useSyncExternalStore(subscribe, () => persistenceStatus);
 }
 
 const themes = {

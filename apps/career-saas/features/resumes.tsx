@@ -580,11 +580,14 @@ export function ResumesView() {
 					</button>
 				</div>
 			</div>
-			<p className="muted small-print" style={{ marginBottom: 20 }}>
-				JSON import brings in supported contact details, LinkedIn/website links, summary, experience, education, and
-				skills. Other sections and original formatting are not retained. Keep your original file, then check the
-				imported details before sharing.
-			</p>
+			<details className="import-disclosure">
+				<summary>About JSON imports</summary>
+				<p className="muted small-print">
+					JSON import brings in supported contact details, LinkedIn/website links, summary, experience, education, and
+					skills. Other sections and original formatting are not retained. Keep your original file, then check the
+					imported details before sharing.
+				</p>
+			</details>
 			<input
 				ref={importRef}
 				aria-label="Import Reactive Resume JSON"
@@ -604,35 +607,45 @@ export function ResumesView() {
 					{error}
 				</div>
 			) : null}
-			<div className="resume-library" aria-label="Your resumes">
-				{data.resumes.map((resume) => (
-					<button
-						key={resume.id}
-						className={`resume-list-item ${selected?.id === resume.id ? "selected" : ""}`}
-						onClick={() => {
-							setSelectedId(resume.id);
+			{data.resumes.length ? (
+				<label className="resume-version-picker" htmlFor="resume-version">
+					<FileText size={18} aria-hidden="true" />
+					<span className="sr-only">Resume version</span>
+					<select
+						id="resume-version"
+						className="input"
+						value={selected?.id ?? ""}
+						onChange={(event) => {
+							setSelectedId(event.target.value);
 							setMessage("");
 						}}
-						aria-pressed={selected?.id === resume.id}
 					>
-						<FileText size={20} />
-						<span>
-							<strong>{resume.title}</strong>
-							<small>{resume.profile.role || "Untitled role"}</small>
-						</span>
-						{selected?.id === resume.id ? <Check size={16} /> : null}
-					</button>
-				))}
-			</div>
+						{data.resumes.map((resume) => (
+							<option key={resume.id} value={resume.id}>
+								{resume.title}
+							</option>
+						))}
+					</select>
+				</label>
+			) : null}
 			{selected ? (
-				<ResumeTargetPanel
-					key={selected.id}
-					resume={selected}
-					jobs={data.jobs}
-					onChange={updateResume}
-					onCommit={commitResume}
-					onDuplicate={duplicateForJob}
-				/>
+				<details className="resume-target-disclosure" key={selected.id}>
+					<summary>
+						<span>
+							<Target size={18} aria-hidden="true" />
+							<strong>Tailor this version to a role</strong>
+							<span className="muted">Compare this version with a saved role</span>
+						</span>
+						<span className="status">{selected.targetJobId ? "Target selected" : "Optional"}</span>
+					</summary>
+					<ResumeTargetPanel
+						resume={selected}
+						jobs={data.jobs}
+						onChange={updateResume}
+						onCommit={commitResume}
+						onDuplicate={duplicateForJob}
+					/>
+				</details>
 			) : null}
 			{selected ? (
 				<div className="resume-workspace">
@@ -647,23 +660,26 @@ export function ResumesView() {
 										: "Not saved — check the workspace notice"}
 							</span>
 						</div>
-						<p className="muted small-print">
-							Editing this resume changes this version only. Matching and outreach use your shared career profile:{" "}
-							{data.profile.name || "No name added"} · {data.profile.role || "No role added"}.
-						</p>
-						<button className="button secondary small" onClick={useAsCareerProfile}>
-							Use as career profile
-						</button>
-						<label className="field" htmlFor="resume-title">
-							<span>Resume name</span>
-							<input
-								id="resume-title"
-								className="input"
-								maxLength={resumeSchema.shape.title.maxLength ?? undefined}
-								value={selected.title}
-								onChange={(event) => updateResume({ title: event.target.value })}
-							/>
-						</label>
+						<details className="resume-version-details">
+							<summary>Version details &amp; career profile</summary>
+							<p className="muted small-print">
+								Editing this resume changes this version only. Matching and outreach use your shared career profile:{" "}
+								{data.profile.name || "No name added"} · {data.profile.role || "No role added"}.
+							</p>
+							<button className="button secondary small" onClick={useAsCareerProfile}>
+								Use as career profile
+							</button>
+							<label className="field" htmlFor="resume-title">
+								<span>Resume name</span>
+								<input
+									id="resume-title"
+									className="input"
+									maxLength={resumeSchema.shape.title.maxLength ?? undefined}
+									value={selected.title}
+									onChange={(event) => updateResume({ title: event.target.value })}
+								/>
+							</label>
+						</details>
 						<div className="form-grid">
 							<ProfileField label="Full name" field="name" profile={selected.profile} onChange={updateProfile} />
 							<ProfileField
@@ -679,31 +695,37 @@ export function ResumesView() {
 								profile={selected.profile}
 								onChange={updateProfile}
 							/>
-							<ProfileField
-								label="Phone"
-								field="phone"
-								type="tel"
-								profile={selected.profile}
-								onChange={updateProfile}
-							/>
+
 							<ProfileField label="Location" field="location" profile={selected.profile} onChange={updateProfile} />
-							<ProfileUrlField
-								key={selected.id + selected.profile.website}
-								label="Website"
-								value={selected.profile.website}
-								maxLength={profileFieldMaxLength("website")}
-								onCommit={(value) => mutate((current) => updateResumeProfile(current, selected.id, "website", value))}
-							/>
-							<ProfileUrlField
-								key={selected.id + selected.profile.linkedinUrl}
-								label="LinkedIn URL"
-								value={selected.profile.linkedinUrl}
-								maxLength={profileFieldMaxLength("linkedinUrl")}
-								onCommit={(value) =>
-									mutate((current) => updateResumeProfile(current, selected.id, "linkedinUrl", value))
-								}
-							/>
 						</div>
+						<details className="resume-contact-details">
+							<summary>Phone, website &amp; LinkedIn</summary>
+							<div className="form-grid">
+								<ProfileField
+									label="Phone"
+									field="phone"
+									type="tel"
+									profile={selected.profile}
+									onChange={updateProfile}
+								/>
+								<ProfileUrlField
+									key={selected.id + selected.profile.website}
+									label="Website"
+									value={selected.profile.website}
+									maxLength={profileFieldMaxLength("website")}
+									onCommit={(value) => mutate((current) => updateResumeProfile(current, selected.id, "website", value))}
+								/>
+								<ProfileUrlField
+									key={selected.id + selected.profile.linkedinUrl}
+									label="LinkedIn URL"
+									value={selected.profile.linkedinUrl}
+									maxLength={profileFieldMaxLength("linkedinUrl")}
+									onCommit={(value) =>
+										mutate((current) => updateResumeProfile(current, selected.id, "linkedinUrl", value))
+									}
+								/>
+							</div>
+						</details>
 						<ProfileField
 							label="Professional summary"
 							field="summary"

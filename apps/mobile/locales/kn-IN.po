@@ -1216,11 +1216,9 @@ msgstr "ಕ್ರಮ"
 msgid "Actions"
 msgstr "ಕ್ರಿಯೆಗಳು"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "{1} ನಲ್ಲಿ {0} ಗಾಗಿ ಕ್ರಿಯೆಗಳು"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "{company} ಸಂಸ್ಥೆಯಲ್ಲಿನ {role} ಹುದ್ದೆಗೆ ಸಂಬಂಧಿಸಿದ ಕ್ರಿಯೆಗಳು"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API ಕೀಗಳು"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "ಗೋಚರತೆ"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "ಈ ನೋಟದ ಸೆಟ್ಟಿಂಗ್ ಪ್ರಸ್ತುತ ಸೆಷನ್‌ಗೆ ಅನ್ವಯಿಸುತ್ತದೆ. ಈ ಆಯ್ಕೆಯನ್ನು ಉಳಿಸಿಕೊಳ್ಳಲು ಉಳಿಸುವುದನ್ನು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "ಟಿಪ್ಪಣಿಗಳನ್ನು ಉಳಿಸಲು ಸಾಧ್�
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "ಟ್ಯಾಗ್‌ಗಳನ್ನು ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "ಥೀಮ್ ಅನ್ನು ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -8938,6 +8936,7 @@ msgid "Open AI assistant"
 msgstr "AI ಸಹಾಯಕವನ್ನು ತೆರೆಯಿರಿ"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10928,6 +10927,10 @@ msgstr "ಉಳಿಸಿದ ಉತ್ತರಗಳನ್ನು ಮರುಪ್ರ�
 msgid "Retry saving"
 msgstr "ಉಳಿಸಲು ಮರುಪ್ರಯತ್ನಿಸಿ"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "ನೋಟದ ಸೆಟ್ಟಿಂಗ್ ಉಳಿಸಲು ಮರುಪ್ರಯತ್ನಿಸಿ"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "{nativeSearchLabel} ಮೂಲಕ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ"
@@ -10968,6 +10971,10 @@ msgstr "ಪರಿಶೀಲನೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "ಮೊದಲ ಬಾರಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಿದಾಗ ಪರಿಶೀಲನೆಯ ಗುರುತುಗಳನ್ನು ದಾಖಲಿಸಲಾಗಿದೆ."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "ವಿವರಗಳನ್ನು ನೋಡಿ"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13926,6 +13933,7 @@ msgstr "ಇಂದು"
 msgid "Today, {hour}"
 msgstr "ಇಂದು, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "ಆಯ್ಕೆಯನ್ನು ಟಾಗಲ್ ಮಾಡಿ"

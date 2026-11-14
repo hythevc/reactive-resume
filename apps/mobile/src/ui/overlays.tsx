@@ -27,6 +27,7 @@ import Animated, {
 	withTiming,
 } from "react-native-reanimated";
 import { scheduleOnRN } from "react-native-worklets";
+import { useBottomBarHeight } from "./bottom-bar";
 import { Button } from "./button";
 import { haptics, useIsWide, useReducedMotion } from "./motion";
 import { useWindowSafeAreaInsets } from "./safe-area";
@@ -183,7 +184,7 @@ export function Sheet({
 			maxContentWidth={size.formSheet}
 			maxContentHeight={Math.round((height - insets.top) * 0.9)}
 			backgroundColor={colors.raised}
-			cornerRadius={radius.rLg}
+			cornerRadius={wide ? radius.rXl : radius.rSheet}
 			grabber={!wide}
 			accessibilityOptions={title ? { paneTitle: title } : {}}
 			scrollable
@@ -458,7 +459,7 @@ export function ConfirmDialog({
 					style={{
 						width: Math.min(alertWidth, width - space.s10 * 2),
 						maxHeight: height - space.s12 * 2,
-						borderRadius: radius.rLg,
+						borderRadius: radius.rXl,
 						backgroundColor: colors.raised,
 						boxShadow: shadows.e3.boxShadow,
 						overflow: "hidden",
@@ -608,7 +609,7 @@ function ToastFuse({ duration }: { duration: number }) {
 	}, [left, duration]);
 
 	// Inset by the corner radius so the fuse stays on the straight part of the edge.
-	const inset = android ? radius.rSm : radius.rLg;
+	const inset = radius.rLg;
 	return (
 		<Animated.View
 			pointerEvents="none"
@@ -636,6 +637,7 @@ export function Toaster() {
 	const insets = useWindowSafeAreaInsets();
 	const wide = useIsWide();
 	const reduced = useReducedMotion();
+	const bottomBarHeight = useBottomBarHeight();
 	const active = useSyncExternalStore(
 		(listener) => {
 			toastListeners.add(listener);
@@ -660,7 +662,7 @@ export function Toaster() {
 				position: "absolute",
 				start: space.s2,
 				end: space.s2,
-				bottom: insets.bottom + (wide ? space.s8 : size.tabBar + space.s3),
+				bottom: Math.max(insets.bottom + (wide ? space.s8 : space.s3), bottomBarHeight + space.s3),
 				alignItems: android ? "stretch" : "center",
 			}}
 		>
@@ -691,7 +693,7 @@ export function Toaster() {
 							maxWidth: "100%",
 							paddingStart: space.s4,
 							paddingEnd: action ? space.s1 + space.s0 : space.s4,
-							borderRadius: android ? radius.rSm : radius.rLg,
+							borderRadius: radius.rLg,
 							backgroundColor: colors.ink,
 							boxShadow: (wide ? shadows.e2 : shadows.e3).boxShadow,
 						}}

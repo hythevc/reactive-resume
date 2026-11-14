@@ -101,7 +101,7 @@ function TwoFactorVerificationPage({ backupCode = false }: TwoFactorVerification
 	return (
 		<>
 			<div className="space-y-1 text-center">
-				<h1 className="text-[30px] leading-9">
+				<h1 className="font-display text-[34px] leading-[1.15] font-normal text-balance">
 					{backupCode ? <Trans>Verify with a backup code</Trans> : <Trans>Two-step verification</Trans>}
 				</h1>
 				<div className="text-ink-3">

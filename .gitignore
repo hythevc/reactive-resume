@@ -66,6 +66,14 @@ temp
 .agents/skills/ai-job-search/references/*
 !.agents/skills/ai-job-search/references/packet-contract.md
 !.agents/skills/ai-job-search/references/review-guide.md
+# Repository-owned UI workflow only; third-party skill checkouts and credentials stay local.
+!.agents/skills/ui-design-workflow/
+.agents/skills/ui-design-workflow/*
+!.agents/skills/ui-design-workflow/SKILL.md
+!.agents/skills/ui-design-workflow/sources.json
+!.agents/skills/ui-design-workflow/references/
+.agents/skills/ui-design-workflow/references/*
+!.agents/skills/ui-design-workflow/references/mcp.codex.example.toml
 .claude
 .cursor
 .mcp.json

@@ -83,7 +83,7 @@ export function ResetPasswordPage({ token }: Props) {
 	if (!token || invalidToken === token)
 		return (
 			<>
-				<h1 className="text-center text-[30px] leading-9">
+				<h1 className="text-center font-display text-[34px] leading-[1.15] font-normal text-balance">
 					<Trans>Reset your password</Trans>
 				</h1>
 				<p role="alert" className="text-center text-ink-2">
@@ -101,7 +101,7 @@ export function ResetPasswordPage({ token }: Props) {
 	return (
 		<>
 			<div className="space-y-1 text-center">
-				<h1 className="text-[30px] leading-9">
+				<h1 className="font-display text-[34px] leading-[1.15] font-normal text-balance">
 					<Trans>Reset your password</Trans>
 				</h1>
 

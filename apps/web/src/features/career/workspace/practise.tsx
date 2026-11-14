@@ -629,7 +629,7 @@ function Session({
 								type="button"
 								aria-label={recordingNow ? t`Stop recording` : t`Record your answer`}
 								onClick={toggleRecording}
-								className="touch-target relative grid size-[52px] shrink-0 place-items-center rounded-sm bg-danger text-white transition-[filter,scale] duration-quick ease-enter hover:brightness-95 active:scale-[0.97]"
+								className="touch-target relative grid size-[52px] shrink-0 place-items-center rounded-sm bg-danger text-on-danger transition-[filter,scale] duration-quick ease-enter hover:brightness-95 active:scale-[0.97]"
 							>
 								<Icon name={recordingNow ? "stop" : "microphone"} filled={recordingNow} size={24} />
 							</button>

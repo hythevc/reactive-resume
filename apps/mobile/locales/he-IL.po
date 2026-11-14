@@ -1216,11 +1216,9 @@ msgstr "פעולה"
 msgid "Actions"
 msgstr "פעולות"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "פעולות עבור {0} ב-{1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "פעולות עבור תפקיד {role} בחברת {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "מפתחות API"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "הוֹפָעָה"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "בחירת המראה חלה בהפעלה הנוכחית. כדי לשמור אותה להמשך, יש לנסות שוב לשמור."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "לא ניתן לשמור את ההערות. הטקסט שלך עדיין
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "לא ניתן היה לשמור את התגים. נסה שוב."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "לא ניתן לשמור את ערכת הנושא. נסה שוב."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -8938,6 +8936,7 @@ msgid "Open AI assistant"
 msgstr "פתיחת עוזר הבינה המלאכותית"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10928,6 +10927,10 @@ msgstr "נסה שוב את התשובות השמורות"
 msgid "Retry saving"
 msgstr "נסה שוב לשמור"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "ניסיון נוסף לשמירת המראה"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "ניסיון נוסף עם {nativeSearchLabel}"
@@ -10968,6 +10971,10 @@ msgstr "בדוק את הבדיקות"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "סימוני הבדיקה נשמרו בהגשה הראשונה של המועמדות."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "הצגת פרטים"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13926,6 +13933,7 @@ msgstr "הַיוֹם"
 msgid "Today, {hour}"
 msgstr "היום, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "החלף את הבחירה"

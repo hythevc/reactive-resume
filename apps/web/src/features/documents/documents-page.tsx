@@ -320,7 +320,7 @@ export function DocumentsPage({ search, onSearchChange }: DocumentsPageProps) {
 
 	return (
 		<div
-			className="mx-auto grid w-full max-w-[1180px] content-start gap-5 px-8 py-8 max-sm:px-4 max-sm:py-5"
+			className="mx-auto grid w-full max-w-[1180px] content-start gap-7 px-8 py-10 max-sm:px-4 max-sm:py-5"
 			style={{ paddingBottom: selecting ? selectionBarSpace : undefined }}
 		>
 			<PageHeader
@@ -620,8 +620,7 @@ export function DocumentsPage({ search, onSearchChange }: DocumentsPageProps) {
 const VIEW_KEY = "documents-view";
 // Longest stagger (150ms) plus the D2 entrance (200ms), with room to spare: then the intro classes come off.
 const INTRO_MS = 400;
-const GRID_CLASS =
-	"grid grid-cols-[repeat(auto-fill,minmax(180px,204px))] gap-x-7 gap-y-[22px] max-sm:grid-cols-2 max-sm:gap-4";
+const GRID_CLASS = "grid grid-cols-[repeat(auto-fill,minmax(200px,228px))] gap-5 max-sm:grid-cols-2 max-sm:gap-4";
 
 type GroupHeadingProps = {
 	group: Extract<DocumentGroup<DocumentSummary>, { kind: "application" }>;
@@ -1006,11 +1005,14 @@ export function LibrarySkeleton({ view }: { view: "grid" | "list" }) {
 		);
 	}
 	return (
-		<div className="grid grid-cols-[repeat(auto-fill,minmax(180px,204px))] gap-x-7 gap-y-[22px] max-sm:grid-cols-2 max-sm:gap-4">
+		<div className="grid grid-cols-[repeat(auto-fill,minmax(200px,228px))] gap-5 max-sm:grid-cols-2 max-sm:gap-4">
 			{Array.from({ length: 6 }, (_, index) => (
-				<div key={index} className="grid gap-2">
+				<div key={index} className="grid content-start gap-3 rounded-lg border border-line bg-surface p-3 shadow-e1">
 					<Skeleton className="aspect-page rounded-md" />
-					<Skeleton className="h-4 w-3/4 rounded" />
+					<div className="grid gap-1">
+						<Skeleton className="h-5 w-3/4 rounded" />
+						<Skeleton className="h-3 w-1/2 rounded" />
+					</div>
 				</div>
 			))}
 		</div>

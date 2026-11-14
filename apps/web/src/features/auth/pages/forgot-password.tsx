@@ -77,7 +77,7 @@ export function ForgotPasswordPage() {
 	return (
 		<>
 			<div className="space-y-1 text-center">
-				<h1 className="text-[30px] leading-9">
+				<h1 className="font-display text-[34px] leading-[1.15] font-normal text-balance">
 					<Trans>Forgot your password?</Trans>
 				</h1>
 
@@ -160,7 +160,7 @@ function PostForgotPasswordScreen({ onResend }: PostForgotPasswordScreenProps) {
 		// Replaces the form in place: fades up into the auth column, with the layout's 24px gap.
 		<div className={cn(ENTER_CLASS, "grid gap-y-6")}>
 			<div className="space-y-1 text-center">
-				<h1 ref={heading} tabIndex={-1} className="text-[30px] leading-9">
+				<h1 ref={heading} tabIndex={-1} className="font-display text-[34px] leading-[1.15] font-normal text-balance">
 					<Trans>Check your email</Trans>
 				</h1>
 				{/* Worded so it doesn't reveal whether an account uses the address. */}

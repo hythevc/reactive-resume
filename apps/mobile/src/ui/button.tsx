@@ -16,7 +16,7 @@ export type ButtonProps = {
 	onPress: () => void;
 	/** Same names as the web Button. Defaults to `primary`. */
 	variant?: ButtonVariant | undefined;
-	/** `default` is 44 pt tall, `lg` is the 48 pt full-width form button, `sm` is a compact inline button. */
+	/** `default` meets the platform's minimum target, `lg` is the 48 pt form button, `sm` is compact with touch slop. */
 	size?: "default" | "sm" | "lg" | undefined;
 	icon?: IconName | undefined;
 	disabled?: boolean | undefined;
@@ -30,7 +30,7 @@ export type ButtonProps = {
 
 const foregrounds = {
 	primary: "onAccent",
-	danger: "onAccent",
+	danger: "onDanger",
 	secondary: "ink",
 	ghost: "accentText",
 	dangerOutline: "dangerText",
@@ -72,7 +72,7 @@ export function Button({
 		dangerOutline: colors.press,
 		link: "transparent",
 	}[variant];
-	// `sm` is 36 pt to look compact; `hitSlop` brings its target to 44.
+	// Keep `sm` visually compact; `hitSlop` restores the platform's minimum target.
 	const height = size === "lg" ? sizes.button : size === "sm" ? sizes.hit - space.s2 : sizes.hit;
 
 	return (
@@ -88,8 +88,9 @@ export function Button({
 			android_ripple={variant === "link" ? undefined : { color: colors.press }}
 			style={({ pressed }) => ({
 				minHeight: height,
+				minWidth: sizes.hit,
 				paddingHorizontal: variant === "link" ? 0 : size === "sm" ? space.s3 : space.s4,
-				borderRadius: size === "sm" ? radius.rSm : size === "lg" ? radius.rLg : radius.rMd,
+				borderRadius: radius.rMd,
 				borderWidth: variant === "secondary" || variant === "dangerOutline" ? 1 : 0,
 				borderColor: variant === "dangerOutline" ? colors.dangerText : colors.line2,
 				backgroundColor: pressed && !android ? pressedBackground : background,

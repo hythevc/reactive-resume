@@ -1216,11 +1216,9 @@ msgstr "Eylem"
 msgid "Actions"
 msgstr "Eylemler"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "{1} saatinde {0} için işlemler"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "{company} şirketindeki {role} pozisyonu için işlemler"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API tuşları"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Dış görünüş"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "Görünüm ayarı bu oturum için geçerlidir. Bu seçimi korumak için yeniden kaydetmeyi deneyin."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Notlar kaydedilemedi. Metniniz hâlâ burada."
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Etiketler kaydedilemedi. Tekrar deneyin."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Tema kaydedilemedi. Tekrar deneyin."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -8938,6 +8936,7 @@ msgid "Open AI assistant"
 msgstr "Yapay zekâ asistanını aç"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10928,6 +10927,10 @@ msgstr "Kayıtlı cevapları yeniden dene"
 msgid "Retry saving"
 msgstr "Kaydetmeyi yeniden dene"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Görünümü kaydetmeyi yeniden dene"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "{nativeSearchLabel} ile yeniden dene"
@@ -10968,6 +10971,10 @@ msgstr "Kontrolleri gözden geçir"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "İnceleme işaretleri ilk başvuru gönderiminde kaydedildi."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Detayları görüntüle"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13926,6 +13933,7 @@ msgstr "Bugün"
 msgid "Today, {hour}"
 msgstr "Bugün, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Seçimi değiştir"

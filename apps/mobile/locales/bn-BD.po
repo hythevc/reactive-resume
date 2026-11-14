@@ -1216,11 +1216,9 @@ msgstr "পদক্ষেপ"
 msgid "Actions"
 msgstr "কর্ম"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "{1} এ {0}-এর জন্য অ্যাকশন"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "{company}-এর {role} পদের জন্য কার্যক্রম"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API কী"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "চেহারা"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "থিমের এই সেটিং বর্তমান সেশনের জন্য কার্যকর আছে। পছন্দটি বজায় রাখতে আবার সংরক্ষণের চেষ্টা করুন।"
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "নোট সংরক্ষণ করা যায়নি. আপন�
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "ট্যাগগুলো সংরক্ষণ করা যায়নি। আবার চেষ্টা করুন।"
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "থিম সংরক্ষণ করা যায়নি. আবার চেষ্টা করুন"
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -8938,6 +8936,7 @@ msgid "Open AI assistant"
 msgstr "AI সহকারী খুলুন"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10928,6 +10927,10 @@ msgstr "সেভ করা উত্তরগুলো আবার চেষ�
 msgid "Retry saving"
 msgstr "আবার সংরক্ষণ করার চেষ্টা করুন"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "থিমের সেটিং আবার সংরক্ষণের চেষ্টা করুন"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "{nativeSearchLabel} দিয়ে আবার চেষ্টা করুন"
@@ -10968,6 +10971,10 @@ msgstr "যাচাইগুলো পর্যালোচনা করুন"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "প্রথমবার আবেদন জমা দেওয়ার সময় পর্যালোচনার টিকচিহ্নগুলি সংরক্ষিত হয়েছে।"
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "বিস্তারিত দেখুন"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13926,6 +13933,7 @@ msgstr "আজ"
 msgid "Today, {hour}"
 msgstr "আজ, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "নির্বাচন টগল করুন"

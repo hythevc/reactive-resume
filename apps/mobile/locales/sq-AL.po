@@ -1216,11 +1216,9 @@ msgstr "Veprimi"
 msgid "Actions"
 msgstr "Veprimet"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "Veprimet për {0} në {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "Veprime për pozicionin {role} në {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "Çelësat API"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Pamja e jashtme"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "Cilësimi i pamjes zbatohet për këtë sesion. Provo ta ruash sërish për ta mbajtur këtë zgjedhje."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Shënimet nuk mund të ruheshin. Teksti juaj është ende këtu."
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Etiketat nuk mund të ruheshin. Provoni përsëri."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Tema nuk mund të ruhej. Provo sërish."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -8938,6 +8936,7 @@ msgid "Open AI assistant"
 msgstr "Hap asistentin e IA-së"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10928,6 +10927,10 @@ msgstr "Riprovo përgjigjet e ruajtura"
 msgid "Retry saving"
 msgstr "Riprovoni ruajtjen"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Provo sërish të ruash pamjen"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "Provo sërish me {nativeSearchLabel}"
@@ -10968,6 +10971,10 @@ msgstr "Shqyrto kontrollet"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "Shenjat e kontrollit u regjistruan gjatë dorëzimit të parë të aplikimit."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Shiko detajet"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13926,6 +13933,7 @@ msgstr "Sot"
 msgid "Today, {hour}"
 msgstr "Sot, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Ndrysho zgjedhjen"

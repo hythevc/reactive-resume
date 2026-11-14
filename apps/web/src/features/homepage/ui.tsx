@@ -21,11 +21,11 @@ export function CtaLink({ size, className }: CtaLinkProps) {
 		<Link
 			to={signedIn ? "/dashboard" : "/auth/register"}
 			className={cn(
-				"inline-flex shrink-0 items-center rounded-sm bg-accent font-ui font-semibold text-on-accent transition-[background-color,transform] duration-[160ms] ease-out-strong hover:bg-accent-hover motion-safe:active:[transform:scale(.97)]",
+				"inline-flex shrink-0 items-center rounded-md bg-accent font-ui font-semibold text-on-accent transition-[background-color,transform] duration-[160ms] ease-out-strong hover:bg-accent-hover motion-safe:active:[transform:scale(.97)]",
 				size === "header" &&
 					"min-h-11 px-4 text-sm max-[479px]:max-w-28 max-[479px]:px-2 max-[479px]:text-center max-[479px]:text-xs max-[479px]:whitespace-normal",
-				size === "hero" && "h-[54px] gap-2.5 px-6 text-base shadow-e2",
-				size === "closing" && "h-14 gap-2.5 px-7 text-[17px] shadow-e2",
+				size === "hero" && "h-12 gap-2.5 px-6 text-base shadow-e1",
+				size === "closing" && "h-12 gap-2.5 px-7 text-base shadow-e1",
 				className,
 			)}
 		>

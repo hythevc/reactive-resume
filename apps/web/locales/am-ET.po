@@ -1164,10 +1164,6 @@ msgstr "/ ዓመት"
 msgid "+{extra} more"
 msgstr "+{extra} ተጨማሪ"
 
-#: src/features/homepage/hero.tsx
-msgid "+13 pts activation"
-msgstr "+13 ነጥቦች ማግበር"
-
 #: src/features/resume/editor/check/check-panel.tsx
 msgid "<0>Nothing to fix.</0> Every check passes."
 msgstr "<0> ምንም የሚስተካከል የለም።</0> እያንዳንዱ ቼክ ያልፋል።"
@@ -1243,10 +1239,6 @@ msgstr "3 የተደገፉ · 1 በከፊል · 1 የጎደለ"
 #: src/features/settings/ai/api-keys.tsx
 msgid "30 days"
 msgstr "30 ቀናት"
-
-#: src/features/homepage/hero.tsx
-msgid "40% faster reviews"
-msgstr "40% ፈጣን ግምገማዎች"
 
 #: src/features/homepage/faq.tsx
 msgid "9 short answers to what people ask before they start. Anything else, ask on <0>Discord</0>."
@@ -1520,7 +1512,6 @@ msgid "Access your account through the API, including reading, changing and dele
 msgstr "ሰነዶችዎን እና የስራ ማመልከቻዎችዎን ማንበብ፣ መቀየር እና መሰረዝን ጨምሮ መለያዎን በAPI በኩል ይድረሱ።"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Accessibility"
 msgstr "ተደራሽነት"
@@ -2926,7 +2917,6 @@ msgid "Azerbaijani"
 msgstr "አዘርባይጃንኛ"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "BA, Communication Design"
 msgstr "ቢኤ, የግንኙነት ንድፍ"
@@ -3020,10 +3010,6 @@ msgstr "ባነር"
 msgctxt "Entry header accent: a bar beside the header"
 msgid "Bar"
 msgstr "የጎን አሞሌ"
-
-#: src/features/homepage/hero.tsx
-msgid "Barista, 2012"
-msgstr "ባሪስታ ፣ 2012"
 
 #. placeholder {0}: formatMoney(i18n.locale, offer.currency, offer.base ?? 0)
 #. placeholder {1}: periodLabel(offer.period)
@@ -5854,6 +5840,7 @@ msgstr "ሚና {0} መግለጫ"
 
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-components/design-panel.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -5878,7 +5865,6 @@ msgid "Design system trade-offs"
 msgstr "የዲዛይን ሥርዓት ሚዛናዊ ውሳኔዎች"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Design systems"
 msgstr "የንድፍ ሥርዓቶች"
@@ -7034,10 +7020,6 @@ msgstr "Fieldnote"
 #: src/features/homepage/tailor.tsx
 msgid "Fieldnote · Remote, EU"
 msgstr "Fieldnote · የርቀት፣ የአውሮፓ ህብረት"
-
-#: src/features/homepage/hero.tsx
-msgid "Figma"
-msgstr "Figma"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -8860,7 +8842,6 @@ msgid "Lead across functions"
 msgstr "ከተለያዩ ክፍሎች ጋር መምራት"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 #: src/features/homepage/write.tsx
 msgid "Lead Product Designer"
@@ -9232,10 +9213,6 @@ msgstr "አገናኞች"
 #: src/features/settings/account/profile.tsx
 msgid "Links you've already shared keep working for 30 days, then stop. Share the new ones before then."
 msgstr "አስቀድመው ያጋሯቸው አገናኞች ለ30 ቀናት መሥራታቸውን ይቀጥላሉ፣ ከዚያ ያቆማሉ። ከዚያ በፊት አዲሶቹን ያጋሩ።"
-
-#: src/features/homepage/hero.tsx
-msgid "Lisbon"
-msgstr "Lisbon"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -11575,7 +11552,6 @@ msgid "paragraph {n}"
 msgstr "አንቀጽ {n}"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 msgid "Parcel & Co."
 msgstr "Parcel & Co."
 
@@ -12302,10 +12278,6 @@ msgstr "የሂደት አሞሌ"
 msgid "Projects"
 msgstr "ፕሮጀክቶች"
 
-#: src/features/homepage/hero.tsx
-msgid "Promoted to lead, 2021"
-msgstr "ለመሪነት ከፍ ተደርገዋል፣ 2021"
-
 #: src/features/career/workspace/fit.tsx
 msgid "Propose a resume bullet"
 msgstr "የሲቪ ነጥብ ጠቁም"
@@ -12327,7 +12299,6 @@ msgid "Protect your resume with a password"
 msgstr "የስራ ልምድ ማስረጃዎን በይለፍ ቃል ይጠብቁ"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Prototyping"
 msgstr "ምሳሌ ሞዴል መሥራት"
@@ -13854,6 +13825,7 @@ msgid "Same you. Less starting over."
 msgstr "ያው እርስዎ። ከዜሮ መጀመር ይቀንሳል።"
 
 #: src/features/documents/use-start-document.ts
+#: src/features/homepage/hero.tsx
 msgid "Sample resume"
 msgstr "የናሙና የስራ ልምድ ማስረጃ"
 
@@ -14830,10 +14802,6 @@ msgstr "የWCAG 2.1 AA መስፈርቶችን የሚያሟሉ <0>ለሁሉም ተ
 msgid "Shipped checkout flows that meet WCAG 2.1 AA."
 msgstr "WCAG 2.1 AAን የሚያሟሉ የክፍያ ሂደቶችን ለቀቅሁ።"
 
-#: src/features/homepage/hero.tsx
-msgid "Shipped checkout for iOS"
-msgstr "ለiOS ቼክ መውጫ ተልኳል።"
-
 #: src/routes/builder/letter/-components/write-panel.tsx
 msgid "Short and direct. Fine if the posting asks for brevity."
 msgstr "አጭር እና ቀጥተኛ። የሥራ ማስታወቂያው አጭርነትን ከጠየቀ ጥሩ ነው።"
@@ -15195,10 +15163,6 @@ msgstr "ሁኔታ፣ እርምጃ፣ ውጤት"
 msgid "Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown outcomes blank."
 msgstr "ሁኔታ፣ ተግባር፣ እርምጃ፣ ውጤት፣ ትምህርት። እያንዳንዱን ታሪክ መደገፍ ከሚችሉት እውነታዎች ጋር ያገናኙ፤ ያልታወቁ ውጤቶችን ባዶ ይተዉ።"
 
-#: src/features/homepage/hero.tsx
-msgid "Six product teams"
-msgstr "ስድስት የምርት ቡድኖች"
-
 #: src/features/resume/editor/write/picture-settings.tsx
 msgid "Size"
 msgstr "መጠን"
@@ -15375,10 +15339,6 @@ msgstr "ስፓኒሽ"
 #: src/features/homepage/sheet.tsx
 msgid "Spanish (B2)"
 msgstr "ስፓኒሽ (ቢ2)"
-
-#: src/features/homepage/hero.tsx
-msgid "Spanish, B2"
-msgstr "ስፓኒሽ፣ B2"
 
 #: src/features/career/workspace/practise.tsx
 msgid "Speak"
@@ -15687,6 +15647,7 @@ msgid "Stories to bring"
 msgstr "የሚያመጧቸው ታሪኮች"
 
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Story"
 msgstr "ታሪክ"
 
@@ -15909,6 +15870,7 @@ msgid "Tags…"
 msgstr "መለያዎች…"
 
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Tailor"
 msgstr "ከሥራ መግለጫው ጋር መላመድ"
@@ -17601,7 +17563,6 @@ msgid "Undo resume change"
 msgstr "የሥራ ልምድ ለውጥ ቀልብስ"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "University of Porto"
 msgstr "University of Porto"
@@ -18238,10 +18199,6 @@ msgstr "{was} ነበር"
 msgid "Was: {0}"
 msgstr "የነበረው፦ {0}"
 
-#: src/features/homepage/hero.tsx
-msgid "WCAG 2.1 AA"
-msgstr "WCAG 2.1 AA"
-
 #. Password reset email. appName: Reactive Resume
 #: src/features/auth/email-text.ts
 msgid "We received a request to reset your {appName} password."
@@ -18675,6 +18632,7 @@ msgstr "{0}ን መጠየቅ የሚገባው"
 #. Homepage scene title, one word followed by a full stop
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/write.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
 #: src/routes/builder/$resumeId/-components/editor-shell.tsx

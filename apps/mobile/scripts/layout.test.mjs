@@ -11,6 +11,8 @@ i18n.loadAndActivate({ locale: "en-US", messages: {} });
 const window = { width: 951, height: 669, fontScale: 1 };
 const insets = { top: 0, bottom: 20, left: 0, right: 84 };
 const calls = [];
+const bottomBarMeasurements = [];
+let barFocused = true;
 const element = (type, props, ...children) => ({ type, props: { ...props, children } });
 const native = {
 	View: "View",
@@ -51,6 +53,7 @@ const mocks = {
 	"react-native-safe-area-context": safe,
 	"@lingui/react/macro": { useLingui: () => ({ t: tag, i18n }) },
 	"expo-router": {
+		useIsFocused: () => barFocused,
 		useLocalSearchParams: () => ({}),
 		useRouter: () => router,
 		usePathname: () => "/documents",
@@ -62,6 +65,7 @@ const mocks = {
 	"./use-new-action": { useNewAction: () => () => router.push(routes.new()) },
 	"./workspace-tab-label": { workspaceTabLabel: (tab) => tab },
 	"@/routes": { routes },
+	"@/ui/bottom-bar": { setBottomBarHeight: (owner, height) => bottomBarMeasurements.push({ owner, height }) },
 };
 let keyboardHeight = 0;
 mocks["react-native-keyboard-controller"].useKeyboardState = (select) =>
@@ -134,6 +138,7 @@ const render = (component, props = {}) => {
 };
 // Android activity recreation can leave event caches visible after the native keyboard has closed.
 react.Children = { count: (children) => (children == null ? 0 : Array.isArray(children) ? children.length : 1) };
+react.useRef = (initial) => react.useState({ current: initial })[0];
 const { Bar: VisibilityBar } = load("shell/app-tabs.tsx", {
 	"react-native-reanimated": {},
 	"react-native-keyboard-controller": { useKeyboardState: () => true },
@@ -145,8 +150,21 @@ for (const height of [300, 450, 0, 300, 0]) {
 	render(VisibilityBar);
 	assert.equal(render(VisibilityBar) === null, height !== 0, "Navigation follows native frames after recreation");
 }
+const measuredBar = render(VisibilityBar);
+measuredBar.props.onLayout({ nativeEvent: { layout: { height: 118 } } });
+render(VisibilityBar);
+assert.equal(bottomBarMeasurements.at(-1).height, 118, "Feedback receives the actual large-type navigation height");
+barFocused = false;
+render(VisibilityBar);
+assert.equal(bottomBarMeasurements.at(-1).height, 0, "An unfocused screen releases its navigation inset");
+barFocused = true;
+render(VisibilityBar);
+keyboardHeight = 300;
+render(VisibilityBar);
+render(VisibilityBar);
+assert.equal(bottomBarMeasurements.at(-1).height, 0, "Keyboard-hidden navigation cannot retain its inset");
+keyboardHeight = 0;
 hooks.length = 0;
-react.useRef = (initial) => react.useState({ current: initial })[0];
 react.useCallback = (callback) => callback;
 // The first focus must allow Improve for an existing line without requiring another caret tap.
 const richText = load("features/write/rich-text.ts");

@@ -25,6 +25,7 @@ import {
 import { useWorkspace } from "@/lib/workspace-context";
 
 type ApplicationTab = "fit" | "drafts" | "review";
+type ReviewMode = "manual" | "report";
 type ApplicationWorkspaceProps = { job: Job };
 const IMPORT_LIMIT = 8 * 1024 * 1024;
 const resumeFields: { field: keyof Profile; label: string; rows?: number; type?: string }[] = [
@@ -65,8 +66,9 @@ function currentSource(workspace: Workspace, application: Application): Profile 
 		? (workspace.resumes.find((resume) => resume.id === application.sourceResumeId)?.profile ?? null)
 		: workspace.profile;
 }
-function reviewKey(job: Job, sourceId: string, sourceProfile: Profile | null) {
+function reviewKey(job: Job, sourceId: string, sourceProfile: Profile | null, mode: ReviewMode) {
 	return JSON.stringify([
+		mode,
 		job.id,
 		job.company,
 		job.role,
@@ -93,6 +95,7 @@ export function ApplicationWorkspace({ job }: ApplicationWorkspaceProps) {
 	const [importOpen, setImportOpen] = useState(false);
 	const [resultText, setResultText] = useState("");
 	const [acceptedFor, setAcceptedFor] = useState<string | null>(null);
+	const [reviewMode, setReviewMode] = useState<ReviewMode>("manual");
 	const importRef = useRef<HTMLInputElement>(null);
 	const sourceSelectionVersion = useRef(0);
 	const sourceId =
@@ -114,10 +117,11 @@ export function ApplicationWorkspace({ job }: ApplicationWorkspaceProps) {
 		? compareResumeToJob(currentProfile, application?.targetKeywords || extractJobKeywords(job).join(", "))
 		: null;
 	const review = application ? reviewApplication(sourceProfile, job, application) : null;
-	const acknowledgementKey = reviewKey(job, sourceId, sourceProfile);
+	const acknowledgementKey = reviewKey(job, sourceId, sourceProfile, reviewMode);
 	const acknowledged = acceptedFor === acknowledgementKey;
 	const writable = persistenceStatus === "saved" && !pending;
-	const exportAllowed = Boolean(application && review?.canExport && !sourceChanged && acknowledged && writable);
+	const reviewEligible = reviewMode === "manual" ? review?.canExportManually : review?.canExport;
+	const exportAllowed = Boolean(application && reviewEligible && !sourceChanged && acknowledged && writable);
 
 	function clearFeedback() {
 		setMessage("");
@@ -354,9 +358,10 @@ export function ApplicationWorkspace({ job }: ApplicationWorkspaceProps) {
 					return workspace;
 				}
 				const profile = currentSource(workspace, currentApplication);
+				const currentReview = reviewApplication(profile, currentJob, currentApplication);
 				if (
-					!reviewApplication(profile, currentJob, currentApplication).canExport ||
-					acceptedFor !== reviewKey(currentJob, sourceId, profile)
+					!(reviewMode === "manual" ? currentReview.canExportManually : currentReview.canExport) ||
+					acceptedFor !== reviewKey(currentJob, sourceId, profile, reviewMode)
 				) {
 					rejected = true;
 					return workspace;
@@ -364,7 +369,7 @@ export function ApplicationWorkspace({ job }: ApplicationWorkspaceProps) {
 				const title = `${currentJob.company} · ${currentJob.role}`;
 				const resume: Resume = {
 					id: versionId,
-					title: title.length <= 500 ? title : "Reviewed application resume",
+					title: title.length <= 500 ? title : "Application resume",
 					updatedAt: new Date().toISOString(),
 					profile: { ...currentApplication.resume },
 					targetJobId: currentJob.id,
@@ -372,7 +377,12 @@ export function ApplicationWorkspace({ job }: ApplicationWorkspaceProps) {
 				};
 				return { ...workspace, resumes: [...workspace.resumes, resume] };
 			});
-			if (saved && !rejected) setMessage("Reviewed resume version saved in Resumes. No application was submitted.");
+			if (saved && !rejected)
+				setMessage(
+					reviewMode === "manual"
+						? "Resume version saved after your manual review. No AI review was recorded and no application was submitted."
+						: "Resume version saved in Resumes after your document review. No application was submitted.",
+				);
 			else setError("Couldn't save this resume version. Check the workspace notice and try again.");
 		} finally {
 			setPending(false);
@@ -414,7 +424,7 @@ export function ApplicationWorkspace({ job }: ApplicationWorkspaceProps) {
 					? review?.checks.find((check) => check.id === "report-current")?.passed
 						? "Reviewed drafts imported. Read the report and final documents before exporting."
 						: "These drafts changed after the imported review. Export a fresh packet for another review."
-					: "Local starter template. For an independent AI review, export a review packet."}
+					: "Local starter template. Edit the drafts, then review them yourself to export. An imported reviewer report is optional."}
 			</div>
 			{message ? (
 				<div className="notice" role="status">
@@ -659,26 +669,114 @@ export function ApplicationWorkspace({ job }: ApplicationWorkspaceProps) {
 							<FileCheck2 size={21} />
 						</div>
 						<p className="muted">
-							Local checks and an exact-document reviewer report are required before export. Imported reports are not
-							proof of the reviewer's identity or independence.
+							Read every claim and contact detail. Choose your own manual review or use an imported report for these
+							exact documents.
 						</p>
+						<fieldset className="review-method">
+							<legend>How would you like to review?</legend>
+							<label
+								htmlFor="review-manual"
+								aria-label="Review it myself"
+								className={reviewMode === "manual" ? "selected" : ""}
+							>
+								<input
+									id="review-manual"
+									type="radio"
+									name="application-review-method"
+									value="manual"
+									disabled={pending}
+									checked={reviewMode === "manual"}
+									onChange={() => {
+										setReviewMode("manual");
+										setAcceptedFor(null);
+									}}
+								/>
+								<span>
+									<strong>Review it myself</strong>
+									<small>Read, confirm and export. No AI service needed.</small>
+								</span>
+							</label>
+							<label
+								htmlFor="review-report"
+								aria-label="Use an imported report"
+								className={reviewMode === "report" ? "selected" : ""}
+							>
+								<input
+									id="review-report"
+									type="radio"
+									name="application-review-method"
+									value="report"
+									disabled={pending}
+									checked={reviewMode === "report"}
+									onChange={() => {
+										setReviewMode("report");
+										setAcceptedFor(null);
+									}}
+								/>
+								<span>
+									<strong>Use an imported report</strong>
+									<small>Requires a current report with no unresolved issues.</small>
+								</span>
+							</label>
+						</fieldset>
+						<div className="notice review-responsibility">
+							{reviewMode === "manual"
+								? "You are responsible for checking these documents against your real experience. Local checks cannot verify facts. Manual review does not record an independent or AI review."
+								: "Imported reports are not proof of the reviewer's identity or independence. You still need to read and confirm the final documents."}
+						</div>
+						<details className="review-documents" open>
+							<summary>Read the final resume and cover letter</summary>
+							<div className="review-document-grid">
+								<section>
+									<h4>Resume draft</h4>
+									<dl>
+										{[
+											...resumeFields,
+											{ field: "website" as const, label: "Website" },
+											{ field: "linkedinUrl" as const, label: "LinkedIn URL" },
+										].map(({ field, label }) => (
+											<div key={field}>
+												<dt>{label}</dt>
+												<dd className="preserve-lines">{application.resume[field] || "Not provided"}</dd>
+											</div>
+										))}
+									</dl>
+								</section>
+								<section>
+									<h4>Cover letter draft</h4>
+									<p className="preserve-lines">{application.coverLetter || "No cover letter yet."}</p>
+								</section>
+							</div>
+						</details>
 						<ul className="application-checks">
-							{review.checks.map((check) => (
-								<li key={check.id} className={check.passed ? "passed" : check.blocking ? "blocking" : ""}>
-									{check.passed ? <CheckCircle2 size={18} /> : <CircleAlert size={18} />}
-									<div>
-										<strong>
-											{check.label}
-											{!check.blocking ? " · advisory" : ""}
-										</strong>
-										<p className="muted">{check.detail}</p>
-									</div>
-								</li>
-							))}
+							{review.checks
+								.filter(
+									(check) =>
+										reviewMode === "report" ||
+										!["report-present", "report-current", "report-summary", "report-issues"].includes(check.id),
+								)
+								.map((check) => (
+									<li key={check.id} className={check.passed ? "passed" : check.blocking ? "blocking" : ""}>
+										{check.passed ? <CheckCircle2 size={18} /> : <CircleAlert size={18} />}
+										<div>
+											<strong>
+												{check.label}
+												{!check.blocking ? " · advisory" : ""}
+											</strong>
+											<p className="muted">{check.detail}</p>
+										</div>
+									</li>
+								))}
 						</ul>
 						{application.agentReview ? (
 							<div className="application-report">
 								<h3>Imported reviewer report</h3>
+								{reviewMode === "manual" ? (
+									<p className="muted small-print">
+										This report is advisory in manual review. You take responsibility for resolving its issues; manual
+										export does not certify that this report is current or complete.
+									</p>
+								) : null}
 								<p className="preserve-lines">{application.agentReview.summary}</p>
 								{application.agentReview.issues.length ? (
 									<ul>
@@ -707,18 +805,21 @@ export function ApplicationWorkspace({ job }: ApplicationWorkspaceProps) {
 							<input
 								type="checkbox"
 								checked={acknowledged}
-								disabled={!review.canExport || sourceChanged || pending}
+								disabled={!reviewEligible || sourceChanged || !writable}
 								onChange={(event) => setAcceptedFor(event.target.checked ? acknowledgementKey : null)}
 							/>
 							<span>
-								I checked this final resume and cover letter for {job.company}, including every claim and contact
-								detail.
+								{reviewMode === "manual" ? "I personally reviewed" : "I checked"} this final resume and cover letter for{" "}
+								{job.company}, including every claim and contact detail.
+								{reviewMode === "manual"
+									? " I understand this is my manual review, without a verified independent review."
+									: ""}
 							</span>
 						</label>
 						<div className="button-row">
 							<button className="button primary" onClick={() => void saveResumeVersion()} disabled={!exportAllowed}>
 								<FileText size={16} />
-								Save resume version
+								{pending ? "Saving…" : "Save resume version"}
 							</button>
 							<button className="button secondary" onClick={exportLetter} disabled={!exportAllowed}>
 								<Download size={16} />
