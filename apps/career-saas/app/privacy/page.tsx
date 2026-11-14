@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function PrivacyPage() {
 	return (
-		<main className="main-content" style={{ maxWidth: 800, margin: "0 auto" }}>
-			<Link href="/about">CareerOS</Link>
+		<main className="career-privacy">
+			<Link href="/about">Back to CareerOS</Link>
 			<h1>Your career information</h1>
 			<p>Updated November 9, 2026. This page describes the local workspace and its optional cloud connection.</p>
 			<h2>Local workspace</h2>
