@@ -8,6 +8,7 @@ import { AnimatedLegendList } from "@legendapp/list/reanimated";
 import { Redirect, Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
+import { ApplicationCard } from "@/features/applications/application-card";
 import {
 	Avatar,
 	Banner,
@@ -260,8 +261,44 @@ function Fields() {
 function Lists() {
 	const [notify, setNotify] = useState(true);
 	const [selected, setSelected] = useState(false);
+	const [applicationSelecting, setApplicationSelecting] = useState(false);
+	const [applicationSelected, setApplicationSelected] = useState(false);
+	const { colors } = useTheme();
 	return (
 		<>
+			<Section title="Application card · fictional example">
+				<ApplicationCard
+					application={{
+						company: "Example Studio",
+						role: "Senior product designer",
+						location: "Remote",
+						tags: ["Design", "Product"],
+					}}
+					stage={{ label: "Saved", color: colors.stageSaved }}
+					next={{ title: "Prepare your application" }}
+					documents="Resume"
+					selected={applicationSelected}
+					selecting={applicationSelecting}
+					disabled={false}
+					focused={false}
+					onPress={() =>
+						applicationSelecting
+							? setApplicationSelected(!applicationSelected)
+							: toast({ message: "Application card preview" })
+					}
+					onActions={() => setApplicationSelecting(true)}
+				/>
+				{applicationSelecting ? (
+					<Button
+						variant="ghost"
+						label="End selection preview"
+						onPress={() => {
+							setApplicationSelecting(false);
+							setApplicationSelected(false);
+						}}
+					/>
+				) : null}
+			</Section>
 			<ListGroup title="Account" footer="Security settings open in the browser.">
 				<ListRow title="Profile" leading="user-circle" chevron onPress={noop} />
 				<ListRow title="Theme" leading="palette" value="System" chevron onPress={noop} />

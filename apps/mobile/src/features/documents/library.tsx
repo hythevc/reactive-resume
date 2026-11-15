@@ -37,6 +37,7 @@ import {
 	ListRow,
 	Screen,
 	Segmented,
+	SelectSheet,
 	Sheet,
 	Skeleton,
 	Text,
@@ -93,7 +94,7 @@ function DocumentItem({
 				gap: space.s2,
 				padding: space.s3,
 				backgroundColor: selected ? colors.selectedFill : colors.surface,
-				borderRadius: radius.rLg,
+				borderRadius: grid ? radius.rLg : radius.rMd,
 				borderWidth: 1,
 				borderColor: selected ? colors.accent : colors.line,
 			}}
@@ -436,14 +437,19 @@ export function DocumentsLibrary({ trashed = false }: DocumentsLibraryProps) {
 		setTags([]);
 		setPublicOnly(false);
 	};
-	const sortLabel = { edited: t`Last edited`, name: t`Name`, created: t`Date created` }[sort];
-	const cycleSort = () => setSort(sort === "edited" ? "name" : sort === "name" ? "created" : "edited");
-	const sortControl =
-		fontScale > 1.3 ? (
-			<ListRow title={t`Sort`} value={sortLabel} leading="arrows-down-up" onPress={cycleSort} />
-		) : (
-			<Chip icon="arrows-down-up" label={sortLabel} onPress={cycleSort} />
-		);
+	const sortControl = (
+		<SelectSheet
+			appearance="row"
+			label={t`Sort`}
+			value={sort}
+			onChange={setSort}
+			options={[
+				{ value: "edited", label: t`Last edited` },
+				{ value: "name", label: t`Name` },
+				{ value: "created", label: t`Date created` },
+			]}
+		/>
+	);
 	const header = (
 		<View style={{ gap: space.s4 }}>
 			<View style={{ flexDirection: "row", alignItems: "center", gap: space.s2 }}>
@@ -563,14 +569,13 @@ export function DocumentsLibrary({ trashed = false }: DocumentsLibraryProps) {
 									},
 								]}
 							/>
-							{fontScale > 1.3 && sortControl}
+							{sortControl}
 							<ScrollView
 								horizontal
 								showsHorizontalScrollIndicator={false}
 								contentContainerStyle={{ alignItems: "center", gap: space.s2 }}
 								style={{ flexGrow: 0 }}
 							>
-								{fontScale <= 1.3 && sortControl}
 								<Chip label={t`Public`} selected={publicOnly} onPress={() => setPublicOnly(!publicOnly)} />
 								{(displayed?.tags ?? []).map((tag) => (
 									<Chip

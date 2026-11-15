@@ -121,7 +121,7 @@ export function ApplicationInsights({ applications, onSaveJob, onClearFilters }:
 										}}
 									/>
 								</span>
-								<span className="text-end font-display text-base tabular-nums">{i18n.number(row.reached)}</span>
+								<span className="text-end font-ui text-base tabular-nums">{i18n.number(row.reached)}</span>
 							</li>
 						);
 					})}
@@ -133,7 +133,7 @@ export function ApplicationInsights({ applications, onSaveJob, onClearFilters }:
 
 			<div className="grid gap-4 sm:grid-cols-2">
 				<div className="rounded-xl border border-line p-5">
-					<div className="font-display text-[34px] leading-10">
+					<div className="font-ui text-[34px] leading-10">
 						{i18n.number(Math.round((outcomes.heardBack / outcomes.sent) * 100))}%
 					</div>
 					<div className="text-sm text-ink-2">
@@ -141,7 +141,7 @@ export function ApplicationInsights({ applications, onSaveJob, onClearFilters }:
 					</div>
 				</div>
 				<div className="rounded-xl border border-line p-5">
-					<div className="font-display text-[34px] leading-10">
+					<div className="font-ui text-[34px] leading-10">
 						{outcomes.medianDaysToReply === null ? (
 							"—"
 						) : (

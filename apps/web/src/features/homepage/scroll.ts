@@ -2,7 +2,7 @@ import type { RefObject } from "react";
 import { useEffect } from "react";
 import { create } from "zustand";
 
-/** Each section's `data-scene` index, in page order. Scenes 0–6 are pinned; the rest scroll normally. */
+/** Each section's `data-scene` index, in page order. Scenes 1–6 are pinned; the hero and later sections scroll normally. */
 export const SCENE = {
 	hero: 0,
 	write: 1,

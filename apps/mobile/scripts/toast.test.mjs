@@ -22,6 +22,7 @@ const theme = {
 	size: { button: 44, formSheet: 540, hit: 44, tabBar: 56 },
 	space: { s0: 2, s1: 4, s2: 8, s3: 12, s4: 16, s8: 32 },
 };
+const bottomBar = load("../src/ui/bottom-bar.ts", { react });
 const mocks = {
 	react,
 	"@/shell/key-commands": { useKeyCommandBlocker() {} },
@@ -49,12 +50,26 @@ const mocks = {
 	"@lingui/react/macro": { useLingui: () => ({ t: (parts) => parts.join("") }) },
 	"@lodev09/react-native-true-sheet": {},
 	"./button": {},
+	"./bottom-bar": bottomBar,
 	"./motion": { useIsWide: () => false, useReducedMotion: () => true },
 	"./safe-area": { useWindowSafeAreaInsets: () => ({ bottom: 34 }) },
 	"./text": { Text: "Text" },
 	"./theme": { useTheme: () => theme },
 };
 const { Toaster, showToast } = load("../src/ui/overlays.tsx", mocks, { jsx: "transform", globals: { React: react } });
+
+// Bars can grow for text settings. Feedback clears their measured bounds, then releases an obsolete owner's inset.
+const mainBar = {};
+const editorBar = {};
+bottomBar.setBottomBarHeight(mainBar, 118);
+assert.equal(Toaster().props.style.bottom, 130);
+bottomBar.setBottomBarHeight(editorBar, 96);
+assert.equal(Toaster().props.style.bottom, 130, "A second active owner cannot move feedback into the taller bar");
+bottomBar.setBottomBarHeight(mainBar, 0);
+assert.equal(Toaster().props.style.bottom, 108);
+bottomBar.setBottomBarHeight(editorBar, 0);
+assert.equal(Toaster().props.style.bottom, 46, "Removing all bars restores the safe-area-only inset");
+console.log("PASS feedback clears measured navigation height and releases obsolete owners");
 
 const find = (node, type) => {
 	if (!node || typeof node !== "object") return undefined;

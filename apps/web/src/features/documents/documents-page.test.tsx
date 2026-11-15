@@ -458,6 +458,10 @@ it("an empty Letters tab offers to make one instead of clearing filters", async 
 	);
 
 	expect(await screen.findByRole("heading", { name: "No cover letters yet" })).toBeVisible();
+	// The collection action stays beside its heading and preserves letter context.
+	fireEvent.click(screen.getByRole("button", { name: "New document" }));
+	expect(useDialogStore.getState().activeDialog).toEqual({ type: "document.new", data: { context: "letters" } });
+	useDialogStore.setState({ open: false, activeDialog: null });
 	expect(screen.queryByText("Nothing matches these filters")).toBeNull();
 	expect(screen.queryByRole("button", { name: "Clear search and filters" })).toBeNull();
 	fireEvent.click(screen.getByRole("button", { name: "New cover letter" }));

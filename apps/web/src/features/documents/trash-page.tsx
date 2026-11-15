@@ -195,7 +195,7 @@ export function TrashPage() {
 			) : documents?.length === 0 ? (
 				<div className="grid justify-items-center gap-2 py-16 text-center">
 					<Icon name="trash" size={28} className="text-ink-3" />
-					<p className="font-display text-[22px] leading-7">
+					<p className="font-ui text-[22px] leading-7">
 						<Trans>Trash is empty</Trans>
 					</p>
 					<p className="text-sm text-ink-2">

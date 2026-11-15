@@ -2,6 +2,14 @@
 
 Expo / React Native app. The root `AGENTS.md` still applies; this guide covers mobile-only workflows.
 
+## Shared-component browser preview
+
+`pnpm --filter mobile preview:web --port 8081` runs the React Native Web primitive gallery, including the actual
+application-card component. Its launcher supplies cross-origin isolation on HTML and assets so the SQLite theme store
+works in supported browsers, and forwards Metro refresh sockets. Use `--metro-port` only to choose a separate internal
+port, or `--clear` to clear Metro's cache. Stop with Ctrl+C to close the owned server and Metro process. This gallery
+does not render the authenticated native routes or prove iOS/Android keyboard, gestures, safe areas or assistive technology.
+
 ## Tests
 
 Mobile tests are host tests, not Vitest: `scripts/*.test.mjs` run under `node --test` on Node 24. They need no simulator, emulator or Metro.

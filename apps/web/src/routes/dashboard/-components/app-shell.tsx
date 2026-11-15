@@ -123,7 +123,7 @@ function useNewAction() {
 }
 
 /**
- * The app shell for Documents, Trash, Applications and Settings: a 240px sidebar at ≥1024, an icon rail at
+ * The app shell for Documents, Trash, Applications and Settings: a 256px sidebar at ≥1024, an icon rail at
  * 640–1023 and a bottom tab bar below 640. An application's workspace is full screen on phones, with its own back
  * link and action bar, so it has no tab bar. N opens New anywhere outside a field.
  */
@@ -157,7 +157,7 @@ export function AppShell({ children }: AppShellProps) {
 						: ""
 					: breakpoint === "tablet"
 						? "grid-cols-[64px_minmax(0,1fr)]"
-						: "grid-cols-[240px_minmax(0,1fr)]",
+						: "grid-cols-[256px_minmax(0,1fr)]",
 			)}
 		>
 			<a
@@ -186,11 +186,11 @@ function Sidebar() {
 	return (
 		<aside
 			aria-label={t`App navigation`}
-			className="sticky top-0 flex h-svh flex-col gap-3 border-e border-line bg-surface p-3 [view-transition-name:app-nav]"
+			className="sticky top-0 flex h-svh flex-col gap-5 border-e border-line bg-surface p-4 [view-transition-name:app-nav]"
 		>
-			<Link to="/" className="flex h-9 items-center gap-2.5 px-1.5">
-				<BrandIcon variant="icon" alt="" className="size-6 shrink-0" />
-				<span className="text-sm font-semibold">Reactive Resume</span>
+			<Link to="/" className="flex h-12 items-center gap-2.5 px-1">
+				<BrandIcon variant="icon" alt="" className="size-8 shrink-0" />
+				<span className="font-ui text-xl leading-none font-semibold tracking-[-0.02em]">Reactive Resume</span>
 			</Link>
 
 			<button
@@ -198,7 +198,7 @@ function Sidebar() {
 				aria-label={t`Search or run a command…`}
 				aria-keyshortcuts={ariaShortcut("⌘K")}
 				onClick={() => openPalette(true)}
-				className="flex h-[34px] items-center gap-2 rounded-lg border border-line bg-bg px-2.5 text-sm text-ink-3 transition-colors duration-quick hover:text-ink-2"
+				className="flex h-10 items-center gap-2 rounded-md border border-line-2 bg-raised px-3 text-sm text-ink-3 transition-colors duration-quick hover:text-ink-2"
 			>
 				<Icon name="magnifying-glass" size={18} />
 				<span className="flex-1 text-start">
@@ -207,7 +207,7 @@ function Sidebar() {
 				<Kbd>{formatShortcut("⌘K")}</Kbd>
 			</button>
 
-			<nav aria-label={t`App`} className="grid gap-0.5">
+			<nav aria-label={t`App`} className="grid gap-1">
 				{items.map((item) => (
 					<NavLink key={item.to} item={item} current={isCurrent(item.to)} />
 				))}
@@ -224,7 +224,7 @@ function Sidebar() {
 					variant="secondary"
 					aria-label={t`New`}
 					aria-keyshortcuts={characterShortcuts ? "N" : undefined}
-					className="h-9 justify-between"
+					className="h-10 justify-between"
 					onClick={openNew}
 				>
 					<span className="flex items-center gap-1.5">
@@ -237,9 +237,9 @@ function Sidebar() {
 					{({ session }) => (
 						<button
 							type="button"
-							className="flex h-11 items-center gap-2.5 rounded-lg px-1.5 text-start transition-colors duration-quick hover:bg-hover"
+							className="flex min-h-14 items-center gap-3 rounded-lg border border-line bg-bg px-3 py-2 text-start transition-colors duration-quick hover:bg-hover"
 						>
-							<Avatar className="size-7">
+							<Avatar className="size-8">
 								<AvatarImage src={session.user.image ?? undefined} />
 								<AvatarFallback>{getInitials(session.user.name)}</AvatarFallback>
 							</Avatar>
@@ -263,8 +263,8 @@ function NavLink({ item, current }: { item: NavItem; current: boolean }) {
 			to={item.to}
 			aria-current={current ? "page" : undefined}
 			className={cn(
-				"flex h-[34px] items-center gap-2.5 rounded-lg px-2.5 text-sm transition-[background-color,color,scale] duration-quick ease-enter active:scale-[0.97]",
-				current ? "bg-sunken font-medium text-ink" : "text-ink-2 hover:bg-hover hover:text-ink",
+				"flex h-11 items-center gap-3 rounded-md px-3 text-sm transition-[background-color,color,scale] duration-quick ease-enter active:scale-[0.97]",
+				current ? "bg-accent-soft font-medium text-accent-text" : "text-ink-2 hover:bg-hover hover:text-ink",
 			)}
 		>
 			<Icon name={item.icon} filled={current} />
@@ -306,7 +306,7 @@ function Rail() {
 							aria-current={isCurrent(item.to) ? "page" : undefined}
 							className={cn(
 								"grid size-10 place-items-center rounded-lg transition-[background-color,color,scale] duration-quick ease-enter active:scale-[0.97]",
-								isCurrent(item.to) ? "bg-sunken text-ink" : "text-ink-2 hover:bg-hover",
+								isCurrent(item.to) ? "bg-accent-soft text-accent-text" : "text-ink-2 hover:bg-hover",
 							)}
 						/>
 					</RailTip>
@@ -388,7 +388,7 @@ function MobileTabs() {
 				<Icon name={icon} size={24} filled={current} />
 				<span
 					className={cn(
-						"text-center text-xs [overflow-wrap:anywhere]",
+						"text-center text-xs text-balance break-all",
 						current ? "font-semibold text-ink" : "text-ink-2",
 					)}
 				>
@@ -401,7 +401,7 @@ function MobileTabs() {
 	return (
 		<nav
 			aria-label={t`App`}
-			className="sticky bottom-0 z-30 grid grid-cols-5 border-t border-line bg-surface pb-[env(safe-area-inset-bottom)] [view-transition-name:app-nav]"
+			className="sticky bottom-0 z-30 grid grid-cols-[1.1fr_1.3fr_0.8fr_0.9fr_1fr] border-t border-line bg-surface pb-[env(safe-area-inset-bottom)] [view-transition-name:app-nav]"
 		>
 			{tabs.slice(0, 2).map(link)}
 			<button
@@ -413,7 +413,7 @@ function MobileTabs() {
 				<span className="grid h-[26px] w-[34px] place-items-center rounded-sm bg-accent text-on-accent">
 					<Icon name="plus" size={20} />
 				</span>
-				<span className="text-center text-xs [overflow-wrap:anywhere] text-ink-2">
+				<span className="text-center text-xs text-balance break-all text-ink-2">
 					<Trans>New</Trans>
 				</span>
 			</button>

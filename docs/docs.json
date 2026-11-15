@@ -255,6 +255,7 @@
 						"pages": [
 							"contributing/development",
 							"contributing/architecture",
+							"contributing/design-system",
 							"contributing/web-access",
 							"contributing/career-platform",
 							"contributing/translations",

@@ -9,12 +9,12 @@ export type EmptyStateProps = {
 	/** The one thing to do next; use the secondary slot for a quieter alternative. */
 	action?: ReactNode;
 	secondary?: ReactNode;
-	/** A compact row for the absence inside a list, instead of the full dashed card. */
+	/** A compact row for the absence inside a list, instead of the full surface. */
 	variant?: "default" | "compact";
 	className?: string;
 };
 
-/** The same "nothing here yet" moment in every module: a dashed card, or a compact row inside a list. */
+/** The same "nothing here yet" moment in every module: a composed surface, or a compact row inside a list. */
 export function EmptyState({
 	title,
 	description,
@@ -34,25 +34,37 @@ export function EmptyState({
 			className={cn(
 				compact
 					? "flex flex-wrap items-center justify-between gap-x-3 gap-y-1 px-4 py-3"
-					: "grid justify-items-center gap-2 rounded-xl border border-dashed border-line-2 p-7 text-center",
+					: "grid justify-items-start gap-4 rounded-lg border border-line bg-surface px-6 py-7 text-start",
 				className,
 			)}
 		>
-			<div className={cn("grid gap-1", compact ? "min-w-0" : "justify-items-center")}>
-				<Title className={cn(compact ? "text-[13px] leading-[19px] text-ink" : "font-display text-[22px] leading-7")}>
+			<div className={cn("grid gap-1", compact ? "min-w-0" : "justify-items-start")}>
+				<Title
+					className={cn(
+						compact
+							? "text-[13px] leading-[19px] text-ink"
+							: "font-ui text-xl leading-7 font-semibold tracking-[-0.01em] text-balance",
+					)}
+				>
 					{title}
 				</Title>
 				{description && (
-					<p className={compact ? "text-[13px] leading-[19px] text-ink-2" : "max-w-[340px] text-sm text-ink-2"}>
+					<p
+						className={
+							compact
+								? "text-[13px] leading-[19px] text-ink-2"
+								: "max-w-[380px] text-sm leading-6 text-pretty text-ink-2"
+						}
+					>
 						{description}
 					</p>
 				)}
 			</div>
 			{children && (
-				<div className={cn("grid w-full justify-items-center gap-3", compact && "justify-items-start")}>{children}</div>
+				<div className={cn("grid w-full justify-items-start gap-3", compact && "justify-items-start")}>{children}</div>
 			)}
 			{(action || secondary) && (
-				<div className={cn("flex flex-wrap items-center gap-2", !compact && "justify-center")}>
+				<div className={cn("flex flex-wrap items-center gap-2", !compact && "justify-start")}>
 					{action}
 					{secondary}
 				</div>

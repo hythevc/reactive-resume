@@ -1216,11 +1216,9 @@ msgstr "कार्रवाई"
 msgid "Actions"
 msgstr "कार्रवाई"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "{1} पर {0} के लिए कार्रवाइयां"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "{company} में {role} पद के लिए कार्रवाइयाँ"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API कुंजियाँ"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "उपस्थिति"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "दिखावट की यह सेटिंग इस सत्र में लागू है। इस विकल्प को बनाए रखने के लिए फिर से सहेजने का प्रयास करें।"
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "नोट सहेजे नहीं जा सके. आपका �
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "टैग सहेजे नहीं जा सके। पुनः प्रयास करें।"
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "थीम सहेजा नहीं जा सका. पुनः प्रयास करें।"
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "लिंक बनाएँ"
 msgid "Make primary"
 msgstr "प्राथमिक बनाएँ"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "अगले चरण के लिए जगह बनाएं."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "उद्घाटन को मजबूत बनाएं"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "AI सहायक खोलें"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "स्थानांतरण"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "याद रखें"
@@ -10928,6 +10924,10 @@ msgstr "सहेजे गए उत्तर फिर से आज़मा�
 msgid "Retry saving"
 msgstr "सहेजने का पुनः प्रयास करें"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "दिखावट की सेटिंग फिर से सहेजने का प्रयास करें"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "{nativeSearchLabel} के साथ दोबारा प्रयास करें"
@@ -10968,6 +10968,10 @@ msgstr "जाँचों की समीक्षा करें"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "पहली बार आवेदन जमा करते समय समीक्षा के चिह्न सहेजे गए थे।"
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "विवरण देखें"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "अनुस्मारक प्राप्त करने के �
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "आज"
 msgid "Today, {hour}"
 msgstr "आज, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "चयन टॉगल करें"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ButtonHTMLAttributes, type ReactNode } from "react";
+import { useId, useState, type ButtonHTMLAttributes, type ReactNode } from "react";
 
 type ProfileUrlFieldProps = {
 	label: string;
@@ -11,6 +11,7 @@ type ProfileUrlFieldProps = {
 
 /** Parent keys by saved value so external workspace changes replace the editor draft. */
 export function ProfileUrlField({ label, value, onCommit, maxLength = 2000 }: ProfileUrlFieldProps) {
+	const id = useId();
 	const [draft, setDraft] = useState(value);
 	const [error, setError] = useState("");
 	async function commit() {
@@ -30,9 +31,13 @@ export function ProfileUrlField({ label, value, onCommit, maxLength = 2000 }: Pr
 		setError("");
 	}
 	return (
-		<label className="field">
+		<label className="field" htmlFor={id}>
 			<span>{label}</span>
 			<input
+				id={id}
+				name={label.toLowerCase().replace(/\s+/g, "-")}
+				autoComplete="off"
+				spellCheck={false}
 				className="input"
 				type="url"
 				maxLength={maxLength}
@@ -49,13 +54,16 @@ export function ProfileUrlField({ label, value, onCommit, maxLength = 2000 }: Pr
 					}
 				}}
 				aria-invalid={Boolean(error)}
+				aria-describedby={`${id}-help`}
 			/>
 			{error ? (
-				<span className="field-help" role="alert">
+				<span className="field-help" id={`${id}-help`} role="alert">
 					{error}
 				</span>
 			) : (
-				<span className="field-help">Saved when you leave this field.</span>
+				<span className="field-help" id={`${id}-help`}>
+					Saved when you leave this field.
+				</span>
 			)}
 		</label>
 	);
@@ -93,13 +101,13 @@ export function PageHeading({
 	children?: ReactNode;
 }) {
 	return (
-		<div className="feature-heading">
+		<header className="feature-heading">
 			<div>
 				<h1>{title}</h1>
 				{description ? <p className="muted">{description}</p> : null}
 			</div>
 			{children}
-		</div>
+		</header>
 	);
 }
 export function EmptyState({
@@ -112,7 +120,7 @@ export function EmptyState({
 	children?: ReactNode;
 }) {
 	return (
-		<div className="empty">
+		<div className="empty" role="status">
 			<h3>{title}</h3>
 			<p className="muted">{description}</p>
 			{children}

@@ -423,7 +423,7 @@ function NotesEditor({ id, value, locked }: NotesEditorProps) {
 			style={{
 				borderWidth: border,
 				borderRadius: radius.rMd,
-				borderColor: isFocused ? colors.accent : colors.lineStrong,
+				borderColor: isFocused ? colors.accent : colors.controlLine,
 				backgroundColor: locked ? colors.sunken : colors.raised,
 				overflow: "hidden",
 			}}

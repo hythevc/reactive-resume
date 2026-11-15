@@ -73,7 +73,7 @@ type InputBoxProps = Omit<TextFieldProps, "label" | "helper"> & {
 	maxHeight?: number | undefined;
 };
 
-/** The bordered box: 1 pt `lineStrong`, 2 pt `accent` while focused, 2 pt `dangerText` with an error. */
+/** The bordered box: 1 pt `controlLine`, 2 pt `accent` while focused, 2 pt `dangerText` with an error. */
 function InputBox({
 	accessibilityLabel,
 	ref: inputRef,
@@ -118,8 +118,8 @@ function InputBox({
 				paddingHorizontal: space.s3 - (border - 1),
 				paddingVertical: multiline ? space.s3 - (border - 1) : 0,
 				borderWidth: border,
-				borderColor: error ? colors.dangerText : focused ? colors.accent : colors.lineStrong,
-				borderRadius: radius.rLg,
+				borderColor: error ? colors.dangerText : focused ? colors.accent : colors.controlLine,
+				borderRadius: radius.rMd,
 				backgroundColor: colors.raised,
 			}}
 		>
@@ -270,8 +270,8 @@ export function SelectSheet<T extends string>({
 							minHeight: size.input,
 							paddingHorizontal: space.s3,
 							borderWidth: 1,
-							borderColor: colors.lineStrong,
-							borderRadius: radius.rLg,
+							borderColor: colors.controlLine,
+							borderRadius: radius.rMd,
 							backgroundColor: pressed && !android ? colors.sunken : colors.raised,
 							overflow: "hidden",
 							opacity: disabled ? 0.45 : 1,
@@ -293,6 +293,13 @@ export function SelectSheet<T extends string>({
 				// A long list (languages, countries) scrolls in a half-height sheet that can rise to full.
 				detents={options.length > 6 ? [0.5, 0.9] : ["content"]}
 			>
+				<Text
+					accessibilityRole="header"
+					variant="heading"
+					style={{ paddingHorizontal: space.s4, paddingBottom: space.s1 }}
+				>
+					{label}
+				</Text>
 				{searchable ? (
 					<View style={{ paddingHorizontal: space.s4, paddingBottom: space.s2 }}>
 						<InputBox
@@ -311,13 +318,14 @@ export function SelectSheet<T extends string>({
 						{t`No matches`}
 					</Text>
 				) : null}
-				<View accessibilityRole="radiogroup">
+				<View accessibilityRole="radiogroup" accessibilityLabel={label}>
 					{listed.map((option) => (
 						<ListRow
 							key={option.value}
 							title={option.label}
 							subtitle={option.description}
 							leading={option.icon}
+							accessibilityRole="radio"
 							selected={option.value === value}
 							onPress={() => {
 								haptics.selection();
@@ -370,11 +378,12 @@ function Segment({ label, icon, active, onPress, stacked, compact }: SegmentProp
 			accessibilityLabel={label}
 			accessibilityState={{ checked: active }}
 			onPress={onPress}
-			// 40 pt inside the track's 2 pt padding; the slop brings the target to 44.
+			// Track padding stays compact; slop restores the platform's minimum target.
 			hitSlop={{ top: space.s0, bottom: space.s0 }}
 			style={{
 				flex: stacked || compact ? undefined : 1,
 				minHeight: size.hit - space.s0 * 2,
+				minWidth: size.hit,
 				flexDirection: "row",
 				alignItems: "center",
 				justifyContent: "center",
@@ -391,7 +400,7 @@ function Segment({ label, icon, active, onPress, stacked, compact }: SegmentProp
 						bottom: 0,
 						start: 0,
 						end: 0,
-						borderRadius: radius.rMd,
+						borderRadius: radius.rMd - space.s0,
 						backgroundColor: colors.raised,
 						boxShadow: shadows.e1.boxShadow,
 					},
@@ -425,7 +434,7 @@ export function Segmented<T extends string>({
 				flexDirection: stacked ? "column" : "row",
 				gap: space.s0,
 				padding: space.s0,
-				borderRadius: radius.rLg,
+				borderRadius: radius.rMd,
 				backgroundColor: colors.sunken,
 			}}
 		>
@@ -457,7 +466,7 @@ export type ChipProps = {
 	onRemove?: (() => void) | undefined;
 };
 
-/** A 32 pt pill whose touch target reaches 44 pt through `hitSlop`. */
+/** A compact pill whose touch target reaches the platform minimum through `hitSlop`. */
 export function Chip({ label, selected, onPress, icon, onRemove }: ChipProps) {
 	const { t } = useLingui();
 	const { colors, radius, size, space } = useTheme();
@@ -480,14 +489,15 @@ export function Chip({ label, selected, onPress, icon, onRemove }: ChipProps) {
 			android_ripple={onPress ? { color: colors.press } : undefined}
 			style={({ pressed }) => ({
 				minHeight: size.chip,
+				minWidth: size.hit,
 				flexDirection: "row",
 				alignItems: "center",
 				gap: space.s1,
 				paddingStart: space.s3,
 				paddingEnd: onRemove ? space.s1 + space.s0 : space.s3,
-				borderRadius: radius.rLg,
+				borderRadius: radius.rMd,
 				borderWidth: 1,
-				borderColor: selected ? colors.accent : colors.lineStrong,
+				borderColor: selected ? colors.accent : colors.controlLine,
 				backgroundColor: pressed && onPress && !android ? colors.sunken : selected ? colors.accentSoft : colors.raised,
 				overflow: "hidden",
 			})}
@@ -497,7 +507,7 @@ export function Chip({ label, selected, onPress, icon, onRemove }: ChipProps) {
 				{label}
 			</Text>
 			{onRemove ? (
-				// A 22 pt visual with a 44 pt target. Screen readers use the chip's Remove action instead.
+				// A compact visual with the platform's minimum target. Screen readers use the chip's Remove action instead.
 				<Pressable
 					accessible={false}
 					importantForAccessibility="no"

@@ -1216,11 +1216,9 @@ msgstr "Toiminta"
 msgid "Actions"
 msgstr "Toiminnot"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "Toiminnot {0}:lle osoitteessa {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "Toiminnot tehtävälle {role} yrityksessä {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API avaimet"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Ulkonäkö"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "Ulkoasu on käytössä tämän istunnon ajan. Yritä tallentaa uudelleen, jotta valinta säilyy."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Muistiinpanoja ei voitu tallentaa. Tekstisi on edelleen täällä."
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Tunnisteita ei voitu tallentaa. Yritä uudelleen."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Teemaa ei voitu tallentaa. Yritä uudelleen."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "Luo linkki"
 msgid "Make primary"
 msgstr "Tee ensisijaiseksi"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Tee tilaa seuraavalle vaiheelle."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Tee aukosta vahvempi"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "Avaa tekoälyavustaja"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "Muuttovalmius"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Muista"
@@ -10928,6 +10924,10 @@ msgstr "Yritä tallennettuja vastauksia uudelleen"
 msgid "Retry saving"
 msgstr "Yritä tallentaa uudelleen"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Tallenna ulkoasu uudelleen"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "Yritä uudelleen yhteydellä {nativeSearchLabel}"
@@ -10968,6 +10968,10 @@ msgstr "Tarkista tarkistustulokset"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "Tarkistusmerkinnät tallennettiin hakemuksen ensimmäisellä lähetyskerralla."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Näytä tiedot"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "Jos haluat saada muistutuksen, salli ilmoitukset laitteen asetuksista."
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "Tänään"
 msgid "Today, {hour}"
 msgstr "Tänään, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Vaihda valinta"

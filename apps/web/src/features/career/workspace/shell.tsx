@@ -142,7 +142,7 @@ export function Workspace({ applicationId, tab: requested, search }: WorkspacePr
 	if (!application)
 		return (
 			<div className="grid min-h-svh place-content-center justify-items-center gap-3 p-6 text-center">
-				<p role="alert" className="font-display text-[22px] leading-7">
+				<p role="alert" className="font-ui text-[22px] leading-7">
 					<Trans>This application couldn't be opened.</Trans>
 				</p>
 				<Link to="/dashboard/applications" className={cn(buttonVariants({ variant: "secondary" }))}>
@@ -425,7 +425,7 @@ function WorkspaceHeader({ application, onAskCoach }: WorkspaceHeaderProps) {
 			</Link>
 			<div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
 				<div className="grid min-w-0 gap-1.5">
-					<h1 className="font-display text-2xl leading-8 md:text-[30px] md:leading-9">
+					<h1 className="font-ui text-[28px] leading-8 font-semibold tracking-[-0.02em] md:text-[32px] md:leading-9">
 						{application.role} · {application.company}
 					</h1>
 					<p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px] text-ink-2">

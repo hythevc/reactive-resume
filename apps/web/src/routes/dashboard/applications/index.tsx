@@ -289,7 +289,7 @@ function RouteComponent() {
 				if (trigger) openingControl.current = trigger;
 			}}
 			tabIndex={-1}
-			className="mx-auto grid w-full max-w-[1180px] content-start gap-5 px-8 py-8 max-sm:px-4 max-sm:py-5"
+			className="mx-auto grid w-full max-w-[1180px] content-start gap-7 px-8 py-10 max-sm:px-4 max-sm:py-5"
 		>
 			<PageHeader
 				title={<Trans>Applications</Trans>}

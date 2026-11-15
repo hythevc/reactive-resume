@@ -190,7 +190,7 @@ export function TodayScreen() {
 				ref={scroll}
 				contentContainerStyle={{ padding: space.s4, gap: space.s6 }}
 			>
-				<Text variant="heading">{t`Make room for the next step.`}</Text>
+				<Text variant="display" accessibilityRole="header">{t`Today`}</Text>
 				<LoadState query={time.profile} />
 				<Text variant="callout" color="ink3">
 					{time.when(now)} · {time.timeZone}
@@ -217,73 +217,81 @@ export function TodayScreen() {
 						}}
 						style={{ flex: tablet ? 1 : 0, gap: space.s6 }}
 					>
-						<Section title={t`Coming up`}>
-							<LoadState query={applications} />
-							<LoadState query={queries.briefings} />
-							<LoadState query={offers} />
-							{next ? (
-								<Card style={{ gap: space.s3 }}>
-									<Text variant="title">
-										{next.application.company} · {eventLabel(next)}
-									</Text>
-									<Text>{time.when(next.at)}</Text>
-									{next.kind === "follow-up" && next.note ? <Text>{next.note}</Text> : null}
-									<Text color="ink3">
-										{getLaneLabel(resolveLane(lanes.lanes, next.application))}
-										{next.kind === "interview"
-											? ` · ${new Intl.NumberFormat(time.locale, { style: "unit", unit: "minute", unitDisplay: "short" }).format(next.interview.durationMinutes)}`
-											: ""}
-									</Text>
-									{next.kind === "interview" &&
-									queries.briefings.data?.some((row) => row.interviewId === next.interview.id) ? (
-										<Chip label={t`Briefing ready`} />
-									) : null}
-									<Button
-										variant="secondary"
-										label={t`Open workspace`}
-										onPress={() =>
-											router.push(
-												routes.application(
-													next.application.id,
-													next.kind === "interview" ? "prepare" : "messages",
-													next.kind === "interview" ? next.interview.id : undefined,
-												),
-											)
-										}
-									/>
-									{preparation?.kind === "interview" ? (
-										<PrepareNow
-											key={preparation.key}
-											applicationId={preparation.application.id}
-											interviewId={preparation.interview.id}
-											now={now}
-										/>
-									) : null}
-									{events.slice(1, 3).map((item) => (
-										<Pressable
-											key={item.key}
-											accessibilityRole="link"
+						{next ||
+						applications.isPending ||
+						applications.isError ||
+						offers.isPending ||
+						offers.isError ||
+						queries.briefings.isPending ||
+						queries.briefings.isError ? (
+							<Section title={t`Coming up`}>
+								<LoadState query={applications} />
+								<LoadState query={queries.briefings} />
+								<LoadState query={offers} />
+								{next ? (
+									<Card style={{ gap: space.s3 }}>
+										<Text variant="title">
+											{next.application.company} · {eventLabel(next)}
+										</Text>
+										<Text>{time.when(next.at)}</Text>
+										{next.kind === "follow-up" && next.note ? <Text>{next.note}</Text> : null}
+										<Text color="ink3">
+											{getLaneLabel(resolveLane(lanes.lanes, next.application))}
+											{next.kind === "interview"
+												? ` · ${new Intl.NumberFormat(time.locale, { style: "unit", unit: "minute", unitDisplay: "short" }).format(next.interview.durationMinutes)}`
+												: ""}
+										</Text>
+										{next.kind === "interview" &&
+										queries.briefings.data?.some((row) => row.interviewId === next.interview.id) ? (
+											<Chip label={t`Briefing ready`} />
+										) : null}
+										<Button
+											variant="secondary"
+											label={t`Open workspace`}
 											onPress={() =>
 												router.push(
 													routes.application(
-														item.application.id,
-														item.kind === "interview" ? "prepare" : "messages",
-														item.kind === "interview" ? item.interview.id : undefined,
+														next.application.id,
+														next.kind === "interview" ? "prepare" : "messages",
+														next.kind === "interview" ? next.interview.id : undefined,
 													),
 												)
 											}
-											style={{ minHeight: size.hit, justifyContent: "center" }}
-										>
-											<Text color="ink2">
-												{time.when(item.at)} · {item.application.company} · {eventLabel(item)}
-											</Text>
-										</Pressable>
-									))}
-								</Card>
-							) : !applications.isPending && !applications.isError && !offers.isPending && !offers.isError ? (
-								<Text color="ink3">{t`Nothing scheduled yet.`}</Text>
-							) : null}
-						</Section>
+										/>
+										{preparation?.kind === "interview" ? (
+											<PrepareNow
+												key={preparation.key}
+												applicationId={preparation.application.id}
+												interviewId={preparation.interview.id}
+												now={now}
+											/>
+										) : null}
+										{events.slice(1, 3).map((item) => (
+											<Pressable
+												key={item.key}
+												accessibilityRole="link"
+												onPress={() =>
+													router.push(
+														routes.application(
+															item.application.id,
+															item.kind === "interview" ? "prepare" : "messages",
+															item.kind === "interview" ? item.interview.id : undefined,
+														),
+													)
+												}
+												style={{ minHeight: size.hit, justifyContent: "center" }}
+											>
+												<Text color="ink2">
+													{time.when(item.at)} · {item.application.company} · {eventLabel(item)}
+												</Text>
+											</Pressable>
+										))}
+									</Card>
+								) : !applications.isPending && !applications.isError && !offers.isPending && !offers.isError ? (
+									<Text color="ink3">{t`Nothing scheduled yet.`}</Text>
+								) : null}
+							</Section>
+						) : null}
 						<Section title={t`Needs you`}>
 							<LoadState query={queries.notifications} />
 							{!queries.notifications.isPending &&
@@ -294,15 +302,19 @@ export function TodayScreen() {
 								queries.notifications.data?.length === 0 && applications.data?.length === 0 ? (
 									// A new account: what Career is for, and the first things to do (web today.tsx).
 									<EmptyState
-										variant="card"
+										variant="compact"
 										title={t`Your job search starts here`}
 										message={t`Say what you're looking for, add facts about your work, then ask the coach. New roles, reminders and finished briefings appear here.`}
-										action={{ label: t`Set your preferences`, onPress: () => router.push(routes.career("knowledge")) }}
+										action={{
+											label: t`Set your preferences`,
+											onPress: () =>
+												router.push({ pathname: routes.career("knowledge"), params: { tab: "preferences" } }),
+										}}
 										secondaryAction={{ label: t`Ask the coach`, onPress: () => router.push(routes.career("coach")) }}
 									/>
 								) : (
 									<EmptyState
-										variant="card"
+										variant="compact"
 										title={t`You're up to date`}
 										message={t`New roles, reminders and finished briefings appear here.`}
 									/>
@@ -381,11 +393,13 @@ export function TodayScreen() {
 									</Card>
 								</Animated.View>
 							))}
-							<Button
-								variant="ghost"
-								label={showRead ? t`Hide read` : t`Show read`}
-								onPress={() => setShowRead(!showRead)}
-							/>
+							{queries.notifications.data?.length || showRead ? (
+								<Button
+									variant="ghost"
+									label={showRead ? t`Hide read` : t`Show read`}
+									onPress={() => setShowRead(!showRead)}
+								/>
+							) : null}
 							{attention.map(({ row, step }) => {
 								const text = describeNextStep(step, row, time.locale, time.timeZone);
 								return (
@@ -553,9 +567,6 @@ export function TodayScreen() {
 								onPress={() => setSheet({ schedule: null, kind: "discovery" })}
 							/>
 							<LoadState query={queries.schedules} />
-							{!queries.schedules.isError && !queries.schedules.isPending && schedules.length === 0 ? (
-								<EmptyState variant="compact" title={t`Nothing scheduled yet.`} />
-							) : null}
 							{schedules.map((row) => (
 								<Card key={row.id} style={{ gap: space.s3 }}>
 									<Text variant="title">{scheduleTitle(row.kind)}</Text>

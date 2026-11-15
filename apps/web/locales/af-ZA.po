@@ -937,6 +937,8 @@ msgstr "{name} het na die hoofkolom geskuif"
 msgid "{name} never prints"
 msgstr "{name} druk nooit af nie"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "{name} resume template preview"
 msgstr "{name} CV-sjabloonvoorskou"
@@ -1164,10 +1166,6 @@ msgstr "/ jaar"
 msgid "+{extra} more"
 msgstr "+{extra} meer"
 
-#: src/features/homepage/hero.tsx
-msgid "+13 pts activation"
-msgstr "+13 punte aktivering"
-
 #: src/features/resume/editor/check/check-panel.tsx
 msgid "<0>Nothing to fix.</0> Every check passes."
 msgstr "<0>Niks om reg te stel nie.</0> Alle kontroles slaag."
@@ -1243,10 +1241,6 @@ msgstr "3 gestaaf · 1 gedeeltelik · 1 ontbreek"
 #: src/features/settings/ai/api-keys.tsx
 msgid "30 days"
 msgstr "30 dae"
-
-#: src/features/homepage/hero.tsx
-msgid "40% faster reviews"
-msgstr "40% vinniger resensies"
 
 #: src/features/homepage/faq.tsx
 msgid "9 short answers to what people ask before they start. Anything else, ask on <0>Discord</0>."
@@ -1520,7 +1514,6 @@ msgid "Access your account through the API, including reading, changing and dele
 msgstr "Toegang tot jou rekening deur die API, insluitend die lees, verandering en uitvee van jou dokumente en werksaansoeke."
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Accessibility"
 msgstr "Toeganklikheid"
@@ -1605,10 +1598,6 @@ msgstr "Voeg {suggestion} by"
 #: src/features/career/knowledge/search-regions-field.tsx
 msgid "Add a country"
 msgstr "Voeg 'n land by"
-
-#: src/features/career/knowledge/facts.tsx
-msgid "Add a fact"
-msgstr "Voeg ’n feit by"
 
 #: src/features/career/knowledge/facts.tsx
 msgid "Add a fact, for example “I mentored two associate PMs in 2025”"
@@ -2326,6 +2315,7 @@ msgstr "Laai ook die {0}-dekbrief af"
 msgid "Also email {0}"
 msgstr "Stuur ook 'n e-pos na {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Also on mobile"
 msgstr "Ook op selfoon"
@@ -2837,6 +2827,7 @@ msgstr "By Northwind Labs het die meeste nuwe spanne vasgeval voordat hulle die 
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 #: src/features/homepage/sections.tsx
 msgid "ATS checker"
 msgstr "ATS kontroleerder"
@@ -2926,7 +2917,6 @@ msgid "Azerbaijani"
 msgstr "Azerbeidjans"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "BA, Communication Design"
 msgstr "BA, Kommunikasie-ontwerp"
@@ -3020,10 +3010,6 @@ msgstr "Banier"
 msgctxt "Entry header accent: a bar beside the header"
 msgid "Bar"
 msgstr "Systaaf"
-
-#: src/features/homepage/hero.tsx
-msgid "Barista, 2012"
-msgstr "Barista, 2012"
 
 #. placeholder {0}: formatMoney(i18n.locale, offer.currency, offer.base ?? 0)
 #. placeholder {1}: periodLabel(offer.period)
@@ -3369,6 +3355,7 @@ msgstr "Verander verbinding"
 msgid "Change it in Design."
 msgstr "Verander dit in Ontwerp."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Change language"
 msgstr "Verander taal"
@@ -3459,6 +3446,7 @@ msgstr "Gesels"
 #. Homepage scene title, one word followed by a full stop
 #. The resume builder mode that reviews the resume for problems. Not the Screening application stage.
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -3480,6 +3468,7 @@ msgid "Check another file"
 msgstr "Gaan 'n ander lêer na"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check any PDF, no account needed"
 msgstr "Gaan enige PDF na, geen rekening nodig nie"
 
@@ -3515,6 +3504,7 @@ msgid "check numbers and names before using it"
 msgstr "kontroleer getalle en name voordat jy dit gebruik"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check reads your resume the way hiring software does and explains what to fix in plain words. It runs in your browser, so the file stays with you: 0 uploads."
 msgstr "Die Kontrole-funksie lees jou CV soos werwingsagteware doen en verduidelik wat om reg te stel in eenvoudige woorde. Dit loop in jou blaaier, so jou lêer bly op jou toestel: 0 oplaaie."
 
@@ -4042,6 +4032,7 @@ msgstr "Vergelyk dit met jou ander aanbiede"
 msgid "Compare offers"
 msgstr "Vergelyk aanbiedinge"
 
+#: src/features/homepage/compact.tsx
 #: src/features/templates/gallery.tsx
 msgid "Compare real resume layouts before you sign up. Every template is free to customize, with PDF and Word downloads and no watermark."
 msgstr "Vergelyk regte CV-uitlegte voor jy inteken. Elke sjabloon is gratis om aan te pas, met PDF- en Microsoft Word-aflaaie en geen watermerk nie."
@@ -5852,8 +5843,10 @@ msgstr "Beskrywing"
 msgid "Description of role {0}"
 msgstr "Beskrywing van rol {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-components/design-panel.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -5878,7 +5871,6 @@ msgid "Design system trade-offs"
 msgstr "Ontwerpstelsel-afwegings"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Design systems"
 msgstr "Ontwerpstelsels"
@@ -6132,6 +6124,7 @@ msgstr "Laai huidige PDF af"
 msgid "Download failed. Try again."
 msgstr "Aflaai het misluk. Probeer weer."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Download on the"
 msgstr "Laai af op die"
@@ -6995,7 +6988,9 @@ msgstr "Vinnige model"
 msgid "Fast: {0} · Capable: {1}"
 msgstr "Vinnig: {0} · Sterk: {1}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/hero.tsx
 msgid "Features"
 msgstr "Funksies"
 
@@ -7034,10 +7029,6 @@ msgstr "Fieldnote"
 #: src/features/homepage/tailor.tsx
 msgid "Fieldnote · Remote, EU"
 msgstr "Fieldnote · Afstandbeheer, EU"
-
-#: src/features/homepage/hero.tsx
-msgid "Figma"
-msgstr "Figma"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -7508,6 +7499,7 @@ msgstr "Duits"
 msgid "Get a key at <0>{0}</0>. It's stored encrypted and used only for your requests."
 msgstr "Kry ’n sleutel by <0>{0}</0>. Dit word geënkripteer gestoor en slegs vir jou versoeke gebruik."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/prepare.tsx
 msgid "Get a plan for the interview, built from the posting and your own stories. Practice out loud, then write down how it went."
 msgstr "Kry 'n plan vir die onderhoud, saamgestel uit die plasing en jou eie stories. Oefen hardop, en skryf dan neer hoe dit gegaan het."
@@ -7524,6 +7516,7 @@ msgstr "Kry 'n API-sleutel by die operateur van jou eindpunt."
 msgid "Get feedback"
 msgstr "Kry terugvoer"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Get it on"
 msgstr "Kry dit op"
@@ -7536,6 +7529,7 @@ msgstr "Kry elke oggend nuwe poste hier"
 msgid "Get resume feedback on Discord"
 msgstr "Kry terugvoer oor jou CV op Discord"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 msgid "Get started"
 msgstr "Begin"
@@ -7733,6 +7727,7 @@ msgstr "Help my om die aanbod wat ek het, teen wat ek wil hê, op te weeg."
 msgid "Help translate"
 msgstr "Help vertaal"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Help translate it into yours."
 msgstr "Help om dit in jou taal te vertaal."
@@ -8520,6 +8515,7 @@ msgstr "Jan Daar"
 msgid "Join Discord"
 msgstr "Sluit by Discord aan"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Join the Discord community"
 msgstr "Sluit by die Discord-gemeenskap aan"
@@ -8860,7 +8856,6 @@ msgid "Lead across functions"
 msgstr "Lei oor funksies heen"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 #: src/features/homepage/write.tsx
 msgid "Lead Product Designer"
@@ -9232,10 +9227,6 @@ msgstr "Skakels"
 #: src/features/settings/account/profile.tsx
 msgid "Links you've already shared keep working for 30 days, then stop. Share the new ones before then."
 msgstr "Skakels wat jy reeds gedeel het, werk nog vir 30 dae, dan stop hulle. Deel die nuwes voordat dit gebeur."
-
-#: src/features/homepage/hero.tsx
-msgid "Lisbon"
-msgstr "Lisbon"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -11575,7 +11566,6 @@ msgid "paragraph {n}"
 msgstr "paragraaf {n}"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 msgid "Parcel & Co."
 msgstr "Parcel & Co."
 
@@ -11662,6 +11652,7 @@ msgstr "Plak 'n posskakel of posplasing en kontroleer dan die rol en maatskappy.
 msgid "Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
 msgstr "Plak 'n werkskakel. Ons sal die posplasing stoor sodat Check, die assistent en jou brief dit kan gebruik."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Paste a job posting once. It feeds a tailored copy of your resume, a fit check against each requirement, a cover letter draft and a place to track the role."
 msgstr "Plak een keer ’n werksplasing. Dit voed ’n aangepaste kopie van jou CV, ’n passingkontrole teen elke vereiste, ’n dekbriefkonsep en ’n plek om die pos na te hou."
@@ -11849,6 +11840,7 @@ msgstr "Kies 'n tyd ná nou."
 msgid "Pick an icon"
 msgstr "Kies 'n ikoon"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 msgid "Pick from {templateCount} templates, then set the type, color and spacing. The words stay put, so try as many looks as you like."
 msgstr "Kies uit {templateCount} sjablone, stel dan die lettertipes, kleur en spasiëring in. Jou teks bly dieselfde, so probeer soveel ontwerpe as wat jy wil."
@@ -12088,6 +12080,7 @@ msgctxt "Career preferences: the roles, places, pay and ways of working you want
 msgid "Preferences"
 msgstr "Voorkeure"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/prepare.tsx
@@ -12157,6 +12150,8 @@ msgstr "Druk <0>{RETURN_KEY}</0> om die huidige sleutelwoord by te voeg of te be
 msgid "Press <0>Enter</0> to open"
 msgstr "Druk <0>Enter</0> om oop te maak"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "Preview {name} sample PDF"
 msgstr "Voorbeskou {name} voorbeeld PDF"
@@ -12233,6 +12228,7 @@ msgid "Private. Only you can see it."
 msgstr "Privaat. Net jy kan dit sien."
 
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 msgid "Product"
 msgstr "Produk"
 
@@ -12302,10 +12298,6 @@ msgstr "Vorderingsbalk"
 msgid "Projects"
 msgstr "Projektte"
 
-#: src/features/homepage/hero.tsx
-msgid "Promoted to lead, 2021"
-msgstr "Bevorder tot leier, 2021"
-
 #: src/features/career/workspace/fit.tsx
 msgid "Propose a resume bullet"
 msgstr "Stel ’n CV-punt voor"
@@ -12327,7 +12319,6 @@ msgid "Protect your resume with a password"
 msgstr "Beskerm jou CV met 'n wagwoord"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Prototyping"
 msgstr "Prototipering"
@@ -12468,6 +12459,7 @@ msgid "Question removed"
 msgstr "Vraag verwyder"
 
 #: src/features/homepage/faq.tsx
+#: src/features/homepage/header.tsx
 msgid "Questions"
 msgstr "Vrae"
 
@@ -12530,6 +12522,7 @@ msgstr "Re: Senior Produkontwerper"
 msgid "Reactive Resume {__APP_VERSION__} · MIT"
 msgstr "Reactive Resume {__APP_VERSION__} · MIT"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Reactive Resume is open source under the MIT License. Amruth Pillai and a community of contributors keep it running, and donations pay for hosting and development. There’s no paid tier."
 msgstr "Reactive Resume is oopbron onder die MIT-lisensie. Amruth Pillai en 'n gemeenskap van bydraers hou dit aan die gang, en skenkings betaal vir hosting en ontwikkeling. Daar is geen betaalde vlak nie."
@@ -12960,6 +12953,7 @@ msgstr "Herverhuising"
 
 #: src/features/assistant/remember-message.tsx
 #: src/features/career/shared.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/remember.tsx
@@ -13854,6 +13848,7 @@ msgid "Same you. Less starting over."
 msgstr "Dieselfde jy. Minder van voor af begin."
 
 #: src/features/documents/use-start-document.ts
+#: src/features/homepage/hero.tsx
 msgid "Sample resume"
 msgstr "Voorbeeld-CV"
 
@@ -14761,6 +14756,7 @@ msgstr "Skadukleur"
 msgid "Shadow width"
 msgstr "Skaduwydte"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/share.tsx
@@ -14771,6 +14767,7 @@ msgstr "Skaduwydte"
 msgid "Share"
 msgstr "Deel"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/share.tsx
 msgid "Share a public link, add a password or keep it private. Choose from 3 visibility options. Export to PDF or Word, or take all your data with you as JSON."
 msgstr "Deel 'n publieke skakel, voeg 'n wagwoord by of hou dit privaat. Kies uit 3 sigbaarheid opsies. Voer uit na PDF of Word, of neem al jou data saam as JSON."
@@ -14829,10 +14826,6 @@ msgstr "Het <0>toeganklike</0> betaalprosesse vir die web en iOS ontwikkel wat a
 #: src/features/homepage/prepare.tsx
 msgid "Shipped checkout flows that meet WCAG 2.1 AA."
 msgstr "Het betaalvloeie bekendgestel wat aan WCAG 2.1 AA voldoen."
-
-#: src/features/homepage/hero.tsx
-msgid "Shipped checkout for iOS"
-msgstr "Gestuur betaalpunt vir iOS"
 
 #: src/routes/builder/letter/-components/write-panel.tsx
 msgid "Short and direct. Fine if the posting asks for brevity."
@@ -15195,10 +15188,6 @@ msgstr "Situasie, aksie, resultaat"
 msgid "Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown outcomes blank."
 msgstr "Situasie, Taak, Aksie, Resultaat, Refleksie. Koppel elke storie aan feite wat jy kan staaf; laat onbekende uitkomste leeg."
 
-#: src/features/homepage/hero.tsx
-msgid "Six product teams"
-msgstr "Ses produkspanne"
-
 #: src/features/resume/editor/write/picture-settings.tsx
 msgid "Size"
 msgstr "Grootte"
@@ -15376,14 +15365,11 @@ msgstr "Spaans"
 msgid "Spanish (B2)"
 msgstr "Spaans (B2)"
 
-#: src/features/homepage/hero.tsx
-msgid "Spanish, B2"
-msgstr "Spaans, B2"
-
 #: src/features/career/workspace/practise.tsx
 msgid "Speak"
 msgstr "Praat"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Speaks your language"
 msgstr "Praat jou taal"
@@ -15520,6 +15506,7 @@ msgstr "Begin vanaf ’n vroeëre brief"
 msgid "Start from one you have and link the application."
 msgstr "Begin by een wat jy het en koppel die werksaansoek."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Start from scratch or import what you have. It takes a few minutes, and you can come back to it anytime."
 msgstr "Begin van voor af of voer in wat jy het. Dit neem 'n paar minute, en jy kan enige tyd terugkom."
@@ -15781,6 +15768,7 @@ msgstr "Opsommings van jou oop aansoeke"
 msgid "Summary"
 msgstr "Opsomming"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Support"
 msgstr "Ondersteuning"
@@ -15908,7 +15896,9 @@ msgstr "Merkers, geskei deur kommas"
 msgid "Tags…"
 msgstr "Merkers …"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Tailor"
 msgstr "Pas aan by posbeskrywing"
@@ -16010,8 +16000,11 @@ msgstr "Sjabloon verander na {0}"
 msgid "Template, type and colors follow the resume, so the pair always matches."
 msgstr "Sjabloon, tipe en kleure volg die CV, sodat die paar altyd ooreenstem."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Templates"
 msgstr "Sjablone"
 
@@ -17293,6 +17286,7 @@ msgstr "Vertaal na…"
 msgid "Translate the app"
 msgstr "Vertaal die toepassing"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Translated into {languageCount} languages."
 msgstr "In {languageCount} tale vertaal."
@@ -17601,7 +17595,6 @@ msgid "Undo resume change"
 msgstr "Ontdoen CV verandering"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "University of Porto"
 msgstr "University of Porto"
@@ -18238,10 +18231,6 @@ msgstr "was {was}"
 msgid "Was: {0}"
 msgstr "Was: {0}"
 
-#: src/features/homepage/hero.tsx
-msgid "WCAG 2.1 AA"
-msgstr "WCAG 2.1 AA"
-
 #. Password reset email. appName: Reactive Resume
 #: src/features/auth/email-text.ts
 msgid "We received a request to reset your {appName} password."
@@ -18673,8 +18662,10 @@ msgid "Worth asking {0}"
 msgstr "Die moeite werd om {0} te vra"
 
 #. Homepage scene title, one word followed by a full stop
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/write.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
 #: src/routes/builder/$resumeId/-components/editor-shell.tsx
@@ -18705,6 +18696,7 @@ msgstr "Skryf ’n brief…"
 msgid "Write a new reply in {languageName}"
 msgstr "Skryf ’n nuwe antwoord in {languageName}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/remember.tsx
 msgid "Write a story once, with the facts behind it, and the coach uses it in 3 places. Switch a fact off and nothing leans on it."
 msgstr "Skryf een keer 'n storie, met die feite daaragter, en die afrigter gebruik dit op 3 plekke. Skakel 'n feit af en niks steun daarop nie."
@@ -18713,6 +18705,7 @@ msgstr "Skryf een keer 'n storie, met die feite daaragter, en die afrigter gebru
 msgid "Write and review form answers"
 msgstr "Skryf en hersien vormantwoorde"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/write.tsx
 msgid "Write beside a live page. It saves as you type and keeps every version. Ask the assistant for a sharper line: it suggests, you decide."
 msgstr "Skryf langs 'n lewendige bladsy. Dit bewaar terwyl jy tik en hou elke weergawe. Vra die assistent vir 'n skerper reël: dit stel voor, jy besluit."

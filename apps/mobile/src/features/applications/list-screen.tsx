@@ -8,6 +8,7 @@ import Storage from "expo-sqlite/kv-store";
 import { useEffect, useRef, useState } from "react";
 import { AccessibilityInfo, RefreshControl, Pressable, SectionList, View } from "react-native";
 import Animated from "react-native-reanimated";
+import { ApplicationCard } from "./application-card";
 import { applicationError } from "./error";
 import { useApplicationLanes } from "./lane-queries";
 import { getLaneLabel, resolveLane } from "./lanes";
@@ -27,8 +28,6 @@ import {
 	Button,
 	EmptyState,
 	Icon,
-	IconButton,
-	ListRow,
 	Screen,
 	SelectSheet,
 	Sheet,
@@ -610,34 +609,23 @@ function ApplicationsList() {
 						]
 							.filter(Boolean)
 							.join(" · ");
+						const lane = resolveLane(lanes.lanes, item);
 						return (
 							<Animated.View
 								{...listItemMotion(index, firstAppearance, { reduced })}
-								style={{
-									borderWidth: triageActive && focusedRow?.id === item.id ? 2 : 0,
-									borderColor: colors.accent,
-									borderBottomWidth: 1,
-									borderBottomColor: colors.line,
-									flexDirection: "row",
-									alignItems: "center",
-								}}
+								style={{ marginBottom: space.s2 }}
 							>
-								<View style={{ flex: 1 }}>
-									<ListRow
-										title={item.role}
-										subtitle={`${item.company}${item.location ? ` · ${item.location}` : ""}${item.tags.length ? ` · ${item.tags.slice(0, 2).join(", ")}${item.tags.length > 2 ? ` +${item.tags.length - 2}` : ""}` : ""}\n${next.title}${next.sub ? ` · ${next.sub}` : ""}${sentDocuments ? `\n${sentDocuments}` : ""}`}
-										selected={selectedIds.includes(item.id)}
-										leading={selecting ? (selectedIds.includes(item.id) ? "check-square" : "square") : undefined}
-										accessibilityHint={selecting ? t`Toggle selection` : t`Open application`}
-										disabled={busy}
-										onPress={() => (selecting ? toggle(item.id) : router.push(routes.applicationDetails(item.id)))}
-									/>
-								</View>
-								<IconButton
-									icon="dots-three"
-									label={t`Actions for ${item.role} at ${item.company}`}
+								<ApplicationCard
+									application={item}
+									stage={{ label: getLaneLabel(lane), color: lane.color }}
+									next={next}
+									documents={sentDocuments}
+									selected={selectedIds.includes(item.id)}
+									selecting={selecting}
 									disabled={busy}
-									onPress={() => {
+									focused={triageActive && focusedRow?.id === item.id}
+									onPress={() => (selecting ? toggle(item.id) : router.push(routes.applicationDetails(item.id)))}
+									onActions={() => {
 										setSelected(new Set([item.id]));
 										setSelecting(true);
 									}}

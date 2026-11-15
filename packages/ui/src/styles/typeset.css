@@ -9,6 +9,7 @@
 	.typeset {
 		--typeset-font-body: inherit;
 		--typeset-font-heading: var(--font-display);
+		--typeset-heading-weight: 400;
 		--typeset-font-mono: var(--font-mono);
 		--typeset-size: 1em;
 		--typeset-leading: 1.75;

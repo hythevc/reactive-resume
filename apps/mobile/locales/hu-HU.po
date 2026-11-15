@@ -1216,11 +1216,9 @@ msgstr "Tevékenység"
 msgid "Actions"
 msgstr "Akciók"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "Műveletek a következőhöz: {0}, {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "Műveletek a(z) {company} vállalat {role} állásához"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API kulcsok"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Megjelenés"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "A megjelenés erre a munkamenetre érvényes. A választás megőrzéséhez próbálja meg újra menteni."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Nem sikerült menteni a jegyzeteket. A szöveged még mindig itt van."
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Nem sikerült menteni a címkéket. Próbáld újra."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Nem sikerült menteni a témát. Próbáld újra."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "Link létrehozása"
 msgid "Make primary"
 msgstr "Beállítás elsődlegesként"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Adjon helyet a következő lépésnek."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Erősítse meg a nyílást"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "AI-asszisztens megnyitása"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "Átköltözés"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Emlékezz"
@@ -10928,6 +10924,10 @@ msgstr "Mentett válaszok újrapróbálása"
 msgid "Retry saving"
 msgstr "Próbálja újra a mentést"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Megjelenés újbóli mentése"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "Újrapróbálás ezzel: {nativeSearchLabel}"
@@ -10968,6 +10968,10 @@ msgstr "Ellenőrzések átnézése"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "Az ellenőrzési jelölések az első jelentkezéskor lettek rögzítve."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Részletek megtekintése"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "Ha emlékeztetőt szeretne kapni, engedélyezze az értesítéseket az e
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "Ma"
 msgid "Today, {hour}"
 msgstr "Ma, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Kiválasztás váltása"

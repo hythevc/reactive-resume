@@ -114,43 +114,46 @@ export function FactsPage({ highlight }: FactsPageProps) {
 	};
 
 	return (
-		<div className="grid gap-3.5">
-			<MemoryCard />
-
-			<div className="flex flex-wrap items-center gap-2">
-				<label className="flex h-[34px] w-full items-center gap-1.5 rounded-md border border-control-border bg-raised px-2.5 transition-[border-color,box-shadow] duration-quick focus-within:border-accent focus-within:shadow-[0_0_0_3px_var(--accent-soft)] sm:w-[280px] pointer-coarse:h-11">
-					<Icon name="magnifying-glass" size={18} className="text-ink-3" />
-					<input
-						type="search"
-						value={search}
-						onChange={(event) => setSearch(event.target.value)}
-						placeholder={t`Search facts`}
-						aria-label={t`Search facts`}
-						className="min-w-0 flex-1 bg-transparent text-[13px] outline-none placeholder:text-ink-3"
-					/>
-				</label>
-				<FilterChip pressed={type === null} onClick={() => setType(null)}>
-					<Trans>All</Trans>
-				</FilterChip>
-				{CATEGORIES.map((category) => (
-					<FilterChip key={category} pressed={type === category} onClick={() => setType(category)}>
-						{categoryLabel(category)}
+		<div className="grid gap-4">
+			{facts?.length === 0 && (
+				<div className="grid gap-2">
+					<h2 className="text-xl font-semibold">
+						<Trans>No facts yet</Trans>
+					</h2>
+					<p className="max-w-[70ch] text-sm leading-6 text-ink-2">
+						{t`Add things you've done, with numbers when you have them, such as “Cut checkout errors by 30% in 2025”. The coach backs its answers and your stories with them.`}
+					</p>
+				</div>
+			)}
+			{Boolean(facts?.length) && (
+				<div className="flex flex-wrap items-center gap-2">
+					<label className="flex h-11 w-full items-center gap-1.5 rounded-md border border-control-border bg-raised px-2.5 transition-[border-color,box-shadow] duration-quick focus-within:border-accent focus-within:shadow-[0_0_0_3px_var(--accent-soft)] sm:w-[280px] pointer-coarse:h-11">
+						<Icon name="magnifying-glass" size={18} className="text-ink-3" />
+						<input
+							type="search"
+							value={search}
+							onChange={(event) => setSearch(event.target.value)}
+							placeholder={t`Search facts`}
+							aria-label={t`Search facts`}
+							className="min-w-0 flex-1 bg-transparent text-[13px] outline-none placeholder:text-ink-3"
+						/>
+					</label>
+					<FilterChip pressed={type === null} onClick={() => setType(null)}>
+						<Trans>All</Trans>
 					</FilterChip>
-				))}
-			</div>
-
-			<ResumeFacts />
+					{CATEGORIES.map((category) => (
+						<FilterChip key={category} pressed={type === category} onClick={() => setType(category)}>
+							{categoryLabel(category)}
+						</FilterChip>
+					))}
+				</div>
+			)}
 			<div ref={addRef}>
 				<AddFact onAdded={added} />
 			</div>
-			<FilterChip pressed={showForgotten} onClick={() => setShowForgotten((shown) => !shown)}>
-				<Trans>Show forgotten</Trans>
-			</FilterChip>
-			{showForgotten && <ForgottenFacts />}
 			{!facts && (factQuery.isError ? <CareerLoadError onRetry={() => void factQuery.refetch()} /> : <CareerLoading />)}
-
-			{facts && (
-				<div ref={listRef} className="overflow-hidden rounded-xl border border-line bg-surface">
+			{facts && facts.length > 0 && (
+				<div ref={listRef} className="overflow-hidden rounded-lg border border-line bg-surface">
 					<AnimatePresence initial={false}>
 						{visible.map((fact) => (
 							<FactRow
@@ -165,19 +168,11 @@ export function FactsPage({ highlight }: FactsPageProps) {
 					</AnimatePresence>
 					{visible.length === 0 && (
 						<EmptyState
-							variant={facts.length === 0 ? "default" : "compact"}
-							title={facts.length === 0 ? t`No facts yet` : t`No facts match`}
-							description={
-								facts.length === 0
-									? t`Add things you've done, with numbers when you have them, such as “Cut checkout errors by 30% in 2025”. The coach backs its answers and your stories with them.`
-									: t`Try another word or type.`
-							}
+							variant="compact"
+							title={t`No facts match`}
+							description={t`Try another word or type.`}
 							action={
-								facts.length === 0 ? (
-									<Button onClick={() => addRef.current?.querySelector("input")?.focus()}>
-										<Trans>Add a fact</Trans>
-									</Button>
-								) : type !== null ? (
+								type !== null ? (
 									<Button variant="link" size="sm" onClick={() => setType(null)}>
 										<Trans>Show all types</Trans>
 									</Button>
@@ -187,6 +182,22 @@ export function FactsPage({ highlight }: FactsPageProps) {
 					)}
 				</div>
 			)}
+			<ResumeFacts />
+			<div>
+				<FilterChip pressed={showForgotten} onClick={() => setShowForgotten((shown) => !shown)}>
+					<Trans>Show forgotten</Trans>
+				</FilterChip>
+			</div>
+			{showForgotten && <ForgottenFacts />}
+			<details className="group border-t border-line pt-2">
+				<summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 text-sm font-medium">
+					<Trans>Remember facts from my messages</Trans>
+					<Icon name="caret-down" className="shrink-0 transition-transform group-open:rotate-180" />
+				</summary>
+				<div className="pt-2">
+					<MemoryCard />
+				</div>
+			</details>
 		</div>
 	);
 }
@@ -296,7 +307,7 @@ function AddFact({ onAdded }: AddFactProps) {
 	};
 
 	return (
-		<div className="flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-line-2 py-1.5 ps-3.5 pe-1.5">
+		<div className="flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-control-border py-1.5 ps-3.5 pe-1.5 focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/30">
 			<Icon name="plus" size={20} className="text-ink-3" />
 			<input
 				value={text}

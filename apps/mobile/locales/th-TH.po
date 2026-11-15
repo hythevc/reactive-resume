@@ -1216,11 +1216,9 @@ msgstr "การกระทำ"
 msgid "Actions"
 msgstr "การดำเนินการ"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "การดำเนินการสำหรับ {0} ที่ {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "การดำเนินการสำหรับตำแหน่ง {role} ที่ {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "คีย์ API"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "รูปร่าง"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "การตั้งค่ารูปลักษณ์นี้มีผลกับเซสชันปัจจุบัน ลองบันทึกอีกครั้งเพื่อเก็บตัวเลือกนี้ไว้"
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "บันทึกโน้ตไม่ได้ ข้อความ�
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "บันทึกแท็กไม่ได้ ลองอีกครั้ง"
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "ไม่สามารถบันทึกธีมได้ ลองอีกครั้ง"
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "สร้างลิงก์"
 msgid "Make primary"
 msgstr "ตั้งเป็นหลัก"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "จัดพื้นที่สำหรับขั้นตอนต่อไป"
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "ทำให้ช่องเปิดแข็งแรงขึ้น"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "เปิดผู้ช่วย AI"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "การย้ายถิ่นฐาน"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "จดจำ"
@@ -10928,6 +10924,10 @@ msgstr "ลองโหลดคำตอบที่บันทึกไว้
 msgid "Retry saving"
 msgstr "ลองบันทึกอีกครั้ง"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "ลองบันทึกการตั้งค่ารูปลักษณ์อีกครั้ง"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "ลองอีกครั้งด้วย {nativeSearchLabel}"
@@ -10968,6 +10968,10 @@ msgstr "ตรวจทานผลตรวจสอบ"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "บันทึกเครื่องหมายการตรวจทานเมื่อส่งใบสมัครครั้งแรก"
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "ดูรายละเอียด"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "หากต้องการรับการแจ้งเตือ
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "วันนี้"
 msgid "Today, {hour}"
 msgstr "วันนี้ {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "สลับการเลือก"

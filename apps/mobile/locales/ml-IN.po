@@ -1216,11 +1216,9 @@ msgstr "പ്രവർത്തനം"
 msgid "Actions"
 msgstr "പ്രവർത്തനങ്ങൾ"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "{0} എന്നതിനായുള്ള പ്രവർത്തനങ്ങൾ {1}-ൽ"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "{company}യിലെ {role} തസ്തികയ്ക്കുള്ള പ്രവർത്തനങ്ങൾ"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API കീകൾ"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "രൂപഭാവം"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "ഈ രൂപഭാവ ക്രമീകരണം നിലവിലെ സെഷനിൽ ബാധകമാണ്. ഈ തിരഞ്ഞെടുപ്പ് നിലനിർത്താൻ വീണ്ടും സംരക്ഷിക്കാൻ ശ്രമിക്കുക."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "കുറിപ്പുകൾ സംരക്ഷിക്കാനാ�
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "ടാഗുകൾ സേവ് ചെയ്യാനായില്ല. വീണ്ടും ശ്രമിക്കുക."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "തീം സംരക്ഷിക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "ലിങ്ക് ഉണ്ടാക്കുക"
 msgid "Make primary"
 msgstr "പ്രാഥമികമാക്കുക"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "അടുത്ത ഘട്ടത്തിന് ഇടം നൽകുക."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "ഓപ്പണിംഗ് ശക്തമാക്കുക"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "AI സഹായിയെ തുറക്കുക"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "റീലൊക്കേഷൻ"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "ഓർമ്മിക്കുക"
@@ -10928,6 +10924,10 @@ msgstr "സേവ് ചെയ്ത ഉത്തരങ്ങൾ വീണ്ട
 msgid "Retry saving"
 msgstr "സംരക്ഷിക്കാൻ വീണ്ടും ശ്രമിക്കുക"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "രൂപഭാവ ക്രമീകരണം വീണ്ടും സംരക്ഷിക്കാൻ ശ്രമിക്കുക"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "{nativeSearchLabel} ഉപയോഗിച്ച് വീണ്ടും ശ്രമിക്കുക"
@@ -10968,6 +10968,10 @@ msgstr "പരിശോധനകൾ അവലോകനം ചെയ്യുക"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "ആദ്യമായി അപേക്ഷ സമർപ്പിച്ചപ്പോൾ അവലോകനത്തിലെ അടയാളങ്ങൾ രേഖപ്പെടുത്തി."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "വിശദാംശങ്ങൾ കാണുക"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "ഒരു റിമൈൻഡർ ലഭിക്കാൻ, നിങ്�
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "ഇന്ന്"
 msgid "Today, {hour}"
 msgstr "ഇന്ന്, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "തിരഞ്ഞെടുക്കൽ ടോഗിൾ ചെയ്യുക"

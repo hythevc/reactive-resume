@@ -937,6 +937,8 @@ msgstr "{name} премештен у главну колону"
 msgid "{name} never prints"
 msgstr "{name} никада не штампа"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "{name} resume template preview"
 msgstr "{name} Преглед шаблона ЦВ-а"
@@ -1164,10 +1166,6 @@ msgstr "/ година"
 msgid "+{extra} more"
 msgstr "+{extra} више"
 
-#: src/features/homepage/hero.tsx
-msgid "+13 pts activation"
-msgstr "+13 поена активације"
-
 #: src/features/resume/editor/check/check-panel.tsx
 msgid "<0>Nothing to fix.</0> Every check passes."
 msgstr "<0>Ништа за поправку.</0> Свака провера прође."
@@ -1243,10 +1241,6 @@ msgstr "Поткрепљено: 3 · делимично: 1 · недостаје
 #: src/features/settings/ai/api-keys.tsx
 msgid "30 days"
 msgstr "30 дана"
-
-#: src/features/homepage/hero.tsx
-msgid "40% faster reviews"
-msgstr "40% брже рецензије"
 
 #: src/features/homepage/faq.tsx
 msgid "9 short answers to what people ask before they start. Anything else, ask on <0>Discord</0>."
@@ -1520,7 +1514,6 @@ msgid "Access your account through the API, including reading, changing and dele
 msgstr "Приступите свом налогу преко API, укључујући читање, промену и брисање ваших докумената и пријава за посао."
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Accessibility"
 msgstr "Приступачност"
@@ -1605,10 +1598,6 @@ msgstr "Додај {suggestion}"
 #: src/features/career/knowledge/search-regions-field.tsx
 msgid "Add a country"
 msgstr "Додајте земљу"
-
-#: src/features/career/knowledge/facts.tsx
-msgid "Add a fact"
-msgstr "Додај чињеницу"
 
 #: src/features/career/knowledge/facts.tsx
 msgid "Add a fact, for example “I mentored two associate PMs in 2025”"
@@ -2326,6 +2315,7 @@ msgstr "Такође преузмите пропратно писмо {0}"
 msgid "Also email {0}"
 msgstr "Пошаљи имејл и на {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Also on mobile"
 msgstr "И на мобилним уређајима"
@@ -2837,6 +2827,7 @@ msgstr "У компанији Northwind Labs већина нових тимов�
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 #: src/features/homepage/sections.tsx
 msgid "ATS checker"
 msgstr "ATS цхецкер"
@@ -2926,7 +2917,6 @@ msgid "Azerbaijani"
 msgstr "Азербејџански"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "BA, Communication Design"
 msgstr "БА, комуникациони дизајн"
@@ -3020,10 +3010,6 @@ msgstr "Банер"
 msgctxt "Entry header accent: a bar beside the header"
 msgid "Bar"
 msgstr "Трака"
-
-#: src/features/homepage/hero.tsx
-msgid "Barista, 2012"
-msgstr "Бариста, 2012"
 
 #. placeholder {0}: formatMoney(i18n.locale, offer.currency, offer.base ?? 0)
 #. placeholder {1}: periodLabel(offer.period)
@@ -3369,6 +3355,7 @@ msgstr "Промените везу"
 msgid "Change it in Design."
 msgstr "Промените га у дизајну."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Change language"
 msgstr "Промени језик"
@@ -3459,6 +3446,7 @@ msgstr "Ћаскање"
 #. Homepage scene title, one word followed by a full stop
 #. The resume builder mode that reviews the resume for problems. Not the Screening application stage.
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -3480,6 +3468,7 @@ msgid "Check another file"
 msgstr "Проверите другу датотеку"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check any PDF, no account needed"
 msgstr "Проверите било који PDF, налог није потребан"
 
@@ -3515,6 +3504,7 @@ msgid "check numbers and names before using it"
 msgstr "проверите бројеве и имена пре коришћења"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check reads your resume the way hiring software does and explains what to fix in plain words. It runs in your browser, so the file stays with you: 0 uploads."
 msgstr "Функција Провера чита ваш животопис на начин на који то ради софтвер за запошљавање и једноставним речима објашњава шта треба да поправите. Покреће се у вашем претраживачу, тако да ваша датотека остаје на вашем уређају: 0 отпремања."
 
@@ -4042,6 +4032,7 @@ msgstr "Упоредите је са осталим понудама"
 msgid "Compare offers"
 msgstr "Упореди понуде"
 
+#: src/features/homepage/compact.tsx
 #: src/features/templates/gallery.tsx
 msgid "Compare real resume layouts before you sign up. Every template is free to customize, with PDF and Word downloads and no watermark."
 msgstr "Упоредите праве ЦВ изгледе пре него што се региструјете. Сваки шаблон је бесплатан за прилагођавање, уз PDF и Microsoft Word преузимања и без воденог жига."
@@ -5852,8 +5843,10 @@ msgstr "Опис"
 msgid "Description of role {0}"
 msgstr "Опис улоге {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-components/design-panel.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -5878,7 +5871,6 @@ msgid "Design system trade-offs"
 msgstr "Компромиси дизајн система"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Design systems"
 msgstr "Системи дизајна"
@@ -6132,6 +6124,7 @@ msgstr "Преузми тренутни PDF"
 msgid "Download failed. Try again."
 msgstr "Преузимање није успело. Покушајте поново."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Download on the"
 msgstr "Преузмите са"
@@ -6995,7 +6988,9 @@ msgstr "Брзи модел"
 msgid "Fast: {0} · Capable: {1}"
 msgstr "Брзи: {0} · Способни: {1}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/hero.tsx
 msgid "Features"
 msgstr "Функције"
 
@@ -7034,10 +7029,6 @@ msgstr "Fieldnote"
 #: src/features/homepage/tailor.tsx
 msgid "Fieldnote · Remote, EU"
 msgstr "Fieldnote · Даљински, ЕУ"
-
-#: src/features/homepage/hero.tsx
-msgid "Figma"
-msgstr "Figma"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -7508,6 +7499,7 @@ msgstr "Немачки"
 msgid "Get a key at <0>{0}</0>. It's stored encrypted and used only for your requests."
 msgstr "Набавите кључ на <0>{0}</0>. Чува се шифровано и користи се само за ваше захтеве."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/prepare.tsx
 msgid "Get a plan for the interview, built from the posting and your own stories. Practice out loud, then write down how it went."
 msgstr "Добијте план за интервју, направљен на основу огласа и ваших прича. Вежбајте наглас, а затим запишите како је прошло."
@@ -7524,6 +7516,7 @@ msgstr "Затражите API кључ од оператера своје кр�
 msgid "Get feedback"
 msgstr "Добиј повратне информације"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Get it on"
 msgstr "Преузмите са"
@@ -7536,6 +7529,7 @@ msgstr "Добијајте нове улоге овде сваког јутра"
 msgid "Get resume feedback on Discord"
 msgstr "Добијте мишљење о својој биографији на Discord-у"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 msgid "Get started"
 msgstr "Започните"
@@ -7733,6 +7727,7 @@ msgstr "Помози ми да одмерим понуду коју имам у 
 msgid "Help translate"
 msgstr "Помозите у преводу"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Help translate it into yours."
 msgstr "Помозите да се преведе на ваш језик."
@@ -8520,6 +8515,7 @@ msgstr "Џон Доу"
 msgid "Join Discord"
 msgstr "Придружите се на Discord-у"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Join the Discord community"
 msgstr "Придружите се Discord заједници"
@@ -8860,7 +8856,6 @@ msgid "Lead across functions"
 msgstr "Вођење кроз више функција"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 #: src/features/homepage/write.tsx
 msgid "Lead Product Designer"
@@ -9232,10 +9227,6 @@ msgstr "Линкови"
 #: src/features/settings/account/profile.tsx
 msgid "Links you've already shared keep working for 30 days, then stop. Share the new ones before then."
 msgstr "Везе које сте већ поделили раде још 30 дана, а затим престају. Поделите нове пре тога."
-
-#: src/features/homepage/hero.tsx
-msgid "Lisbon"
-msgstr "Lisbon"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -11575,7 +11566,6 @@ msgid "paragraph {n}"
 msgstr "став {n}"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 msgid "Parcel & Co."
 msgstr "Parcel & Co."
 
@@ -11662,6 +11652,7 @@ msgstr "Налепите везу за посао или оглас за пос�
 msgid "Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
 msgstr "Налепите везу за посао. Сачуваћемо оглас за посао тако да га Чек, асистент и ваше писмо могу користити."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Paste a job posting once. It feeds a tailored copy of your resume, a fit check against each requirement, a cover letter draft and a place to track the role."
 msgstr "Налепите оглас за посао једном. Из њега настају прилагођена копија вашег резимеа, провера уклапања према сваком захтеву, нацрт пропратног писма и место за праћење радног места."
@@ -11849,6 +11840,7 @@ msgstr "Изаберите време у будућности."
 msgid "Pick an icon"
 msgstr "Изаберите икону"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 msgid "Pick from {templateCount} templates, then set the type, color and spacing. The words stay put, so try as many looks as you like."
 msgstr "Изаберите неки од {templateCount} шаблона, а затим подесите фонтове, боју и размак. Ваш текст остаје исти, па испробајте онолико дизајна колико желите."
@@ -12088,6 +12080,7 @@ msgctxt "Career preferences: the roles, places, pay and ways of working you want
 msgid "Preferences"
 msgstr "Преференције"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/prepare.tsx
@@ -12157,6 +12150,8 @@ msgstr "Притисните <0>{RETURN_KEY}</0> да додате или сач
 msgid "Press <0>Enter</0> to open"
 msgstr "Притисните <0>Enter</0> да бисте отворили"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "Preview {name} sample PDF"
 msgstr "Прегледајте {name} пример PDF-а"
@@ -12233,6 +12228,7 @@ msgid "Private. Only you can see it."
 msgstr "Приватно. Само ти то можеш видети."
 
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 msgid "Product"
 msgstr "Производ"
 
@@ -12302,10 +12298,6 @@ msgstr "Трака напретка"
 msgid "Projects"
 msgstr "Пројекти"
 
-#: src/features/homepage/hero.tsx
-msgid "Promoted to lead, 2021"
-msgstr "Промовисан у лидера, 2021"
-
 #: src/features/career/workspace/fit.tsx
 msgid "Propose a resume bullet"
 msgstr "Предложи ставку биографије"
@@ -12327,7 +12319,6 @@ msgid "Protect your resume with a password"
 msgstr "Заштитите свој резиме лозинком"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Prototyping"
 msgstr "Израда прототипа"
@@ -12468,6 +12459,7 @@ msgid "Question removed"
 msgstr "Питање уклоњено"
 
 #: src/features/homepage/faq.tsx
+#: src/features/homepage/header.tsx
 msgid "Questions"
 msgstr "Питања"
 
@@ -12530,6 +12522,7 @@ msgstr "Re: Сениор продукт дизајнер"
 msgid "Reactive Resume {__APP_VERSION__} · MIT"
 msgstr "Reactive Resume {__APP_VERSION__} · MIT"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Reactive Resume is open source under the MIT License. Amruth Pillai and a community of contributors keep it running, and donations pay for hosting and development. There’s no paid tier."
 msgstr "Reactive Resume је отвореног кода под MIT лиценцом. Amruth Pillai и заједница сарадника га одржавају, а донације покривају хостинг и развој. Не постоји плаћени ниво."
@@ -12960,6 +12953,7 @@ msgstr "Пресељење"
 
 #: src/features/assistant/remember-message.tsx
 #: src/features/career/shared.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/remember.tsx
@@ -13854,6 +13848,7 @@ msgid "Same you. Less starting over."
 msgstr "Исти ви. Мање почињања испочетка."
 
 #: src/features/documents/use-start-document.ts
+#: src/features/homepage/hero.tsx
 msgid "Sample resume"
 msgstr "Пример резимеа"
 
@@ -14761,6 +14756,7 @@ msgstr "Боја сенке"
 msgid "Shadow width"
 msgstr "Ширина сенке"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/share.tsx
@@ -14771,6 +14767,7 @@ msgstr "Ширина сенке"
 msgid "Share"
 msgstr "Дели"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/share.tsx
 msgid "Share a public link, add a password or keep it private. Choose from 3 visibility options. Export to PDF or Word, or take all your data with you as JSON."
 msgstr "Делите јавну везу, додајте лозинку или је чувајте приватном. Изаберите неку од 3 опције видљивости. Извезите на PDF или Word или понесите све своје податке са собом као JSON."
@@ -14829,10 +14826,6 @@ msgstr "Увео сам <0>приступачне</0> токове плаћањ�
 #: src/features/homepage/prepare.tsx
 msgid "Shipped checkout flows that meet WCAG 2.1 AA."
 msgstr "Испоручио процесе плаћања који испуњавају WCAG 2.1 AA."
-
-#: src/features/homepage/hero.tsx
-msgid "Shipped checkout for iOS"
-msgstr "Испоручено на касу за iOS"
 
 #: src/routes/builder/letter/-components/write-panel.tsx
 msgid "Short and direct. Fine if the posting asks for brevity."
@@ -15195,10 +15188,6 @@ msgstr "Ситуација, акција, резултат"
 msgid "Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown outcomes blank."
 msgstr "Ситуација, задатак, акција, резултат, рефлексија. Повежите сваку причу са чињеницама које можете да поткрепите; непознате исходе оставите празне."
 
-#: src/features/homepage/hero.tsx
-msgid "Six product teams"
-msgstr "Шест тимова производа"
-
 #: src/features/resume/editor/write/picture-settings.tsx
 msgid "Size"
 msgstr "Величина"
@@ -15376,14 +15365,11 @@ msgstr "Шпански"
 msgid "Spanish (B2)"
 msgstr "шпански (Б2)"
 
-#: src/features/homepage/hero.tsx
-msgid "Spanish, B2"
-msgstr "шпански, Б2"
-
 #: src/features/career/workspace/practise.tsx
 msgid "Speak"
 msgstr "Говори"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Speaks your language"
 msgstr "Говори ваш језик"
@@ -15520,6 +15506,7 @@ msgstr "Почни од ранијег писма"
 msgid "Start from one you have and link the application."
 msgstr "Почните од оне коју имате и повежите пријаву за посао."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Start from scratch or import what you have. It takes a few minutes, and you can come back to it anytime."
 msgstr "Почните од нуле или увезите оно што имате. Траје неколико минута и можете се вратити кад год желите."
@@ -15781,6 +15768,7 @@ msgstr "Сажеци ваших отворених пријава"
 msgid "Summary"
 msgstr "Сажетак"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Support"
 msgstr "Подршка"
@@ -15908,7 +15896,9 @@ msgstr "Ознаке, одвојене зарезима"
 msgid "Tags…"
 msgstr "Ознаке…"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Tailor"
 msgstr "Прилагодите се опису посла"
@@ -16010,8 +16000,11 @@ msgstr "Шаблон је промењен у {0}"
 msgid "Template, type and colors follow the resume, so the pair always matches."
 msgstr "Шаблон, тип и боје прате резиме, тако да се пар увек подудара."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Templates"
 msgstr "Шаблони"
 
@@ -17293,6 +17286,7 @@ msgstr "Преведи на…"
 msgid "Translate the app"
 msgstr "Преведите апликацију"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Translated into {languageCount} languages."
 msgstr "Преведено на {languageCount} језика."
@@ -17601,7 +17595,6 @@ msgid "Undo resume change"
 msgstr "Поништите промену резимеа"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "University of Porto"
 msgstr "University of Porto"
@@ -18238,10 +18231,6 @@ msgstr "било је {was}"
 msgid "Was: {0}"
 msgstr "Било је: {0}"
 
-#: src/features/homepage/hero.tsx
-msgid "WCAG 2.1 AA"
-msgstr "WCAG 2.1 AA"
-
 #. Password reset email. appName: Reactive Resume
 #: src/features/auth/email-text.ts
 msgid "We received a request to reset your {appName} password."
@@ -18673,8 +18662,10 @@ msgid "Worth asking {0}"
 msgstr "Вреди питати: {0}"
 
 #. Homepage scene title, one word followed by a full stop
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/write.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
 #: src/routes/builder/$resumeId/-components/editor-shell.tsx
@@ -18705,6 +18696,7 @@ msgstr "Напиши писмо…"
 msgid "Write a new reply in {languageName}"
 msgstr "Напиши нови одговор на језику: {languageName}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/remember.tsx
 msgid "Write a story once, with the facts behind it, and the coach uses it in 3 places. Switch a fact off and nothing leans on it."
 msgstr "Напишите причу једном, са чињеницама иза ње, и саветник је користи на 3 места. Искључите чињеницу и ништа се више не ослања на њу."
@@ -18713,6 +18705,7 @@ msgstr "Напишите причу једном, са чињеницама из
 msgid "Write and review form answers"
 msgstr "Напишите и прегледајте одговоре из обрасца"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/write.tsx
 msgid "Write beside a live page. It saves as you type and keeps every version. Ask the assistant for a sharper line: it suggests, you decide."
 msgstr "Пишите поред живе странице. Чува се док куцате и задржава сваку верзију. Затражите од асистента оштрију формулацију: он предлаже, ви одлучујете."

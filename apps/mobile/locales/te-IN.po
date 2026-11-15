@@ -1216,11 +1216,9 @@ msgstr "చర్య"
 msgid "Actions"
 msgstr "చర్యలు"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "{1} వద్ద {0} కోసం చర్యలు"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "{company}లోని {role} ఉద్యోగానికి సంబంధించిన చర్యలు"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API కీలు"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "స్వరూపం"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "ఈ స్వరూప సెట్టింగ్ ప్రస్తుత సెషన్‌కు వర్తిస్తుంది. ఈ ఎంపికను కొనసాగించడానికి మళ్లీ సేవ్ చేయడానికి ప్రయత్నించండి."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "గమనికలను సేవ్ చేయడం సాధ్యప
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "ట్యాగ్‌లను సేవ్ చేయడం సాధ్యపడలేదు. మళ్ళీ ప్రయత్నించండి."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "థీమ్‌ను సేవ్ చేయడం సాధ్యపడలేదు. మళ్లీ ప్రయత్నించండి."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "లింక్ తయారు చేయండి"
 msgid "Make primary"
 msgstr "ప్రాథమికంగా చేయండి"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "తదుపరి దశకు చోటు కల్పించండి."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "ఓపెనింగ్‌ను మరింత బలంగా చేయండి"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "AI సహాయకాన్ని తెరవండి"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "రీలొకేషన్"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "గుర్తుంచుకో"
@@ -10928,6 +10924,10 @@ msgstr "సేవ్ చేసిన జవాబులను మళ్లీ �
 msgid "Retry saving"
 msgstr "సేవ్ చేయడానికి మళ్లీ ప్రయత్నించండి"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "స్వరూప సెట్టింగ్‌ను సేవ్ చేయడానికి మళ్లీ ప్రయత్నించండి"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "{nativeSearchLabel}తో మళ్లీ ప్రయత్నించండి"
@@ -10968,6 +10968,10 @@ msgstr "తనిఖీలను సమీక్షించు"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "మొదటిసారి దరఖాస్తు సమర్పించినప్పుడు సమీక్ష గుర్తులు నమోదు చేయబడ్డాయి."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "వివరాలను చూడండి"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "రిమైండర్‌ని పొందడానికి, మీ
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "ఈరోజు"
 msgid "Today, {hour}"
 msgstr "ఈరోజు, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "ఎంపికను టోగుల్ చేయండి"

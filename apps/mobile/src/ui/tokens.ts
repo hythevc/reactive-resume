@@ -1,26 +1,28 @@
-// Desk & Paper tokens for React Native.
+// Working Record tokens for React Native.
 // Screens use these and nothing else; add a missing token here rather than hard-coding a value.
-import { Easing } from "react-native";
+import { Easing, Platform } from "react-native";
 
 export type ColorScheme = "light" | "dark";
 
 // §1 Colours and §1.1 named tints. Alpha is the last two hex digits (#RRGGBBAA).
 const light = {
-	bg: "#F8F7F3",
-	surface: "#FEFDFC",
+	bg: "#F5F7F8",
+	surface: "#FFFFFF",
 	raised: "#FFFFFF",
-	sunken: "#F0EFEB",
-	line: "#DFDEDA",
-	line2: "#C5C4BE",
-	lineStrong: "#888680",
-	ink: "#1C1B15",
-	ink2: "#4F4D47",
-	ink3: "#6D6C65",
-	accent: "#337344",
-	accentHover: "#206133",
-	onAccent: "#F7FEF8",
-	accentSoft: "#DCF2DF",
-	accentText: "#195C2E",
+	sunken: "#ECF1F3",
+	line: "#DCE4E8",
+	line2: "#B8CBD3",
+	lineStrong: "#8CA2AD",
+	controlLine: "#708995",
+	ink: "#172B32",
+	ink2: "#3F535C",
+	ink3: "#5B6E77",
+	accent: "#0B6E75",
+	accentHover: "#07555B",
+	onAccent: "#FFFFFF",
+	onDanger: "#FFFFFF",
+	accentSoft: "#E4F3F2",
+	accentText: "#075E64",
 	danger: "#BA3630",
 	dangerSoft: "#FFE7E4",
 	dangerText: "#A92321",
@@ -29,8 +31,8 @@ const light = {
 	warnText: "#81520A",
 	infoSoft: "#E0F1FF",
 	infoText: "#1D5B92",
-	hover: "#1C1B150D",
-	press: "#1C1B1517",
+	hover: "#172B320D",
+	press: "#172B3217",
 	scrim: "#17161152",
 	scrimSheet: "#1716112E",
 	paper: "#FFFFFF",
@@ -45,32 +47,34 @@ const light = {
 	stageInterv: "#AF8433",
 	stageOffer: "#579F68",
 	stageClosed: "#C67067",
-	pageSelectFill: "#3373441F",
-	pageSelectLine: "#337344",
+	pageSelectFill: "#0B6E751F",
+	pageSelectLine: "#0B6E75",
 	pageIssueFill: "#D2992238",
 	pageProposalFill: "#3373441F",
-	selectedFill: "#DCF2DF",
+	selectedFill: "#E4F3F2",
 };
 
 export type ColorToken = keyof typeof light;
 export type Colors = Record<ColorToken, string>;
 
 const dark: Colors = {
-	bg: "#100F0C",
-	surface: "#171613",
-	raised: "#1F1E1A",
-	sunken: "#0B0A08",
-	line: "#2C2B27",
-	line2: "#494843",
-	lineStrong: "#73726C",
-	ink: "#EFEEEB",
-	ink2: "#BCBAB5",
-	ink3: "#979590",
-	accent: "#6FC082",
-	accentHover: "#83D494",
-	onAccent: "#07150A",
-	accentSoft: "#1A3520",
-	accentText: "#8FD89E",
+	bg: "#101A20",
+	surface: "#17262E",
+	raised: "#20323B",
+	sunken: "#0B1419",
+	line: "#314B57",
+	line2: "#526F7D",
+	lineStrong: "#6D8A98",
+	controlLine: "#6D8A98",
+	ink: "#EFF5F6",
+	ink2: "#C0D0D8",
+	ink3: "#9CB0BA",
+	accent: "#7DD2D4",
+	accentHover: "#94DFE0",
+	onAccent: "#082E33",
+	onDanger: "#07150A",
+	accentSoft: "#153E45",
+	accentText: "#A5E6E6",
 	danger: "#D9544B",
 	dangerSoft: "#47211D",
 	dangerText: "#FDA297",
@@ -99,7 +103,7 @@ const dark: Colors = {
 	pageSelectLine: "#337344",
 	pageIssueFill: "#D2992238",
 	pageProposalFill: "#3373441F",
-	selectedFill: "#1A3520",
+	selectedFill: "#153E45",
 };
 
 export const colors: Record<ColorScheme, Colors> = { light, dark };
@@ -131,17 +135,17 @@ type TextStyleToken = {
 };
 
 export const type = {
-	largeIOS: { fontFamily: fonts.display[400], fontSize: 34, lineHeight: 41, letterSpacing: -0.3 },
-	largeAnd: { fontFamily: fonts.display[400], fontSize: 28, lineHeight: 34, letterSpacing: 0 },
-	display: { fontFamily: fonts.display[400], fontSize: 28, lineHeight: 34, letterSpacing: -0.2 },
-	heading: { fontFamily: fonts.display[400], fontSize: 22, lineHeight: 28, letterSpacing: 0 },
-	title: { fontFamily: fonts.ui[600], fontSize: 17, lineHeight: 22, letterSpacing: 0 },
-	bodyLarge: { fontFamily: fonts.ui[400], fontSize: 16, lineHeight: 22, letterSpacing: 0 },
-	body: { fontFamily: fonts.ui[400], fontSize: 15, lineHeight: 21, letterSpacing: 0 },
-	label: { fontFamily: fonts.ui[600], fontSize: 15, lineHeight: 20, letterSpacing: 0 },
-	callout: { fontFamily: fonts.ui[400], fontSize: 13, lineHeight: 18, letterSpacing: 0 },
-	caption: { fontFamily: fonts.ui[500], fontSize: 12, lineHeight: 16, letterSpacing: 0 },
-	micro: { fontFamily: fonts.ui[600], fontSize: 11, lineHeight: 13, letterSpacing: 0.1, maxFontSizeMultiplier: 1.6 },
+	largeIOS: { fontFamily: fonts.ui[600], fontSize: 28, lineHeight: 34, letterSpacing: -0.3 },
+	largeAnd: { fontFamily: fonts.ui[600], fontSize: 28, lineHeight: 34, letterSpacing: -0.3 },
+	display: { fontFamily: fonts.ui[600], fontSize: 28, lineHeight: 34, letterSpacing: -0.3 },
+	heading: { fontFamily: fonts.ui[600], fontSize: 22, lineHeight: 28, letterSpacing: -0.2 },
+	title: { fontFamily: fonts.ui[600], fontSize: 17, lineHeight: 24, letterSpacing: 0 },
+	bodyLarge: { fontFamily: fonts.ui[400], fontSize: 16, lineHeight: 24, letterSpacing: 0 },
+	body: { fontFamily: fonts.ui[400], fontSize: 16, lineHeight: 24, letterSpacing: 0 },
+	label: { fontFamily: fonts.ui[600], fontSize: 16, lineHeight: 22, letterSpacing: 0 },
+	callout: { fontFamily: fonts.ui[400], fontSize: 14, lineHeight: 20, letterSpacing: 0 },
+	caption: { fontFamily: fonts.ui[500], fontSize: 12, lineHeight: 18, letterSpacing: 0 },
+	micro: { fontFamily: fonts.ui[600], fontSize: 12, lineHeight: 16, letterSpacing: 0, maxFontSizeMultiplier: 1.6 },
 	mono: { fontFamily: fonts.mono[400], fontSize: 13, lineHeight: 18, letterSpacing: 0 },
 	/** Section labels and eyebrows, in sentence case. */
 	eyebrow: {
@@ -160,10 +164,11 @@ export const pageThumb = { fontFamily: fonts.display[400], widthRatio: 0.033 } a
 export const space = { s0: 2, s1: 4, s2: 8, s3: 12, s4: 16, s5: 20, s6: 24, s8: 32, s10: 40, s12: 48 } as const;
 
 // §3.1 Sizes.
+const minimumTarget = Platform.OS === "android" ? 48 : 44;
 export const size = {
-	hit: 44,
+	hit: minimumTarget,
 	row: 52,
-	input: 46,
+	input: Math.max(46, minimumTarget),
 	button: 48,
 	chip: 32,
 	tabBar: 52,
@@ -182,10 +187,13 @@ export const size = {
 
 // §4 Radii.
 export const radius = {
-	rSm: 2,
-	rMd: 3,
-	/** Every larger shape (cards, sheets, former pills): corners stay square-ish everywhere. */
-	rLg: 4,
+	rSm: 4,
+	/** Inputs, buttons and other controls. */
+	rMd: 6,
+	/** Cards, grouped lists and feedback surfaces. */
+	rLg: 12,
+	rXl: 16,
+	rSheet: 16,
 } as const;
 
 // §5 Shadows. `boxShadow` first; `ios` and `elevation` are the legacy fallback for Android below API 28.

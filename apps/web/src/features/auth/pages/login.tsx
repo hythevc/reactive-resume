@@ -154,7 +154,7 @@ export function LoginPage({ disableEmailAuth, disableSignups, allowGuestLogin, i
 	return (
 		<>
 			<div className="space-y-1 text-center">
-				<h1 className="text-[30px] leading-9">
+				<h1 className="font-ui text-[28px] leading-[1.15] font-semibold tracking-[-0.02em] text-balance sm:text-[32px]">
 					<Trans comment="Title on the login page">Sign in to your account</Trans>
 				</h1>
 				<ConnectingClient callbackURL={callbackURL} />

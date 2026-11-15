@@ -52,7 +52,9 @@ export function Stories() {
 	const reduced = useReducedMotion();
 	return (
 		<View style={{ gap: space.s4 }}>
-			<Text color="ink3">{t`Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown outcomes blank.`}</Text>
+			{rows.length || editor ? (
+				<Text color="ink3">{t`Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown outcomes blank.`}</Text>
+			) : null}
 			{rows.length || editor || stories.isPending || stories.isError ? (
 				<Button label={t`Add a story`} onPress={() => setEditor({ story: null })} />
 			) : null}
@@ -60,7 +62,7 @@ export function Stories() {
 			<LoadState query={facts} />
 			{!stories.isError && !stories.isPending && !rows.length && !editor ? (
 				<EmptyState
-					variant="card"
+					variant="compact"
 					title={t`No stories yet`}
 					action={{ label: t`Add a story`, onPress: () => setEditor({ story: null }) }}
 					message={t`Write one about something you did, in five parts. Leave Result and Reflection blank until you can support them.`}

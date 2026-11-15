@@ -1,0 +1,367 @@
+{
+	"schema_version": 1,
+	"reviewed_on": "2026-11-14",
+	"scope": "Persistent repository source-selection registry. Used means consulted for workflow/audit criteria or verified local tooling, not that every source was applied to every product screen. Source-only means considered reference/capability without product/runtime adoption. Unavailable is reserved for an observed access/runtime blocker. Each UI task records its own adoption decisions and evidence.",
+	"core_five": [
+		{
+			"stage": 1,
+			"source": "taste-skill",
+			"path": "skills/taste-skill/SKILL.md"
+		},
+		{
+			"stage": 2,
+			"source": "vercel-agent-skills",
+			"path": "skills/web-design-guidelines/SKILL.md",
+			"fresh_guidelines": "https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md"
+		},
+		{
+			"stage": 3,
+			"source": "imagegen-skills",
+			"path": "skills/image-to-code/SKILL.md"
+		},
+		{
+			"stage": 4,
+			"source": "awesome-design-md",
+			"path": "README.md"
+		},
+		{
+			"stage": 5,
+			"source": "playwright-cli",
+			"path": "skills/playwright-cli/SKILL.md"
+		}
+	],
+	"sources": [
+		{
+			"id": "hallmark",
+			"source": "https://github.com/Nutlope/hallmark",
+			"revision": "04977e15f3dfd6ee4b74c887dac3eb52665d6c92",
+			"license": "MIT",
+			"disposition": "used",
+			"use": "Audit, task-based composition and state/behavior preservation; local helpers verified. House-style bans are optional.",
+			"read": [
+				"skills/hallmark/SKILL.md",
+				"skills/hallmark/references/flow.md",
+				"skills/hallmark/references/redesign.md",
+				"skills/hallmark/references/gates.md"
+			]
+		},
+		{
+			"id": "astryx",
+			"source": "https://github.com/meta/astryx",
+			"revision": "d542f3925f3d6a8b689eb653f6ce97e30f088a11",
+			"license": "MIT",
+			"disposition": "source-only",
+			"use": "React 19 design system considered; no app migration. Source 0.7.17 unpublished; isolated CLI/Core 0.7.16 verified.",
+			"read": [
+				"plugins/astryx/skills/astryx/SKILL.md",
+				"docs/design/README.md",
+				"docs/design/user-states.md",
+				"docs/design/system-states.md",
+				"docs/design/reduced-motion.md",
+				"docs/design/control-rhythm.md"
+			]
+		},
+		{
+			"id": "rune",
+			"source": "https://github.com/anomalyco/rune",
+			"revision": "1899e648a3a09bcca8a59b44deb9957302a73f04",
+			"license": "MIT",
+			"disposition": "source-only",
+			"use": "Pre-release Rust GPU framework and motion reference; not a React/Expo skill or installed renderer.",
+			"read": ["AGENTS.md", "crates/rune-kit/README.md", "crates/rune-motion/README.md"]
+		},
+		{
+			"id": "unslop",
+			"source": "https://github.com/heydamir/unslop",
+			"revision": "97daa3eb365670ea3f87ed85356cbfcee18105a5",
+			"license": "CC-BY-4.0",
+			"disposition": "used",
+			"use": "Refinement sequence and product-specific restraint; snapshot helper verified. Credit Damir Sokolovsky for copies/adaptations.",
+			"read": ["skills/unslop/SKILL.md", "skills/unslop/references/tokens.md", "skills/unslop/references/signs.md"]
+		},
+		{
+			"id": "ai-design-skills",
+			"source": "https://github.com/elayadesign/ai-design-skills",
+			"revision": "456d9e0d3e2d84c748bb143c6ca3d90c45e16213",
+			"license": "MIT",
+			"disposition": "used",
+			"use": "Landing-page and Figma token/state guidance considered. Fixed font/palette/gradient/reveal mandates are not adopted wholesale.",
+			"read": ["skills/landing-page-design/SKILL.md", "skills/figma-designer/SKILL.md"]
+		},
+		{
+			"id": "emilkowalski-skills",
+			"source": "https://github.com/emilkowalski/skills",
+			"revision": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+			"license": "MIT",
+			"disposition": "used",
+			"use": "Apple web/mobile interaction and stress-data guidance; no claim of native-device verification.",
+			"read": [
+				"skills/apple-design/SKILL.md",
+				"skills/mobile-native/SKILL.md",
+				"skills/break-ui/SKILL.md",
+				"skills/break-ui/CATALOG.md",
+				"skills/emil-design-eng/SKILL.md",
+				"skills/animation-performance/SKILL.md"
+			]
+		},
+		{
+			"id": "impeccable",
+			"source": "https://github.com/pbakaus/impeccable",
+			"revision": "1995764b4936f2bfbf4eb719cb37b384a45ceacb",
+			"license": "Apache-2.0",
+			"disposition": "used",
+			"use": "Audit/operate/native adaptation guidance and isolated static detector; no hooks, telemetry/catalog calls or paid provider generation.",
+			"read": [
+				"skill/SKILL.src.md",
+				"skill/reference/audit.md",
+				"skill/reference/operate.md",
+				"skill/reference/adapt.native.md"
+			]
+		},
+		{
+			"id": "ui-ux-pro-max-skill",
+			"source": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+			"revision": "d643997c82e94742dd3bee43210b0198e8bbba3d",
+			"license": "MIT",
+			"disposition": "used",
+			"use": "UX/platform guidance and local search verified; generated recommendations require product review.",
+			"read": [".claude/skills/ui-ux-pro-max/SKILL.md", ".claude/skills/ui-ux-pro-max/references/pro-rules.md"]
+		},
+		{
+			"id": "ux-ui-agent-skills",
+			"source": "https://github.com/plugin87/ux-ui-agent-skills",
+			"revision": "f823acedc3ef4e9b2ba944a28fd86fe2abdde427",
+			"license": "MIT",
+			"disposition": "used",
+			"use": "Accessibility/state/token audit methods and local tools verified; Chrome-only checks remain unverified where that channel is absent.",
+			"read": [
+				".claude/skills/a11y-audit/SKILL.md",
+				".claude/skills/design-qa/SKILL.md",
+				".claude/skills/design-tokens/SKILL.md",
+				"AGENTS.md",
+				"docs/INSTALL.md"
+			]
+		},
+		{
+			"id": "taste-skill",
+			"source": "https://github.com/Leonxlnx/taste-skill",
+			"revision": "f6b76575f949707b4e3c37cd86cb44b0b98643e8",
+			"license": "MIT",
+			"disposition": "used",
+			"use": "Core stage1: design direction, hierarchy and specificity. No automatic Stop hooks or forced marketing choreography.",
+			"read": ["README.md", "LICENSE", "skills/taste-skill/SKILL.md"],
+			"requested_aliases": ["https://www.tasteskill.dev/", "https://github.com/Leonxlnx/taste-skill"]
+		},
+		{
+			"id": "vercel-agent-skills",
+			"source": "https://github.com/vercel-labs/agent-skills",
+			"revision": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+			"license": "MIT",
+			"disposition": "used",
+			"use": "Core stage2: Web Design Guidelines plus relevant React best practices. Fetch current official guideline source for each web review.",
+			"read": ["README.md", "skills/web-design-guidelines/SKILL.md"],
+			"license_note": "MIT declared in source metadata; root license file absent at audited revision. Verify distributable notices before substantive reuse."
+		},
+		{
+			"id": "imagegen-skills",
+			"source": "https://github.com/Leonxlnx/imagegen-skills",
+			"revision": "beb16b0d0f4dae9a6f5cb04ea41e97b93a54ab8e",
+			"license": "MIT",
+			"disposition": "used",
+			"use": "Core stage3: image-to-code visual target/analysis from the canonical moved source. Generation depends on available authorized tools.",
+			"read": ["README.md", "LICENSE", "skills/image-to-code/SKILL.md"],
+			"requested_aliases": ["https://github.com/Leonxlnx/taste-skill (requested image-to-code; moved upstream)"]
+		},
+		{
+			"id": "awesome-design-md",
+			"source": "https://github.com/VoltAgent/awesome-design-md",
+			"revision": "fcc70284932276d085f01ef9f83edde90b1258cb",
+			"license": "MIT",
+			"disposition": "used",
+			"use": "Core stage4: selected DESIGN.md references with product-specific translation; collection is not an executable skill.",
+			"read": ["README.md", "LICENSE"]
+		},
+		{
+			"id": "playwright-cli",
+			"source": "https://github.com/microsoft/playwright-cli",
+			"revision": "b21724888b8100b05ef8dee3a92f2bb03bf4dcde",
+			"license": "Apache-2.0",
+			"disposition": "used",
+			"use": "Core stage5: CLI 0.1.24 browser smoke verified. Product state/flow checks and native verification remain task-specific.",
+			"read": ["README.md", "LICENSE"]
+		},
+		{
+			"id": "shadcn-ui",
+			"source": "https://github.com/shadcn-ui/ui",
+			"revision": "e62c9435fff729a175f38983dee73b2cb4f6a069",
+			"license": "MIT",
+			"disposition": "used",
+			"use": "CLI 4.23.0 search/view/docs and MCP search verified. Adapt reviewed components into existing shared owners.",
+			"read": ["README.md", "LICENSE.md"]
+		},
+		{
+			"id": "jaime-ui",
+			"source": "https://github.com/jaimedhenriques/ui",
+			"revision": null,
+			"license": "access-restricted; use public shadcn license",
+			"disposition": "source-only",
+			"use": "Requested public alias resolves to an access-restricted checkout. No private source or metadata is vendored; use public canonical shadcn.",
+			"read": ["Cached skills/shadcn/SKILL.md"]
+		},
+		{
+			"id": "anti-slop",
+			"source": "https://github.com/miqdadbadjuber/anti-slop",
+			"revision": "35b54dc660aa7d11428ee62c5788ad36bc18ac3c",
+			"license": "MIT",
+			"disposition": "used",
+			"use": "Six Markdown rulesets considered as heuristic review inputs; interactive installer/global preferences not enabled.",
+			"read": ["README.md", "LICENSE", "skills/antislop*/SKILL.md"]
+		},
+		{
+			"id": "npxskillui",
+			"source": "https://github.com/amaancoderx/npxskillui",
+			"revision": "bc913a8d3503d6b2a683e4a3ac04ffe7304ac510",
+			"license": "MIT",
+			"disposition": "used",
+			"use": "SkillUI 1.3.4 verified with controlled local CSS extraction; no private browsing or production-page extraction.",
+			"read": ["README.md"],
+			"license_note": "MIT declared in source metadata; root license file absent at audited revision. Verify distributable notices before substantive reuse."
+		},
+		{
+			"id": "screenshot-to-code",
+			"source": "https://github.com/abi/screenshot-to-code",
+			"revision": "0a77981c6eb4a4f4450690f21e4addc93522da9e",
+			"license": "MIT",
+			"disposition": "source-only",
+			"use": "Provider-dependent source architecture reviewed; no generation configured and no provider credential accessed."
+		},
+		{
+			"id": "ai-website-cloner-template",
+			"source": "https://github.com/JCodesMore/ai-website-cloner-template",
+			"revision": "5426e0e2ec35dbc173a7a18f47a3dfe2a765313e",
+			"license": "MIT",
+			"disposition": "source-only",
+			"use": "Template/source reference only; no new competing app scaffold or provider integration installed.",
+			"read": ["README.md", "LICENSE"]
+		},
+		{
+			"id": "21st",
+			"source": "https://21st.dev",
+			"revision": "@21st-dev/cli 1.18.0",
+			"license": "MIT CLI; catalog/service and individual component terms apply",
+			"disposition": "used",
+			"use": "Operator verified authenticated MCP inventory and CLI search. Use environment-only API_KEY_21ST; retrieval access is separate from hosted AI generation. No token/account metadata is stored here.",
+			"mcp_url": "https://21st.dev/api/mcp"
+		},
+		{
+			"id": "product-design-audit",
+			"source": "product-design:audit",
+			"revision": "managed skill; load current available version",
+			"license": "provider terms; no proprietary skill content vendored",
+			"disposition": "used",
+			"use": "Product/task audit and evidence-first assessment before the Core Five. If unavailable, perform and label an explicit local task/state audit."
+		},
+		{
+			"id": "12ui-design",
+			"source": "12ui-design:12ui-design",
+			"revision": "managed skill; load current available version",
+			"license": "provider terms; no proprietary skill content vendored",
+			"disposition": "blocked",
+			"use": "Relevant nontrivial UI-design capability. Follow its available skill before applicable tool calls; do not claim an unavailable generation or start unrequested paid service. Current hosted improve attempt required sign-in. Use the documented visual target and rendered review fallback; no hosted score was produced."
+		},
+		{
+			"id": "refero",
+			"source": "https://refero.design",
+			"revision": null,
+			"license": "service and individual reference rights",
+			"disposition": "used",
+			"use": "Reference research through authorized available connector; record consulted pages/screens in the task ledger. No service assets, private screens or original code are bundled. Actual accessible catalog pages/screens were consulted in the November 2026 assessment; this is not a claim of signed-in competitor access."
+		},
+		{
+			"id": "mobbin",
+			"source": "https://mobbin.com",
+			"revision": null,
+			"license": "service and individual reference rights",
+			"disposition": "used",
+			"use": "Reference research through authorized available connector; source metadata is not permission to copy protected screens/assets. Record actual research use separately. Actual accessible catalog pages/screens were consulted in the November 2026 assessment; this is not a claim of signed-in competitor access."
+		},
+		{
+			"id": "figma",
+			"source": "https://www.figma.com",
+			"revision": "managed connector/skills; load current available versions",
+			"license": "service and design-file/library rights",
+			"disposition": "source-only",
+			"use": "When a Figma deliverable is requested, load official use/design/library skills and preserve existing library foundations. No account or file writes are implied by this policy."
+		},
+		{
+			"id": "native-platform-guidance",
+			"source": "https://reactnative.dev/docs/accessibility",
+			"revision": "current official docs plus available React Native/navigation skills",
+			"license": "respective documentation/skill terms",
+			"disposition": "used",
+			"use": "Mobile-specific branch with Apple/mobile-native references, React Native performance/navigation and Android conventions. Browser emulation cannot prove device behavior."
+		},
+		{
+			"id": "design-inspo-stack",
+			"source": "https://logiaweb.net/hub/library/guides/design-inspo-stack",
+			"revision": "public guide retrieved 2026-11-14; page dated 2026-10-04",
+			"license": "respective service, document or reference rights; no proprietary contents vendored",
+			"disposition": "used",
+			"use": "Use sections and complete task flows as research units, explain why references work, combine product-specific principles and keep motion brief with reduced-motion support. Actual competitor/catalog screens remain primary research; generated images are working layout targets, not market evidence. No Stage trial or paid plan started."
+		},
+		{
+			"id": "better-design",
+			"source": "Better Design connected tools",
+			"revision": "managed connector; current available tools",
+			"license": "respective service, document or reference rights; no proprietary contents vendored",
+			"disposition": "used",
+			"use": "Consulted review rules and feature-map inspection. Actual repository route inventory overrides inferred service routes; rate-limited final review calls remain unverified."
+		},
+		{
+			"id": "ux-pilot",
+			"source": "UX Pilot connected tools",
+			"revision": "managed connector; current available tools",
+			"license": "respective service, document or reference rights; no proprietary contents vendored",
+			"disposition": "used",
+			"use": "Previewed a flowchart. Private page creation was access-restricted, so no published canvas is claimed. Source workflow remains authoritative over automatically proposed account steps."
+		},
+		{
+			"id": "intuitive-software-design",
+			"source": "Intuitive Software Design (user-named reference)",
+			"revision": null,
+			"license": "respective service, document or reference rights; no proprietary contents vendored",
+			"disposition": "blocked",
+			"use": "No directly callable matching service found; ProductOS skill lookup required reauthentication. Apply the local task/state audit without claiming this provider was used."
+		},
+		{
+			"id": "uxcritique",
+			"source": "UXCritique (user-named reference)",
+			"revision": null,
+			"license": "respective service, document or reference rights; no proprietary contents vendored",
+			"disposition": "blocked",
+			"use": "No directly callable matching service found; ProductOS lookup required reauthentication. Actual rendered critique was completed through available Product Design and browser workflows."
+		},
+		{
+			"id": "imperial-masters-cv",
+			"source": "imperial_masters_cv.docx (user-named document)",
+			"revision": null,
+			"license": "respective service, document or reference rights; no proprietary contents vendored",
+			"disposition": "blocked",
+			"use": "The named file was not present locally, and connected Drive search required reauthentication. No document contents, candidate facts or private data were inferred or used."
+		},
+		{
+			"id": "designsystem",
+			"source": "DesignSystem (user-named reference)",
+			"revision": null,
+			"license": "respective service, document or reference rights; no proprietary contents vendored",
+			"disposition": "source-only",
+			"use": "No specific user design-system file or library was supplied. The existing shared semantic token/component owners and the documented Desk & Paper system provide the concrete project foundation; no external private library is claimed."
+		}
+	],
+	"policy": [
+		"Keep third-party checkouts, raw audit evidence, credentials and private candidate data outside tracked source.",
+		"Do not auto-update pins or enable vendor hooks. Refresh deliberately after reviewing changed source and rights.",
+		"Resolve conflicting opinions to user intent, existing real workflows, accessible semantic tokens, reduced motion, platform conventions and framework requirements.",
+		"No individual source grants permission to publish, send messages, modify accounts, enable billing or copy another brand."
+	]
+}

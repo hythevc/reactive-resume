@@ -937,6 +937,8 @@ msgstr "{name} को मुख्य कॉलम में ले जाया
 msgid "{name} never prints"
 msgstr "{name} कभी प्रिंट नहीं होता"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "{name} resume template preview"
 msgstr "{name} सीवी टेम्पलेट पूर्वावलोकन"
@@ -1164,10 +1166,6 @@ msgstr "/ वर्ष"
 msgid "+{extra} more"
 msgstr "+{extra} अधिक"
 
-#: src/features/homepage/hero.tsx
-msgid "+13 pts activation"
-msgstr "+13 अंक सक्रियण"
-
 #: src/features/resume/editor/check/check-panel.tsx
 msgid "<0>Nothing to fix.</0> Every check passes."
 msgstr "<0> ठीक करने के लिए कुछ नहीं है।</0> हर चेक पास हो जाता है।"
@@ -1243,10 +1241,6 @@ msgstr "3 समर्थित · 1 आंशिक · 1 अनुपलब्�
 #: src/features/settings/ai/api-keys.tsx
 msgid "30 days"
 msgstr "30 दिन"
-
-#: src/features/homepage/hero.tsx
-msgid "40% faster reviews"
-msgstr "40% तेज़ समीक्षाएँ"
 
 #: src/features/homepage/faq.tsx
 msgid "9 short answers to what people ask before they start. Anything else, ask on <0>Discord</0>."
@@ -1520,7 +1514,6 @@ msgid "Access your account through the API, including reading, changing and dele
 msgstr "API के माध्यम से अपने खाते तक पहुंचें, जिसमें आपके दस्तावेज़ों और नौकरी आवेदनों को पढ़ना, बदलना और हटाना शामिल है।"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Accessibility"
 msgstr "सुलभता"
@@ -1605,10 +1598,6 @@ msgstr "{suggestion} जोड़ें"
 #: src/features/career/knowledge/search-regions-field.tsx
 msgid "Add a country"
 msgstr "एक देश जोड़ें"
-
-#: src/features/career/knowledge/facts.tsx
-msgid "Add a fact"
-msgstr "एक तथ्य जोड़ें"
 
 #: src/features/career/knowledge/facts.tsx
 msgid "Add a fact, for example “I mentored two associate PMs in 2025”"
@@ -2326,6 +2315,7 @@ msgstr "{0} कवर लेटर भी डाउनलोड करें"
 msgid "Also email {0}"
 msgstr "{0} पर ईमेल भी करें"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Also on mobile"
 msgstr "मोबाइल पर भी उपलब्ध"
@@ -2837,6 +2827,7 @@ msgstr "Northwind Labs में ज़्यादातर नई टीमे
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 #: src/features/homepage/sections.tsx
 msgid "ATS checker"
 msgstr "ATS चेकर"
@@ -2926,7 +2917,6 @@ msgid "Azerbaijani"
 msgstr "अज़रबैजानी"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "BA, Communication Design"
 msgstr "बीए, संचार डिजाइन"
@@ -3020,10 +3010,6 @@ msgstr "बैनर"
 msgctxt "Entry header accent: a bar beside the header"
 msgid "Bar"
 msgstr "बगल की पट्टी"
-
-#: src/features/homepage/hero.tsx
-msgid "Barista, 2012"
-msgstr "बरिस्ता, 2012"
 
 #. placeholder {0}: formatMoney(i18n.locale, offer.currency, offer.base ?? 0)
 #. placeholder {1}: periodLabel(offer.period)
@@ -3369,6 +3355,7 @@ msgstr "कनेक्शन बदलें"
 msgid "Change it in Design."
 msgstr "इसे डिज़ाइन में बदलें।"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Change language"
 msgstr "भाषा बदलें"
@@ -3459,6 +3446,7 @@ msgstr "चैट"
 #. Homepage scene title, one word followed by a full stop
 #. The resume builder mode that reviews the resume for problems. Not the Screening application stage.
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -3480,6 +3468,7 @@ msgid "Check another file"
 msgstr "किसी अन्य फ़ाइल की जाँच करें"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check any PDF, no account needed"
 msgstr "किसी भी PDF की जाँच करें, किसी खाते की आवश्यकता नहीं है"
 
@@ -3515,6 +3504,7 @@ msgid "check numbers and names before using it"
 msgstr "उपयोग करने से पहले संख्याएँ और नाम जाँच लें"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check reads your resume the way hiring software does and explains what to fix in plain words. It runs in your browser, so the file stays with you: 0 uploads."
 msgstr "जाँच सुविधा आपके बायोडाटा को भर्ती सॉफ्टवेयर की तरह पढ़ती है और सरल शब्दों में बताती है कि क्या ठीक करना है। यह आपके ब्राउज़र में चलता है, इसलिए आपकी फ़ाइल आपके डिवाइस पर रहती है: 0 अपलोड।"
 
@@ -4042,6 +4032,7 @@ msgstr "इसकी तुलना अपने अन्य ऑफ़रो�
 msgid "Compare offers"
 msgstr "ऑफ़र की तुलना करें"
 
+#: src/features/homepage/compact.tsx
 #: src/features/templates/gallery.tsx
 msgid "Compare real resume layouts before you sign up. Every template is free to customize, with PDF and Word downloads and no watermark."
 msgstr "साइन अप करने से पहले वास्तविक सीवी लेआउट की तुलना करें। PDF और Microsoft Word डाउनलोड और बिना वॉटरमार्क के, हर टेम्पलेट को अनुकूलित करना मुफ़्त है।"
@@ -5852,8 +5843,10 @@ msgstr "विवरण"
 msgid "Description of role {0}"
 msgstr "भूमिका का विवरण {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-components/design-panel.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -5878,7 +5871,6 @@ msgid "Design system trade-offs"
 msgstr "डिज़ाइन सिस्टम के समझौते"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Design systems"
 msgstr "डिज़ाइन सिस्टम"
@@ -6132,6 +6124,7 @@ msgstr "मौजूदा PDF डाउनलोड करें"
 msgid "Download failed. Try again."
 msgstr "डाउनलोड विफल रहा। पुनः प्रयास करें।"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Download on the"
 msgstr "यहाँ से डाउनलोड करें"
@@ -6995,7 +6988,9 @@ msgstr "तेज़ मॉडल"
 msgid "Fast: {0} · Capable: {1}"
 msgstr "तेज़: {0} · क्षमतावान: {1}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/hero.tsx
 msgid "Features"
 msgstr "सुविधाएँ"
 
@@ -7034,10 +7029,6 @@ msgstr "Fieldnote"
 #: src/features/homepage/tailor.tsx
 msgid "Fieldnote · Remote, EU"
 msgstr "Fieldnote · रिमोट, ईयू"
-
-#: src/features/homepage/hero.tsx
-msgid "Figma"
-msgstr "Figma"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -7508,6 +7499,7 @@ msgstr "जर्मन"
 msgid "Get a key at <0>{0}</0>. It's stored encrypted and used only for your requests."
 msgstr "<0>{0}</0> पर एक कुंजी प्राप्त करें। इसे एन्क्रिप्टेड तरीके से संग्रहीत किया जाता है और इसका उपयोग केवल आपके अनुरोधों के लिए किया जाता है।"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/prepare.tsx
 msgid "Get a plan for the interview, built from the posting and your own stories. Practice out loud, then write down how it went."
 msgstr "पोस्टिंग और आपकी अपनी कहानियों से बनी साक्षात्कार योजना पाएँ। ज़ोर से बोलकर अभ्यास करें, फिर लिखें कि कैसा रहा।"
@@ -7524,6 +7516,7 @@ msgstr "अपने एंडपॉइंट संचालक से API क�
 msgid "Get feedback"
 msgstr "फ़ीडबैक पाएँ"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Get it on"
 msgstr "यहाँ से डाउनलोड करें"
@@ -7536,6 +7529,7 @@ msgstr "हर सुबह यहाँ नए पद पाएँ"
 msgid "Get resume feedback on Discord"
 msgstr "Discord पर अपने रिज़्यूमे पर फ़ीडबैक पाएँ"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 msgid "Get started"
 msgstr "शुरू हो जाओ"
@@ -7733,6 +7727,7 @@ msgstr "जो ऑफ़र मेरे पास है उसकी तुल
 msgid "Help translate"
 msgstr "अनुवाद में सहायता करें"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Help translate it into yours."
 msgstr "अपनी भाषा में इसका अनुवाद करने में सहायता करें।"
@@ -8520,6 +8515,7 @@ msgstr "जॉन डो"
 msgid "Join Discord"
 msgstr "Discord से जुड़ें"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Join the Discord community"
 msgstr "Discord समुदाय से जुड़ें"
@@ -8860,7 +8856,6 @@ msgid "Lead across functions"
 msgstr "अलग-अलग टीमों में नेतृत्व"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 #: src/features/homepage/write.tsx
 msgid "Lead Product Designer"
@@ -9232,10 +9227,6 @@ msgstr "लिंक"
 #: src/features/settings/account/profile.tsx
 msgid "Links you've already shared keep working for 30 days, then stop. Share the new ones before then."
 msgstr "आपके साझा किए गए लिंक 30 दिन तक काम करते रहेंगे, फिर बंद हो जाएँगे। उससे पहले नए लिंक साझा करें।"
-
-#: src/features/homepage/hero.tsx
-msgid "Lisbon"
-msgstr "Lisbon"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -11575,7 +11566,6 @@ msgid "paragraph {n}"
 msgstr "अनुच्छेद {n}"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 msgid "Parcel & Co."
 msgstr "Parcel & Co."
 
@@ -11662,6 +11652,7 @@ msgstr "नौकरी का लिंक या नौकरी पोस्�
 msgid "Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
 msgstr "नौकरी का लिंक चिपकाएँ. हम नौकरी पोस्टिंग को सहेज लेंगे ताकि जाँच करें, सहायक और आपका पत्र इसका उपयोग कर सकें।"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Paste a job posting once. It feeds a tailored copy of your resume, a fit check against each requirement, a cover letter draft and a place to track the role."
 msgstr "नौकरी विज्ञापन एक बार पेस्ट करें। यह आपके रेज़्यूमे की ढाली हुई प्रतिलिपि, हर आवश्यकता पर फ़िट जाँच, कवर लेटर ड्राफ़्ट और भूमिका ट्रैक करने की जगह देता है।"
@@ -11849,6 +11840,7 @@ msgstr "अभी के बाद का समय चुनें।"
 msgid "Pick an icon"
 msgstr "एक आइकन चुनें"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 msgid "Pick from {templateCount} templates, then set the type, color and spacing. The words stay put, so try as many looks as you like."
 msgstr "{templateCount} टेम्प्लेट में से चुनें, फिर फ़ॉन्ट, रंग और रिक्ति सेट करें। आपका टेक्स्ट वही रहता है, इसलिए आप जितने चाहें उतने डिज़ाइन आज़माएँ।"
@@ -12088,6 +12080,7 @@ msgctxt "Career preferences: the roles, places, pay and ways of working you want
 msgid "Preferences"
 msgstr "प्राथमिकताएँ"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/prepare.tsx
@@ -12157,6 +12150,8 @@ msgstr "मौजूदा कीवर्ड जोड़ने या सह�
 msgid "Press <0>Enter</0> to open"
 msgstr "खोलने के लिए <0>Enter</0> दबाएँ"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "Preview {name} sample PDF"
 msgstr "पूर्वावलोकन {name} नमूना PDF"
@@ -12233,6 +12228,7 @@ msgid "Private. Only you can see it."
 msgstr "निजी। इसे केवल आप ही देख सकते हैं."
 
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 msgid "Product"
 msgstr "उत्पाद"
 
@@ -12302,10 +12298,6 @@ msgstr "प्रगति पट्टी"
 msgid "Projects"
 msgstr "प्रोजेक्ट्स"
 
-#: src/features/homepage/hero.tsx
-msgid "Promoted to lead, 2021"
-msgstr "नेतृत्व के लिए पदोन्नत, 2021"
-
 #: src/features/career/workspace/fit.tsx
 msgid "Propose a resume bullet"
 msgstr "रेज़्यूमे का बुलेट सुझाएँ"
@@ -12327,7 +12319,6 @@ msgid "Protect your resume with a password"
 msgstr "अपने रेज़्यूमे को पासवर्ड से सुरक्षित करें"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Prototyping"
 msgstr "प्रोटोटाइपिंग"
@@ -12468,6 +12459,7 @@ msgid "Question removed"
 msgstr "सवाल हटाया गया"
 
 #: src/features/homepage/faq.tsx
+#: src/features/homepage/header.tsx
 msgid "Questions"
 msgstr "प्रश्न"
 
@@ -12530,6 +12522,7 @@ msgstr "Re: सीनियर प्रोडक्ट डिज़ाइनर
 msgid "Reactive Resume {__APP_VERSION__} · MIT"
 msgstr "Reactive Resume {__APP_VERSION__} · MIT"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Reactive Resume is open source under the MIT License. Amruth Pillai and a community of contributors keep it running, and donations pay for hosting and development. There’s no paid tier."
 msgstr "Reactive Resume, MIT लाइसेंस के तहत ओपन सोर्स है। Amruth Pillai और योगदानकर्ताओं का एक समुदाय इसे चलाते हैं, और दान से होस्टिंग और विकास का खर्च चलता है। कोई सशुल्क योजना नहीं है।"
@@ -12960,6 +12953,7 @@ msgstr "स्थानांतरण"
 
 #: src/features/assistant/remember-message.tsx
 #: src/features/career/shared.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/remember.tsx
@@ -13854,6 +13848,7 @@ msgid "Same you. Less starting over."
 msgstr "वही आप। बार-बार नई शुरुआत कम।"
 
 #: src/features/documents/use-start-document.ts
+#: src/features/homepage/hero.tsx
 msgid "Sample resume"
 msgstr "नमूना रेज़्यूमे"
 
@@ -14761,6 +14756,7 @@ msgstr "छाया रंग"
 msgid "Shadow width"
 msgstr "शैडो चौड़ाई"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/share.tsx
@@ -14771,6 +14767,7 @@ msgstr "शैडो चौड़ाई"
 msgid "Share"
 msgstr "शेयर करना"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/share.tsx
 msgid "Share a public link, add a password or keep it private. Choose from 3 visibility options. Export to PDF or Word, or take all your data with you as JSON."
 msgstr "एक सार्वजनिक लिंक साझा करें, एक पासवर्ड जोड़ें या इसे निजी रखें। 3 दृश्यता विकल्पों में से चुनें. PDF या Word पर निर्यात करें, या अपना सारा डेटा JSON के रूप में अपने साथ ले जाएं।"
@@ -14829,10 +14826,6 @@ msgstr "WCAG 2.1 AA मानक पूरे करते हुए वेब �
 #: src/features/homepage/prepare.tsx
 msgid "Shipped checkout flows that meet WCAG 2.1 AA."
 msgstr "WCAG 2.1 AA मानकों पर खरे उतरने वाले चेकआउट फ़्लो लॉन्च किए।"
-
-#: src/features/homepage/hero.tsx
-msgid "Shipped checkout for iOS"
-msgstr "iOS के लिए चेकआउट भेजा गया"
 
 #: src/routes/builder/letter/-components/write-panel.tsx
 msgid "Short and direct. Fine if the posting asks for brevity."
@@ -15195,10 +15188,6 @@ msgstr "स्थिति, कार्रवाई, परिणाम"
 msgid "Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown outcomes blank."
 msgstr "स्थिति, कार्य, कार्रवाई, परिणाम, चिंतन। हर कहानी को उन तथ्यों से जोड़ें जिनका आप समर्थन कर सकते हैं; अज्ञात परिणाम खाली छोड़ें।"
 
-#: src/features/homepage/hero.tsx
-msgid "Six product teams"
-msgstr "छह उत्पाद टीमें"
-
 #: src/features/resume/editor/write/picture-settings.tsx
 msgid "Size"
 msgstr "आकार"
@@ -15376,14 +15365,11 @@ msgstr "स्पेनिश"
 msgid "Spanish (B2)"
 msgstr "स्पैनिश (बी2)"
 
-#: src/features/homepage/hero.tsx
-msgid "Spanish, B2"
-msgstr "स्पैनिश, बी2"
-
 #: src/features/career/workspace/practise.tsx
 msgid "Speak"
 msgstr "बोलें"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Speaks your language"
 msgstr "आपकी भाषा बोलता है"
@@ -15520,6 +15506,7 @@ msgstr "किसी पुराने कवर लेटर से शुर�
 msgid "Start from one you have and link the application."
 msgstr "आपके पास जो है उससे शुरू करें और नौकरी आवेदन को लिंक करें।"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Start from scratch or import what you have. It takes a few minutes, and you can come back to it anytime."
 msgstr "शुरुआत से शुरू करें या जो आपके पास है उसे आयात करें। इसमें कुछ मिनट लगते हैं, और आप कभी भी वापस आ सकते हैं।"
@@ -15781,6 +15768,7 @@ msgstr "आपके खुले आवेदनों के सारां�
 msgid "Summary"
 msgstr "सारांश"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Support"
 msgstr "सहायता"
@@ -15908,7 +15896,9 @@ msgstr "टैग, अल्पविराम से अलग"
 msgid "Tags…"
 msgstr "टैग..."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Tailor"
 msgstr "नौकरी विवरण के अनुरूप ढलें"
@@ -16010,8 +16000,11 @@ msgstr "टेम्प्लेट को {0} में बदल दिया 
 msgid "Template, type and colors follow the resume, so the pair always matches."
 msgstr "टेम्प्लेट, प्रकार और रंग बायोडाटा का अनुसरण करते हैं, इसलिए जोड़ी हमेशा मेल खाती है।"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Templates"
 msgstr "टेम्प्लेट"
 
@@ -17293,6 +17286,7 @@ msgstr "इस भाषा में अनुवाद करें…"
 msgid "Translate the app"
 msgstr "ऐप का अनुवाद करें"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Translated into {languageCount} languages."
 msgstr "{languageCount} भाषाओं में अनुवादित।"
@@ -17601,7 +17595,6 @@ msgid "Undo resume change"
 msgstr "बायोडाटा परिवर्तन पूर्ववत करें"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "University of Porto"
 msgstr "University of Porto"
@@ -18238,10 +18231,6 @@ msgstr "पहले {was}"
 msgid "Was: {0}"
 msgstr "पहले: {0}"
 
-#: src/features/homepage/hero.tsx
-msgid "WCAG 2.1 AA"
-msgstr "WCAG 2.1 AA"
-
 #. Password reset email. appName: Reactive Resume
 #: src/features/auth/email-text.ts
 msgid "We received a request to reset your {appName} password."
@@ -18673,8 +18662,10 @@ msgid "Worth asking {0}"
 msgstr "{0} से पूछने लायक"
 
 #. Homepage scene title, one word followed by a full stop
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/write.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
 #: src/routes/builder/$resumeId/-components/editor-shell.tsx
@@ -18705,6 +18696,7 @@ msgstr "कवर लेटर लिखें…"
 msgid "Write a new reply in {languageName}"
 msgstr "{languageName} में नया जवाब लिखें"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/remember.tsx
 msgid "Write a story once, with the facts behind it, and the coach uses it in 3 places. Switch a fact off and nothing leans on it."
 msgstr "एक बार कहानी लिखें, उसके पीछे के तथ्यों के साथ, और कोच इसे 3 जगहों पर उपयोग करता है। किसी तथ्य को बंद करें, तो कुछ भी उस पर निर्भर नहीं रहता।"
@@ -18713,6 +18705,7 @@ msgstr "एक बार कहानी लिखें, उसके पीछ
 msgid "Write and review form answers"
 msgstr "फ़ॉर्म उत्तर लिखें और समीक्षा करें"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/write.tsx
 msgid "Write beside a live page. It saves as you type and keeps every version. Ask the assistant for a sharper line: it suggests, you decide."
 msgstr "लाइव पेज के बगल में लिखें। यह टाइप करते ही सहेजता है और हर संस्करण रखता है। बेहतर पंक्ति के लिए सहायक से पूछें: वह सुझाव देता है, फ़ैसला आप करते हैं।"

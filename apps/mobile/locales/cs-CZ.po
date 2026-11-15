@@ -1216,11 +1216,9 @@ msgstr "Akce"
 msgid "Actions"
 msgstr "Akce"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "Akce pro {0} na {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "Akce pro pozici {role} ve společnosti {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "Klíče API"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Vzhled"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "Vzhled platí pro tuto relaci. Zkuste jej znovu uložit, aby se tato volba zachovala."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Poznámky se nepodařilo uložit. Váš text je stále zde."
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Tagy se nepodařilo uložit. Zkuste to znovu."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Motiv se nepodařilo uložit. Zkuste to znovu."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "Vytvořit odkaz"
 msgid "Make primary"
 msgstr "Nastavit jako primární"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Udělejte prostor pro další krok."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Udělejte otvor pevnější"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "Otevřít asistenta AI"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "Přestěhování"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Zapamatovat"
@@ -10928,6 +10924,10 @@ msgstr "Zkusit znovu uložené odpovědi"
 msgid "Retry saving"
 msgstr "Zkuste uložit znovu"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Znovu uložit vzhled"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "Zkusit znovu přes {nativeSearchLabel}"
@@ -10968,6 +10968,10 @@ msgstr "Zkontrolovat zjištění"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "Kontrolní volby byly zaznamenány při prvním odeslání přihlášky."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Zobrazit podrobnosti"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "Chcete-li dostávat připomenutí, povolte oznámení v nastavení zař�
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "Dnes"
 msgid "Today, {hour}"
 msgstr "Dnes, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Přepnout výběr"

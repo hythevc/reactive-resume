@@ -182,6 +182,42 @@ async function chooseCurrency(code: string) {
 	fireEvent.click(await screen.findByRole("option", { name: new RegExp(`^${code}(?: ·|$)`) }));
 }
 
+it("keeps manual entry and forgotten-fact recovery usable before optional memory settings", async () => {
+	api.data.forgottenFacts = [];
+	mount(<FactsPage highlight={undefined} />);
+	await screen.findByRole("heading", { name: "No facts yet" });
+	expect(screen.queryByRole("searchbox", { name: "Search facts" })).toBeNull();
+	expect(screen.getAllByRole("button", { name: "Add" })).toHaveLength(1);
+	const input = screen.getByRole("textbox", { name: "New fact" });
+	fireEvent.change(input, { target: { value: "I mentored two fictional colleagues" } });
+	fireEvent.keyDown(input, { key: "Enter" });
+	await waitFor(() =>
+		expect(api.saveFact).toHaveBeenCalledWith(
+			expect.objectContaining({
+				text: "I mentored two fictional colleagues",
+				category: "accomplishment",
+				applicationId: null,
+			}),
+			expect.anything(),
+		),
+	);
+	fireEvent.click(screen.getByRole("button", { name: "Show forgotten" }));
+	expect(await screen.findByText("No forgotten facts")).toBeVisible();
+	const preferences = screen.getByText("Remember facts from my messages", { selector: "summary" }).closest("details");
+	expect(preferences).not.toHaveAttribute("open");
+	expect(preferences).toContainElement(await screen.findByRole("radio", { name: "Never" }));
+});
+
+it("offers one fresh-story action that enters the existing editor route", async () => {
+	mount(<StoriesPage storyId={undefined} edit={false} />);
+	await screen.findByRole("heading", { name: "No stories yet" });
+	expect(screen.getAllByRole("button", { name: "Add a story" })).toHaveLength(1);
+	fireEvent.click(screen.getByRole("button", { name: "Add a story" }));
+	expect(api.navigate).toHaveBeenCalledWith(
+		expect.objectContaining({ to: "/dashboard/career/knowledge/stories/{-$storyId}", search: { edit: true } }),
+	);
+});
+
 it("keeps the complete correction after a failed save and retries its reviewed type/scope atomically", async () => {
 	const fact = {
 		id: "correct-me",

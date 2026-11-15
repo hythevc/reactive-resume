@@ -536,7 +536,7 @@ function Session({
 						/>
 					)}
 				</div>
-				<h2 className="font-display text-[22px] leading-[29px]">{question.text}</h2>
+				<h2 className="font-ui text-[22px] leading-[29px]">{question.text}</h2>
 				{storyTitle && <p className="text-sm text-ink-2">{t`Practicing your story: ${storyTitle}`}</p>}
 			</section>
 
@@ -629,7 +629,7 @@ function Session({
 								type="button"
 								aria-label={recordingNow ? t`Stop recording` : t`Record your answer`}
 								onClick={toggleRecording}
-								className="touch-target relative grid size-[52px] shrink-0 place-items-center rounded-sm bg-danger text-white transition-[filter,scale] duration-quick ease-enter hover:brightness-95 active:scale-[0.97]"
+								className="touch-target relative grid size-[52px] shrink-0 place-items-center rounded-sm bg-danger text-on-danger transition-[filter,scale] duration-quick ease-enter hover:brightness-95 active:scale-[0.97]"
 							>
 								<Icon name={recordingNow ? "stop" : "microphone"} filled={recordingNow} size={24} />
 							</button>
@@ -1129,7 +1129,7 @@ function FeedbackCard({ data, children }: FeedbackCardProps) {
 				<p className="text-xs font-semibold text-ink-3">
 					<Trans>Try this opening</Trans>
 				</p>
-				<q className="font-display text-base leading-6 md:text-[17px] md:leading-[26px]">{data.opening}</q>
+				<q className="font-ui text-base leading-6 md:text-[17px] md:leading-[26px]">{data.opening}</q>
 			</div>
 			{children}
 		</section>
@@ -1142,7 +1142,7 @@ function SavedAttempt({ item }: { item: Attempt }) {
 		<div className="grid min-w-0 gap-4">
 			<section className="grid gap-3 rounded-xl border border-line bg-surface p-5">
 				<p className="text-xs font-medium text-ink-2">{item.data.origin === "recalled" ? t`Recalled` : t`Practice`}</p>
-				<h2 className="font-display text-[22px] leading-[29px]">{item.data.question}</h2>
+				<h2 className="font-ui text-[22px] leading-[29px]">{item.data.question}</h2>
 			</section>
 			<section className="grid gap-3 rounded-xl border border-line bg-surface p-4 md:p-5">
 				<h2 className="flex items-center gap-1.5 text-sm font-semibold">

@@ -16,28 +16,29 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Desk & Paper tokens. oklch is the source of truth; the hex values are sRGB approximations.
+ * Working Record v8 semantic tokens. Approved sRGB values are shared with native UI.
  * The resume page (--paper) is white in both themes and never inverts.
  */
 :root {
 	color-scheme: light;
 
-	--bg: oklch(0.975 0.005 95); /* #F8F7F3 app desk */
-	--surface: oklch(0.995 0.002 95); /* #FEFDFC panels, cards */
-	--raised: oklch(1 0 0); /* #FFFFFF menus, dialogs, inputs */
-	--sunken: oklch(0.952 0.006 95); /* #F0EFEB wells, tracks, page canvas */
-	--line: oklch(0.9 0.006 95); /* #DFDEDA dividers */
-	--line-2: oklch(0.82 0.008 95); /* #C5C4BE decorative rules */
-	--control-border: #888680;
-	--ink: oklch(0.22 0.01 95); /* #1C1B15 primary text */
-	--ink-2: oklch(0.42 0.01 95); /* #4F4D47 secondary text */
-	--ink-3: oklch(0.53 0.01 95); /* #6D6C65 meta, placeholder (minimum for text) */
-	--accent: oklch(0.5 0.1 150); /* #337344 primary action, selection, focus */
-	--accent-hover: oklch(0.44 0.1 150); /* #206133 */
-	--on-accent: oklch(0.99 0.01 150); /* #F7FEF8 */
-	--accent-soft: oklch(0.94 0.035 150); /* #DCF2DF selected background, proposals */
-	--accent-text: oklch(0.42 0.1 150); /* #195C2E */
+	--bg: #f5f7f8;
+	--surface: #ffffff;
+	--raised: #ffffff;
+	--sunken: #ecf1f3;
+	--line: #dce4e8;
+	--line-2: #8ca2ad;
+	--control-border: #708995;
+	--ink: #172b32;
+	--ink-2: #3f535c;
+	--ink-3: #5b6e77;
+	--accent: #0b6e75;
+	--accent-hover: #07555b;
+	--on-accent: #ffffff;
+	--accent-soft: #e4f3f2;
+	--accent-text: #075e64;
 	--danger: oklch(0.53 0.17 27); /* #BA3630 */
+	--on-danger: #ffffff;
 	--danger-soft: oklch(0.95 0.03 27); /* #FFE7E4 */
 	--danger-text: oklch(0.48 0.17 27); /* #A92321 */
 	--warn: oklch(0.72 0.14 80); /* #D29922 check issues, stale edits */
@@ -46,8 +47,8 @@
 	--warn-ink: oklch(0.22 0.03 80); /* #22190A text on a warn fill */
 	--info-soft: oklch(0.95 0.03 250); /* #E0F1FF neutral guidance, assistant question */
 	--info-text: oklch(0.46 0.11 250); /* #1D5B92 */
-	--hover: oklch(0.22 0.01 95 / 0.05);
-	--press: oklch(0.22 0.01 95 / 0.09);
+	--hover: #172b320d;
+	--press: #172b3217;
 	--scrim: oklch(0.2 0.01 95 / 0.32);
 	--scrim-sheet: oklch(0.2 0.01 95 / 0.18);
 	--paper: #ffffff;
@@ -74,7 +75,7 @@
 	/* Layout constants */
 	--editor-bar: 56px;
 	--editor-panel: 400px;
-	--app-sidebar: 240px;
+	--app-sidebar: 256px;
 	--sheet-share: 440px;
 	--sheet-detail: 480px;
 	--assistant: 400px;
@@ -83,22 +84,23 @@
 .dark {
 	color-scheme: dark;
 
-	--bg: oklch(0.17 0.006 95); /* #100F0C */
-	--surface: oklch(0.2 0.006 95); /* #171613 */
-	--raised: oklch(0.235 0.007 95); /* #1F1E1A */
-	--sunken: oklch(0.145 0.006 95); /* #0B0A08 */
-	--line: oklch(0.29 0.007 95); /* #2C2B27 */
-	--line-2: oklch(0.4 0.008 95); /* #494843 */
-	--control-border: #73726c;
-	--ink: oklch(0.95 0.005 95); /* #EFEEEB */
-	--ink-2: oklch(0.79 0.008 95); /* #BCBAB5 */
-	--ink-3: oklch(0.67 0.008 95); /* #979590 */
-	--accent: oklch(0.74 0.12 150); /* #6FC082 */
-	--accent-hover: oklch(0.8 0.12 150); /* #83D494 */
-	--on-accent: oklch(0.18 0.03 150); /* #07150A */
-	--accent-soft: oklch(0.3 0.05 150); /* #1A3520 */
-	--accent-text: oklch(0.82 0.11 150); /* #8FD89E */
+	--bg: #101a20;
+	--surface: #17262e;
+	--raised: #20323b;
+	--sunken: #0b1419;
+	--line: #314b57;
+	--line-2: #526f7d;
+	--control-border: #6d8a98;
+	--ink: #eff5f6;
+	--ink-2: #c0d0d8;
+	--ink-3: #9cb0ba;
+	--accent: #7dd2d4;
+	--accent-hover: #94dfe0;
+	--on-accent: #082e33;
+	--accent-soft: #153e45;
+	--accent-text: #a5e6e6;
 	--danger: oklch(0.62 0.17 27); /* #D9544B */
+	--on-danger: #07150a;
 	--danger-soft: oklch(0.3 0.06 27); /* #47211D */
 	--danger-text: oklch(0.8 0.11 27); /* #FDA297 */
 	--warn: oklch(0.8 0.13 85); /* #E4B750 */
@@ -125,16 +127,16 @@
 	--font-sans: var(--font-ui);
 	--font-mono: "Geist Mono Variable", ui-monospace, monospace;
 
-	/* Corners are 2–4px everywhere: 2 chips, tags and small marks · 3 controls · 4 cards, menus, dialogs, sheets. */
-	--radius: 4px;
-	--radius-xs: 2px;
-	--radius-sm: 2px;
-	--radius-md: 3px;
-	--radius-lg: 4px;
-	--radius-xl: 4px;
-	--radius-2xl: 4px;
-	--radius-3xl: 4px;
-	--radius-4xl: 4px;
+	/* Small marks 4px · controls 6px · work surfaces 8–12px · dialogs 16px. */
+	--radius: 6px;
+	--radius-xs: 4px;
+	--radius-sm: 4px;
+	--radius-md: 6px;
+	--radius-lg: 8px;
+	--radius-xl: 12px;
+	--radius-2xl: 16px;
+	--radius-3xl: 20px;
+	--radius-4xl: 24px;
 
 	--aspect-page: 210 / 297;
 }
@@ -156,6 +158,7 @@
 	--color-accent-soft: var(--accent-soft);
 	--color-accent-text: var(--accent-text);
 	--color-danger: var(--danger);
+	--color-on-danger: var(--on-danger);
 	--color-danger-soft: var(--danger-soft);
 	--color-danger-text: var(--danger-text);
 	--color-warn: var(--warn);
@@ -206,7 +209,9 @@
 	}
 
 	body {
-		@apply bg-bg text-sm text-ink proportional-nums antialiased selection:bg-accent-soft selection:text-ink;
+		@apply bg-bg text-ink proportional-nums antialiased selection:bg-accent-soft selection:text-ink;
+		font-size: 15px;
+		line-height: 1.6;
 	}
 
 	/* What people type keeps its own direction, from its first letter, so German stays left to right in the Arabic
@@ -217,7 +222,7 @@
 	}
 
 	h1 {
-		@apply font-display;
+		@apply font-ui font-semibold;
 	}
 
 	/* A 2px accent ring with a 2px gap on every interactive element; never removed. */
@@ -239,6 +244,11 @@
 
 /* Outside layers so text-size utilities cannot undo the iOS zoom prevention. */
 @media (pointer: coarse) {
+	:root {
+		/* The 44px document menu and 16px save line must fit together. */
+		--editor-bar: 64px;
+	}
+
 	input,
 	select,
 	textarea {

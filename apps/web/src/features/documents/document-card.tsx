@@ -186,7 +186,7 @@ function PaperBadge({ icon, label }: PaperBadgeProps) {
 	);
 }
 
-/** A 204px card: the real first page, title with ⋯, "Resume · Edited 2h ago" and the linked application. */
+/** A paper card on desktop and a compact preview row on phones, with name, metadata, and item actions. */
 export function DocumentCard({
 	document,
 	onTags,
@@ -227,7 +227,7 @@ export function DocumentCard({
 						style={introIndex === undefined ? undefined : stagger(introIndex)}
 						className={cn(
 							// content-start: a neighbour's extra application line doesn't push this card's title down.
-							"group/card grid content-start gap-2",
+							"group/card grid content-start gap-3 rounded-lg border border-line bg-surface p-3 max-sm:grid-cols-[64px_minmax(0,1fr)]",
 							introIndex !== undefined && ENTER_CLASS,
 							isNew && "animate-arrive",
 							document.trashedAt && "opacity-70",
@@ -288,17 +288,17 @@ export function DocumentCard({
 					)}
 				</div>
 
-				<div className="flex items-start gap-1">
+				<div className="flex min-w-0 items-start gap-1">
 					<div className="grid min-w-0 flex-1 gap-0.5">
 						{renaming && !disabled ? (
 							<RenameInput document={document} onDone={() => setRenaming(false)} />
 						) : (
 							// Right under the page's h1: an h2, so heading levels don't skip.
-							<h2 dir="auto" className="truncate text-sm leading-5 font-semibold">
+							<h2 dir="auto" className="line-clamp-2 text-[15px] leading-5 font-semibold">
 								{document.name}
 							</h2>
 						)}
-						<span className="truncate text-xs text-ink-3">{meta}</span>
+						<span className="text-xs text-ink-3 sm:truncate">{meta}</span>
 						<DocumentTags tags={document.tags} />
 						{document.application ? (
 							<span className="flex min-w-0 items-center gap-1 text-xs text-ink-2">

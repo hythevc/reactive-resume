@@ -38,38 +38,37 @@ export function ApplicationCard({
 		<div
 			data-application-id={application.id}
 			className={cn(
-				"group relative grid gap-2 rounded-lg border border-line bg-surface p-3 shadow-e1 transition-[border-color,scale] duration-quick ease-enter hover:border-line-2 active:not-has-[[data-slot=button]:active]:scale-[0.98]",
+				"group relative grid gap-3 rounded-lg border border-line bg-surface p-4 transition-[border-color,scale] duration-quick ease-enter hover:border-line-2 active:not-has-[[data-slot=button]:active]:scale-[0.98]",
 				// The overlay card lifts as it's picked up and settles flat again while the drop animation flies it home.
 				dragging &&
 					"scale-[1.02] rotate-1 cursor-grabbing shadow-e3 transition-[rotate,scale,box-shadow] duration-quick ease-enter **:cursor-grabbing in-[.is-dropping]:scale-100 in-[.is-dropping]:rotate-0 in-[.is-dropping]:shadow-e1 starting:scale-100 starting:rotate-0 starting:shadow-e1",
 			)}
 		>
-			<div className="flex items-start gap-2.5">
+			<div className="flex items-center gap-2.5">
 				<span
 					aria-hidden="true"
-					className="grid size-7 shrink-0 place-items-center rounded-lg bg-sunken text-xs font-semibold text-ink-2"
+					className="grid size-8 shrink-0 place-items-center rounded-md bg-accent-soft text-sm font-semibold text-accent-text"
 				>
 					{application.company.slice(0, 1).toUpperCase()}
 				</span>
-				<div className="grid min-w-0 flex-1 gap-1">
-					<button
-						type="button"
-						data-application-open
-						onClick={onClick}
-						className="grid min-w-0 text-start after:absolute after:inset-0 after:rounded-lg"
-					>
-						<span dir="auto" className="truncate text-sm font-semibold">
-							{application.role}
-						</span>
-						<span dir="auto" className="truncate text-xs text-ink-3">
-							{application.company}
-						</span>
-					</button>
-					{/* Above the open button's stretched target, so filtering never opens the card. */}
-					<TagChips tags={application.tags} onSelect={onTagSelect} className="relative z-10 ms-0" />
-				</div>
+				<span dir="auto" className="line-clamp-2 min-w-0 flex-1 text-[13px] leading-4 text-ink-2">
+					{application.company}
+				</span>
 				{withMenu && <ApplicationActionsMenu application={application} className="relative z-10 -me-1.5 -mt-1.5" />}
 			</div>
+			<button
+				type="button"
+				data-application-open
+				onClick={onClick}
+				className="grid min-w-0 text-start after:absolute after:inset-0 after:rounded-lg"
+			>
+				<span dir="auto" className="line-clamp-2 text-[15px] leading-5 font-semibold">
+					{application.role}
+				</span>
+				<span className="sr-only">{application.company}</span>
+			</button>
+			{/* Above the open button's stretched target, so filtering never opens the card. */}
+			<TagChips tags={application.tags} onSelect={onTagSelect} className="relative z-10 ms-0" />
 			<span
 				className={cn(
 					"flex items-center gap-1.5 text-xs",

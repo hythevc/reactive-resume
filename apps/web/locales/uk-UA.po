@@ -937,6 +937,8 @@ msgstr "{name} переміщено в головний стовпець"
 msgid "{name} never prints"
 msgstr "{name} ніколи не друкується"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "{name} resume template preview"
 msgstr "Попередній перегляд шаблону резюме {name}"
@@ -1164,10 +1166,6 @@ msgstr "/ рік"
 msgid "+{extra} more"
 msgstr "+{extra} більше"
 
-#: src/features/homepage/hero.tsx
-msgid "+13 pts activation"
-msgstr "+13 очок активації"
-
 #: src/features/resume/editor/check/check-panel.tsx
 msgid "<0>Nothing to fix.</0> Every check passes."
 msgstr "<0>Нічого не потрібно виправляти.</0> Кожна перевірка пройдена."
@@ -1243,10 +1241,6 @@ msgstr "Підтверджено: 3 · частково: 1 · бракує: 1"
 #: src/features/settings/ai/api-keys.tsx
 msgid "30 days"
 msgstr "30 днів"
-
-#: src/features/homepage/hero.tsx
-msgid "40% faster reviews"
-msgstr "На 40% швидше огляди"
 
 #: src/features/homepage/faq.tsx
 msgid "9 short answers to what people ask before they start. Anything else, ask on <0>Discord</0>."
@@ -1520,7 +1514,6 @@ msgid "Access your account through the API, including reading, changing and dele
 msgstr "Отримайте доступ до свого облікового запису через API, зокрема читайте, змінюйте та видаляйте документи та заявки на роботу."
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Accessibility"
 msgstr "Доступність"
@@ -1605,10 +1598,6 @@ msgstr "Додати {suggestion}"
 #: src/features/career/knowledge/search-regions-field.tsx
 msgid "Add a country"
 msgstr "Додайте країну"
-
-#: src/features/career/knowledge/facts.tsx
-msgid "Add a fact"
-msgstr "Додати факт"
 
 #: src/features/career/knowledge/facts.tsx
 msgid "Add a fact, for example “I mentored two associate PMs in 2025”"
@@ -2326,6 +2315,7 @@ msgstr "Також завантажте супровідний лист {0}"
 msgid "Also email {0}"
 msgstr "Також надіслати на {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Also on mobile"
 msgstr "Також на мобільних пристроях"
@@ -2837,6 +2827,7 @@ msgstr "У Northwind Labs більшість нових команд застр�
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 #: src/features/homepage/sections.tsx
 msgid "ATS checker"
 msgstr "Шашка ATS"
@@ -2926,7 +2917,6 @@ msgid "Azerbaijani"
 msgstr "Азербайджанська"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "BA, Communication Design"
 msgstr "Бакалавр, комунікаційний дизайн"
@@ -3020,10 +3010,6 @@ msgstr "банер"
 msgctxt "Entry header accent: a bar beside the header"
 msgid "Bar"
 msgstr "Смужка"
-
-#: src/features/homepage/hero.tsx
-msgid "Barista, 2012"
-msgstr "Бариста, 2012"
 
 #. placeholder {0}: formatMoney(i18n.locale, offer.currency, offer.base ?? 0)
 #. placeholder {1}: periodLabel(offer.period)
@@ -3369,6 +3355,7 @@ msgstr "Змінити підключення"
 msgid "Change it in Design."
 msgstr "Змініть це в Design."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Change language"
 msgstr "Змінити мову"
@@ -3459,6 +3446,7 @@ msgstr "Чат"
 #. Homepage scene title, one word followed by a full stop
 #. The resume builder mode that reviews the resume for problems. Not the Screening application stage.
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -3480,6 +3468,7 @@ msgid "Check another file"
 msgstr "Перевірте інший файл"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check any PDF, no account needed"
 msgstr "Перевірте будь-який PDF, обліковий запис не потрібен"
 
@@ -3515,6 +3504,7 @@ msgid "check numbers and names before using it"
 msgstr "перевірте числа й імена перед використанням"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check reads your resume the way hiring software does and explains what to fix in plain words. It runs in your browser, so the file stays with you: 0 uploads."
 msgstr "Функція Перевірка читає ваше резюме так, як це робить програмне забезпечення для підбору персоналу, і простими словами пояснює, що потрібно виправити. Він працює у вашому браузері, тому ваш файл залишається на вашому пристрої: 0 завантажень."
 
@@ -4042,6 +4032,7 @@ msgstr "Порівняйте її з іншими пропозиціями"
 msgid "Compare offers"
 msgstr "Порівняти пропозиції"
 
+#: src/features/homepage/compact.tsx
 #: src/features/templates/gallery.tsx
 msgid "Compare real resume layouts before you sign up. Every template is free to customize, with PDF and Word downloads and no watermark."
 msgstr "Порівняйте реальні макети резюме перед реєстрацією. Кожен шаблон можна безкоштовно налаштувати, із завантаженнями PDF і Microsoft Word і без водяних знаків."
@@ -5852,8 +5843,10 @@ msgstr "Опис"
 msgid "Description of role {0}"
 msgstr "Опис ролі {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-components/design-panel.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -5878,7 +5871,6 @@ msgid "Design system trade-offs"
 msgstr "Компроміси дизайн-системи"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Design systems"
 msgstr "Дизайн-системи"
@@ -6132,6 +6124,7 @@ msgstr "Завантажити поточний PDF"
 msgid "Download failed. Try again."
 msgstr "Помилка завантаження. Спробуйте ще раз."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Download on the"
 msgstr "Завантажте в"
@@ -6995,7 +6988,9 @@ msgstr "Швидка модель"
 msgid "Fast: {0} · Capable: {1}"
 msgstr "Швидка: {0} · Потужна: {1}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/hero.tsx
 msgid "Features"
 msgstr "Можливості"
 
@@ -7034,10 +7029,6 @@ msgstr "Fieldnote"
 #: src/features/homepage/tailor.tsx
 msgid "Fieldnote · Remote, EU"
 msgstr "Fieldnote · Пульт, ЄС"
-
-#: src/features/homepage/hero.tsx
-msgid "Figma"
-msgstr "Figma"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -7508,6 +7499,7 @@ msgstr "Німецька"
 msgid "Get a key at <0>{0}</0>. It's stored encrypted and used only for your requests."
 msgstr "Отримайте ключ за адресою <0>{0}</0>. Він зберігається в зашифрованому вигляді та використовується лише для ваших запитів."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/prepare.tsx
 msgid "Get a plan for the interview, built from the posting and your own stories. Practice out loud, then write down how it went."
 msgstr "Отримайте план співбесіди, складений з оголошення та ваших власних розповідей. Потренуйтеся вголос, а потім запишіть, як усе пройшло."
@@ -7524,6 +7516,7 @@ msgstr "Отримайте ключ API в оператора вашої кін�
 msgid "Get feedback"
 msgstr "Отримати відгук"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Get it on"
 msgstr "Завантажте з"
@@ -7536,6 +7529,7 @@ msgstr "Отримуйте нові вакансії тут щоранку"
 msgid "Get resume feedback on Discord"
 msgstr "Отримайте відгук про резюме в Discord"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 msgid "Get started"
 msgstr "Почніть роботу"
@@ -7733,6 +7727,7 @@ msgstr "Допоможи мені зважити наявну пропозиці
 msgid "Help translate"
 msgstr "Допоможіть перекласти"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Help translate it into yours."
 msgstr "Допоможіть перекласти його вашою мовою."
@@ -8520,6 +8515,7 @@ msgstr "Невідомий."
 msgid "Join Discord"
 msgstr "Приєднатися до Discord"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Join the Discord community"
 msgstr "Приєднуйтеся до спільноти в Discord"
@@ -8860,7 +8856,6 @@ msgid "Lead across functions"
 msgstr "Керувати міжфункціональною роботою"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 #: src/features/homepage/write.tsx
 msgid "Lead Product Designer"
@@ -9232,10 +9227,6 @@ msgstr "Посилання"
 #: src/features/settings/account/profile.tsx
 msgid "Links you've already shared keep working for 30 days, then stop. Share the new ones before then."
 msgstr "Посилання, якими ви вже поділилися, працюватимуть ще 30 днів, а потім перестануть. Поділіться новими до того часу."
-
-#: src/features/homepage/hero.tsx
-msgid "Lisbon"
-msgstr "Lisbon"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -11575,7 +11566,6 @@ msgid "paragraph {n}"
 msgstr "пункт {n}"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 msgid "Parcel & Co."
 msgstr "Parcel & Co."
 
@@ -11662,6 +11652,7 @@ msgstr "Вставте посилання на вакансію або огол�
 msgid "Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
 msgstr "Вставте посилання на вакансію. Ми збережемо оголошення про вакансію, щоб Чек, асистент і ваш лист могли ним скористатися."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Paste a job posting once. It feeds a tailored copy of your resume, a fit check against each requirement, a cover letter draft and a place to track the role."
 msgstr "Вставте оголошення про вакансію один раз. На його основі створюється адаптована копія резюме, перевірка відповідності кожній вимозі, чернетка супровідного листа й місце для відстеження вакансії."
@@ -11849,6 +11840,7 @@ msgstr "Виберіть час у майбутньому."
 msgid "Pick an icon"
 msgstr "Виберіть значок"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 msgid "Pick from {templateCount} templates, then set the type, color and spacing. The words stay put, so try as many looks as you like."
 msgstr "Виберіть із {templateCount} шаблонів, а потім установіть шрифти, колір і інтервал. Ваш текст залишається незмінним, тому спробуйте скільки завгодно дизайнів."
@@ -12088,6 +12080,7 @@ msgctxt "Career preferences: the roles, places, pay and ways of working you want
 msgid "Preferences"
 msgstr "Побажання"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/prepare.tsx
@@ -12157,6 +12150,8 @@ msgstr "Натисніть <0>{RETURN_KEY}</0>, щоб додати або зб�
 msgid "Press <0>Enter</0> to open"
 msgstr "Натисніть <0>Enter</0>, щоб відкрити"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "Preview {name} sample PDF"
 msgstr "Попередній перегляд зразка PDF {name}"
@@ -12233,6 +12228,7 @@ msgid "Private. Only you can see it."
 msgstr "Приватний. Тільки ви можете це побачити."
 
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 msgid "Product"
 msgstr "Продукт"
 
@@ -12302,10 +12298,6 @@ msgstr "Індикатор прогресу"
 msgid "Projects"
 msgstr "Проєкти"
 
-#: src/features/homepage/hero.tsx
-msgid "Promoted to lead, 2021"
-msgstr "Підвищений до керівника, 2021"
-
 #: src/features/career/workspace/fit.tsx
 msgid "Propose a resume bullet"
 msgstr "Запропонувати пункт резюме"
@@ -12327,7 +12319,6 @@ msgid "Protect your resume with a password"
 msgstr "Захистіть резюме паролем"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Prototyping"
 msgstr "Прототипування"
@@ -12468,6 +12459,7 @@ msgid "Question removed"
 msgstr "Запитання видалено"
 
 #: src/features/homepage/faq.tsx
+#: src/features/homepage/header.tsx
 msgid "Questions"
 msgstr "Питання"
 
@@ -12530,6 +12522,7 @@ msgstr "Re: Старший дизайнер продукції"
 msgid "Reactive Resume {__APP_VERSION__} · MIT"
 msgstr "Reactive Resume {__APP_VERSION__} · MIT"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Reactive Resume is open source under the MIT License. Amruth Pillai and a community of contributors keep it running, and donations pay for hosting and development. There’s no paid tier."
 msgstr "Reactive Resume — проєкт з відкритим кодом під ліцензією MIT. Його підтримують Amruth Pillai та спільнота контриб’юторів, а пожертви оплачують хостинг і розробку. Платного тарифу немає."
@@ -12960,6 +12953,7 @@ msgstr "Переїзд"
 
 #: src/features/assistant/remember-message.tsx
 #: src/features/career/shared.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/remember.tsx
@@ -13854,6 +13848,7 @@ msgid "Same you. Less starting over."
 msgstr "Ви ті самі. Менше починати з нуля."
 
 #: src/features/documents/use-start-document.ts
+#: src/features/homepage/hero.tsx
 msgid "Sample resume"
 msgstr "Зразок резюме"
 
@@ -14761,6 +14756,7 @@ msgstr "Колір тіні"
 msgid "Shadow width"
 msgstr "Ширина тіні"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/share.tsx
@@ -14771,6 +14767,7 @@ msgstr "Ширина тіні"
 msgid "Share"
 msgstr "Поділитися"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/share.tsx
 msgid "Share a public link, add a password or keep it private. Choose from 3 visibility options. Export to PDF or Word, or take all your data with you as JSON."
 msgstr "Поділіться загальнодоступним посиланням, додайте пароль або збережіть його приватним. Виберіть один із 3 варіантів видимості. Експортуйте в PDF або Word або візьміть усі свої дані з собою як JSON."
@@ -14829,10 +14826,6 @@ msgstr "Впровадив <0>доступні</0> сценарії оплати
 #: src/features/homepage/prepare.tsx
 msgid "Shipped checkout flows that meet WCAG 2.1 AA."
 msgstr "Випустив сценарії оформлення замовлення, що відповідають WCAG 2.1 AA."
-
-#: src/features/homepage/hero.tsx
-msgid "Shipped checkout for iOS"
-msgstr "Відправлено до оплати для iOS"
 
 #: src/routes/builder/letter/-components/write-panel.tsx
 msgid "Short and direct. Fine if the posting asks for brevity."
@@ -15195,10 +15188,6 @@ msgstr "Ситуація, дія, результат"
 msgid "Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown outcomes blank."
 msgstr "Ситуація, завдання, дія, результат, рефлексія. Прив’язуйте кожну розповідь до фактів, які можете підтвердити; невідомі результати залишайте порожніми."
 
-#: src/features/homepage/hero.tsx
-msgid "Six product teams"
-msgstr "Шість команд продуктів"
-
 #: src/features/resume/editor/write/picture-settings.tsx
 msgid "Size"
 msgstr "Розмір"
@@ -15376,14 +15365,11 @@ msgstr "Іспанська"
 msgid "Spanish (B2)"
 msgstr "Іспанська (B2)"
 
-#: src/features/homepage/hero.tsx
-msgid "Spanish, B2"
-msgstr "Іспанська, B2"
-
 #: src/features/career/workspace/practise.tsx
 msgid "Speak"
 msgstr "Голосом"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Speaks your language"
 msgstr "Розмовляє вашою мовою"
@@ -15520,6 +15506,7 @@ msgstr "Почати з попереднього листа"
 msgid "Start from one you have and link the application."
 msgstr "Почніть із того, що у вас є, і зв’яжіть заявку на роботу."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Start from scratch or import what you have. It takes a few minutes, and you can come back to it anytime."
 msgstr "Почніть з нуля або імпортуйте те, що маєте. Це займе кілька хвилин, і ви зможете повернутися будь-коли."
@@ -15781,6 +15768,7 @@ msgstr "Підсумки ваших відкритих заявок"
 msgid "Summary"
 msgstr "Загальні відомості"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Support"
 msgstr "Підтримка"
@@ -15908,7 +15896,9 @@ msgstr "Теги через кому"
 msgid "Tags…"
 msgstr "Теги…"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Tailor"
 msgstr "Адаптуватися до посадової інструкції"
@@ -16010,8 +16000,11 @@ msgstr "Шаблон змінено на {0}"
 msgid "Template, type and colors follow the resume, so the pair always matches."
 msgstr "Шаблон, тип і кольори відповідають резюме, тому пара завжди збігається."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Templates"
 msgstr "Шаблони"
 
@@ -17293,6 +17286,7 @@ msgstr "Перекласти на…"
 msgid "Translate the app"
 msgstr "Перекласти застосунок"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Translated into {languageCount} languages."
 msgstr "Перекладено {languageCount} мовами."
@@ -17601,7 +17595,6 @@ msgid "Undo resume change"
 msgstr "Скасувати зміну резюме"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "University of Porto"
 msgstr "University of Porto"
@@ -18238,10 +18231,6 @@ msgstr "було {was}"
 msgid "Was: {0}"
 msgstr "Було: {0}"
 
-#: src/features/homepage/hero.tsx
-msgid "WCAG 2.1 AA"
-msgstr "WCAG 2.1 AA"
-
 #. Password reset email. appName: Reactive Resume
 #: src/features/auth/email-text.ts
 msgid "We received a request to reset your {appName} password."
@@ -18673,8 +18662,10 @@ msgid "Worth asking {0}"
 msgstr "Варто запитати: {0}"
 
 #. Homepage scene title, one word followed by a full stop
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/write.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
 #: src/routes/builder/$resumeId/-components/editor-shell.tsx
@@ -18705,6 +18696,7 @@ msgstr "Написати лист…"
 msgid "Write a new reply in {languageName}"
 msgstr "Написати нову відповідь мовою: {languageName}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/remember.tsx
 msgid "Write a story once, with the facts behind it, and the coach uses it in 3 places. Switch a fact off and nothing leans on it."
 msgstr "Напишіть розповідь один раз, разом із фактами, на яких вона ґрунтується, і коуч використає її в 3 місцях. Вимкніть факт — і ніщо на нього не спиратиметься."
@@ -18713,6 +18705,7 @@ msgstr "Напишіть розповідь один раз, разом із ф�
 msgid "Write and review form answers"
 msgstr "Напишіть і перевірте відповіді для форми"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/write.tsx
 msgid "Write beside a live page. It saves as you type and keeps every version. Ask the assistant for a sharper line: it suggests, you decide."
 msgstr "Пишіть поруч із живою сторінкою. Усе зберігається під час набору, і кожна версія лишається. Попросіть помічника про влучніше формулювання: він пропонує, ви вирішуєте."

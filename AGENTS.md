@@ -1,7 +1,7 @@
 # Reactive Resume: agent instructions
 
-This is the index for coding agents. It holds hard rules and pointers; detail lives in the linked files. The only other
-area guide is `apps/mobile/AGENTS.md`, read it before mobile work. Agent reference docs are in `.agents/docs/` (start at
+This is the index for coding agents. It holds hard rules and pointers; detail lives in the linked files. Read the area
+guides `apps/mobile/AGENTS.md` and `apps/career-saas/AGENTS.md` before work in those apps. Agent reference docs are in `.agents/docs/` (start at
 its `README.md`); contributor docs are in `docs/contributing/`. Scripts and config win when a doc disagrees with them.
 
 <!-- caveman-begin -->
@@ -36,6 +36,8 @@ Boundaries: code/commits/PRs written normal.
 - Never add AI attribution, AI co-author trailers or session links to commits or PRs. Commits follow Conventional
   Commits (enforced by the commit-msg hook).
 - Keep credentials, personal resume data and production identifiers out of source, logs, fixtures and PRs.
+- **Every UI change** follows `.agents/skills/ui-design-workflow/SKILL.md`: the ordered design workflow, component
+  research, accessible states, web/mobile parity and rendered verification. Contributor guide: `docs/contributing/design-system.mdx`.
 - Ticket notes (delivery logs, handoffs, review results) go on the Linear issue as a comment, never into repo files.
 
 ## Specs and review

@@ -1216,11 +1216,9 @@ msgstr "Tindakan"
 msgid "Actions"
 msgstr "Tindakan"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "Tindakan untuk {0} di {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "Tindakan untuk posisi {role} di {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "Kunci API"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Penampilan"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "Pengaturan tampilan berlaku untuk sesi ini. Coba simpan lagi agar pilihan ini tetap digunakan."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Tidak dapat menyimpan catatan. Teks Anda masih di sini."
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Tidak dapat menyimpan tag. Coba lagi."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Tidak dapat menyimpan tema. Coba lagi."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "Buat tautan"
 msgid "Make primary"
 msgstr "Jadikan utama"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Berikan ruang untuk langkah berikutnya."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Buat pembukaannya lebih kuat"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "Buka asisten AI"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "Relokasi"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Ingat"
@@ -10928,6 +10924,10 @@ msgstr "Coba lagi jawaban tersimpan"
 msgid "Retry saving"
 msgstr "Coba simpan lagi"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Coba simpan tampilan lagi"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "Coba lagi dengan {nativeSearchLabel}"
@@ -10968,6 +10968,10 @@ msgstr "Tinjau hasil periksa"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "Tanda pemeriksaan dicatat saat lamaran pertama kali dikirim."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Lihat detail"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "Untuk mendapatkan pengingat, izinkan notifikasi di setelan perangkat And
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "Hari ini"
 msgid "Today, {hour}"
 msgstr "Hari ini, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Alihkan pilihan"

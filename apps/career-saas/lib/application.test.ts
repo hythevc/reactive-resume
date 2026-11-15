@@ -115,6 +115,67 @@ test("packet export precedes review but rejects stale and missing factual source
 	assert.throws(() => exportApplicationPacket(profile, { ...job, description: "A revised posting." }, application));
 });
 
+test("manual review eligibility works without an imported report and keeps report approval separate", () => {
+	const { profile, job, application } = fixture();
+	const local = reviewApplication(profile, job, application);
+	assert.equal(local.canExportManually, true);
+	assert.equal(local.canExport, false);
+	assert.equal(local.checks.find((check) => check.id === "report-present")?.passed, false);
+	assert.equal(application.agentReview, null);
+
+	const packet = exportApplicationPacket(profile, job, application);
+	const problems = parseApplicationResult(
+		{
+			...resultFor(packet),
+			review: { summary: "Read the draft problems before sharing.", issues: ["Review the opening."] },
+		},
+		packet,
+	);
+	const reported = { ...application, ...problems };
+	const unresolved = reviewApplication(profile, job, reported);
+	assert.equal(unresolved.canExportManually, true);
+	assert.equal(unresolved.canExport, false);
+	assert.equal(unresolved.checks.find((check) => check.id === "report-issues")?.passed, false);
+
+	const reviewed = withReview(profile, job, application);
+	const edited = reviewApplication(profile, job, { ...reviewed, coverLetter: `${reviewed.coverLetter}\nAn edit.` });
+	assert.equal(edited.canExportManually, true);
+	assert.equal(edited.canExport, false);
+	assert.equal(edited.checks.find((check) => check.id === "report-current")?.passed, false);
+});
+
+test("manual review eligibility retains source, target, document and identity guards", () => {
+	const { profile, job, application } = fixture();
+	assert.equal(reviewApplication(null, job, application).canExportManually, false);
+	assert.equal(
+		reviewApplication({ ...profile, experience: "A changed source." }, job, application).canExportManually,
+		false,
+	);
+	for (const field of ["company", "role", "location", "description"] as const) {
+		assert.equal(
+			reviewApplication(profile, { ...job, [field]: `${job[field]} changed` }, application).canExportManually,
+			false,
+		);
+	}
+	for (const field of ["company", "role", "description"] as const) {
+		const incompleteJob = { ...job, [field]: " " };
+		const incomplete = createApplication(profile, incompleteJob, null, `missing-${field}`, "2026-11-10T09:00:00.000Z");
+		assert.equal(reviewApplication(profile, incompleteJob, incomplete).canExportManually, false);
+	}
+	assert.equal(reviewApplication(profile, job, { ...application, coverLetter: " " }).canExportManually, false);
+	const emptySource = { ...profile, summary: "", skills: "", experience: "", education: "" };
+	const empty = createApplication(emptySource, job, null, "blank-content", "2026-11-10T09:00:00.000Z");
+	assert.equal(reviewApplication(emptySource, job, empty).canExportManually, false);
+	for (const field of ["name", "email", "phone", "website", "linkedinUrl", "role", "location"] as const) {
+		const changedValue =
+			field === "website" || field === "linkedinUrl"
+				? "https://changed.example.test/profile"
+				: `${profile[field]} changed`;
+		const changed = { ...application, resume: { ...application.resume, [field]: changedValue } };
+		assert.equal(reviewApplication(profile, job, changed).canExportManually, false);
+	}
+});
+
 test("review results require a strict current packet echo and cannot approve another job or an edited draft", () => {
 	const { profile, job, application } = fixture();
 	const packet = exportApplicationPacket(profile, job, application);

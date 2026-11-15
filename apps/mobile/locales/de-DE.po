@@ -1216,11 +1216,9 @@ msgstr "Handlung"
 msgid "Actions"
 msgstr "Aktionen"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "Aktionen für {0} bei {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "Aktionen für {role} bei {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API-Schlüssel"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Aussehen"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "Das Erscheinungsbild gilt für diese Sitzung. Versuchen Sie erneut zu speichern, damit diese Auswahl erhalten bleibt."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Die Notizen konnten nicht gespeichert werden. Ihr Text ist noch hier."
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Die Stichwörter konnten nicht gespeichert werden. Versuchen Sie es erneut."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Das Farbschema konnte nicht gespeichert werden. Versuchen Sie es erneut."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "Link erstellen"
 msgid "Make primary"
 msgstr "Als primär festlegen"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Schaffen Sie Platz für den nächsten Schritt."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Machen Sie die Öffnung stärker"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "KI-Assistent öffnen"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "Umzugsbereitschaft"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Merken"
@@ -10928,6 +10924,10 @@ msgstr "Gespeicherte Antworten erneut versuchen"
 msgid "Retry saving"
 msgstr "Speichern Sie erneut"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Erscheinungsbild erneut speichern"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "Mit {nativeSearchLabel} erneut versuchen"
@@ -10968,6 +10968,10 @@ msgstr "Prüfungen überprüfen"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "Prüfmarkierungen wurden bei der ersten Bewerbungseinreichung gespeichert."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Details ansehen"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "Um eine Erinnerung zu erhalten, lassen Sie Benachrichtigungen in Ihren G
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "Heute"
 msgid "Today, {hour}"
 msgstr "Heute, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Auswahl umschalten"

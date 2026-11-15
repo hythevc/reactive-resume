@@ -167,7 +167,7 @@ export function CloudView() {
 	return (
 		<div className="feature-view">
 			<PageHeading
-				title="Your cloud account"
+				title="Cloud account"
 				description="Keep reviewed resume copies in your account. This browser workspace remains separate."
 			/>
 			{error ? (
@@ -206,6 +206,7 @@ export function CloudView() {
 							<>
 								<Field label={backupCode ? "Backup code" : "Authenticator code"}>
 									<input
+										className="input"
 										autoComplete="one-time-code"
 										value={code}
 										onChange={(event) => setCode(event.target.value)}
@@ -227,6 +228,7 @@ export function CloudView() {
 								{mode === "sign-up" ? (
 									<Field label="Full name">
 										<input
+											className="input"
 											autoComplete="name"
 											value={name}
 											onChange={(event) => setName(event.target.value)}
@@ -237,6 +239,7 @@ export function CloudView() {
 								) : null}
 								<Field label="Email">
 									<input
+										className="input"
 										type="email"
 										autoComplete="username"
 										value={email}
@@ -247,6 +250,7 @@ export function CloudView() {
 								</Field>
 								<Field label="Password">
 									<input
+										className="input"
 										type="password"
 										autoComplete={mode === "sign-in" ? "current-password" : "new-password"}
 										value={password}
@@ -325,7 +329,7 @@ export function CloudView() {
 							synchronize later edits.
 						</p>
 						<Field label="Local resume">
-							<select value={sourceId} onChange={(event) => setSourceId(event.target.value)}>
+							<select className="input" value={sourceId} onChange={(event) => setSourceId(event.target.value)}>
 								<option value="">Choose a resume</option>
 								{data.resumes.map((resume) => (
 									<option key={resume.id} value={resume.id}>

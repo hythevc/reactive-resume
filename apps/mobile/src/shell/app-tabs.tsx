@@ -2,7 +2,7 @@ import type { IconName } from "@/ui";
 import type { BottomTabBarProps } from "expo-router/tabs";
 import type { ReactNode } from "react";
 import { useLingui } from "@lingui/react/macro";
-import { useRouter, usePathname } from "expo-router";
+import { useRouter, usePathname, useIsFocused } from "expo-router";
 import { Children, useEffect, useState } from "react";
 import { I18nManager, Platform, Pressable, ScrollView, View, useWindowDimensions } from "react-native";
 import Animated, {
@@ -16,6 +16,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNewAction } from "./use-new-action";
 import { routes } from "@/routes";
 import { Button, Icon, IconButton, Text, haptics, useReducedMotion, useTheme } from "@/ui";
+import { setBottomBarHeight } from "@/ui/bottom-bar";
 import { useKeyboardVisible } from "@/ui/keyboard";
 
 /** The tab routes of `app/(tabs)`, in tab-bar order. `create` is the raised "+" that opens New. */
@@ -133,19 +134,22 @@ export function BarItem({ label, icon, focused, onPress, badge, badgeTone = "acc
 				paddingTop: space.s2,
 				paddingBottom: space.s1,
 				paddingHorizontal: space.s1,
-				backgroundColor: pressed && !android ? colors.press : "transparent",
+				marginHorizontal: space.s0,
+				marginVertical: space.s1,
+				borderRadius: radius.rMd,
+				backgroundColor: pressed && !android ? colors.press : focused && icon ? colors.accentSoft : "transparent",
 			})}
 		>
 			{icon ? (
 				<View style={{ height: size.newPill.height, alignItems: "center", justifyContent: "center" }}>
-					<Icon name={icon} filled={focused} color={focused ? colors.ink : colors.ink2} size={size.icon.bar} />
+					<Icon name={icon} filled={focused} color={focused ? colors.accentText : colors.ink2} size={size.icon.bar} />
 					{badgeText === undefined ? null : <TabBadge value={badgeText} tone={badgeTone} />}
 				</View>
 			) : (
 				<View
 					style={{
 						...size.newPill,
-						borderRadius: radius.rLg,
+						borderRadius: radius.rMd,
 						backgroundColor: colors.accent,
 						alignItems: "center",
 						justifyContent: "center",
@@ -156,12 +160,10 @@ export function BarItem({ label, icon, focused, onPress, badge, badgeTone = "acc
 			)}
 			<Text
 				variant="micro"
-				color={focused ? "ink" : "ink2"}
+				color={focused ? "accentText" : "ink2"}
 				align="center"
-				// Fit long words within a cell; translated phrases can still wrap at spaces.
-				numberOfLines={label.split(" ").length}
-				adjustsFontSizeToFit
-				minimumFontScale={0.7}
+				// Let system text settings grow the label and bar instead of shrinking navigation text.
+				maxFontSizeMultiplier={0}
 				style={{ alignSelf: "stretch" }}
 			>
 				{label}
@@ -240,14 +242,23 @@ export function Bar({ children, activeIndex }: BarProps) {
 	const insets = useSafeAreaInsets();
 	const { colors } = useTheme();
 	const keyboardVisible = useKeyboardVisible();
+	const focused = useIsFocused();
+	const [owner] = useState({});
+	const [height, setHeight] = useState(0);
 	const [width, setWidth] = useState(0);
 	const count = Children.count(children);
+	useEffect(() => {
+		if (keyboardVisible || !focused) return;
+		setBottomBarHeight(owner, height);
+		return () => setBottomBarHeight(owner, 0);
+	}, [keyboardVisible, focused, height, owner]);
 
 	if (keyboardVisible) return null;
 
 	return (
 		<View
 			accessibilityRole="tablist"
+			onLayout={(event) => setHeight(event.nativeEvent.layout.height)}
 			style={{
 				flexDirection: "row",
 				paddingBottom: insets.bottom,
@@ -270,8 +281,8 @@ export function Bar({ children, activeIndex }: BarProps) {
 
 /**
  * The phone tab bar (app.html): five cells, the active tab with a filled icon and the `accent` 28×3 marker on the top
- * rule (both platforms), and the raised "+" pill in the middle. Labels stay under the icons at every text
- * size (`micro` caps its scale); phrases wrap and long words fit within their cells.
+ * rule (both platforms), and the raised "+" pill in the middle. Labels stay under the icons, wrap and grow
+ * with system text settings; cells expand vertically rather than shrinking navigation text.
  */
 export function PhoneTabBar(props: BottomTabBarProps) {
 	const { t } = useLingui();
@@ -336,7 +347,7 @@ function SidebarItem({
 				minHeight: size.hit,
 				paddingHorizontal: compact ? space.s1 : space.s3,
 				paddingVertical: compact ? space.s2 : 0,
-				borderRadius: radius.rLg,
+				borderRadius: radius.rMd,
 				backgroundColor: active ? colors.selectedFill : pressed ? colors.press : "transparent",
 			})}
 		>
@@ -345,6 +356,7 @@ function SidebarItem({
 				variant={compact ? "micro" : active ? "label" : "body"}
 				align={compact ? "center" : undefined}
 				color={active ? "accentText" : "ink2"}
+				maxFontSizeMultiplier={0}
 				style={compact ? undefined : { flex: 1 }}
 			>
 				{label}

@@ -65,8 +65,8 @@ export function SettingsView() {
 		<>
 			<div className="feature-heading">
 				<div>
-					<h1>A workspace that knows your goals.</h1>
-					<p className="muted">Your profile connects every next step. Changes save on this device.</p>
+					<h1>Settings</h1>
+					<p className="muted">Manage your shared career profile, preferences and workspace backups.</p>
 				</div>
 			</div>
 			{message ? (
@@ -82,7 +82,7 @@ export function SettingsView() {
 			) : null}
 			<div className="two-column">
 				<section className="panel">
-					<h2>Your career profile</h2>
+					<h2>Career profile</h2>
 					<p className="muted">Used as the starting point for new resumes and outreach drafts.</p>
 					<div className="form-grid">
 						{[
@@ -138,7 +138,7 @@ export function SettingsView() {
 				</section>
 				<div className="stack">
 					<section className="panel">
-						<h2>Your next role</h2>
+						<h2>Role preferences</h2>
 						<p className="muted">Give your job search a clear direction.</p>
 						<label className="field">
 							<span>Target role</span>
@@ -214,7 +214,7 @@ export function SettingsView() {
 						</span>
 					</section>
 					<section className="panel">
-						<h2>Your data, in your hands.</h2>
+						<h2>Backups and data</h2>
 						<p className="muted">
 							This browser profile can access your career data without an account. Backups contain private career data;
 							photos are excluded. Keep a private backup before clearing browser data. Reset doesn't remove downloaded
@@ -287,8 +287,8 @@ export function PlansView() {
 		<>
 			<div className="feature-heading">
 				<div>
-					<h1>Invest in your next chapter.</h1>
-					<p className="muted">Proposed launch plans. Explore what fits your next move.</p>
+					<h1>Plan preview</h1>
+					<p className="muted">Compare proposed plans. Billing is not connected on this installation.</p>
 				</div>
 			</div>
 			<div className="notice">
@@ -366,7 +366,7 @@ export function PlansView() {
 				))}
 			</div>
 			<section className="panel pricing-note">
-				<h2>A career tool should respect your time.</h2>
+				<h2>Availability</h2>
 				<p className="muted">
 					The proposed monthly model supports a focused job search. Prices and limits are hypotheses until paid features
 					are tested. AI headshots will use separate credits.

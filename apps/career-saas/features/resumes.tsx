@@ -8,12 +8,11 @@ import {
 	FileText,
 	Plus,
 	Printer,
-	Sparkles,
 	Target,
 	Trash2,
 	Upload,
 } from "lucide-react";
-import { useRef, useState, type ChangeEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type ChangeEvent, type KeyboardEvent } from "react";
 import { ProfileUrlField } from "@/components/career-ui";
 import { careerProfileFromResume, updateResumeProfile } from "@/lib/workflow-safety";
 import {
@@ -161,7 +160,7 @@ export function ResumeTargetPanel({ resume, jobs, onChange, onCommit, onDuplicat
 		<section className="panel resume-target-panel" aria-label="Resume job targeting">
 			<div className="panel-heading">
 				<div>
-					<h2 className="section-title">Tailor this version to a role.</h2>
+					<h2 className="section-title">Compare with a role</h2>
 					<p className="muted">Compare your resume with specific terms from a job you care about.</p>
 				</div>
 				<Target size={21} />
@@ -220,7 +219,7 @@ export function ResumeTargetPanel({ resume, jobs, onChange, onCommit, onDuplicat
 					) : null}
 					<div className="resume-actions" style={{ marginTop: 15 }}>
 						<button className="button secondary small" onClick={suggestKeywords} disabled={!job}>
-							<Sparkles size={15} />
+							<Target size={15} aria-hidden="true" />
 							Suggest from job
 						</button>
 						<button className="button secondary small" onClick={() => job && onDuplicate(job)} disabled={!job}>
@@ -362,23 +361,45 @@ function ResumePaper({ resume, template }: ResumePaperProps) {
 	);
 }
 
-export function ResumesView() {
+type ResumesViewProps = {
+	pendingImport?: File | null;
+	onImportConsumed?: () => void;
+	initialResumeId?: string;
+};
+
+export function ResumesView({ pendingImport, onImportConsumed, initialResumeId }: ResumesViewProps = {}) {
 	const { data, setData, mutate, persistenceStatus } = useWorkspace();
-	const [selectedId, setSelectedId] = useState<string | null>(null);
+	const [selectedId, setSelectedId] = useState<string | null>(initialResumeId ?? null);
 	const [template, setTemplate] = useState<"classic" | "modern">("classic");
+	const [mobileView, setMobileView] = useState<"edit" | "preview">("edit");
 	const [message, setMessage] = useState("");
 	const [error, setError] = useState("");
 	const importRef = useRef<HTMLInputElement>(null);
+	const editTabRef = useRef<HTMLButtonElement>(null);
+	const previewTabRef = useRef<HTMLButtonElement>(null);
+	const selectionRequest = useRef(initialResumeId);
+	const consumedImports = useRef(new WeakSet<File>());
 	const selected = data.resumes.find((resume) => resume.id === selectedId) || data.resumes[0];
 
-	function canAddResume() {
+	/* oxlint-disable react/set-state-in-effect -- Apply a requested document from external hash navigation once without overriding later local selection. */
+	useEffect(() => {
+		if (selectionRequest.current === initialResumeId) return;
+		selectionRequest.current = initialResumeId;
+		if (initialResumeId && data.resumes.some((resume) => resume.id === initialResumeId)) {
+			setSelectedId(initialResumeId);
+			setMessage("");
+		}
+	}, [data.resumes, initialResumeId]);
+	/* oxlint-enable react/set-state-in-effect */
+
+	const canAddResume = useCallback(() => {
 		if (data.resumes.length < MAX_RESUMES) return true;
 		setMessage("");
 		setError(
 			`This workspace has reached ${MAX_RESUMES} resumes. Export or remove an old resume before adding another.`,
 		);
 		return false;
-	}
+	}, [data.resumes.length]);
 
 	async function createResume() {
 		if (!canAddResume()) return;
@@ -404,6 +425,7 @@ export function ResumesView() {
 			return;
 		}
 		setSelectedId(resume.id);
+		setMobileView("edit");
 		setMessage("New resume created. Your edits are saved on this device.");
 		setError("");
 	}
@@ -483,6 +505,7 @@ export function ResumesView() {
 			return;
 		}
 		setSelectedId(resume.id);
+		setMobileView("edit");
 		setError("");
 		setMessage("Resume duplicated.");
 	}
@@ -506,6 +529,7 @@ export function ResumesView() {
 			return;
 		}
 		setSelectedId(resume.id);
+		setMobileView("edit");
 		setError("");
 		setMessage(
 			"Job-specific version created. Your original resume is kept; edit this copy using only experience you can substantiate.",
@@ -529,45 +553,79 @@ export function ResumesView() {
 		setMessage("Resume deleted.");
 	}
 
+	const readImportFile = useCallback(
+		async (file: File) => {
+			setError("");
+			if (!canAddResume()) return;
+			if (file.size > 2 * 1024 * 1024) {
+				setError("Choose a JSON file smaller than 2 MB.");
+				return;
+			}
+			try {
+				const resume = importResume(JSON.parse(await file.text()));
+				setMessage("");
+				if (
+					!(await mutate((current) => ({
+						...current,
+						resumes: [...current.resumes, resume],
+					})))
+				) {
+					setError(
+						"Couldn't save the imported resume. Keep the original file and check the storage notice before trying again.",
+					);
+					return;
+				}
+				setSelectedId(resume.id);
+				setMobileView("edit");
+				setMessage(
+					"Supported resume text imported. Review the fields, then choose “Use as career profile” if matching and new outreach should use these facts. Existing shared facts have not changed.",
+				);
+			} catch {
+				setError("Couldn’t import this resume. Choose a valid Reactive Resume JSON file.");
+			}
+		},
+		[canAddResume, mutate],
+	);
+
 	async function importFile(event: ChangeEvent<HTMLInputElement>) {
 		const file = event.target.files?.[0];
 		event.target.value = "";
-		if (!file) return;
-		setError("");
-		if (!canAddResume()) return;
-		if (file.size > 2 * 1024 * 1024) {
-			setError("Choose a JSON file smaller than 2 MB.");
-			return;
-		}
-		try {
-			const resume = importResume(JSON.parse(await file.text()));
-			setMessage("");
-			if (
-				!(await mutate((current) => ({
-					...current,
-					resumes: [...current.resumes, resume],
-				})))
-			) {
-				setError(
-					"Couldn't save the imported resume. Keep the original file and check the storage notice before trying again.",
-				);
-				return;
-			}
-			setSelectedId(resume.id);
-			setMessage(
-				"Supported resume text imported. Review the fields, then choose “Use as career profile” if matching and new outreach should use these facts. Existing shared facts have not changed.",
-			);
-		} catch {
-			setError("Couldn’t import this resume. Choose a valid Reactive Resume JSON file.");
-		}
+		if (file) await readImportFile(file);
+	}
+
+	useEffect(() => {
+		if (!pendingImport || consumedImports.current.has(pendingImport)) return;
+		consumedImports.current.add(pendingImport);
+		onImportConsumed?.();
+		void readImportFile(pendingImport);
+	}, [onImportConsumed, pendingImport, readImportFile]);
+
+	function switchMobileView(view: "edit" | "preview", focus = false) {
+		setMobileView(view);
+		if (focus) (view === "edit" ? editTabRef : previewTabRef).current?.focus();
+	}
+
+	function moveViewTab(event: KeyboardEvent<HTMLButtonElement>) {
+		const next =
+			event.key === "Home"
+				? "edit"
+				: event.key === "End"
+					? "preview"
+					: event.key === "ArrowLeft" || event.key === "ArrowRight"
+						? mobileView === "edit"
+							? "preview"
+							: "edit"
+						: null;
+		if (!next) return;
+		event.preventDefault();
+		switchMobileView(next, true);
 	}
 
 	return (
 		<div className="feature-view resumes-view">
-			<div className="feature-heading">
+			<div className="feature-heading resume-page-heading">
 				<div>
-					<h1>Make your experience count.</h1>
-					<p className="muted">Build, tailor, and export a resume that tells your story.</p>
+					<h1>Resumes</h1>
 				</div>
 				<div className="resume-actions">
 					<button className="button secondary" onClick={() => importRef.current?.click()}>
@@ -576,15 +634,10 @@ export function ResumesView() {
 					</button>
 					<button className="button primary" onClick={createResume}>
 						<Plus size={16} />
-						Create a resume
+						New resume
 					</button>
 				</div>
 			</div>
-			<p className="muted small-print" style={{ marginBottom: 20 }}>
-				JSON import brings in supported contact details, LinkedIn/website links, summary, experience, education, and
-				skills. Other sections and original formatting are not retained. Keep your original file, then check the
-				imported details before sharing.
-			</p>
 			<input
 				ref={importRef}
 				aria-label="Import Reactive Resume JSON"
@@ -604,66 +657,96 @@ export function ResumesView() {
 					{error}
 				</div>
 			) : null}
-			<div className="resume-library" aria-label="Your resumes">
-				{data.resumes.map((resume) => (
-					<button
-						key={resume.id}
-						className={`resume-list-item ${selected?.id === resume.id ? "selected" : ""}`}
-						onClick={() => {
-							setSelectedId(resume.id);
+			{data.resumes.length ? (
+				<label className="resume-version-picker" htmlFor="resume-version">
+					<FileText size={18} aria-hidden="true" />
+					<span className="sr-only">Resume version</span>
+					<select
+						id="resume-version"
+						className="input"
+						value={selected?.id ?? ""}
+						title={selected?.title}
+						onChange={(event) => {
+							setSelectedId(event.target.value);
 							setMessage("");
 						}}
-						aria-pressed={selected?.id === resume.id}
 					>
-						<FileText size={20} />
-						<span>
-							<strong>{resume.title}</strong>
-							<small>{resume.profile.role || "Untitled role"}</small>
-						</span>
-						{selected?.id === resume.id ? <Check size={16} /> : null}
-					</button>
-				))}
-			</div>
-			{selected ? (
-				<ResumeTargetPanel
-					key={selected.id}
-					resume={selected}
-					jobs={data.jobs}
-					onChange={updateResume}
-					onCommit={commitResume}
-					onDuplicate={duplicateForJob}
-				/>
+						{data.resumes.map((resume) => (
+							<option key={resume.id} value={resume.id}>
+								{resume.title}
+							</option>
+						))}
+					</select>
+				</label>
 			) : null}
 			{selected ? (
-				<div className="resume-workspace">
-					<section className="panel resume-editor" aria-label="Resume editor">
-						<div className="panel-heading">
-							<h2 className="section-title">Your story, in your words</h2>
-							<span className="status">
-								{persistenceStatus === "saved"
-									? "Saved locally"
-									: persistenceStatus === "saving"
-										? "Saving…"
-										: "Not saved — check the workspace notice"}
-							</span>
-						</div>
-						<p className="muted small-print">
-							Editing this resume changes this version only. Matching and outreach use your shared career profile:{" "}
-							{data.profile.name || "No name added"} · {data.profile.role || "No role added"}.
-						</p>
-						<button className="button secondary small" onClick={useAsCareerProfile}>
-							Use as career profile
+				<details className="resume-target-disclosure" key={selected.id}>
+					<summary>
+						<span>
+							<Target size={18} aria-hidden="true" />
+							<strong>Tailor to a role</strong>
+						</span>
+						<span className="status">{selected.targetJobId ? "Target selected" : "Optional"}</span>
+					</summary>
+					<ResumeTargetPanel
+						resume={selected}
+						jobs={data.jobs}
+						onChange={updateResume}
+						onCommit={commitResume}
+						onDuplicate={duplicateForJob}
+					/>
+				</details>
+			) : null}
+			{selected ? (
+				<div className="resume-workbench-toolbar">
+					<div className="resume-mobile-tabs" role="group" aria-label="Resume view">
+						<button
+							ref={editTabRef}
+							className={`tab ${mobileView === "edit" ? "active" : ""}`}
+							aria-pressed={mobileView === "edit"}
+							aria-controls="resume-edit-panel"
+							onClick={() => switchMobileView("edit")}
+							onKeyDown={moveViewTab}
+						>
+							Edit
 						</button>
-						<label className="field" htmlFor="resume-title">
-							<span>Resume name</span>
-							<input
-								id="resume-title"
-								className="input"
-								maxLength={resumeSchema.shape.title.maxLength ?? undefined}
-								value={selected.title}
-								onChange={(event) => updateResume({ title: event.target.value })}
-							/>
-						</label>
+						<button
+							ref={previewTabRef}
+							className={`tab ${mobileView === "preview" ? "active" : ""}`}
+							aria-pressed={mobileView === "preview"}
+							aria-controls="resume-preview-panel"
+							onClick={() => switchMobileView("preview")}
+							onKeyDown={moveViewTab}
+						>
+							Preview
+						</button>
+					</div>
+					<span className="resume-save-status" data-state={persistenceStatus} role="status">
+						{persistenceStatus === "saved"
+							? "Saved locally"
+							: persistenceStatus === "saving"
+								? "Saving…"
+								: "Not saved. Check the workspace notice."}
+					</span>
+					<div className="resume-export-actions" role="group" aria-label="Resume export">
+						<button
+							className="button secondary small"
+							onClick={() => downloadJson(exportResume(selected), resumeFileName(selected.title))}
+						>
+							<ArrowDownToLine size={15} aria-hidden="true" />
+							JSON
+						</button>
+						<button className="button primary small" onClick={() => window.print()}>
+							<Printer size={15} aria-hidden="true" />
+							Print / PDF
+						</button>
+					</div>
+				</div>
+			) : null}
+			{selected ? (
+				<div className="resume-workspace" data-mobile-view={mobileView}>
+					<section id="resume-edit-panel" className="panel resume-editor" aria-label="Resume editor">
+						<h2 className="sr-only">Resume details</h2>
 						<div className="form-grid">
 							<ProfileField label="Full name" field="name" profile={selected.profile} onChange={updateProfile} />
 							<ProfileField
@@ -679,31 +762,37 @@ export function ResumesView() {
 								profile={selected.profile}
 								onChange={updateProfile}
 							/>
-							<ProfileField
-								label="Phone"
-								field="phone"
-								type="tel"
-								profile={selected.profile}
-								onChange={updateProfile}
-							/>
+
 							<ProfileField label="Location" field="location" profile={selected.profile} onChange={updateProfile} />
-							<ProfileUrlField
-								key={selected.id + selected.profile.website}
-								label="Website"
-								value={selected.profile.website}
-								maxLength={profileFieldMaxLength("website")}
-								onCommit={(value) => mutate((current) => updateResumeProfile(current, selected.id, "website", value))}
-							/>
-							<ProfileUrlField
-								key={selected.id + selected.profile.linkedinUrl}
-								label="LinkedIn URL"
-								value={selected.profile.linkedinUrl}
-								maxLength={profileFieldMaxLength("linkedinUrl")}
-								onCommit={(value) =>
-									mutate((current) => updateResumeProfile(current, selected.id, "linkedinUrl", value))
-								}
-							/>
 						</div>
+						<details className="resume-contact-details">
+							<summary>Phone, website &amp; LinkedIn</summary>
+							<div className="form-grid">
+								<ProfileField
+									label="Phone"
+									field="phone"
+									type="tel"
+									profile={selected.profile}
+									onChange={updateProfile}
+								/>
+								<ProfileUrlField
+									key={`${selected.id}-website-${selected.profile.website}`}
+									label="Website"
+									value={selected.profile.website}
+									maxLength={profileFieldMaxLength("website")}
+									onCommit={(value) => mutate((current) => updateResumeProfile(current, selected.id, "website", value))}
+								/>
+								<ProfileUrlField
+									key={`${selected.id}-linkedin-${selected.profile.linkedinUrl}`}
+									label="LinkedIn URL"
+									value={selected.profile.linkedinUrl}
+									maxLength={profileFieldMaxLength("linkedinUrl")}
+									onCommit={(value) =>
+										mutate((current) => updateResumeProfile(current, selected.id, "linkedinUrl", value))
+									}
+								/>
+							</div>
+						</details>
 						<ProfileField
 							label="Professional summary"
 							field="summary"
@@ -737,6 +826,26 @@ export function ResumesView() {
 							onChange={updateProfile}
 							help="Separate skills with commas."
 						/>
+						<details className="resume-version-details">
+							<summary>Version details &amp; career profile</summary>
+							<label className="field" htmlFor="resume-title">
+								<span>Resume name</span>
+								<input
+									id="resume-title"
+									className="input"
+									maxLength={resumeSchema.shape.title.maxLength ?? undefined}
+									value={selected.title}
+									onChange={(event) => updateResume({ title: event.target.value })}
+								/>
+							</label>
+							<p className="muted small-print">
+								Editing this resume changes this version only. Matching and outreach use your shared career profile:{" "}
+								{data.profile.name || "No name added"} · {data.profile.role || "No role added"}.
+							</p>
+							<button className="button secondary small" onClick={useAsCareerProfile}>
+								Use as career profile
+							</button>
+						</details>
 						<div className="resume-actions">
 							<button className="button secondary small" onClick={duplicateResume}>
 								<Copy size={15} />
@@ -748,9 +857,9 @@ export function ResumesView() {
 							</button>
 						</div>
 					</section>
-					<section className="resume-preview-wrap" aria-label="Resume appearance and export">
+					<section id="resume-preview-panel" className="resume-preview-wrap" aria-label="Resume appearance and export">
 						<div className="resume-preview-toolbar">
-							<div className="tabs" aria-label="Resume template">
+							<div className="tabs" role="group" aria-label="Resume template">
 								<button
 									className={`tab ${template === "classic" ? "active" : ""}`}
 									aria-pressed={template === "classic"}
@@ -766,19 +875,6 @@ export function ResumesView() {
 									Modern
 								</button>
 							</div>
-							<div className="resume-actions">
-								<button
-									className="button secondary small"
-									onClick={() => downloadJson(exportResume(selected), resumeFileName(selected.title))}
-								>
-									<ArrowDownToLine size={15} />
-									JSON
-								</button>
-								<button className="button primary small" onClick={() => window.print()}>
-									<Printer size={15} />
-									Print / PDF
-								</button>
-							</div>
 						</div>
 						<ResumePaper resume={selected} template={template} />
 						<p className="muted resume-export-note">
@@ -791,7 +887,7 @@ export function ResumesView() {
 			) : (
 				<section className="panel empty-state">
 					<FileText size={36} />
-					<h2>Your next chapter starts with a page.</h2>
+					<h2>No resumes yet</h2>
 					<p className="muted">Create your first resume or import an existing Reactive Resume JSON file.</p>
 					<button className="button primary" onClick={createResume}>
 						<Plus size={16} />
@@ -799,6 +895,14 @@ export function ResumesView() {
 					</button>
 				</section>
 			)}
+			<details className="import-disclosure">
+				<summary>About JSON imports</summary>
+				<p className="muted small-print">
+					JSON import brings in supported contact details, LinkedIn/website links, summary, experience, education, and
+					skills. Other sections and original formatting are not retained. Keep your original file, then check the
+					imported details before sharing.
+				</p>
+			</details>
 		</div>
 	);
 }

@@ -1216,11 +1216,9 @@ msgstr "Aksie"
 msgid "Actions"
 msgstr "Aksies"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "Handelinge vir {0} by {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "Handelinge vir {role} by {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API sleutels"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Voorkoms"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "Die voorkoms geld vir hierdie sessie. Probeer dit weer bewaar om hierdie keuse te behou."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Kon nie die notas stoor nie. Jou teks is nog hier."
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Kon nie die merkers stoor nie. Probeer weer."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Kon nie die tema stoor nie. Probeer weer."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "Maak skakel"
 msgid "Make primary"
 msgstr "Maak primêr"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Maak plek vir die volgende stap."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Maak die opening sterker"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "Maak KI-assistent oop"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "Herverhuising"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Onthou"
@@ -10928,6 +10924,10 @@ msgstr "Probeer bewaarde antwoorde weer"
 msgid "Retry saving"
 msgstr "Probeer weer stoor"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Bewaar voorkoms weer"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "Probeer weer met {nativeSearchLabel}"
@@ -10968,6 +10968,10 @@ msgstr "Hersien kontroles"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "Hersieningskontroles by die eerste indiening aangeteken."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Bekyk besonderhede"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "Laat kennisgewings in jou toestelinstellings toe om 'n herinnering te kr
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "Vandag"
 msgid "Today, {hour}"
 msgstr "Vandag, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Wissel seleksie"

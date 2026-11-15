@@ -1216,11 +1216,9 @@ msgstr "行動"
 msgid "Actions"
 msgstr "アクション"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "{1} での {0} のアクション"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "{company}の{role}に関する操作"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API キー"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "外観"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "外観設定はこのセッションに適用されています。この選択を維持するには、保存をもう一度お試しください。"
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "メモを保存できませんでした。あなたのテキストはま
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "タグを保存できませんでした。もう一度お試しください。"
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "テーマを保存できませんでした。もう一度やり直してください。"
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "リンクを作成"
 msgid "Make primary"
 msgstr "プライマリに設定"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "次のステップに向けて整理しましょう。"
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "開口部を強くする"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "AIアシスタントを開く"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "転居"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "記憶する"
@@ -10928,6 +10924,10 @@ msgstr "保存済みの回答を再試行"
 msgid "Retry saving"
 msgstr "保存を再試行してください"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "外観設定の保存を再試行"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "{nativeSearchLabel}で再試行"
@@ -10968,6 +10968,10 @@ msgstr "チェック項目を確認"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "初回の応募時に確認項目のチェックを記録しました。"
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "詳細を確認"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "リマインダーを取得するには、デバイスの設定で通知
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "今日"
 msgid "Today, {hour}"
 msgstr "今日 {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "選択の切り替え"

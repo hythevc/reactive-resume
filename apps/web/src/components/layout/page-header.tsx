@@ -16,11 +16,13 @@ type PageHeaderProps = {
 export function PageHeader({ title, description, back, actions, children }: PageHeaderProps) {
 	return (
 		<>
-			<header className="flex flex-wrap items-center justify-between gap-3">
-				<div className="grid min-w-0 gap-1">
+			<header className="flex flex-wrap items-center justify-between gap-4">
+				<div className="grid min-w-0 gap-2">
 					{back && <div className="mb-2">{back}</div>}
-					<h1 className="font-display text-[30px] leading-9">{title}</h1>
-					{description && <p className="text-sm text-ink-2">{description}</p>}
+					<h1 className="font-ui text-[28px] leading-[1.15] font-semibold tracking-[-0.02em] text-balance sm:text-[32px]">
+						{title}
+					</h1>
+					{description && <p className="max-w-[72ch] text-[15px] leading-6 text-pretty text-ink-2">{description}</p>}
 				</div>
 				{actions && <div className="flex max-w-full flex-wrap items-center gap-2">{actions}</div>}
 			</header>

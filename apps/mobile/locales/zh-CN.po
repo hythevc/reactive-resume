@@ -1216,11 +1216,9 @@ msgstr "行动"
 msgid "Actions"
 msgstr "行动"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "{0} 在 {1} 的操作"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "{company} 的 {role} 职位操作"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API按键"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "外貌"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "外观设置已在当前会话中生效。请重试保存以保留此选择。"
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "无法保存笔记。您的文字还在这里。"
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "无法保存标签。请重试。"
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "无法保存主题。再试一次。"
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "创建链接"
 msgid "Make primary"
 msgstr "设为主简历"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "为下一步腾出空间。"
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "让开口更坚固"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "打开 AI 助手"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "搬迁"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "记住"
@@ -10928,6 +10924,10 @@ msgstr "重试已保存的回答"
 msgid "Retry saving"
 msgstr "重试保存"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "重试保存外观设置"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "使用 {nativeSearchLabel} 重试"
@@ -10968,6 +10968,10 @@ msgstr "审阅检查项"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "已在首次提交求职申请时记录审阅勾选项。"
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "查看详情"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "要获得提醒，请在设备设置中允许通知。"
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "今天"
 msgid "Today, {hour}"
 msgstr "今天 {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "切换选择"

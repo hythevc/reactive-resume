@@ -1216,11 +1216,9 @@ msgstr "Действие"
 msgid "Actions"
 msgstr "Действия"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "Действия для {0} в {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "Действия для вакансии {role} в компании {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "Ключи API"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Появление"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "Оформление применяется для этого сеанса. Повторите попытку сохранения, чтобы сохранить выбранный вариант."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Не удалось сохранить заметки. Ваш текст
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Не удалось сохранить теги. Попробуйте еще раз."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Не удалось сохранить тему. Попробуйте еще раз."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "Создать ссылку"
 msgid "Make primary"
 msgstr "Сделать основным"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Освободите место для следующего шага."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Сделайте открытие сильнее"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "Открыть ИИ-помощника"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "Переезд"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Запомнить"
@@ -10928,6 +10924,10 @@ msgstr "Повторить загрузку сохранённых ответо�
 msgid "Retry saving"
 msgstr "Повторить попытку сохранения"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Повторить сохранение оформления"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "Повторить через {nativeSearchLabel}"
@@ -10968,6 +10968,10 @@ msgstr "Проверки"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "Отметки проверки сохранены при первой отправке отклика."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Посмотреть подробности"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "Чтобы получать напоминания, разрешите �
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "Сегодня"
 msgid "Today, {hour}"
 msgstr "Сегодня, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Переключить выбор"

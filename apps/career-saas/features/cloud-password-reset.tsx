@@ -45,7 +45,7 @@ export function CloudPasswordReset() {
 		}
 	}
 	return (
-		<main className="main-content">
+		<main className="main-content password-reset-page">
 			<Panel>
 				<h1>Reset your password</h1>
 				{error ? (
@@ -67,6 +67,9 @@ export function CloudPasswordReset() {
 						<form onSubmit={(event) => void submit(event)}>
 							<Field label="New password">
 								<input
+									className="input"
+									name="new-password"
+									disabled={!token || busy}
 									type="password"
 									autoComplete="new-password"
 									minLength={8}
@@ -78,6 +81,9 @@ export function CloudPasswordReset() {
 							</Field>
 							<Field label="Confirm new password">
 								<input
+									className="input"
+									name="confirm-new-password"
+									disabled={!token || busy}
 									type="password"
 									autoComplete="new-password"
 									minLength={8}
@@ -93,7 +99,7 @@ export function CloudPasswordReset() {
 						</form>
 					</>
 				)}
-				<a className="button secondary" href="/#cloud">
+				<a className="button secondary" href="/app#cloud">
 					Return to Cloud account
 				</a>
 			</Panel>

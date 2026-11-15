@@ -46,7 +46,7 @@ export function NextSteps({ onDismiss }: NextStepsProps) {
 	return (
 		<section aria-labelledby={titleId} className="grid gap-3 rounded-lg border border-accent bg-accent-soft p-4">
 			<div className="flex items-center justify-between gap-3">
-				<h3 id={titleId} className="font-display text-[22px] leading-7">
+				<h3 id={titleId} className="font-ui text-[22px] leading-7">
 					<Trans>AI is ready</Trans>
 				</h3>
 				<Button size="icon-sm" variant="ghost" aria-label={t`Dismiss`} onClick={onDismiss}>

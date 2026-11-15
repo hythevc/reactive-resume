@@ -1,23 +1,21 @@
 "use client";
 
-import {
-	ArrowRight,
-	Check,
-	CheckCircle2,
-	CircleAlert,
-	Copy,
-	FileText,
-	Linkedin,
-	RefreshCw,
-	Sparkles,
-} from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, Check, CheckCircle2, CircleAlert, Copy, FileText, Linkedin, RefreshCw } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { auditLinkedIn, linkedinSchema, type LinkedInProfile } from "@/lib/workspace";
 import { useWorkspace } from "@/lib/workspace-context";
 
 export function LinkedInView() {
 	const { data, setData, mutate } = useWorkspace();
 	const profile = data.linkedin;
+	const reviewHeadingRef = useRef<HTMLHeadingElement>(null);
+	const reviewFrameRef = useRef<number | null>(null);
+	useEffect(
+		() => () => {
+			if (reviewFrameRef.current !== null) cancelAnimationFrame(reviewFrameRef.current);
+		},
+		[],
+	);
 	const [report, setReport] = useState<ReturnType<typeof auditLinkedIn> | null>(null);
 	const [message, setMessage] = useState("");
 	const [error, setError] = useState("");
@@ -88,6 +86,15 @@ export function LinkedInView() {
 	function reviewProfile() {
 		setReport(auditLinkedIn(profile));
 		setMessage("Review complete. These checks use the text you entered.");
+		if (reviewFrameRef.current !== null) cancelAnimationFrame(reviewFrameRef.current);
+		reviewFrameRef.current = requestAnimationFrame(() => {
+			reviewHeadingRef.current?.focus({ preventScroll: true });
+			reviewHeadingRef.current?.scrollIntoView({
+				block: "start",
+				behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+			});
+			reviewFrameRef.current = null;
+		});
 	}
 
 	async function copyDraft() {
@@ -126,8 +133,8 @@ export function LinkedInView() {
 		<div className="feature-view linkedin-view">
 			<div className="feature-heading">
 				<div>
-					<h1>A profile that opens conversations.</h1>
-					<p className="muted">Turn your experience into a clearer LinkedIn story.</p>
+					<h1>LinkedIn review</h1>
+					<p className="muted">Check your profile text and prepare a revised draft to copy to LinkedIn.</p>
 				</div>
 				<a className="button secondary" href="https://www.linkedin.com/me/" target="_blank" rel="noreferrer">
 					<Linkedin size={16} />
@@ -135,7 +142,7 @@ export function LinkedInView() {
 					<ArrowRight size={16} />
 				</a>
 			</div>
-			<div className="notice">
+			<div className="workspace-context-note">
 				<Linkedin size={17} />
 				<span>Paste your profile text below. Reviews run on this device; your LinkedIn account is not connected.</span>
 			</div>
@@ -150,46 +157,53 @@ export function LinkedInView() {
 					{message}
 				</div>
 			) : null}
-			<section className="panel linkedin-resume-source" aria-label="Start LinkedIn draft from a resume">
-				<div>
-					<h2>Start with your experience.</h2>
-					<p className="muted">
-						Reuse a saved resume’s text for your headline, About, experience, and skills. Loading replaces the current
-						draft.
-					</p>
-				</div>
-				<label className="field" htmlFor="linkedin-resume-source">
-					<span>Saved resume</span>
-					<select
-						className="input"
-						id="linkedin-resume-source"
-						value={sourceId}
-						onChange={(event) => setSourceId(event.target.value)}
-					>
-						<option value="">Choose a resume</option>
-						{data.resumes.map((resume) => (
-							<option key={resume.id} value={resume.id}>
-								{resume.title}
-							</option>
-						))}
-					</select>
-				</label>
-				<button className="button secondary" disabled={!source} onClick={loadResume}>
-					<FileText size={16} />
-					Load resume text
-				</button>
-				{previousDraft ? (
-					<button className="button secondary" onClick={undoReplacement}>
-						Undo resume replacement
+			<details className="context-disclosure">
+				<summary>
+					<FileText size={17} aria-hidden="true" />
+					<strong>Start from a saved resume</strong>
+					<span className="muted">Optional</span>
+				</summary>
+				<section className="panel linkedin-resume-source" aria-label="Start LinkedIn draft from a resume">
+					<div>
+						<h2>Resume source</h2>
+						<p className="muted">
+							Reuse a saved resume’s text for your headline, About, experience, and skills. Loading replaces the current
+							draft.
+						</p>
+					</div>
+					<label className="field" htmlFor="linkedin-resume-source">
+						<span>Saved resume</span>
+						<select
+							className="input"
+							id="linkedin-resume-source"
+							value={sourceId}
+							onChange={(event) => setSourceId(event.target.value)}
+						>
+							<option value="">Choose a resume</option>
+							{data.resumes.map((resume) => (
+								<option key={resume.id} value={resume.id}>
+									{resume.title}
+								</option>
+							))}
+						</select>
+					</label>
+					<button className="button secondary" disabled={!source} onClick={loadResume}>
+						<FileText size={16} />
+						Load resume text
 					</button>
-				) : null}
-			</section>
-			<div className="audit-layout">
+					{previousDraft ? (
+						<button className="button secondary" onClick={undoReplacement}>
+							Undo resume replacement
+						</button>
+					) : null}
+				</section>
+			</details>
+			<div className="audit-layout linkedin-layout" data-has-report={Boolean(report)}>
 				<section className="panel linkedin-editor">
 					<div className="panel-heading">
 						<div>
 							<h2 className="section-title">Your profile</h2>
-							<p className="muted">A strong first impression starts with the details.</p>
+							<p className="muted">Paste or edit the text from your current LinkedIn profile.</p>
 						</div>
 						<span className="status">Local draft</span>
 					</div>
@@ -248,7 +262,7 @@ export function LinkedInView() {
 						</small>
 					</label>
 					<button className="button primary" onClick={reviewProfile}>
-						<Sparkles size={16} />
+						<CheckCircle2 size={16} />
 						Review my profile
 						<ArrowRight size={16} />
 					</button>
@@ -258,33 +272,21 @@ export function LinkedInView() {
 						<>
 							<section className="panel audit-score-panel">
 								<div className="panel-heading">
-									<h2 className="section-title">Profile clarity</h2>
+									<h2
+										className="section-title linkedin-review-title"
+										ref={reviewHeadingRef}
+										tabIndex={-1}
+										style={{ scrollMarginTop: 80 }}
+									>
+										Profile clarity
+									</h2>
 									<span className="status">Rule-based review</span>
 								</div>
-								<div className="audit-score">
-									<div
-										className="score-ring"
-										style={{
-											background: `conic-gradient(#173f35 ${report.score}%, #e9edea 0)`,
-										}}
-									>
-										<span>
-											<strong>{report.score}</strong>
-											<small>/ 100</small>
-										</span>
-									</div>
-									<div>
-										<h3>
-											{report.score >= 80
-												? "A strong foundation."
-												: report.score >= 50
-													? "Your story is taking shape."
-													: "A little clarity goes a long way."}
-										</h3>
-										<p className="muted">
-											{report.checks.filter((check) => check.passed).length} of {report.checks.length} checks passed
-										</p>
-									</div>
+								<div className="audit-check-summary">
+									<strong>
+										{report.checks.filter((check) => check.passed).length} of {report.checks.length} checks passed
+									</strong>
+									<span className="muted">Checklist score {report.score}/100</span>
 								</div>
 								<div className="check-list">
 									{report.checks.map((check) => (
@@ -300,7 +302,7 @@ export function LinkedInView() {
 							</section>
 							<section className="panel linkedin-draft">
 								<div className="panel-heading">
-									<h2 className="section-title">A clearer starting point</h2>
+									<h2 className="section-title">Suggested draft</h2>
 									<button className="button secondary small" onClick={copyDraft}>
 										<Copy size={15} />
 										Copy
@@ -328,33 +330,10 @@ export function LinkedInView() {
 							</section>
 						</>
 					) : (
-						<section className="panel audit-empty">
-							<div className="feature-icon">
-								<Linkedin size={30} />
-							</div>
-							<h2>Make every word work harder.</h2>
-							<p className="muted">
-								Review your headline, about section, experience, and skills. Get clear next steps and an editable draft
-								based on your own details.
-							</p>
-							<div className="check-list">
-								<div className="check-row">
-									<CheckCircle2 size={18} />
-									<span>Headline clarity and length</span>
-								</div>
-								<div className="check-row">
-									<CheckCircle2 size={18} />
-									<span>About section structure</span>
-								</div>
-								<div className="check-row">
-									<CheckCircle2 size={18} />
-									<span>Experience and skill coverage</span>
-								</div>
-							</div>
-							<p className="muted">
-								This is a writing checklist, not a LinkedIn ranking or recruiter visibility prediction.
-							</p>
-						</section>
+						<p className="muted linkedin-empty-guidance">
+							Review checks headline length, About structure, experience and skill coverage. This writing checklist does
+							not predict LinkedIn ranking or recruiter visibility.
+						</p>
 					)}
 				</div>
 			</div>

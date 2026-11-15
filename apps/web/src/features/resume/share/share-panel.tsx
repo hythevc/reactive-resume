@@ -573,7 +573,7 @@ function Stat({ value, label }: StatProps) {
 		<div className="flex flex-col-reverse gap-0.5">
 			<dt className="text-xs text-ink-3">{label}</dt>
 			{/* Lining figures: in the display face an old-style "1" reads as "l". */}
-			<dd className="font-display text-[26px] leading-[30px] tabular-nums [font-variant-numeric:lining-nums_tabular-nums]">
+			<dd className="font-ui text-[26px] leading-[30px] tabular-nums [font-variant-numeric:lining-nums_tabular-nums]">
 				{typeof value === "number" ? i18n.number(value) : value}
 			</dd>
 		</div>

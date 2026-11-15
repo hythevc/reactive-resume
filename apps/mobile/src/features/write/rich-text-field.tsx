@@ -152,7 +152,7 @@ export function RichTextField({
 				style={{
 					borderWidth: border,
 					borderRadius: radius.rLg,
-					borderColor: focused ? colors.accent : colors.lineStrong,
+					borderColor: focused ? colors.accent : colors.controlLine,
 					backgroundColor: editable ? colors.raised : colors.sunken,
 					overflow: "hidden",
 				}}

@@ -1216,11 +1216,9 @@ msgstr "الإجراء"
 msgid "Actions"
 msgstr "الإجراءات"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "إجراءات لـ {0} في {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "إجراءات وظيفة {role} لدى {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "مفاتيح API"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "مظهر"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "يُطبّق إعداد المظهر في هذه الجلسة. أعد محاولة الحفظ للاحتفاظ بهذا الاختيار."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "تعذر حفظ الملاحظات. النص الخاص بك لا يزا
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "تعذّر حفظ الوسوم. حاول مرة أخرى."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "تعذر حفظ السمة. حاول ثانية."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "إنشاء رابط"
 msgid "Make primary"
 msgstr "جعلها أساسية"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "إفساح المجال للخطوة التالية."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "جعل الافتتاح أقوى"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "فتح مساعد الذكاء الاصطناعي"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "الانتقال إلى مكان آخر"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "تذكّر"
@@ -10928,6 +10924,10 @@ msgstr "إعادة محاولة الإجابات المحفوظة"
 msgid "Retry saving"
 msgstr "أعد محاولة الحفظ"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "إعادة محاولة حفظ المظهر"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "إعادة المحاولة باستخدام {nativeSearchLabel}"
@@ -10968,6 +10968,10 @@ msgstr "مراجعة الفحوصات"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "سُجّلت اختيارات المراجعة عند تقديم الطلب لأول مرة."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "عرض التفاصيل"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "للحصول على تذكير، اسمح بالإشعارات في إع
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "اليوم"
 msgid "Today, {hour}"
 msgstr "اليوم، {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "تبديل التحديد"

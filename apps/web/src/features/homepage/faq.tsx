@@ -5,6 +5,7 @@ import { useLingui } from "@lingui/react";
 import { Trans } from "@lingui/react/macro";
 import { Link } from "@tanstack/react-router";
 import { templateSchema } from "@reactive-resume/schema/templates";
+import { Icon } from "@reactive-resume/ui/components/icon";
 import { supportedLocales } from "@reactive-resume/utils/locale";
 import { cn } from "@reactive-resume/utils/style";
 import { SCENE } from "./scroll";
@@ -73,6 +74,54 @@ function useQuestions(): Question[] {
 			answer: t`The app is translated into ${languages} languages by volunteers, and a resume can be written in any language, including right-to-left scripts like Arabic and Hebrew.`,
 		},
 	];
+}
+
+/** Native disclosures keep the factual answers and structured data available without a client interaction layer. */
+export function CompactFaq() {
+	const questions = useQuestions();
+	const structuredData = {
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: questions.map((item) => ({
+			"@type": "Question",
+			name: item.question,
+			acceptedAnswer: { "@type": "Answer", text: item.answer },
+		})),
+	};
+	return (
+		<section id="faq" aria-labelledby="faq-title" className="home-section border-t border-line">
+			<div className="home-container grid gap-7 min-[900px]:grid-cols-[1fr_2fr] min-[900px]:gap-16">
+				<h2 id="faq-title" className="home-title">{t`Questions`}</h2>
+				<div className="border-t border-line">
+					{questions.map((item) => (
+						<details key={item.id} name="public-faq" className="group border-b border-line">
+							<summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 rounded-sm py-4 text-base leading-6 font-semibold marker:content-none">
+								{item.question}
+								<Icon name="plus" size={20} className="shrink-0 text-ink-2 group-open:rotate-45" />
+							</summary>
+							<div className="grid gap-3 pb-5 text-[15px] leading-7 text-ink-2">
+								<p>{item.answer}</p>
+								{item.link &&
+									("to" in item.link ? (
+										<Link to={item.link.to} className="home-text-link justify-self-start">
+											{item.link.label}
+											<Icon name="arrow-right" size={16} />
+										</Link>
+									) : (
+										<a href={item.link.href} className="home-text-link justify-self-start">
+											{item.link.label}
+											<Icon name="arrow-up-right" size={16} />
+										</a>
+									))}
+							</div>
+						</details>
+					))}
+				</div>
+			</div>
+			{/* oxlint-disable-next-line react/no-danger -- answers are serialized to prevent script injection. */}
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData) }} />
+		</section>
+	);
 }
 
 // A pencil circling the question's number: it overshoots its start, the way a hand-drawn loop does.

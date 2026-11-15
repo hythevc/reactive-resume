@@ -1216,11 +1216,9 @@ msgstr "សកម្មភាព"
 msgid "Actions"
 msgstr "សកម្មភាព"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "សកម្មភាពសម្រាប់ {0} នៅ {1}"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "សកម្មភាពសម្រាប់តួនាទី {role} នៅ {company}"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "គ្រាប់ចុច API"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "រូបរាង"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "ការកំណត់រូបរាងនេះអនុវត្តសម្រាប់វគ្គបច្ចុប្បន្ន។ ដើម្បីរក្សាជម្រើសនេះ សូមព្យាយាមរក្សាទុកម្តងទៀត។"
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "មិនអាចរក្សាទុកចំណាំបានទេ
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "មិនអាចរក្សាទុកស្លាកបានទេ។ ព្យាយាមម្តងទៀត។"
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "មិនអាចរក្សាទុកប្រធានបទបានទេ។ ព្យាយាមម្តងទៀត។"
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "បង្កើតតំណ"
 msgid "Make primary"
 msgstr "កំណត់ជាចម្បង"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "រៀបចំកន្លែងសម្រាប់ជំហានបន្ទាប់។"
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "ធ្វើឱ្យការបើកកាន់តែរឹងមាំ"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "បើកជំនួយការ AI"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "ការផ្លាស់ទីលំនៅ"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "ចងចាំ"
@@ -10928,6 +10924,10 @@ msgstr "ព្យាយាមចម្លើយដែលបានរក្សា
 msgid "Retry saving"
 msgstr "ព្យាយាមរក្សាទុកម្តងទៀត"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "ព្យាយាមរក្សាទុករូបរាងម្តងទៀត"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "សាកល្បងម្ដងទៀតជាមួយ {nativeSearchLabel}"
@@ -10968,6 +10968,10 @@ msgstr "ពិនិត្យការត្រួតពិនិត្យ"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "សញ្ញាធីកពិនិត្យត្រូវបានកត់ត្រានៅពេលដាក់ពាក្យដំបូង។"
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "មើលព័ត៌មានលម្អិត"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "ដើម្បីទទួលបានការរំលឹក សូ�
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "ថ្ងៃនេះ"
 msgid "Today, {hour}"
 msgstr "ថ្ងៃនេះ {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "បិទ/បើកការជ្រើសរើស"

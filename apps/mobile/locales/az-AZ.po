@@ -1216,11 +1216,9 @@ msgstr "Hərəkət"
 msgid "Actions"
 msgstr "Fəaliyyətlər"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "{0} üçün {1} üzrə əməliyyatlar"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "{company} şirkətindəki {role} vəzifəsi üçün əməliyyatlar"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API açarları"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Görünüş"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "Görünüş seçimi bu sessiyada qüvvədədir. Seçimi qorumaq üçün yadda saxlamağa yenidən cəhd edin."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Qeydləri saxlamaq mümkün olmadı. Mətniniz hələ də buradadır."
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Teqləri saxlamaq mümkün olmadı. Yenidən cəhd edin."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Mövzunu saxlamaq mümkün olmadı. Yenidən cəhd edin."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "Keçid yarat"
 msgid "Make primary"
 msgstr "Əsas et"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Növbəti addım üçün yer açın."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Açılışı daha güclü edin"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "Süni intellekt köməkçisini aç"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "Yerdəyişmə"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Yadda saxla"
@@ -10928,6 +10924,10 @@ msgstr "Saxlanılmış cavabları yenidən sına"
 msgid "Retry saving"
 msgstr "Yadda saxlamağa yenidən cəhd edin"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Görünüşü yadda saxlamağa yenidən cəhd edin"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "{nativeSearchLabel} ilə yenidən cəhd et"
@@ -10968,6 +10968,10 @@ msgstr "Yoxlamaları nəzərdən keçir"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "Yoxlama seçimləri ilk müraciət zamanı qeydə alınıb."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Təfərrüatlara baxın"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "Xatırlatma almaq üçün cihaz ayarlarında bildirişlərə icazə veri
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "Bu gün"
 msgid "Today, {hour}"
 msgstr "Bu gün, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Seçimi dəyişin"

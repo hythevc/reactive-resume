@@ -1216,11 +1216,9 @@ msgstr "Darbība"
 msgid "Actions"
 msgstr "Darbības"
 
-#. placeholder {0}: item.role
-#. placeholder {1}: item.company
-#: src/features/applications/list-screen.tsx
-msgid "Actions for {0} at {1}"
-msgstr "{0} un {1} darbības"
+#: src/features/applications/application-card.tsx
+msgid "Actions for {role} at {company}"
+msgstr "Darbības amatam “{role}” uzņēmumā “{company}”"
 
 #: src/features/ai/web-access.tsx
 msgid "Active"
@@ -1991,6 +1989,10 @@ msgstr "API atslēgas"
 #: app/(tabs)/settings/preferences.tsx
 msgid "Appearance"
 msgstr "Izskats"
+
+#: app/(tabs)/settings/preferences.tsx
+msgid "Appearance applies for this session. Retry saving to keep this choice."
+msgstr "Izskats tiek lietots šai sesijai. Mēģiniet saglabāt vēlreiz, lai paturētu šo izvēli."
 
 #: src/features/write/fields.ts
 msgid "Appears on the page once it has a company."
@@ -4029,10 +4031,6 @@ msgstr "Nevarēja saglabāt piezīmes. Jūsu teksts joprojām ir šeit."
 #: src/features/application-detail/sections.tsx
 msgid "Couldn't save the tags. Try again."
 msgstr "Nevarēja saglabāt atzīmes. Mēģiniet vēlreiz."
-
-#: app/(tabs)/settings/preferences.tsx
-msgid "Couldn't save the theme. Try again."
-msgstr "Nevarēja saglabāt motīvu. Mēģiniet vēlreiz."
 
 #: app/(tabs)/settings/preferences.tsx
 #: src/features/career/hooks.ts
@@ -7455,10 +7453,6 @@ msgstr "Izveidot saiti"
 msgid "Make primary"
 msgstr "Padarīt par primāro"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Atbrīvojiet vietu nākamajai darbībai."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Padariet atvērumu stiprāku"
@@ -8938,6 +8932,7 @@ msgid "Open AI assistant"
 msgstr "Atvērt MI asistentu"
 
 #: src/features/applications-board/board-screen.tsx
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 #: src/features/check/job-match.tsx
 msgid "Open application"
@@ -10324,6 +10319,7 @@ msgid "Relocation"
 msgstr "Pārcelšanās"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Atcerēties"
@@ -10928,6 +10924,10 @@ msgstr "Atkārtot saglabātās atbildes"
 msgid "Retry saving"
 msgstr "Mēģiniet vēlreiz saglabāt"
 
+#: app/(tabs)/settings/preferences.tsx
+msgid "Retry saving appearance"
+msgstr "Mēģināt vēlreiz saglabāt izskatu"
+
 #: src/features/applications/add-sheet.tsx
 msgid "Retry with {nativeSearchLabel}"
 msgstr "Mēģināt vēlreiz ar {nativeSearchLabel}"
@@ -10968,6 +10968,10 @@ msgstr "Pārskatīt pārbaudes"
 #: src/features/workspace/tabs/apply.tsx
 msgid "Review checks recorded at first submission."
 msgstr "Pārskatīšanas atzīmes saglabātas, pirmoreiz iesniedzot pieteikumu."
+
+#: src/features/applications/application-card.tsx
+msgid "Review details"
+msgstr "Skatīt informāciju"
 
 #: src/features/write/outline.tsx
 msgid "Review each section before using this resume."
@@ -13916,6 +13920,7 @@ msgstr "Lai saņemtu atgādinājumu, ierīces iestatījumos atļaujiet paziņoju
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx
@@ -13926,6 +13931,7 @@ msgstr "Šodien"
 msgid "Today, {hour}"
 msgstr "Šodien, {hour}"
 
+#: src/features/applications/application-card.tsx
 #: src/features/applications/list-screen.tsx
 msgid "Toggle selection"
 msgstr "Pārslēgt izvēli"

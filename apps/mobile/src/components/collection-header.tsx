@@ -52,8 +52,9 @@ export function CollectionHeader({
 	useKeyCommands(
 		searchLabel && !disabled ? [{ id: "collection.search", input: "f", title: searchLabel, run: openSearch }] : [],
 	);
-	const { fontScale } = useWindowDimensions();
-	const stacked = fontScale > 1.3;
+	const { width, fontScale } = useWindowDimensions();
+	// Preserve the full page name when phone actions or larger text need their own row.
+	const stacked = width < 600 || fontScale > 1.3;
 	return (
 		<View
 			style={{
@@ -73,7 +74,7 @@ export function CollectionHeader({
 						paddingStart: space.s3,
 						borderWidth: 1,
 						borderColor: colors.accent,
-						borderRadius: radius.rLg,
+						borderRadius: radius.rMd,
 						backgroundColor: colors.raised,
 					}}
 				>
@@ -124,7 +125,8 @@ export function CollectionHeader({
 							flexWrap: "wrap",
 							alignItems: "center",
 							gap: space.s2,
-							alignSelf: stacked ? "flex-end" : undefined,
+							alignSelf: stacked ? "stretch" : undefined,
+							justifyContent: "flex-end",
 						}}
 					>
 						{searchLabel ? (

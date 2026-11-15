@@ -937,6 +937,8 @@ msgstr ""
 msgid "{name} never prints"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "{name} resume template preview"
 msgstr ""
@@ -1164,10 +1166,6 @@ msgstr ""
 msgid "+{extra} more"
 msgstr ""
 
-#: src/features/homepage/hero.tsx
-msgid "+13 pts activation"
-msgstr ""
-
 #: src/features/resume/editor/check/check-panel.tsx
 msgid "<0>Nothing to fix.</0> Every check passes."
 msgstr ""
@@ -1242,10 +1240,6 @@ msgstr ""
 
 #: src/features/settings/ai/api-keys.tsx
 msgid "30 days"
-msgstr ""
-
-#: src/features/homepage/hero.tsx
-msgid "40% faster reviews"
 msgstr ""
 
 #: src/features/homepage/faq.tsx
@@ -1520,7 +1514,6 @@ msgid "Access your account through the API, including reading, changing and dele
 msgstr ""
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Accessibility"
 msgstr ""
@@ -1604,10 +1597,6 @@ msgstr ""
 
 #: src/features/career/knowledge/search-regions-field.tsx
 msgid "Add a country"
-msgstr ""
-
-#: src/features/career/knowledge/facts.tsx
-msgid "Add a fact"
 msgstr ""
 
 #: src/features/career/knowledge/facts.tsx
@@ -2324,6 +2313,7 @@ msgstr ""
 msgid "Also email {0}"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Also on mobile"
 msgstr ""
@@ -2835,6 +2825,7 @@ msgstr ""
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 #: src/features/homepage/sections.tsx
 msgid "ATS checker"
 msgstr ""
@@ -2924,7 +2915,6 @@ msgid "Azerbaijani"
 msgstr ""
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "BA, Communication Design"
 msgstr ""
@@ -3017,10 +3007,6 @@ msgstr ""
 #: src/features/resume/editor/design/entries-group.tsx
 msgctxt "Entry header accent: a bar beside the header"
 msgid "Bar"
-msgstr ""
-
-#: src/features/homepage/hero.tsx
-msgid "Barista, 2012"
 msgstr ""
 
 #. placeholder {0}: formatMoney(i18n.locale, offer.currency, offer.base ?? 0)
@@ -3367,6 +3353,7 @@ msgstr ""
 msgid "Change it in Design."
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Change language"
 msgstr ""
@@ -3457,6 +3444,7 @@ msgstr ""
 #. Homepage scene title, one word followed by a full stop
 #. The resume builder mode that reviews the resume for problems. Not the Screening application stage.
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -3478,6 +3466,7 @@ msgid "Check another file"
 msgstr ""
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check any PDF, no account needed"
 msgstr ""
 
@@ -3513,6 +3502,7 @@ msgid "check numbers and names before using it"
 msgstr ""
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check reads your resume the way hiring software does and explains what to fix in plain words. It runs in your browser, so the file stays with you: 0 uploads."
 msgstr ""
 
@@ -4040,6 +4030,7 @@ msgstr ""
 msgid "Compare offers"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/templates/gallery.tsx
 msgid "Compare real resume layouts before you sign up. Every template is free to customize, with PDF and Word downloads and no watermark."
 msgstr ""
@@ -5850,8 +5841,10 @@ msgstr ""
 msgid "Description of role {0}"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-components/design-panel.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -5876,7 +5869,6 @@ msgid "Design system trade-offs"
 msgstr ""
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Design systems"
 msgstr ""
@@ -6130,6 +6122,7 @@ msgstr ""
 msgid "Download failed. Try again."
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Download on the"
 msgstr ""
@@ -6993,7 +6986,9 @@ msgstr ""
 msgid "Fast: {0} · Capable: {1}"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/hero.tsx
 msgid "Features"
 msgstr ""
 
@@ -7031,10 +7026,6 @@ msgstr ""
 
 #: src/features/homepage/tailor.tsx
 msgid "Fieldnote · Remote, EU"
-msgstr ""
-
-#: src/features/homepage/hero.tsx
-msgid "Figma"
 msgstr ""
 
 #: src/features/homepage/check.tsx
@@ -7506,6 +7497,7 @@ msgstr ""
 msgid "Get a key at <0>{0}</0>. It's stored encrypted and used only for your requests."
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/prepare.tsx
 msgid "Get a plan for the interview, built from the posting and your own stories. Practice out loud, then write down how it went."
 msgstr ""
@@ -7522,6 +7514,7 @@ msgstr "Get an API key from your endpoint operator."
 msgid "Get feedback"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Get it on"
 msgstr ""
@@ -7534,6 +7527,7 @@ msgstr ""
 msgid "Get resume feedback on Discord"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 msgid "Get started"
 msgstr ""
@@ -7731,6 +7725,7 @@ msgstr ""
 msgid "Help translate"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Help translate it into yours."
 msgstr ""
@@ -8518,6 +8513,7 @@ msgstr ""
 msgid "Join Discord"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Join the Discord community"
 msgstr ""
@@ -8858,7 +8854,6 @@ msgid "Lead across functions"
 msgstr ""
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 #: src/features/homepage/write.tsx
 msgid "Lead Product Designer"
@@ -9229,10 +9224,6 @@ msgstr ""
 
 #: src/features/settings/account/profile.tsx
 msgid "Links you've already shared keep working for 30 days, then stop. Share the new ones before then."
-msgstr ""
-
-#: src/features/homepage/hero.tsx
-msgid "Lisbon"
 msgstr ""
 
 #: src/features/homepage/check.tsx
@@ -11573,7 +11564,6 @@ msgid "paragraph {n}"
 msgstr ""
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 msgid "Parcel & Co."
 msgstr ""
 
@@ -11660,6 +11650,7 @@ msgstr ""
 msgid "Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Paste a job posting once. It feeds a tailored copy of your resume, a fit check against each requirement, a cover letter draft and a place to track the role."
 msgstr ""
@@ -11847,6 +11838,7 @@ msgstr ""
 msgid "Pick an icon"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 msgid "Pick from {templateCount} templates, then set the type, color and spacing. The words stay put, so try as many looks as you like."
 msgstr ""
@@ -12086,6 +12078,7 @@ msgctxt "Career preferences: the roles, places, pay and ways of working you want
 msgid "Preferences"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/prepare.tsx
@@ -12155,6 +12148,8 @@ msgstr ""
 msgid "Press <0>Enter</0> to open"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "Preview {name} sample PDF"
 msgstr ""
@@ -12231,6 +12226,7 @@ msgid "Private. Only you can see it."
 msgstr ""
 
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 msgid "Product"
 msgstr ""
 
@@ -12300,10 +12296,6 @@ msgstr ""
 msgid "Projects"
 msgstr ""
 
-#: src/features/homepage/hero.tsx
-msgid "Promoted to lead, 2021"
-msgstr ""
-
 #: src/features/career/workspace/fit.tsx
 msgid "Propose a resume bullet"
 msgstr ""
@@ -12325,7 +12317,6 @@ msgid "Protect your resume with a password"
 msgstr ""
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Prototyping"
 msgstr ""
@@ -12466,6 +12457,7 @@ msgid "Question removed"
 msgstr ""
 
 #: src/features/homepage/faq.tsx
+#: src/features/homepage/header.tsx
 msgid "Questions"
 msgstr ""
 
@@ -12528,6 +12520,7 @@ msgstr ""
 msgid "Reactive Resume {__APP_VERSION__} · MIT"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Reactive Resume is open source under the MIT License. Amruth Pillai and a community of contributors keep it running, and donations pay for hosting and development. There’s no paid tier."
 msgstr ""
@@ -12958,6 +12951,7 @@ msgstr ""
 
 #: src/features/assistant/remember-message.tsx
 #: src/features/career/shared.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/remember.tsx
@@ -13852,6 +13846,7 @@ msgid "Same you. Less starting over."
 msgstr ""
 
 #: src/features/documents/use-start-document.ts
+#: src/features/homepage/hero.tsx
 msgid "Sample resume"
 msgstr ""
 
@@ -14759,6 +14754,7 @@ msgstr ""
 msgid "Shadow width"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/share.tsx
@@ -14769,6 +14765,7 @@ msgstr ""
 msgid "Share"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/share.tsx
 msgid "Share a public link, add a password or keep it private. Choose from 3 visibility options. Export to PDF or Word, or take all your data with you as JSON."
 msgstr ""
@@ -14826,10 +14823,6 @@ msgstr ""
 
 #: src/features/homepage/prepare.tsx
 msgid "Shipped checkout flows that meet WCAG 2.1 AA."
-msgstr ""
-
-#: src/features/homepage/hero.tsx
-msgid "Shipped checkout for iOS"
 msgstr ""
 
 #: src/routes/builder/letter/-components/write-panel.tsx
@@ -15193,10 +15186,6 @@ msgstr ""
 msgid "Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown outcomes blank."
 msgstr ""
 
-#: src/features/homepage/hero.tsx
-msgid "Six product teams"
-msgstr ""
-
 #: src/features/resume/editor/write/picture-settings.tsx
 msgid "Size"
 msgstr ""
@@ -15374,14 +15363,11 @@ msgstr ""
 msgid "Spanish (B2)"
 msgstr ""
 
-#: src/features/homepage/hero.tsx
-msgid "Spanish, B2"
-msgstr ""
-
 #: src/features/career/workspace/practise.tsx
 msgid "Speak"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Speaks your language"
 msgstr ""
@@ -15518,6 +15504,7 @@ msgstr ""
 msgid "Start from one you have and link the application."
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Start from scratch or import what you have. It takes a few minutes, and you can come back to it anytime."
 msgstr ""
@@ -15779,6 +15766,7 @@ msgstr ""
 msgid "Summary"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Support"
 msgstr ""
@@ -15906,7 +15894,9 @@ msgstr ""
 msgid "Tags…"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Tailor"
 msgstr ""
@@ -16008,8 +15998,11 @@ msgstr ""
 msgid "Template, type and colors follow the resume, so the pair always matches."
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Templates"
 msgstr ""
 
@@ -17291,6 +17284,7 @@ msgstr ""
 msgid "Translate the app"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Translated into {languageCount} languages."
 msgstr ""
@@ -17599,7 +17593,6 @@ msgid "Undo resume change"
 msgstr ""
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "University of Porto"
 msgstr ""
@@ -18236,10 +18229,6 @@ msgstr ""
 msgid "Was: {0}"
 msgstr ""
 
-#: src/features/homepage/hero.tsx
-msgid "WCAG 2.1 AA"
-msgstr ""
-
 #. Password reset email. appName: Reactive Resume
 #: src/features/auth/email-text.ts
 msgid "We received a request to reset your {appName} password."
@@ -18671,8 +18660,10 @@ msgid "Worth asking {0}"
 msgstr ""
 
 #. Homepage scene title, one word followed by a full stop
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/homepage/write.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
 #: src/routes/builder/$resumeId/-components/editor-shell.tsx
@@ -18703,6 +18694,7 @@ msgstr ""
 msgid "Write a new reply in {languageName}"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/remember.tsx
 msgid "Write a story once, with the facts behind it, and the coach uses it in 3 places. Switch a fact off and nothing leans on it."
 msgstr ""
@@ -18711,6 +18703,7 @@ msgstr ""
 msgid "Write and review form answers"
 msgstr ""
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/write.tsx
 msgid "Write beside a live page. It saves as you type and keeps every version. Ask the assistant for a sharper line: it suggests, you decide."
 msgstr ""

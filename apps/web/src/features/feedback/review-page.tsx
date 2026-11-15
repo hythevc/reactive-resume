@@ -64,7 +64,7 @@ function FeedbackUnavailable({ reason }: FeedbackUnavailableProps) {
 		<main id="main-content" className="grid min-h-svh place-items-center px-4">
 			<div className="grid max-w-md justify-items-center gap-3 text-center">
 				<Icon name="link-simple-horizontal-break" size={28} className="text-ink-3" />
-				<h1 className="font-display text-[26px] leading-8">
+				<h1 className="font-ui text-[26px] leading-8">
 					{reason === "revoked" ? (
 						<Trans>This link was turned off</Trans>
 					) : reason === "expired" ? (
@@ -101,7 +101,7 @@ function FeedbackReview({ token, view }: FeedbackReviewProps) {
 				<p className="text-xs font-semibold text-ink-3">
 					<Trans>Feedback request</Trans>
 				</p>
-				<h1 className="font-display text-[30px] leading-9 wrap-anywhere">
+				<h1 className="font-ui text-[30px] leading-9 wrap-anywhere">
 					<Trans>{owner} asked for your feedback</Trans>
 				</h1>
 				<p className="max-w-[70ch] text-sm text-ink-2">

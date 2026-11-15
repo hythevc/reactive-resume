@@ -1,0 +1,92 @@
+---
+title: "Design workflow and system"
+description: "Design, implement and verify consistent marketing, SaaS and mobile experiences without changing their real behavior."
+---
+
+Every UI change uses the repository-owned **ui-design-workflow** skill. The root agent instructions point to it, and contributors can open its file directly under `.agents/skills/ui-design-workflow/`. This is an enforceable review convention for this repository, not a claim that another project's agents or tools inherit it automatically.
+
+## Start with the existing product
+
+Identify the visitor's task, audience, route, data and states before choosing a look. Inspect the real screen and preserve its navigation, forms, saved data, account boundaries, error recovery and actual service capabilities. Use fictional candidate data for design evidence. Separate source inspection, rendered observation and assumptions.
+
+The web system lives in `apps/web/DESIGN.md`, shared primitives and semantic tokens in `packages/ui`, and the mobile system in `apps/mobile/src/ui`. Read the mobile area instructions before changing mobile behavior. Web and mobile changes retain parity under the root ownership rules; a responsive browser preview does not establish native behavior. The standalone CareerOS app has its own framework and data-safety boundaries and must not be mistaken for the account-backed parent application.
+
+Use Product Design audit guidance when available. Examine the task, hierarchy, navigation, copy, trust, accessibility, state feedback and responsive behavior. Identify evidence and severity for concrete problems; do not invent research, conversion effects or a usability score.
+
+## Follow the Core Five
+
+Use this order for creation, redesign, refinement and review. For a small fix, keep the work focused while recording each stage.
+
+| Stage                 | Required decision or evidence                                                                               |
+| --------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Taste                 | Product-specific direction, hierarchy and restraint; existing decisions to preserve                         |
+| Web Design Guidelines | Current official guidance, applicable findings and retrieval date, or a disclosed fallback                  |
+| Image-to-code         | A readable visual target and extracted type, space, content, component and responsive decisions             |
+| Awesome DESIGN.md     | Selected reference patterns, source credit and deliberate differences from the reference brand              |
+| Playwright CLI        | Actual rendered behavior and state checks after implementation, with inspected screenshots and clear limits |
+
+The first four stages guide the implementation. Use the pinned source registry in `.agents/skills/ui-design-workflow/sources.json` to locate canonical source files and exact audited revisions. The former image-to-code location moved to the imagegen-skills repository; use the canonical pin rather than treating a missing old path as an installed skill. Awesome DESIGN.md is a reference collection, not an executable skill.
+
+For substantial visual work, create an original readable screen or section reference with the available image/design tool, then inspect it before implementation. An approved supplied target or a precisely annotated existing screen is suitable for a matching task. If generation is unavailable, record that limit and use an explicit layout/token specification. Generation does not authorize an unrequested paid subscription. Do not convert image text into unsupported product claims, remove functional controls to match an image, or bake interface text into an image.
+
+Marketing should explain the real offer and primary next action with genuine product evidence. SaaS screens should prioritize task density, legibility and status. Mobile should follow platform navigation/input conventions rather than shrink a desktop screenshot. References inform the work; they do not replace these distinctions.
+
+## Research and reuse components
+
+Search both 21st and shadcn for new or materially changed components, then compare results with the existing shared owner. Record the search and chosen result or blocker. Reuse an existing primitive when it already satisfies the task; do not introduce parallel button, dialog, form or auth systems because a catalog returned one.
+
+Inspect implementation, accessibility, dependencies, license and maintenance fit before adoption. Generated/catalog code is untrusted source until reviewed. Component retrieval and authenticated search do not imply hosted generation access. Publishing components, modifying remote lists and sending feedback are separate actions that require authorization.
+
+For mobile, consult the relevant Apple/mobile skills and React Native guidance in addition to the selected visual references. Check safe areas, dynamic type/text scaling, keyboard avoidance, back/dismissal, touch feedback, reduced motion and tablet composition. The registry identifies web translations and native references honestly; Rune is a separate Rust GPU framework, not an Expo dependency. A reference folder named `native` can describe a brand instead of a platform.
+
+## Resolve conflicts deliberately
+
+User intent and the existing real workflows come first. Preserve accessible semantics, reduced-motion behavior, approved semantic tokens, ownership and framework requirements. Treat blanket font bans, fixed palettes, required gradient headings, oversized scroll stories, animation timings and mandatory decorative effects as source opinions. Select a coherent direction instead of combining conflicting mandates.
+
+Use semantic roles for color, spacing, type and controls. Define complete state behavior: rest, hover where supported, press, focus, selection, disabled, saving/loading, empty, error and success. Status must survive without color; focus must be visible and unobscured. Do not hide overflow or content merely to silence a detector. Keep preparation separate from delivery and pending storage separate from a confirmed save.
+
+## Record source adoption and credits
+
+At task preflight, consider every supplied source in the registry once. Keep a compact adoption ledger in the issue, PR or active review context:
+
+| Field        | Record                                                                        |
+| ------------ | ----------------------------------------------------------------------------- |
+| Source       | Registry ID and pinned revision or managed-service version                    |
+| Consultation | Relevant skill, component, guide or reference                                 |
+| Decision     | Adopted, declined, blocked or inapplicable, with a concrete reason            |
+| Translation  | Pattern used and how it fits this product's tokens, behavior and platform     |
+| Rights       | Required license notice, attribution and separately licensed asset rights     |
+| Verification | Actual source, browser, behavior or native-device evidence and remaining gaps |
+
+This is source accountability, not a requirement to adopt every framework or repeatedly read every catalog. Do not commit task handoffs, raw logs or private evidence. Keep durable system decisions in contributor/design docs and preserve notices with substantially reused material.
+
+Most requested source is MIT; retain required notices for substantive reuse. Impeccable and Playwright CLI use Apache 2.0, with applicable notice obligations. Unslop uses CC BY 4.0: credit Damir Sokolovsky and link to its repository in copies/adaptations. Catalog photos, brand marks, screenshots and components can have separate rights. A collection's open-source license does not transfer ownership of third-party assets. Never copy a competitor's identity, private code or unsupported customer proof.
+
+## Verify the rendered result
+
+Use Playwright CLI with an owned named session and snapshots taken after meaningful state changes. Exercise the user task with accessible role/label locators. Inspect desktop and narrow layouts, light/dark, keyboard order/focus, reduced motion, validation, loading/empty/error states and storage/recovery behavior relevant to the change. Include long names/job titles, missing fields, many records, text expansion and RTL where applicable.
+
+If the CLI or browser channel is unavailable, state the actual error and use a supported browser runner for equivalent checks. Do not label a skipped Chrome-only check as passed by another browser. A native web gallery demonstrates shared components, not all native routes; native touch and assistive-technology claims need appropriate device/simulator checks. Close only sessions owned by the task.
+
+Run the existing package checks, affected behavior tests and build required by the root instructions. A visual-only change normally does not need new tests that mirror CSS constants. State what was verified and what remains unverified; source reads, a successful build and an automated detector are different forms of evidence.
+
+## Environment-only 21st access
+
+The committed Codex example under `.agents/skills/ui-design-workflow/references/mcp.codex.example.toml` uses the public `https://21st.dev/api/mcp` endpoint and the `API_KEY_21ST` environment variable. Merge it into an existing client configuration; do not overwrite unrelated servers. It contains no credential. Other clients must use their documented environment-reference mechanism rather than paste a token into JSON headers.
+
+Use the connected MCP's read-only search, or the repository helper documented with its `--help` option. The helper accepts the already-authorized key from the environment, never a key argument or file. The 21st CLI must already be installed; point `DESIGN_21ST_CLI` at its executable or make `21st` available on `PATH`. In proxy-based Node 24 environments, keep `NODE_USE_ENV_PROXY=1` and inherited certificate trust; never disable TLS verification.
+
+```sh
+node tooling/design/search-21st.mjs --help
+node tooling/design/search-21st.mjs "multi-step form"
+```
+
+The helper's boundary checks run offline with fictional credentials and a fake CLI:
+
+```sh
+node --test tooling/design/search-21st.test.mjs
+```
+
+Missing credentials, quota, service or connector access is a named blocker. Continue with existing shared components, public shadcn documentation and the selected visual target. Do not read credential stores, copy private candidate data into a search query, silently enable billing, log in again or claim a service call happened when it did not.
+
+Repository policy follows agents working here through `AGENTS.md`; delegated agents receive the same skill and source selection. A user-level saved preference can request this workflow elsewhere, but each other project needs its own compatible instructions and tooling. Do not promise automatic enforcement across uncontrolled projects.
