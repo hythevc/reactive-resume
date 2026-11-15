@@ -64,7 +64,7 @@ function BriefSummary({ goals, onEdit }: BriefSummaryProps) {
 	return (
 		<div className="stack">
 			<aside className="panel brief-summary">
-				<h2>What matters next</h2>
+				<h2>Career preferences</h2>
 				<dl>
 					{briefFields.map((field) => (
 						<div key={field.key}>
@@ -78,13 +78,6 @@ function BriefSummary({ goals, onEdit }: BriefSummaryProps) {
 				<button className="text-button" onClick={onEdit}>
 					Edit your brief <ArrowRight size={16} />
 				</button>
-			</aside>
-			<aside className="panel brief-summary">
-				<h2>You choose the introduction.</h2>
-				<p className="muted">
-					Shortlist a role, review your message, and copy only what you want to share. No company receives your details
-					through this workspace.
-				</p>
 			</aside>
 		</div>
 	);
@@ -116,8 +109,8 @@ function CareerBrief() {
 		<section className="panel brief-form">
 			<div className="panel-heading">
 				<div>
-					<h2>A clearer picture of what comes next.</h2>
-					<p className="muted">Your preferences help you ask better questions and shape introductions.</p>
+					<h2>Career preferences</h2>
+					<p className="muted">Set your criteria for reviewing saved roles and drafting introductions.</p>
 				</div>
 				<ClipboardList size={22} />
 			</div>
@@ -583,8 +576,8 @@ export function RoleDiscoveryView() {
 		<div className="feature-view discovery-view">
 			<div className="feature-heading">
 				<div>
-					<h1>Find work that feels like you.</h1>
-					<p className="muted">Your priorities. One thoughtful next step.</p>
+					<h1>Role discovery</h1>
+					<p className="muted">Review saved roles against your preferences and keep a shortlist.</p>
 				</div>
 			</div>
 			<div className="discovery-tabs tabs" role="group" aria-label="Role discovery views">
@@ -609,7 +602,7 @@ export function RoleDiscoveryView() {
 					</button>
 				))}
 			</div>
-			<div className="notice">
+			<div className="workspace-context-note">
 				<Info size={17} />
 				Reviewing saved jobs on this device. Introductions are drafts only.
 			</div>
@@ -619,7 +612,7 @@ export function RoleDiscoveryView() {
 					{message}
 				</div>
 			) : null}
-			<div className="discovery-layout">
+			<div className="discovery-layout" data-discovery-view={tab}>
 				<div className="stack">
 					{tab === "brief" ? (
 						<CareerBrief />
@@ -679,7 +672,7 @@ export function RoleDiscoveryView() {
 							) : (
 								<section className="panel discovery-empty">
 									<Bookmark size={32} />
-									<h2>Your shortlist starts with a good question.</h2>
+									<h2>No shortlisted roles yet</h2>
 									<p className="muted">
 										Review saved roles and shortlist the ones you want to explore. Your application stages stay
 										separate.
@@ -692,13 +685,15 @@ export function RoleDiscoveryView() {
 						</>
 					)}
 				</div>
-				<BriefSummary
-					goals={data.goals}
-					onEdit={() => {
-						setTab("brief");
-						setMessage("");
-					}}
-				/>
+				{tab !== "brief" ? (
+					<BriefSummary
+						goals={data.goals}
+						onEdit={() => {
+							setTab("brief");
+							setMessage("");
+						}}
+					/>
+				) : null}
 			</div>
 		</div>
 	);

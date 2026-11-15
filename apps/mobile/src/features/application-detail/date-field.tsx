@@ -104,7 +104,7 @@ export function WallClockField({ label, mode, value, onChange, error, clearable,
 						paddingHorizontal: space.s3,
 						borderWidth: 1,
 						borderRadius: radius.rLg,
-						borderColor: error ? colors.danger : colors.lineStrong,
+						borderColor: error ? colors.danger : colors.controlLine,
 						backgroundColor: colors.raised,
 					}}
 				>

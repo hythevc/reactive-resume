@@ -7453,10 +7453,6 @@ msgstr "Crea l'enllaç"
 msgid "Make primary"
 msgstr "Fes-lo principal"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Feu espai per al següent pas."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Fes que l'obertura sigui més forta"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "Reubicació"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Recorda"
@@ -13923,6 +13920,7 @@ msgstr "Per rebre un recordatori, permet les notificacions a la configuració de
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

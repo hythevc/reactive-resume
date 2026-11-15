@@ -494,7 +494,7 @@ export function NewDocumentDialog({ data, mobileSheet = false }: NewDocumentDial
 			) : (
 				<div key="choose" className={cn(ENTER_CLASS, "grid gap-4")}>
 					<DialogHeader>
-						<DialogTitle className="font-display text-[22px]">
+						<DialogTitle className="font-ui text-[22px]">
 							<Trans>New</Trans>
 						</DialogTitle>
 						<DialogDescription className="sr-only">
@@ -654,7 +654,7 @@ function ReviewStep({ step, onCreate, onChooseFile, languagePicker }: ReviewStep
 	return (
 		<div className={cn(ENTER_CLASS, "grid gap-4")}>
 			<DialogHeader>
-				<DialogTitle className="font-display text-[22px]">
+				<DialogTitle className="font-ui text-[22px]">
 					<Trans>Check what was found</Trans>
 				</DialogTitle>
 				<DialogDescription>{step.file.name}</DialogDescription>
@@ -763,7 +763,7 @@ function ImportStep({ step, creating, onCancel, onStartBlank, onChooseFile, onCl
 	return (
 		<div className={cn(ENTER_CLASS, "grid gap-4")}>
 			<DialogHeader>
-				<DialogTitle className="font-display text-[22px]">
+				<DialogTitle className="font-ui text-[22px]">
 					{step.name === "failed" ? (
 						<Trans>Couldn't import</Trans>
 					) : step.name === "imported" ? (
@@ -1034,7 +1034,7 @@ function CopyForJob({ initialSourceId, initialJobId, onBack, onCancel, onCreated
 	return (
 		<>
 			<DialogHeader>
-				<DialogTitle className="font-display text-[22px]">
+				<DialogTitle className="font-ui text-[22px]">
 					<Trans>Copy a resume for a job</Trans>
 				</DialogTitle>
 			</DialogHeader>

@@ -125,7 +125,7 @@ export function RegisterPage({ disableEmailAuth, isGuest = false }: Props) {
 	return (
 		<>
 			<div className="space-y-1 text-center">
-				<h1 className="font-display text-[34px] leading-[1.15] font-normal text-balance">
+				<h1 className="font-ui text-[28px] leading-[1.15] font-semibold tracking-[-0.02em] text-balance sm:text-[32px]">
 					<Trans comment="Title on the registration page">Start your resume</Trans>
 				</h1>
 				<ConnectingClient callbackURL={callbackURL} register />

@@ -937,6 +937,8 @@ msgstr "{name} berpindah ke lajur utama"
 msgid "{name} never prints"
 msgstr "{name} tidak pernah mencetak"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "{name} resume template preview"
 msgstr "{name} pratonton templat CV"
@@ -1596,10 +1598,6 @@ msgstr "Tambah {suggestion}"
 #: src/features/career/knowledge/search-regions-field.tsx
 msgid "Add a country"
 msgstr "Tambah negara"
-
-#: src/features/career/knowledge/facts.tsx
-msgid "Add a fact"
-msgstr "Tambah fakta"
 
 #: src/features/career/knowledge/facts.tsx
 msgid "Add a fact, for example “I mentored two associate PMs in 2025”"
@@ -2317,6 +2315,7 @@ msgstr "Muat turun juga surat iringan {0}"
 msgid "Also email {0}"
 msgstr "Turut e-mel ke {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Also on mobile"
 msgstr "Juga tersedia pada telefon"
@@ -2828,6 +2827,7 @@ msgstr "Di Northwind Labs, kebanyakan pasukan baharu tersekat sebelum selesai me
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 #: src/features/homepage/sections.tsx
 msgid "ATS checker"
 msgstr "Penyemak ATS"
@@ -3355,6 +3355,7 @@ msgstr "Tukar sambungan"
 msgid "Change it in Design."
 msgstr "Tukar dalam Reka Bentuk."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Change language"
 msgstr "Tukar bahasa"
@@ -3445,6 +3446,7 @@ msgstr "Sembang"
 #. Homepage scene title, one word followed by a full stop
 #. The resume builder mode that reviews the resume for problems. Not the Screening application stage.
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -3466,6 +3468,7 @@ msgid "Check another file"
 msgstr "Semak fail lain"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check any PDF, no account needed"
 msgstr "Semak mana-mana PDF, tiada akaun diperlukan"
 
@@ -3501,6 +3504,7 @@ msgid "check numbers and names before using it"
 msgstr "semak nombor dan nama sebelum menggunakannya"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check reads your resume the way hiring software does and explains what to fix in plain words. It runs in your browser, so the file stays with you: 0 uploads."
 msgstr "Ciri Semakan membaca resume anda seperti cara perisian perekrutan lakukan dan menerangkan perkara yang perlu diperbaiki dengan perkataan yang mudah. Ia dijalankan dalam penyemak imbas anda, jadi fail anda kekal pada peranti anda: 0 muat naik."
 
@@ -4028,6 +4032,7 @@ msgstr "Bandingkannya dengan tawaran anda yang lain"
 msgid "Compare offers"
 msgstr "Bandingkan tawaran"
 
+#: src/features/homepage/compact.tsx
 #: src/features/templates/gallery.tsx
 msgid "Compare real resume layouts before you sign up. Every template is free to customize, with PDF and Word downloads and no watermark."
 msgstr "Bandingkan reka letak CV sebenar sebelum anda mendaftar. Setiap templat adalah percuma untuk disesuaikan, dengan muat turun PDF dan Microsoft Word serta tiada tera air."
@@ -5838,6 +5843,7 @@ msgstr "Penerangan"
 msgid "Description of role {0}"
 msgstr "Perihalan peranan {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -6118,6 +6124,7 @@ msgstr "Muat turun PDF semasa"
 msgid "Download failed. Try again."
 msgstr "Muat turun gagal. Cuba lagi."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Download on the"
 msgstr "Muat turun di"
@@ -6981,7 +6988,9 @@ msgstr "Model pantas"
 msgid "Fast: {0} · Capable: {1}"
 msgstr "Pantas: {0} · Berupaya: {1}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/hero.tsx
 msgid "Features"
 msgstr "Ciri"
 
@@ -7490,6 +7499,7 @@ msgstr "Bahasa Jerman"
 msgid "Get a key at <0>{0}</0>. It's stored encrypted and used only for your requests."
 msgstr "Dapatkan kunci di <0>{0}</0>. Ia disimpan secara disulitkan dan digunakan hanya untuk permintaan anda."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/prepare.tsx
 msgid "Get a plan for the interview, built from the posting and your own stories. Practice out loud, then write down how it went."
 msgstr "Dapatkan pelan untuk temu duga, dibina daripada siaran kerja dan cerita anda sendiri. Berlatih dengan suara, kemudian catat bagaimana ia berjalan."
@@ -7506,6 +7516,7 @@ msgstr "Dapatkan kunci API daripada pengendali endpoint anda."
 msgid "Get feedback"
 msgstr "Dapatkan maklum balas"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Get it on"
 msgstr "Dapatkan di"
@@ -7518,6 +7529,7 @@ msgstr "Dapatkan peranan baharu di sini setiap pagi"
 msgid "Get resume feedback on Discord"
 msgstr "Dapatkan maklum balas resume di Discord"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 msgid "Get started"
 msgstr "Mulakan"
@@ -7715,6 +7727,7 @@ msgstr "Bantu saya menimbang tawaran yang saya ada berbanding apa yang saya mahu
 msgid "Help translate"
 msgstr "Bantu menterjemah"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Help translate it into yours."
 msgstr "Bantu menterjemahkannya ke dalam bahasa anda."
@@ -8502,6 +8515,7 @@ msgstr "John Doe"
 msgid "Join Discord"
 msgstr "Sertai Discord"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Join the Discord community"
 msgstr "Sertai komuniti Discord"
@@ -11638,6 +11652,7 @@ msgstr "Tampal pautan kerja atau siaran kerja, kemudian semak peranan dan syarik
 msgid "Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
 msgstr "Tampal pautan kerja. Kami akan menyimpan siaran kerja supaya Semak, pembantu dan surat anda boleh menggunakannya."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Paste a job posting once. It feeds a tailored copy of your resume, a fit check against each requirement, a cover letter draft and a place to track the role."
 msgstr "Tampal siaran kerja sekali. Ia menyediakan salinan resume anda yang disesuaikan, semakan kesesuaian terhadap setiap keperluan, draf surat iringan dan satu tempat untuk menjejak jawatan itu."
@@ -11825,6 +11840,7 @@ msgstr "Pilih masa selepas sekarang."
 msgid "Pick an icon"
 msgstr "Pilih ikon"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 msgid "Pick from {templateCount} templates, then set the type, color and spacing. The words stay put, so try as many looks as you like."
 msgstr "Pilih daripada templat {templateCount}, kemudian tetapkan fon, warna dan jarak. Teks anda kekal sama, jadi cuba seberapa banyak reka bentuk yang anda suka."
@@ -12064,6 +12080,7 @@ msgctxt "Career preferences: the roles, places, pay and ways of working you want
 msgid "Preferences"
 msgstr "Keutamaan"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/prepare.tsx
@@ -12133,6 +12150,8 @@ msgstr "Tekan <0>{RETURN_KEY}</0> untuk menambah atau menyimpan kata kunci semas
 msgid "Press <0>Enter</0> to open"
 msgstr "Tekan <0>Enter</0> untuk membuka"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "Preview {name} sample PDF"
 msgstr "Pratonton {name} sampel PDF"
@@ -12209,6 +12228,7 @@ msgid "Private. Only you can see it."
 msgstr "Persendirian. Hanya anda boleh melihatnya."
 
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 msgid "Product"
 msgstr "Produk"
 
@@ -12439,6 +12459,7 @@ msgid "Question removed"
 msgstr "Soalan dialih keluar"
 
 #: src/features/homepage/faq.tsx
+#: src/features/homepage/header.tsx
 msgid "Questions"
 msgstr "Soalan"
 
@@ -12501,6 +12522,7 @@ msgstr "Re: Pereka Produk Kanan"
 msgid "Reactive Resume {__APP_VERSION__} · MIT"
 msgstr "Reactive Resume {__APP_VERSION__} · MIT"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Reactive Resume is open source under the MIT License. Amruth Pillai and a community of contributors keep it running, and donations pay for hosting and development. There’s no paid tier."
 msgstr "Reactive Resume ialah sumber terbuka di bawah Lesen MIT. Amruth Pillai dan komuniti penyumbang memastikannya terus berjalan, dan derma membiayai pengehosan dan pembangunan. Tiada peringkat berbayar."
@@ -12931,6 +12953,7 @@ msgstr "Penempatan semula"
 
 #: src/features/assistant/remember-message.tsx
 #: src/features/career/shared.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/remember.tsx
@@ -14733,6 +14756,7 @@ msgstr "Warna bayang"
 msgid "Shadow width"
 msgstr "Lebar bayang"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/share.tsx
@@ -14743,6 +14767,7 @@ msgstr "Lebar bayang"
 msgid "Share"
 msgstr "Kongsi"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/share.tsx
 msgid "Share a public link, add a password or keep it private. Choose from 3 visibility options. Export to PDF or Word, or take all your data with you as JSON."
 msgstr "Kongsi pautan awam, tambah kata laluan atau simpan ia peribadi. Pilih daripada 3 pilihan keterlihatan. Eksport ke PDF atau Word, atau bawa semua data anda bersama anda sebagai JSON."
@@ -15344,6 +15369,7 @@ msgstr "Sepanyol (B2)"
 msgid "Speak"
 msgstr "Bercakap"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Speaks your language"
 msgstr "Bertutur dalam bahasa anda"
@@ -15480,6 +15506,7 @@ msgstr "Mulakan daripada surat terdahulu"
 msgid "Start from one you have and link the application."
 msgstr "Mulakan dari yang anda miliki dan pautkan permohonan kerja."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Start from scratch or import what you have. It takes a few minutes, and you can come back to it anytime."
 msgstr "Mulakan dari awal atau import apa yang anda ada. Ia mengambil masa beberapa minit, dan anda boleh kembali kepadanya pada bila-bila masa."
@@ -15647,7 +15674,6 @@ msgid "Stories to bring"
 msgstr "Cerita untuk dibawa"
 
 #: src/features/homepage/header.tsx
-#: src/features/homepage/hero.tsx
 msgid "Story"
 msgstr "cerita"
 
@@ -15742,6 +15768,7 @@ msgstr "Ringkasan permohonan anda yang terbuka"
 msgid "Summary"
 msgstr "Ringkasan"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Support"
 msgstr "Sokongan"
@@ -15869,6 +15896,7 @@ msgstr "Tag, dipisahkan dengan koma"
 msgid "Tags…"
 msgstr "Tag…"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
@@ -15972,8 +16000,11 @@ msgstr "Templat ditukar kepada {0}"
 msgid "Template, type and colors follow the resume, so the pair always matches."
 msgstr "Templat, jenis dan warna mengikut resume, jadi pasangan itu sentiasa sepadan."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Templates"
 msgstr "Templat"
 
@@ -17255,6 +17286,7 @@ msgstr "Terjemah ke…"
 msgid "Translate the app"
 msgstr "Terjemahkan aplikasi ini"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Translated into {languageCount} languages."
 msgstr "Telah diterjemahkan ke dalam {languageCount} bahasa."
@@ -18630,6 +18662,7 @@ msgid "Worth asking {0}"
 msgstr "Wajar ditanya kepada {0}"
 
 #. Homepage scene title, one word followed by a full stop
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -18663,6 +18696,7 @@ msgstr "Tulis satu surat…"
 msgid "Write a new reply in {languageName}"
 msgstr "Tulis balasan baharu dalam {languageName}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/remember.tsx
 msgid "Write a story once, with the facts behind it, and the coach uses it in 3 places. Switch a fact off and nothing leans on it."
 msgstr "Tulis cerita sekali, bersama fakta di sebaliknya, dan jurulatih menggunakannya di 3 tempat. Matikan satu fakta dan tiada apa-apa bersandar padanya."
@@ -18671,6 +18705,7 @@ msgstr "Tulis cerita sekali, bersama fakta di sebaliknya, dan jurulatih mengguna
 msgid "Write and review form answers"
 msgstr "Tulis dan semak jawapan borang"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/write.tsx
 msgid "Write beside a live page. It saves as you type and keeps every version. Ask the assistant for a sharper line: it suggests, you decide."
 msgstr "Tulis di sebelah halaman langsung. Ia disimpan semasa anda menaip dan menyimpan setiap versi. Minta penolong untuk ayat yang lebih tajam: ia mencadangkan, anda yang memutuskan."

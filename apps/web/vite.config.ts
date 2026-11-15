@@ -146,7 +146,8 @@ const serverPaths = [
 	"/cards",
 	// A resume's web page, `/<username>` (the primary resume) or `/<username>/<slug>`, is rendered by the server: any
 	// one- or two-segment address outside the app's own sections, without a file extension.
-	`^/(?!(?:${ownSegments})(?:/|$))[^/.]+(?:/[^/.]+)?/?(?:\\?.*)?$`,
+	// A query belongs to the URL, never the username. In particular, "/?locale=…" must stay with Vite.
+	`^/(?!(?:${ownSegments})(?:/|$|\\?))[^/.?]+(?:/[^/.?]+)?/?(?:\\?.*)?$`,
 ] as const;
 
 const serverProxy = serverPaths.reduce(

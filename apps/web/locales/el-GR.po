@@ -937,6 +937,8 @@ msgstr "Το {name} μετακινήθηκε στην κύρια στήλη"
 msgid "{name} never prints"
 msgstr "Το {name} δεν εκτυπώνει ποτέ"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "{name} resume template preview"
 msgstr "{name} προεπισκόπηση προτύπου βιογραφικού"
@@ -1596,10 +1598,6 @@ msgstr "Προσθήκη {suggestion}"
 #: src/features/career/knowledge/search-regions-field.tsx
 msgid "Add a country"
 msgstr "Προσθέστε μια χώρα"
-
-#: src/features/career/knowledge/facts.tsx
-msgid "Add a fact"
-msgstr "Προσθέστε ένα γεγονός"
 
 #: src/features/career/knowledge/facts.tsx
 msgid "Add a fact, for example “I mentored two associate PMs in 2025”"
@@ -2317,6 +2315,7 @@ msgstr "Κατεβάστε επίσης τη συνοδευτική επιστο
 msgid "Also email {0}"
 msgstr "Αποστολή email και στο {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Also on mobile"
 msgstr "Και στο κινητό"
@@ -2828,6 +2827,7 @@ msgstr "Στη Northwind Labs, οι περισσότερες νέες ομάδε
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 #: src/features/homepage/sections.tsx
 msgid "ATS checker"
 msgstr "ATS πούλι"
@@ -3355,6 +3355,7 @@ msgstr "Αλλαγή σύνδεσης"
 msgid "Change it in Design."
 msgstr "Αλλάξτε το στο Design."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Change language"
 msgstr "Αλλαγή γλώσσας"
@@ -3445,6 +3446,7 @@ msgstr "Συνομιλία"
 #. Homepage scene title, one word followed by a full stop
 #. The resume builder mode that reviews the resume for problems. Not the Screening application stage.
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -3466,6 +3468,7 @@ msgid "Check another file"
 msgstr "Ελέγξτε ένα άλλο αρχείο"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check any PDF, no account needed"
 msgstr "Ελέγξτε οποιοδήποτε PDF, δεν χρειάζεται λογαριασμός"
 
@@ -3501,6 +3504,7 @@ msgid "check numbers and names before using it"
 msgstr "ελέγξτε αριθμούς και ονόματα πριν το χρησιμοποιήσετε"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check reads your resume the way hiring software does and explains what to fix in plain words. It runs in your browser, so the file stays with you: 0 uploads."
 msgstr "Η δυνατότητα Έλεγχος διαβάζει το βιογραφικό σας όπως κάνει το λογισμικό στρατολόγησης και εξηγεί τι πρέπει να διορθώσετε με απλά λόγια. Εκτελείται στο πρόγραμμα περιήγησής σας, επομένως το αρχείο σας παραμένει στη συσκευή σας: 0 μεταφορτώσεις."
 
@@ -4028,6 +4032,7 @@ msgstr "Συγκρίνετε το με τις άλλες σας προσφορέ
 msgid "Compare offers"
 msgstr "Σύγκριση προσφορών"
 
+#: src/features/homepage/compact.tsx
 #: src/features/templates/gallery.tsx
 msgid "Compare real resume layouts before you sign up. Every template is free to customize, with PDF and Word downloads and no watermark."
 msgstr "Συγκρίνετε πραγματικές διατάξεις βιογραφικών προτού εγγραφείτε. Κάθε πρότυπο είναι δωρεάν για προσαρμογή, με λήψεις PDF και Microsoft Word και χωρίς υδατογράφημα."
@@ -5838,6 +5843,7 @@ msgstr "Περιγραφή"
 msgid "Description of role {0}"
 msgstr "Περιγραφή του ρόλου {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -6118,6 +6124,7 @@ msgstr "Λήψη τρέχοντος PDF"
 msgid "Download failed. Try again."
 msgstr "Η λήψη απέτυχε. Προσπαθήστε ξανά."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Download on the"
 msgstr "Λήψη από το"
@@ -6981,7 +6988,9 @@ msgstr "Γρήγορο μοντέλο"
 msgid "Fast: {0} · Capable: {1}"
 msgstr "Γρήγορο: {0} · Ικανό: {1}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/hero.tsx
 msgid "Features"
 msgstr "Δυνατότητες"
 
@@ -7490,6 +7499,7 @@ msgstr "Γερμανικά"
 msgid "Get a key at <0>{0}</0>. It's stored encrypted and used only for your requests."
 msgstr "Λάβετε ένα κλειδί στο <0>{0}</0>. Αποθηκεύεται κρυπτογραφημένο και χρησιμοποιείται μόνο για τα αιτήματά σας."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/prepare.tsx
 msgid "Get a plan for the interview, built from the posting and your own stories. Practice out loud, then write down how it went."
 msgstr "Λάβετε ένα πλάνο για τη συνέντευξη, βασισμένο στην ανάρτηση εργασίας και στις δικές σας ιστορίες. Εξασκηθείτε φωναχτά και μετά σημειώστε πώς πήγε."
@@ -7506,6 +7516,7 @@ msgstr "Αποκτήστε ένα κλειδί API από τον διαχειρ�
 msgid "Get feedback"
 msgstr "Λήψη ανατροφοδότησης"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Get it on"
 msgstr "Αποκτήστε το στο"
@@ -7518,6 +7529,7 @@ msgstr "Λαμβάνετε νέες θέσεις εδώ κάθε πρωί"
 msgid "Get resume feedback on Discord"
 msgstr "Λάβετε σχόλια για το βιογραφικό σας στο Discord"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 msgid "Get started"
 msgstr "Ξεκινήστε"
@@ -7715,6 +7727,7 @@ msgstr "Βοηθήστε με να σταθμίσω την προσφορά πο
 msgid "Help translate"
 msgstr "Βοηθήστε στη μετάφραση"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Help translate it into yours."
 msgstr "Βοηθήστε στη μετάφραση στη γλώσσα σας."
@@ -8502,6 +8515,7 @@ msgstr "John Doe"
 msgid "Join Discord"
 msgstr "Συμμετοχή στο Discord"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Join the Discord community"
 msgstr "Γίνετε μέλος της κοινότητας στο Discord"
@@ -11638,6 +11652,7 @@ msgstr "Επικολλήστε έναν σύνδεσμο εργασίας ή μ�
 msgid "Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
 msgstr "Επικολλήστε έναν σύνδεσμο εργασίας. Θα αποθηκεύσουμε την ανάρτηση εργασίας, ώστε ο Έλεγχος, ο βοηθός και η επιστολή σας να μπορούν να τη χρησιμοποιήσουν."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Paste a job posting once. It feeds a tailored copy of your resume, a fit check against each requirement, a cover letter draft and a place to track the role."
 msgstr "Επικολλήστε μία φορά μια αγγελία εργασίας. Τροφοδοτεί ένα προσαρμοσμένο αντίγραφο του βιογραφικού σας, έλεγχο καταλληλότητας κατά κάθε απαίτηση, προσχέδιο συνοδευτικής επιστολής και έναν χώρο παρακολούθησης της θέσης."
@@ -11825,6 +11840,7 @@ msgstr "Επιλέξτε μια μελλοντική ώρα."
 msgid "Pick an icon"
 msgstr "Επιλέξτε ένα εικονίδιο"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 msgid "Pick from {templateCount} templates, then set the type, color and spacing. The words stay put, so try as many looks as you like."
 msgstr "Επιλέξτε από {templateCount} πρότυπα και, στη συνέχεια, ορίστε τις γραμματοσειρές, το χρώμα και το διάστημα. Το κείμενό σας παραμένει το ίδιο, επομένως δοκιμάστε όσα σχέδια θέλετε."
@@ -12064,6 +12080,7 @@ msgctxt "Career preferences: the roles, places, pay and ways of working you want
 msgid "Preferences"
 msgstr "Προτιμήσεις"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/prepare.tsx
@@ -12133,6 +12150,8 @@ msgstr "Πατήστε <0>{RETURN_KEY}</0> για να προσθέσετε ή �
 msgid "Press <0>Enter</0> to open"
 msgstr "Πατήστε <0>Enter</0> για να ανοίξετε"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "Preview {name} sample PDF"
 msgstr "Προεπισκόπηση {name} δείγματος PDF"
@@ -12209,6 +12228,7 @@ msgid "Private. Only you can see it."
 msgstr "Ιδιωτικός. Μόνο εσύ μπορείς να το δεις."
 
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 msgid "Product"
 msgstr "Προϊόν"
 
@@ -12439,6 +12459,7 @@ msgid "Question removed"
 msgstr "Η ερώτηση αφαιρέθηκε"
 
 #: src/features/homepage/faq.tsx
+#: src/features/homepage/header.tsx
 msgid "Questions"
 msgstr "Ερωτήσεις"
 
@@ -12501,6 +12522,7 @@ msgstr "ΑΠ: Senior Product Designer"
 msgid "Reactive Resume {__APP_VERSION__} · MIT"
 msgstr "Reactive Resume {__APP_VERSION__} · MIT"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Reactive Resume is open source under the MIT License. Amruth Pillai and a community of contributors keep it running, and donations pay for hosting and development. There’s no paid tier."
 msgstr "Το Reactive Resume είναι ανοιχτού κώδικα με την άδεια MIT. Ο Amruth Pillai και μια κοινότητα συνεισφερόντων το διατηρούν σε λειτουργία, και οι δωρεές καλύπτουν τη φιλοξενία και την ανάπτυξη. Δεν υπάρχει έκδοση επί πληρωμή."
@@ -12931,6 +12953,7 @@ msgstr "Μετοικασία"
 
 #: src/features/assistant/remember-message.tsx
 #: src/features/career/shared.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/remember.tsx
@@ -14733,6 +14756,7 @@ msgstr "Χρώμα σκιάς"
 msgid "Shadow width"
 msgstr "Πλάτος σκιάς"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/share.tsx
@@ -14743,6 +14767,7 @@ msgstr "Πλάτος σκιάς"
 msgid "Share"
 msgstr "Κοινοποίηση"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/share.tsx
 msgid "Share a public link, add a password or keep it private. Choose from 3 visibility options. Export to PDF or Word, or take all your data with you as JSON."
 msgstr "Μοιραστείτε έναν δημόσιο σύνδεσμο, προσθέστε έναν κωδικό πρόσβασης ή διατηρήστε τον ιδιωτικό. Επιλέξτε από 3 επιλογές ορατότητας. Κάντε εξαγωγή σε PDF ή Word ή πάρτε όλα τα δεδομένα σας μαζί σας ως JSON."
@@ -15344,6 +15369,7 @@ msgstr "Ισπανικά (B2)"
 msgid "Speak"
 msgstr "Ομιλία"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Speaks your language"
 msgstr "Μιλάει τη γλώσσα σας"
@@ -15480,6 +15506,7 @@ msgstr "Ξεκινήστε από προηγούμενη επιστολή"
 msgid "Start from one you have and link the application."
 msgstr "Ξεκινήστε από ένα που έχετε και συνδέστε την αίτηση εργασίας."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Start from scratch or import what you have. It takes a few minutes, and you can come back to it anytime."
 msgstr "Ξεκινήστε από το μηδέν ή εισαγάγετε ό,τι έχετε. Χρειάζονται λίγα λεπτά και μπορείτε να επιστρέψετε οποιαδήποτε στιγμή."
@@ -15647,7 +15674,6 @@ msgid "Stories to bring"
 msgstr "Ιστορίες που θα φέρετε"
 
 #: src/features/homepage/header.tsx
-#: src/features/homepage/hero.tsx
 msgid "Story"
 msgstr "Ιστορία"
 
@@ -15742,6 +15768,7 @@ msgstr "Περιλήψεις των ανοιχτών αιτήσεών σας"
 msgid "Summary"
 msgstr "Σύνοψη"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Support"
 msgstr "Υποστήριξη"
@@ -15869,6 +15896,7 @@ msgstr "Ετικέτες, χωρισμένες με κόμματα"
 msgid "Tags…"
 msgstr "Ετικέτες…"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
@@ -15972,8 +16000,11 @@ msgstr "Το πρότυπο άλλαξε σε {0}"
 msgid "Template, type and colors follow the resume, so the pair always matches."
 msgstr "Το πρότυπο, ο τύπος και τα χρώματα ακολουθούν το βιογραφικό, έτσι ώστε το ζευγάρι να ταιριάζει πάντα."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Templates"
 msgstr "Πρότυπα"
 
@@ -17255,6 +17286,7 @@ msgstr "Μετάφραση στα…"
 msgid "Translate the app"
 msgstr "Μεταφράστε την εφαρμογή"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Translated into {languageCount} languages."
 msgstr "Έχει μεταφραστεί σε {languageCount} γλώσσες."
@@ -18630,6 +18662,7 @@ msgid "Worth asking {0}"
 msgstr "Αξίζει να ρωτήσετε: {0}"
 
 #. Homepage scene title, one word followed by a full stop
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -18663,6 +18696,7 @@ msgstr "Γράψτε μια επιστολή…"
 msgid "Write a new reply in {languageName}"
 msgstr "Γράψτε νέα απάντηση στα {languageName}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/remember.tsx
 msgid "Write a story once, with the facts behind it, and the coach uses it in 3 places. Switch a fact off and nothing leans on it."
 msgstr "Γράψτε μια ιστορία μία φορά, με τα γεγονότα που τη στηρίζουν, και ο σύμβουλος τη χρησιμοποιεί σε 3 σημεία. Απενεργοποιήστε ένα γεγονός και τίποτα δεν βασίζεται πια σε αυτό."
@@ -18671,6 +18705,7 @@ msgstr "Γράψτε μια ιστορία μία φορά, με τα γεγον
 msgid "Write and review form answers"
 msgstr "Γράψτε και ελέγξτε τις απαντήσεις φόρμας"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/write.tsx
 msgid "Write beside a live page. It saves as you type and keeps every version. Ask the assistant for a sharper line: it suggests, you decide."
 msgstr "Γράψτε δίπλα σε μια ζωντανή σελίδα. Αποθηκεύεται καθώς πληκτρολογείτε και κρατά κάθε έκδοση. Ζητήστε από τον βοηθό μια πιο εύστοχη διατύπωση: εκείνος προτείνει, εσείς αποφασίζετε."

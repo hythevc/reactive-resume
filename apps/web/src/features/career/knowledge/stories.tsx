@@ -134,37 +134,44 @@ export function StoriesPage({ storyId, edit, practice = false, start: planStart 
 		);
 
 	return (
-		<div className="grid items-start gap-5 lg:grid-cols-[300px_minmax(0,1fr)]">
-			<div className="grid content-start gap-2">
-				<AnimatePresence initial={false}>
-					{list.map((story) => (
-						<StoryCard
-							key={story.id}
-							story={story}
-							selected={story.id === selected?.id}
-							changed={factChanged(story, factsById)}
-						/>
-					))}
-				</AnimatePresence>
-				<Link
-					to="/dashboard/career/knowledge/stories/{-$storyId}"
-					params={{ storyId: undefined }}
-					search={{ edit: true }}
-					className={cn(
-						"touch-target relative flex h-9 items-center justify-center gap-1.5 rounded-lg border border-dashed border-line-2 text-[13px] font-medium text-ink-2 transition-colors duration-quick hover:bg-hover hover:text-ink",
-						editing && !selected && "border-accent text-ink",
-					)}
-				>
-					<Icon name="plus" size={18} />
-					<Trans>Add a story</Trans>
-				</Link>
-				<p className="px-0.5 py-1 text-xs leading-[17px] text-ink-3">
-					<Trans>
-						Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown
-						outcomes blank.
-					</Trans>
-				</p>
-			</div>
+		<div
+			className={cn(
+				"grid items-start gap-5",
+				(list.length > 0 || editing || storyId) && "lg:grid-cols-[300px_minmax(0,1fr)]",
+			)}
+		>
+			{(list.length > 0 || editing || storyId) && (
+				<div className="grid content-start gap-2">
+					<AnimatePresence initial={false}>
+						{list.map((story) => (
+							<StoryCard
+								key={story.id}
+								story={story}
+								selected={story.id === selected?.id}
+								changed={factChanged(story, factsById)}
+							/>
+						))}
+					</AnimatePresence>
+					<Link
+						to="/dashboard/career/knowledge/stories/{-$storyId}"
+						params={{ storyId: undefined }}
+						search={{ edit: true }}
+						className={cn(
+							"touch-target relative flex h-9 items-center justify-center gap-1.5 rounded-lg border border-dashed border-line-2 text-[13px] font-medium text-ink-2 transition-colors duration-quick hover:bg-hover hover:text-ink",
+							editing && !selected && "border-accent text-ink",
+						)}
+					>
+						<Icon name="plus" size={18} />
+						<Trans>Add a story</Trans>
+					</Link>
+					<p className="px-0.5 py-1 text-xs leading-[17px] text-ink-3">
+						<Trans>
+							Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown
+							outcomes blank.
+						</Trans>
+					</p>
+				</div>
+			)}
 
 			{storyId && !selected ? (
 				<div role="status" className="grid gap-2 rounded-xl border border-line p-6">
@@ -198,6 +205,7 @@ export function StoriesPage({ storyId, edit, practice = false, start: planStart 
 				</div>
 			) : (
 				<EmptyState
+					className="rounded-none border-0 bg-transparent px-0 py-5"
 					title={<Trans>No stories yet</Trans>}
 					action={
 						<Button onClick={() => open(undefined, true)}>
@@ -291,7 +299,7 @@ function StoryReader({ story, facts, onEdit }: StoryReaderProps) {
 		<div className="grid gap-[18px]">
 			<header className="flex flex-wrap items-start gap-3">
 				<div className="grid min-w-0 flex-1 basis-60 gap-1">
-					<h2 className="font-display text-[22px] leading-7 text-pretty">{story.data.title}</h2>
+					<h2 className="font-ui text-[22px] leading-7 text-pretty">{story.data.title}</h2>
 					<p className="text-[13px] text-ink-3">{story.data.tags.join(" · ") || t`No tags yet`}</p>
 				</div>
 				<div className="flex gap-1.5">
@@ -619,7 +627,7 @@ export function StoryEditor({ story, facts, onSaved, onCancel, onDelete, proposa
 					onKeyDown={(event) => {
 						if (event.key === "Enter") event.preventDefault();
 					}}
-					className="min-h-0 resize-none py-1 font-display text-[22px] leading-7"
+					className="min-h-0 resize-none py-1 font-ui text-[22px] leading-7"
 				/>
 				{tried && missingTitle && (
 					<p id={`${errorId}-title`} role="alert" className="flex items-center gap-1.5 text-[13px] text-danger-text">

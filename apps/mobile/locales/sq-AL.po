@@ -7453,10 +7453,6 @@ msgstr "Krijo lidhje"
 msgid "Make primary"
 msgstr "Bëje kryesore"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Lini vend për hapin tjetër."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Bëni hapjen më të fortë"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "Zhvendosje"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Mbaj mend"
@@ -13923,6 +13920,7 @@ msgstr "Për të marrë një rikujtues, lejo njoftimet në cilësimet e pajisjes
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

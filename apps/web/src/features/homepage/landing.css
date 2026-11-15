@@ -1,3 +1,63 @@
+/* Compact public pages use ordinary document flow; legacy scene styles remain isolated to their demos. */
+.home-container {
+	width: 100%;
+	max-width: 1280px;
+	margin-inline: auto;
+	padding-inline: clamp(18px, 4vw, 48px);
+}
+
+.home-section {
+	padding-block: clamp(40px, 5vw, 64px);
+	scroll-margin-top: 88px;
+}
+
+.home-title {
+	font-family: var(--font-ui);
+	font-size: clamp(28px, 2.4vw, 34px);
+	font-weight: 600;
+	line-height: 1.12;
+	letter-spacing: -0.025em;
+	text-wrap: balance;
+}
+
+.home-text-link {
+	display: inline-flex;
+	min-height: 44px;
+	align-items: center;
+	gap: 8px;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--color-accent-text);
+	text-underline-offset: 4px;
+}
+
+.home-text-link:hover {
+	text-decoration: underline;
+}
+
+.compact-home :is(a, button, summary):focus-visible {
+	outline: 2px solid var(--color-accent);
+	outline-offset: 3px;
+}
+
+.compact-home summary::-webkit-details-marker {
+	display: none;
+}
+
+.home-language-index nav ul {
+	font-family: var(--font-ui);
+	font-size: 15px;
+	line-height: 1.8;
+	text-wrap: wrap;
+}
+
+.home-language-index nav a {
+	display: inline-flex;
+	min-height: 44px;
+	align-items: center;
+}
+
 /*
  * The landing page (features/homepage). It is one scroll-driven story: the scroll engine (scroll.ts) writes each
  * section's progress as --p (0 to 1) and every motion below is derived from it with calc(), so React only re-renders

@@ -249,14 +249,13 @@ export type CardProps = {
 };
 
 export function Card({ children, onPress, onLongPress, selected, accessibilityLabel, style }: CardProps) {
-	const { colors, radius, shadows, space } = useTheme();
+	const { colors, radius, space } = useTheme();
 	const cardStyle = {
 		padding: space.s4,
 		borderRadius: radius.rLg,
 		borderWidth: 1,
 		borderColor: selected ? colors.accent : colors.line,
 		backgroundColor: selected ? colors.selectedFill : colors.surface,
-		boxShadow: shadows.e1.boxShadow,
 	};
 
 	// A card that is not pressable stays a plain container, so the controls inside it remain separate

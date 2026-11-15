@@ -167,7 +167,7 @@ export function CloudView() {
 	return (
 		<div className="feature-view">
 			<PageHeading
-				title="Your cloud account"
+				title="Cloud account"
 				description="Keep reviewed resume copies in your account. This browser workspace remains separate."
 			/>
 			{error ? (

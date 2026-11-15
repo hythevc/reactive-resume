@@ -34,16 +34,16 @@ export function EmptyState({
 			className={cn(
 				compact
 					? "flex flex-wrap items-center justify-between gap-x-3 gap-y-1 px-4 py-3"
-					: "grid justify-items-center gap-3 rounded-lg border border-line bg-surface px-6 py-10 text-center shadow-e1",
+					: "grid justify-items-start gap-4 rounded-lg border border-line bg-surface px-6 py-7 text-start",
 				className,
 			)}
 		>
-			<div className={cn("grid gap-1", compact ? "min-w-0" : "justify-items-center")}>
+			<div className={cn("grid gap-1", compact ? "min-w-0" : "justify-items-start")}>
 				<Title
 					className={cn(
 						compact
 							? "text-[13px] leading-[19px] text-ink"
-							: "font-display text-[28px] leading-8 font-normal text-balance",
+							: "font-ui text-xl leading-7 font-semibold tracking-[-0.01em] text-balance",
 					)}
 				>
 					{title}
@@ -61,10 +61,10 @@ export function EmptyState({
 				)}
 			</div>
 			{children && (
-				<div className={cn("grid w-full justify-items-center gap-3", compact && "justify-items-start")}>{children}</div>
+				<div className={cn("grid w-full justify-items-start gap-3", compact && "justify-items-start")}>{children}</div>
 			)}
 			{(action || secondary) && (
-				<div className={cn("flex flex-wrap items-center gap-2", !compact && "justify-center")}>
+				<div className={cn("flex flex-wrap items-center gap-2", !compact && "justify-start")}>
 					{action}
 					{secondary}
 				</div>

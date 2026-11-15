@@ -1,6 +1,8 @@
 "use client";
 
+import type { ApplicationStageFilter, WorkspaceNavigationOptions } from "@/lib/workspace-navigation";
 import {
+	ArrowLeft,
 	ArrowUpRight,
 	BriefcaseBusiness,
 	Check,
@@ -18,6 +20,7 @@ import { ApplicationWorkspace } from "@/features/application-workspace";
 import { parseInterviewSchedule } from "@/lib/workflow-safety";
 import { evaluatePreparationJob, type Job, type PreparationReason } from "@/lib/workspace";
 import { useWorkspace } from "@/lib/workspace-context";
+import { matchesApplicationStage, workspaceHash } from "@/lib/workspace-navigation";
 
 type JobDetails = Pick<Job, "company" | "role" | "location" | "url" | "description" | "notes">;
 type JobForm = JobDetails & { interviewAt: string; interviewTimezone: string };
@@ -58,29 +61,58 @@ function safeJobUrl(value: string) {
 	}
 }
 
-export function JobsView({ initialJobId }: { initialJobId?: string } = {}) {
+type JobsViewProps = {
+	initialJobId?: string;
+	initialStage?: ApplicationStageFilter;
+	onLocationChange: (options: WorkspaceNavigationOptions) => void;
+};
+
+export function JobsView({ initialJobId, initialStage = "All", onLocationChange }: JobsViewProps) {
 	const { data, setData, mutate, ready } = useWorkspace();
 	const [search, setSearch] = useState("");
-	const [stage, setStage] = useState<"All" | Job["status"]>("All");
-	const [selectedId, setSelectedId] = useState<string | null>(initialJobId ?? null);
+	const stage = initialStage;
+	const selectedId = initialJobId ?? null;
+	const selected = data.jobs.find((job) => job.id === selectedId);
+	const selectedRecordId = selected?.id;
+	const previousSelection = useRef<string | null>(null);
 	const detailsRef = useRef<HTMLElement>(null);
+	function setStage(next: ApplicationStageFilter) {
+		onLocationChange({ stage: next });
+	}
 	useEffect(() => {
-		if (!selectedId) return;
+		const previous = previousSelection.current;
+		previousSelection.current = selectedRecordId ?? null;
+		if (!selectedRecordId && !previous) return;
 		const frame = requestAnimationFrame(() => {
-			detailsRef.current?.scrollIntoView({
-				block: "start",
-				behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-			});
+			if (selectedRecordId) {
+				detailsRef.current?.focus({ preventScroll: true });
+				detailsRef.current?.scrollIntoView({
+					block: "start",
+					behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+				});
+			} else {
+				const trigger = Array.from(document.querySelectorAll<HTMLButtonElement>("button[data-job-id]")).find(
+					(button) => button.dataset.jobId === previous && button.getClientRects().length > 0,
+				);
+				const destination = trigger ?? document.querySelector<HTMLSelectElement>(".jobs-stage-filter select");
+				destination?.focus({ preventScroll: true });
+				destination?.scrollIntoView({ block: "center", behavior: "auto" });
+			}
 		});
 		return () => cancelAnimationFrame(frame);
-	}, [selectedId]);
+	}, [selectedRecordId]);
 	function reviewJob(id: string) {
-		setSelectedId(id);
-		if (id === selectedId)
+		onLocationChange({ stage, jobId: id });
+		if (id === selectedId) {
+			detailsRef.current?.focus({ preventScroll: true });
 			detailsRef.current?.scrollIntoView({
 				block: "start",
 				behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
 			});
+		}
+	}
+	function closeJob() {
+		onLocationChange({ stage });
 	}
 	const [editingId, setEditingId] = useState<string | null>(null);
 	const [showForm, setShowForm] = useState(false);
@@ -122,11 +154,10 @@ export function JobsView({ initialJobId }: { initialJobId?: string } = {}) {
 		const query = search.trim().toLowerCase();
 		return data.jobs.filter(
 			(job) =>
-				(stage === "All" || job.status === stage) &&
+				matchesApplicationStage(job.status, stage) &&
 				(!query || `${job.company} ${job.role} ${job.location} ${job.notes}`.toLowerCase().includes(query)),
 		);
 	}, [data.jobs, search, stage]);
-	const selected = data.jobs.find((job) => job.id === selectedId);
 	const prepared = data.jobs.filter((job) => job.status === "Draft").length;
 
 	async function saveCriteria(event: FormEvent<HTMLFormElement>) {
@@ -247,7 +278,7 @@ export function JobsView({ initialJobId }: { initialJobId?: string } = {}) {
 		}
 		setError("");
 		setShowForm(false);
-		setSelectedId(id);
+		reviewJob(id);
 		setNotice(
 			editingId ? "Job updated in your workspace." : "Job saved. Add a description to see how it matches your profile.",
 		);
@@ -283,7 +314,7 @@ export function JobsView({ initialJobId }: { initialJobId?: string } = {}) {
 			setError("Couldn't delete this job. Check the storage notice before trying again.");
 			return;
 		}
-		if (selectedId === id) setSelectedId(null);
+		if (selectedId === id) closeJob();
 		setDeleteId(null);
 		setError("");
 		setNotice("Job removed from your workspace.");
@@ -361,16 +392,18 @@ export function JobsView({ initialJobId }: { initialJobId?: string } = {}) {
 		<div className="jobs-view">
 			<div className="feature-heading">
 				<div>
-					<h1>Your next opportunity.</h1>
-					<p className="muted">A thoughtful pipeline, from the first save to the final interview.</p>
+					<h1>Applications</h1>
+					<p className="muted">Save roles, review documents and record each next step.</p>
 				</div>
 				<button className="button primary" type="button" onClick={() => openForm()} disabled={!ready}>
 					<Plus size={16} /> Add a job
 				</button>
 			</div>
-			<p className="muted small-print">
-				Keyword estimates use your shared career profile in Settings: {data.profile.name || "No name added"} ·{" "}
-				{data.profile.role || "No role added"}. Your target-role brief and salary are not eligibility filters.
+			<p className="muted small-print jobs-source-note">
+				Keyword overlap uses the shared career profile: {data.profile.name || "No name added"}.{" "}
+				<a className="text-button" href="#settings">
+					Edit profile
+				</a>
 			</p>
 			{notice ? (
 				<div className="notice" role="status">
@@ -380,6 +413,15 @@ export function JobsView({ initialJobId }: { initialJobId?: string } = {}) {
 			{error && !showForm ? (
 				<div className="notice" role="alert">
 					{error}
+				</div>
+			) : null}
+
+			{ready && selectedId && !selected ? (
+				<div className="notice" role="status">
+					This role is no longer in this workspace.{" "}
+					<button className="text-button" type="button" onClick={closeJob}>
+						Return to applications
+					</button>
 				</div>
 			) : null}
 
@@ -510,344 +552,368 @@ export function JobsView({ initialJobId }: { initialJobId?: string } = {}) {
 				</section>
 			) : null}
 
-			<div className="two-column jobs-layout" style={{ alignItems: "start" }}>
-				<section className="panel jobs-pipeline">
-					<div className="section-title">
-						<h2>
-							Application pipeline{" "}
-							<span className="muted" style={{ fontSize: 14 }}>
-								({data.jobs.length})
-							</span>
-						</h2>
-						<BriefcaseBusiness size={19} />
-					</div>
-					<div
-						role="group"
-						aria-label="Filter application stage"
-						style={{
-							display: "flex",
-							gap: 6,
-							flexWrap: "wrap",
-							marginBottom: 18,
-						}}
-					>
-						{(["All", ...stages] as const).map((item) => (
-							<button
-								key={item}
-								type="button"
-								aria-pressed={stage === item}
-								className={`button small ${stage === item ? "primary" : "secondary"}`}
-								onClick={() => setStage(item)}
-							>
-								{item}
-								{item !== "All" ? ` ${data.jobs.filter((job) => job.status === item).length}` : ""}
-							</button>
-						))}
-					</div>
-					<label className="field">
-						<span style={{ display: "flex", gap: 7, alignItems: "center" }}>
-							<Search size={14} /> Search opportunities
-						</span>
-						<input
-							className="input"
-							type="search"
-							value={search}
-							onChange={(event) => setSearch(event.target.value)}
-							placeholder="Company, role, location or notes"
-						/>
-					</label>
-					<ul className="mobile-job-list" aria-label="Saved opportunities">
-						{filtered.map((job) => (
-							<li key={job.id} className={selectedId === job.id ? "selected" : ""}>
-								<div className="mobile-job-heading">
-									<span className="company-logo" aria-hidden="true">
-										{job.company[0] || "?"}
-									</span>
-									<span>
-										<strong>{job.role || "Untitled role"}</strong>
-										<small>
-											{job.company || "Untitled company"} · {job.location || "Location not set"}
-										</small>
-									</span>
-								</div>
-								<div className="mobile-job-stage">
-									<span className={`status ${job.status.toLowerCase()}`}>{job.status}</span>
-									<button
-										type="button"
-										className="button secondary small"
-										aria-label={`Review ${job.role} at ${job.company}`}
-										onClick={() => reviewJob(job.id)}
-									>
-										Review <ArrowUpRight size={15} aria-hidden="true" />
-									</button>
-								</div>
-								<p className="muted mobile-job-match">
-									{job.description.trim()
-										? `${evaluationFor(job).score}% keyword overlap`
-										: "Add a description to compare"}{" "}
-									· {eligibilityLabel(job)}
-								</p>
-							</li>
-						))}
-					</ul>
-					<div className="table-wrap job-table-wrap">
-						<table className="data-table job-table">
-							<thead>
-								<tr>
-									<th>Opportunity</th>
-									<th>Match</th>
-									<th>Stage</th>
-									<th>
-										<span className="sr-only">Details</span>
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								{filtered.map((job) => (
-									<tr key={job.id} style={selectedId === job.id ? { background: "var(--lime)" } : undefined}>
-										<td>
-											<button
-												type="button"
-												onClick={() => reviewJob(job.id)}
-												style={{
-													background: "none",
-													border: 0,
-													padding: 0,
-													textAlign: "left",
-													cursor: "pointer",
-													font: "inherit",
-													color: "var(--green-dark)",
-												}}
-											>
-												<strong>{job.role}</strong>
-												<span
-													className="muted"
-													style={{
-														display: "block",
-														fontSize: 12,
-														marginTop: 4,
-													}}
-												>
-													{job.company} · {job.location || "Location not set"}
-												</span>
-											</button>
-											{job.notes ? (
-												<span
-													className="muted"
-													style={{
-														display: "block",
-														fontSize: 12,
-														marginTop: 6,
-														maxWidth: 280,
-														whiteSpace: "nowrap",
-														overflow: "hidden",
-														textOverflow: "ellipsis",
-													}}
-												>
-													{job.notes}
-												</span>
-											) : null}
-										</td>
-										<td>
-											<span className="status">
-												{job.description.trim() ? `${evaluationFor(job).score}%` : "Add details"}
-											</span>
-											<small
-												className={`eligibility-reason ${evaluationFor(job).eligible ? "eligible" : ""}`}
-												style={{
-													display: "block",
-													maxWidth: 170,
-													marginTop: 7,
-													fontSize: 12,
-													whiteSpace: "normal",
-												}}
-											>
-												{eligibilityLabel(job)}
-											</small>
-										</td>
-										<td>
-											<span className="status">{job.status}</span>
-										</td>
-										<td>
-											<button
-												className="button secondary small"
-												type="button"
-												onClick={() => reviewJob(job.id)}
-												aria-label={`Review ${job.role} at ${job.company}`}
-											>
-												<span>Review</span>
-												<ArrowUpRight size={15} aria-hidden="true" />
-											</button>
-										</td>
-									</tr>
-								))}
-							</tbody>
-						</table>
-					</div>
-					{!filtered.length ? (
-						<div className="empty">
-							<Search size={24} />
-							<h3>{data.jobs.length ? "No matching opportunities" : "Your next chapter starts here"}</h3>
-							<p className="muted">
-								{data.jobs.length
-									? "Try another search or application stage."
-									: "Save a role to begin building your application pipeline."}
-							</p>
+			{!selected ? (
+				<div className="jobs-layout">
+					<section className="panel jobs-pipeline">
+						<div className="section-title">
+							<h2>
+								Application pipeline{" "}
+								<span className="muted" style={{ fontSize: 14 }}>
+									({data.jobs.length})
+								</span>
+							</h2>
+							<BriefcaseBusiness size={19} />
 						</div>
-					) : null}
-				</section>
-
-				<aside className="panel" style={{ background: "var(--lime)" }}>
-					<div className="section-title">
-						<h2>Preparation tasks</h2>
-						<FileText size={19} />
-					</div>
-					<p className="muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-						Move matching saved roles into a preparation task queue. This does not create application documents, answers
-						or attachments. You prepare each application and submit it on the employer's website.
-					</p>
-					<label
-						className="field"
-						style={{
-							display: "flex",
-							flexDirection: "row",
-							alignItems: "center",
-							gap: 10,
-							margin: "22px 0",
-						}}
-					>
-						<input
-							type="checkbox"
-							checked={data.autopilot.enabled}
-							onChange={(event) =>
-								setData((current) => ({
-									...current,
-									autopilot: {
-										...current.autopilot,
-										enabled: event.target.checked,
-									},
-								}))
-							}
-						/>{" "}
-						Enable local preparation
-					</label>
-					<label className="field">
-						Daily preparation limit
-						<select
-							className="input"
-							value={data.autopilot.dailyLimit}
-							onChange={(event) =>
-								setData((current) => ({
-									...current,
-									autopilot: {
-										...current.autopilot,
-										dailyLimit: Number(event.target.value),
-									},
-								}))
-							}
-						>
-							{[1, 3, 5, 10, 20].map((limit) => (
-								<option key={limit} value={limit}>
-									{limit} {limit === 1 ? "task" : "tasks"} / day
-								</option>
+						<div className="jobs-toolbar">
+							<label className="field jobs-stage-filter">
+								<span>Stage</span>
+								<select
+									className="input"
+									value={stage}
+									onChange={(event) => setStage(event.target.value as ApplicationStageFilter)}
+									aria-label="Filter application stage"
+								>
+									{(["All", "In progress", ...stages] as const).map((item) => (
+										<option key={item} value={item}>
+											{item}
+											{item === "All"
+												? ` (${data.jobs.length})`
+												: ` (${data.jobs.filter((job) => matchesApplicationStage(job.status, item)).length})`}
+										</option>
+									))}
+								</select>
+							</label>
+							<label className="field">
+								<span style={{ display: "flex", gap: 7, alignItems: "center" }}>
+									<Search size={14} /> Search opportunities
+								</span>
+								<input
+									className="input"
+									type="search"
+									value={search}
+									onChange={(event) => setSearch(event.target.value)}
+									placeholder="Company, role, location or notes"
+								/>
+							</label>
+						</div>
+						<ul className="mobile-job-list" aria-label="Saved opportunities">
+							{filtered.map((job) => (
+								<li key={job.id} className={selectedId === job.id ? "selected" : ""}>
+									<div className="mobile-job-heading">
+										<span className="company-logo" aria-hidden="true">
+											{job.company[0] || "?"}
+										</span>
+										<span>
+											<strong>{job.role || "Untitled role"}</strong>
+											<small>
+												{job.company || "Untitled company"} · {job.location || "Location not set"}
+											</small>
+										</span>
+									</div>
+									<div className="mobile-job-stage">
+										<span className={`status ${job.status.toLowerCase()}`}>{job.status}</span>
+										<button
+											type="button"
+											className="button secondary small"
+											data-job-id={job.id}
+											aria-label={`Review ${job.role} at ${job.company}`}
+											onClick={() => reviewJob(job.id)}
+										>
+											Review <ArrowUpRight size={15} aria-hidden="true" />
+										</button>
+									</div>
+									<p className="muted mobile-job-match">
+										{job.description.trim()
+											? `${evaluationFor(job).score}% keyword overlap`
+											: "Add a description to compare"}{" "}
+										· {eligibilityLabel(job)}
+									</p>
+								</li>
 							))}
-						</select>
-					</label>
-					<label className="field">
-						Minimum match: {minimumMatch}%
-						<input
-							type="range"
-							min={0}
-							max={100}
-							step={5}
-							value={minimumMatch}
-							onChange={(event) =>
-								setData((current) => ({
-									...current,
-									autopilot: {
-										...current.autopilot,
-										minMatch: Number(event.target.value),
-									},
-								}))
-							}
-							style={{ width: "100%", accentColor: "#173f35" }}
-						/>
-					</label>
-					<form onSubmit={saveCriteria} className="preparation-filters">
-						<label className="field">
-							Exclude companies
-							<input
-								className="input"
-								value={companyCriteria}
-								maxLength={50100}
-								onChange={(event) => setCompanyCriteria(event.target.value)}
-								placeholder="e.g. Forma, Arcwell"
-							/>
-							<small className="muted">
-								Comma-separated names. Exact company-name matches are excluded, ignoring capitalization.
-							</small>
-						</label>
-						<label className="field">
-							Preferred locations
-							<input
-								className="input"
-								value={locationCriteria}
-								maxLength={25050}
-								onChange={(event) => setLocationCriteria(event.target.value)}
-								placeholder="e.g. Remote, San Francisco"
-							/>
-							<small className="muted">
-								Any listed phrase can match a job's location. Leave blank to allow all locations.
-							</small>
-						</label>
-						{criteriaError ? (
-							<p className="notice" role="alert">
-								{criteriaError}
-							</p>
+						</ul>
+						<div className="table-wrap job-table-wrap">
+							<table className="data-table job-table">
+								<thead>
+									<tr>
+										<th>Opportunity</th>
+										<th>Match</th>
+										<th>Stage</th>
+										<th>
+											<span className="sr-only">Details</span>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									{filtered.map((job) => (
+										<tr key={job.id} style={selectedId === job.id ? { background: "var(--lime)" } : undefined}>
+											<td>
+												<button
+													type="button"
+													onClick={() => reviewJob(job.id)}
+													style={{
+														background: "none",
+														border: 0,
+														padding: 0,
+														textAlign: "left",
+														cursor: "pointer",
+														font: "inherit",
+														color: "var(--green-dark)",
+													}}
+												>
+													<strong>{job.role}</strong>
+													<span
+														className="muted"
+														style={{
+															display: "block",
+															fontSize: 12,
+															marginTop: 4,
+														}}
+													>
+														{job.company} · {job.location || "Location not set"}
+													</span>
+												</button>
+												{job.notes ? (
+													<span
+														className="muted"
+														style={{
+															display: "block",
+															fontSize: 12,
+															marginTop: 6,
+															maxWidth: 280,
+															whiteSpace: "nowrap",
+															overflow: "hidden",
+															textOverflow: "ellipsis",
+														}}
+													>
+														{job.notes}
+													</span>
+												) : null}
+											</td>
+											<td>
+												<span className="status">
+													{job.description.trim() ? `${evaluationFor(job).score}%` : "Add details"}
+												</span>
+												<small
+													className={`eligibility-reason ${evaluationFor(job).eligible ? "eligible" : ""}`}
+													style={{
+														display: "block",
+														maxWidth: 170,
+														marginTop: 7,
+														fontSize: 12,
+														whiteSpace: "normal",
+													}}
+												>
+													{eligibilityLabel(job)}
+												</small>
+											</td>
+											<td>
+												<span className="status">{job.status}</span>
+											</td>
+											<td>
+												<button
+													className="button secondary small"
+													type="button"
+													onClick={() => reviewJob(job.id)}
+													data-job-id={job.id}
+													aria-label={`Review ${job.role} at ${job.company}`}
+												>
+													<span>Review</span>
+													<ArrowUpRight size={15} aria-hidden="true" />
+												</button>
+											</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
+						{!filtered.length ? (
+							<div className="empty">
+								<Search size={24} />
+								<h3>{data.jobs.length ? "No matching opportunities" : "No applications yet"}</h3>
+								<p className="muted">
+									{data.jobs.length
+										? "Try another search or application stage."
+										: "Save a role to begin building your application pipeline."}
+								</p>
+							</div>
 						) : null}
-						<button className="button secondary small" type="submit" disabled={!ready || !filtersDirty}>
-							<Check size={14} /> Save filters
-						</button>
-					</form>
-					<p className="muted" style={{ fontSize: 12, marginTop: 20 }}>
-						{eligibleCount} saved {eligibleCount === 1 ? "role meets" : "roles meet"} your current preparation criteria.
-					</p>
-					<button
-						className="button primary"
-						style={{ width: "100%", marginTop: 12 }}
-						type="button"
-						onClick={prepareMatches}
-						disabled={!ready || !data.autopilot.enabled || filtersDirty}
-					>
-						{data.autopilot.enabled ? <Play size={15} /> : <Pause size={15} />} Create preparation tasks
-					</button>
-					{filtersDirty ? (
-						<p className="muted" style={{ fontSize: 12 }}>
-							Save your filter changes to update eligibility and create preparation tasks.
-						</p>
-					) : null}
-					<button
-						className="button secondary small"
-						type="button"
-						style={{ width: "100%", marginTop: 10 }}
-						onClick={() => setStage("Draft")}
-					>
-						Review preparation tasks ({prepared})
-					</button>
-					<p className="muted" style={{ fontSize: 12, marginTop: 15, lineHeight: 1.7 }}>
-						{prepared} {prepared === 1 ? "task" : "tasks"} awaiting preparation. Match is a local keyword estimate, not
-						an employer's ATS score. No background applications or messages are sent.
-					</p>
-				</aside>
-			</div>
+					</section>
+
+					<aside className="preparation-settings">
+						<div className="preparation-summary">
+							<span>
+								{prepared} preparation {prepared === 1 ? "task" : "tasks"}
+							</span>
+							<button className="button secondary small" type="button" onClick={() => setStage("Draft")}>
+								Review tasks
+							</button>
+						</div>
+						<details>
+							<summary>
+								Preparation settings <FileText size={16} aria-hidden="true" />
+							</summary>
+							<p className="muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
+								Queue eligible saved roles as Draft tasks. Create documents in each role’s review workspace, then submit
+								on the employer’s website.
+							</p>
+							<label
+								className="field"
+								style={{
+									display: "flex",
+									flexDirection: "row",
+									alignItems: "center",
+									gap: 10,
+									margin: "22px 0",
+								}}
+							>
+								<input
+									type="checkbox"
+									checked={data.autopilot.enabled}
+									onChange={(event) =>
+										setData((current) => ({
+											...current,
+											autopilot: {
+												...current.autopilot,
+												enabled: event.target.checked,
+											},
+										}))
+									}
+								/>{" "}
+								Enable local preparation
+							</label>
+							<label className="field">
+								Daily preparation limit
+								<select
+									className="input"
+									value={data.autopilot.dailyLimit}
+									onChange={(event) =>
+										setData((current) => ({
+											...current,
+											autopilot: {
+												...current.autopilot,
+												dailyLimit: Number(event.target.value),
+											},
+										}))
+									}
+								>
+									{[1, 3, 5, 10, 20].map((limit) => (
+										<option key={limit} value={limit}>
+											{limit} {limit === 1 ? "task" : "tasks"} / day
+										</option>
+									))}
+								</select>
+							</label>
+							<label className="field">
+								Minimum match: {minimumMatch}%
+								<input
+									type="range"
+									min={0}
+									max={100}
+									step={5}
+									value={minimumMatch}
+									onChange={(event) =>
+										setData((current) => ({
+											...current,
+											autopilot: {
+												...current.autopilot,
+												minMatch: Number(event.target.value),
+											},
+										}))
+									}
+									style={{ width: "100%", accentColor: "var(--green)" }}
+								/>
+							</label>
+							<form onSubmit={saveCriteria} className="preparation-filters">
+								<label className="field">
+									Exclude companies
+									<input
+										className="input"
+										value={companyCriteria}
+										maxLength={50100}
+										onChange={(event) => setCompanyCriteria(event.target.value)}
+										placeholder="e.g. Forma, Arcwell"
+									/>
+									<small className="muted">
+										Comma-separated names. Exact company-name matches are excluded, ignoring capitalization.
+									</small>
+								</label>
+								<label className="field">
+									Preferred locations
+									<input
+										className="input"
+										value={locationCriteria}
+										maxLength={25050}
+										onChange={(event) => setLocationCriteria(event.target.value)}
+										placeholder="e.g. Remote, San Francisco"
+									/>
+									<small className="muted">
+										Any listed phrase can match a job's location. Leave blank to allow all locations.
+									</small>
+								</label>
+								{criteriaError ? (
+									<p className="notice" role="alert">
+										{criteriaError}
+									</p>
+								) : null}
+								<button className="button secondary small" type="submit" disabled={!ready || !filtersDirty}>
+									<Check size={14} /> Save filters
+								</button>
+							</form>
+							<p className="muted" style={{ fontSize: 12, marginTop: 20 }}>
+								{eligibleCount} saved {eligibleCount === 1 ? "role meets" : "roles meet"} your current preparation
+								criteria.
+							</p>
+							<button
+								className="button primary"
+								style={{ width: "100%", marginTop: 12 }}
+								type="button"
+								onClick={prepareMatches}
+								disabled={!ready || !data.autopilot.enabled || filtersDirty}
+							>
+								{data.autopilot.enabled ? <Play size={15} /> : <Pause size={15} />} Create preparation tasks
+							</button>
+							{filtersDirty ? (
+								<p className="muted" style={{ fontSize: 12 }}>
+									Save your filter changes to update eligibility and create preparation tasks.
+								</p>
+							) : null}
+							<button
+								className="button secondary small"
+								type="button"
+								style={{ width: "100%", marginTop: 10 }}
+								onClick={() => setStage("Draft")}
+							>
+								Review preparation tasks ({prepared})
+							</button>
+							<p className="muted" style={{ fontSize: 12, marginTop: 15, lineHeight: 1.7 }}>
+								{prepared} {prepared === 1 ? "task" : "tasks"} awaiting preparation. Match is a local keyword estimate,
+								not an employer's ATS score. No background applications or messages are sent.
+							</p>
+						</details>
+					</aside>
+				</div>
+			) : null}
 
 			{selected ? (
 				<section
 					ref={detailsRef}
 					className="panel job-details"
-					style={{ marginTop: 24, scrollMarginTop: 20 }}
+					style={{ scrollMarginTop: 80 }}
+					tabIndex={-1}
 					aria-label="Job details"
 				>
+					<a
+						className="text-button job-back-link"
+						href={workspaceHash("jobs", { stage })}
+						onClick={(event) => {
+							if (event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+							event.preventDefault();
+							closeJob();
+						}}
+					>
+						<ArrowLeft size={16} aria-hidden="true" />
+						Back to applications
+					</a>
 					<div className="section-title">
 						<div>
 							<p className="muted" style={{ fontSize: 12, marginBottom: 6 }}>
@@ -855,12 +921,7 @@ export function JobsView({ initialJobId }: { initialJobId?: string } = {}) {
 							</p>
 							<h2>{selected.role}</h2>
 						</div>
-						<button
-							className="button secondary small"
-							type="button"
-							aria-label="Close job details"
-							onClick={() => setSelectedId(null)}
-						>
+						<button className="button secondary small" type="button" aria-label="Close job details" onClick={closeJob}>
 							<X size={16} />
 						</button>
 					</div>

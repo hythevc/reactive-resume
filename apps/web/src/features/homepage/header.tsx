@@ -1,6 +1,7 @@
 import { plural, t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@reactive-resume/ui/components/icon";
 import { cn } from "@reactive-resume/utils/style";
@@ -11,6 +12,50 @@ import { useTheme } from "@/features/theme/provider";
 import { orpc } from "@/libs/orpc/client";
 
 const githubUrl = "https://github.com/reactive-resume/reactive-resume";
+
+/** Public task navigation, without the story's scroll state or decorative theme control. */
+export function CompactLandingHeader() {
+	const { resolvedTheme, toggleTheme } = useTheme();
+	const themeLabel = resolvedTheme === "dark" ? t`Switch to light mode` : t`Switch to dark mode`;
+	return (
+		<header className="sticky top-0 z-70 border-b border-line bg-bg">
+			<div className="home-container flex min-h-18 items-center gap-2 sm:gap-5">
+				<Link
+					to="/"
+					aria-label="Reactive Resume"
+					className="flex min-h-11 min-w-11 shrink-0 items-center gap-2.5 rounded-md"
+				>
+					<img src="/icon/light.svg" alt="" width={30} height={30} className="size-[30px] dark:hidden" />
+					<img src="/icon/dark.svg" alt="" width={30} height={30} className="hidden size-[30px] dark:block" />
+					<span className="hidden font-ui text-xl leading-none font-semibold tracking-[-.025em] md:block">
+						Reactive Resume
+					</span>
+				</Link>
+				<nav aria-label={t`Product`} className="ms-6 hidden items-center gap-5 xl:flex">
+					<Link to="/resume-templates" className="home-text-link text-ink-2">{t`Templates`}</Link>
+					<Link to="/ats-checker" className="home-text-link text-ink-2">{t`ATS checker`}</Link>
+					<a href="/#faq" className="home-text-link text-ink-2">{t`Questions`}</a>
+				</nav>
+				<div className="ms-auto flex items-center gap-1 sm:gap-2">
+					<div className="hidden lg:block">
+						<LanguageDoorway story={false} className="min-h-11 gap-1.5 rounded-md px-2 text-sm text-ink-2" />
+					</div>
+					<button
+						type="button"
+						onClick={() => toggleTheme()}
+						aria-label={themeLabel}
+						title={themeLabel}
+						className="flex size-11 shrink-0 items-center justify-center rounded-md text-ink-2 hover:bg-hover"
+					>
+						<Icon name={resolvedTheme === "dark" ? "sun" : "moon"} size={20} />
+					</button>
+					<SignInLink />
+					<CtaLink size="header" />
+				</div>
+			</div>
+		</header>
+	);
+}
 
 const getStoryScenes = () => [
 	{ scene: SCENE.write, label: t`Write` },

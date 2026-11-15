@@ -7453,10 +7453,6 @@ msgstr "दुवा तयार करा"
 msgid "Make primary"
 msgstr "प्राथमिक बनवा"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "पुढील पायरीसाठी जागा करा."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "ओपनिंग मजबूत करा"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "स्थलांतराची तयारी"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "लक्षात ठेवा"
@@ -13923,6 +13920,7 @@ msgstr "स्मरणपत्रासाठी डिव्हाइस स�
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

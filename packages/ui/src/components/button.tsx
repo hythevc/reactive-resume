@@ -19,10 +19,10 @@ const buttonVariants = cva(
 				link: "h-auto! border-0 px-0! text-accent-text underline-offset-4 hover:underline",
 			},
 			size: {
-				default: "h-10 rounded-md px-4",
+				default: "h-11 rounded-md px-4",
 				sm: "h-8 gap-1.5 rounded-md px-3 text-[13px]",
 				lg: "h-11 rounded-lg px-4 text-base",
-				icon: "size-10 rounded-md",
+				icon: "size-11 rounded-md",
 				"icon-sm": "size-8 rounded-md",
 				"icon-xs": "size-7 rounded-md",
 				"icon-lg": "size-11 rounded-lg",

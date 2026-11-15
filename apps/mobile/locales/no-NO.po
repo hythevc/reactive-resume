@@ -7453,10 +7453,6 @@ msgstr "Opprett lenke"
 msgid "Make primary"
 msgstr "Gjør til primær"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Gjør plass til neste trinn."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Gjør åpningen sterkere"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "Flytting"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Husk"
@@ -13923,6 +13920,7 @@ msgstr "For å få en påminnelse, tillat varsler i enhetsinnstillingene."
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

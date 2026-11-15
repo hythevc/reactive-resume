@@ -3,16 +3,20 @@
 @source '../features';
 
 :root {
-	--green: #173f35;
-	--green-dark: #10382e;
-	--lime: #edf5d5;
-	--text: #132c27;
-	--muted: #64706f;
-	--border: #e1e6e4;
-	--canvas: #fafbfa;
+	--green: #0b6e75;
+	--green-dark: #07555b;
+	--lime: #e4f3f2;
+	--text: #172b32;
+	--muted: #5b6e77;
+	--secondary-text: #3f535c;
+	--border: #dce4e8;
+	--strong-line: #8ca2ad;
+	--control-border: #708995;
+	--canvas: #f5f7f8;
 	--white: #fff;
-	--radius: 12px;
-	font-family: "Manrope Variable", Arial, sans-serif;
+	--radius: 8px;
+	font-family: "Figtree Variable", "Figtree", Arial, sans-serif;
+	font-size: 15px;
 	color: var(--text);
 	background: var(--canvas);
 	font-synthesis: none;
@@ -73,11 +77,11 @@ p {
 	margin: 0;
 }
 h1 {
-	font-family: "Instrument Serif", Georgia, serif;
-	font-size: 48px;
-	font-weight: 400;
-	line-height: 1.1;
-	letter-spacing: -1.2px;
+	font-family: inherit;
+	font-size: 32px;
+	font-weight: 650;
+	line-height: 1.15;
+	letter-spacing: -0.7px;
 }
 h2 {
 	font-size: 19px;
@@ -3070,20 +3074,7 @@ div.section-title {
 	}
 }
 
-/* CareerOS · Desk & Paper. Product chrome stays separate from white document paper. */
-:root {
-	--canvas: #f8f7f3;
-	--white: #fff;
-	--text: #202b25;
-	--muted: #58645d;
-	--green: #286343;
-	--green-dark: #1f5036;
-	--lime: #e7efe2;
-	--border: #dce2da;
-	--radius: 12px;
-	font-family: "Figtree Variable", "Figtree", Arial, sans-serif;
-	font-size: 15px;
-}
+/* CareerOS · Working Record. Application chrome and document paper have distinct roles. */
 body {
 	color: var(--text);
 	background: var(--canvas);
@@ -3103,11 +3094,11 @@ h1,
 .feature-heading h1,
 .overview-heading h1,
 .discovery-view > .feature-heading h1 {
-	font-family: "Instrument Serif", Georgia, serif;
-	font-weight: 400;
-	font-size: 46px;
-	line-height: 1.08;
-	letter-spacing: -0.8px;
+	font-family: inherit;
+	font-weight: 650;
+	font-size: 32px;
+	line-height: 1.15;
+	letter-spacing: -0.7px;
 	text-wrap: balance;
 }
 h2 {

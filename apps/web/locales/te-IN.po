@@ -937,6 +937,8 @@ msgstr "{name} ప్రధాన నిలువు వరుసకు తర�
 msgid "{name} never prints"
 msgstr "{name} ఎప్పుడూ ముద్రించదు"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "{name} resume template preview"
 msgstr "{name} CV టెంప్లేట్ ప్రివ్యూ"
@@ -1596,10 +1598,6 @@ msgstr "{suggestion} జోడించండి"
 #: src/features/career/knowledge/search-regions-field.tsx
 msgid "Add a country"
 msgstr "దేశాన్ని జోడించండి"
-
-#: src/features/career/knowledge/facts.tsx
-msgid "Add a fact"
-msgstr "వాస్తవాన్ని జోడించండి"
 
 #: src/features/career/knowledge/facts.tsx
 msgid "Add a fact, for example “I mentored two associate PMs in 2025”"
@@ -2317,6 +2315,7 @@ msgstr "{0} కవర్ లెటర్‌ను కూడా డౌన్‌�
 msgid "Also email {0}"
 msgstr "{0}కి కూడా ఇమెయిల్ పంపు"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Also on mobile"
 msgstr "మొబైల్‌లోనూ అందుబాటులో ఉంది"
@@ -2828,6 +2827,7 @@ msgstr "Northwind Labsలో, చాలా కొత్త బృందాలు
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 #: src/features/homepage/sections.tsx
 msgid "ATS checker"
 msgstr "ATS చెకర్"
@@ -3355,6 +3355,7 @@ msgstr "కనెక్షన్ మార్చండి"
 msgid "Change it in Design."
 msgstr "దీన్ని డిజైన్‌లో మార్చండి."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Change language"
 msgstr "భాషను మార్చు"
@@ -3445,6 +3446,7 @@ msgstr "చాట్"
 #. Homepage scene title, one word followed by a full stop
 #. The resume builder mode that reviews the resume for problems. Not the Screening application stage.
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -3466,6 +3468,7 @@ msgid "Check another file"
 msgstr "మరొక ఫైల్‌ని తనిఖీ చేయండి"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check any PDF, no account needed"
 msgstr "ఏదైనా PDFని తనిఖీ చేయండి, ఖాతా అవసరం లేదు"
 
@@ -3501,6 +3504,7 @@ msgid "check numbers and names before using it"
 msgstr "ఉపయోగించే ముందు సంఖ్యలు, పేర్లను తనిఖీ చేయండి"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check reads your resume the way hiring software does and explains what to fix in plain words. It runs in your browser, so the file stays with you: 0 uploads."
 msgstr "తనిఖీ ఫీచర్ మీ రెజ్యూమ్‌ని రిక్రూట్‌మెంట్ సాఫ్ట్‌వేర్ చేసే విధంగా చదువుతుంది మరియు సాధారణ పదాలలో ఏమి పరిష్కరించాలో వివరిస్తుంది. ఇది మీ బ్రౌజర్‌లో నడుస్తుంది, కాబట్టి మీ ఫైల్ మీ పరికరంలో ఉంటుంది: 0 అప్‌లోడ్‌లు."
 
@@ -4028,6 +4032,7 @@ msgstr "దీన్ని మీ ఇతర ఆఫర్‌లతో పోల�
 msgid "Compare offers"
 msgstr "ఆఫర్‌లను పోల్చు"
 
+#: src/features/homepage/compact.tsx
 #: src/features/templates/gallery.tsx
 msgid "Compare real resume layouts before you sign up. Every template is free to customize, with PDF and Word downloads and no watermark."
 msgstr "మీరు సైన్ అప్ చేయడానికి ముందు నిజమైన CV లేఅవుట్‌లను సరిపోల్చండి. ప్రతి టెంప్లేట్ PDF మరియు Microsoft Word డౌన్‌లోడ్‌లతో మరియు వాటర్‌మార్క్ లేకుండా అనుకూలీకరించడానికి ఉచితం."
@@ -5838,6 +5843,7 @@ msgstr "వివరణ"
 msgid "Description of role {0}"
 msgstr "{0} పాత్ర యొక్క వివరణ"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -6118,6 +6124,7 @@ msgstr "ప్రస్తుత PDF డౌన్‌లోడ్ చేయండ
 msgid "Download failed. Try again."
 msgstr "డౌన్‌లోడ్ విఫలమైంది. మళ్ళీ ప్రయత్నించండి."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Download on the"
 msgstr "ఇక్కడి నుంచి డౌన్‌లోడ్ చేసుకోండి"
@@ -6981,7 +6988,9 @@ msgstr "ఫాస్ట్ మోడల్"
 msgid "Fast: {0} · Capable: {1}"
 msgstr "ఫాస్ట్: {0} · సమర్థవంతం: {1}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/hero.tsx
 msgid "Features"
 msgstr "ఫీచర్లు"
 
@@ -7490,6 +7499,7 @@ msgstr "జర్మన్"
 msgid "Get a key at <0>{0}</0>. It's stored encrypted and used only for your requests."
 msgstr "<0>{0}</0> వద్ద కీని పొందండి. ఇది గుప్తీకరించబడి నిల్వ చేయబడుతుంది మరియు మీ అభ్యర్థనల కోసం మాత్రమే ఉపయోగించబడుతుంది."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/prepare.tsx
 msgid "Get a plan for the interview, built from the posting and your own stories. Practice out loud, then write down how it went."
 msgstr "ఉద్యోగ ప్రకటన, మీ సొంత కథల నుండి రూపొందిన ఇంటర్వ్యూ ప్రణాళికను పొందండి. బిగ్గరగా సాధన చేయండి, ఆపై అది ఎలా జరిగిందో రాయండి."
@@ -7506,6 +7516,7 @@ msgstr "మీ ఎండ్‌పాయింట్ నిర్వాహకు�
 msgid "Get feedback"
 msgstr "ఫీడ్‌బ్యాక్ పొందు"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Get it on"
 msgstr "ఇక్కడి నుంచి డౌన్‌లోడ్ చేసుకోండి"
@@ -7518,6 +7529,7 @@ msgstr "ప్రతి ఉదయం కొత్త పదవులను ఇ�
 msgid "Get resume feedback on Discord"
 msgstr "Discordలో మీ రెజ్యూమేపై అభిప్రాయం పొందండి"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 msgid "Get started"
 msgstr "ప్రారంభించండి"
@@ -7715,6 +7727,7 @@ msgstr "నాకున్న ఆఫర్‌ను నా కోరికలత
 msgid "Help translate"
 msgstr "అనువదించడానికి సహాయం చేయండి"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Help translate it into yours."
 msgstr "దీన్ని మీ భాషలోకి అనువదించడానికి సహాయం చేయండి."
@@ -8502,6 +8515,7 @@ msgstr "జాన్ డో"
 msgid "Join Discord"
 msgstr "Discordలో చేరండి"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Join the Discord community"
 msgstr "Discord కమ్యూనిటీలో చేరండి"
@@ -11638,6 +11652,7 @@ msgstr "జాబ్ లింక్ లేదా జాబ్ పోస్ట�
 msgid "Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
 msgstr "ఉద్యోగ లింక్‌ను అతికించండి. తనిఖీ, అసిస్టెంట్ మరియు మీ లెటర్ ఉపయోగించుకునేలా మేము జాబ్ పోస్టింగ్‌ను సేవ్ చేస్తాము."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Paste a job posting once. It feeds a tailored copy of your resume, a fit check against each requirement, a cover letter draft and a place to track the role."
 msgstr "ఒకసారి ఉద్యోగ పోస్టింగ్ పేస్ట్ చేయండి. అది మీ రెజ్యూమ్ అనుగుణమైన కాపీకి, ప్రతి అవసరానికీ ఫిట్ తనిఖీకి, కవర్ లెటర్ డ్రాఫ్ట్‌కు, ఆ పదవిని ట్రాక్ చేయడానికి ఒక చోటికి ఆధారమవుతుంది."
@@ -11825,6 +11840,7 @@ msgstr "ఇప్పటి తర్వాతి సమయాన్ని ఎం
 msgid "Pick an icon"
 msgstr "ఒక చిహ్నాన్ని ఎంచుకోండి"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 msgid "Pick from {templateCount} templates, then set the type, color and spacing. The words stay put, so try as many looks as you like."
 msgstr "{templateCount} టెంప్లేట్‌ల నుండి ఎంచుకోండి, ఆపై ఫాంట్‌లు, రంగు మరియు అంతరాన్ని సెట్ చేయండి. మీ వచనం అలాగే ఉంటుంది, కాబట్టి మీకు నచ్చినన్ని డిజైన్‌లను ప్రయత్నించండి."
@@ -12064,6 +12080,7 @@ msgctxt "Career preferences: the roles, places, pay and ways of working you want
 msgid "Preferences"
 msgstr "ప్రాధాన్యతలు"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/prepare.tsx
@@ -12133,6 +12150,8 @@ msgstr "ప్రస్తుత కీవర్డ్‌ను జోడిం�
 msgid "Press <0>Enter</0> to open"
 msgstr "తెరవడానికి <0>ఎంటర్</0> నొక్కండి"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "Preview {name} sample PDF"
 msgstr "ప్రివ్యూ {name} నమూనా PDF"
@@ -12209,6 +12228,7 @@ msgid "Private. Only you can see it."
 msgstr "ప్రైవేట్. మీరు మాత్రమే చూడగలరు."
 
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 msgid "Product"
 msgstr "ఉత్పత్తి"
 
@@ -12439,6 +12459,7 @@ msgid "Question removed"
 msgstr "ప్రశ్న తీసివేయబడింది"
 
 #: src/features/homepage/faq.tsx
+#: src/features/homepage/header.tsx
 msgid "Questions"
 msgstr "ప్రశ్నలు"
 
@@ -12501,6 +12522,7 @@ msgstr "Re: సీనియర్ ప్రోడక్ట్ డిజైనర
 msgid "Reactive Resume {__APP_VERSION__} · MIT"
 msgstr "Reactive Resume {__APP_VERSION__} · MIT"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Reactive Resume is open source under the MIT License. Amruth Pillai and a community of contributors keep it running, and donations pay for hosting and development. There’s no paid tier."
 msgstr "Reactive Resume MIT లైసెన్స్ కింద ఓపెన్ సోర్స్. Amruth Pillai, సహకారుల సమూహం దీన్ని నడుపుతున్నారు, హోస్టింగ్ మరియు డెవలప్‌మెంట్ ఖర్చులను విరాళాలు భరిస్తాయి. చెల్లింపు ప్లాన్ ఏదీ లేదు."
@@ -12931,6 +12953,7 @@ msgstr "రీలొకేషన్"
 
 #: src/features/assistant/remember-message.tsx
 #: src/features/career/shared.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/remember.tsx
@@ -14733,6 +14756,7 @@ msgstr "నీడ రంగు"
 msgid "Shadow width"
 msgstr "నెరడు వెడల్పు"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/share.tsx
@@ -14743,6 +14767,7 @@ msgstr "నెరడు వెడల్పు"
 msgid "Share"
 msgstr "షేర్ చేయండి"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/share.tsx
 msgid "Share a public link, add a password or keep it private. Choose from 3 visibility options. Export to PDF or Word, or take all your data with you as JSON."
 msgstr "పబ్లిక్ లింక్‌ను షేర్ చేయండి, పాస్‌వర్డ్‌ను జోడించండి లేదా ప్రైవేట్‌గా ఉంచండి. 3 విజిబిలిటీ ఆప్షన్‌ల నుండి ఎంచుకోండి. PDF లేదా Wordకి ఎగుమతి చేయండి లేదా మీ మొత్తం డేటాను JSONగా తీసుకెళ్లండి."
@@ -15344,6 +15369,7 @@ msgstr "స్పానిష్ (B2)"
 msgid "Speak"
 msgstr "మాట్లాడు"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Speaks your language"
 msgstr "మీ భాష మాట్లాడుతుంది"
@@ -15480,6 +15506,7 @@ msgstr "ఇంతకుముంది లెటర్ నుంచి ప్ర
 msgid "Start from one you have and link the application."
 msgstr "మీ వద్ద ఉన్న దాని నుండి ప్రారంభించండి మరియు జాబ్ అప్లికేషన్‌ని లింక్ చేయండి."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Start from scratch or import what you have. It takes a few minutes, and you can come back to it anytime."
 msgstr "కొత్తగా మొదలుపెట్టండి లేదా మీ దగ్గర ఉన్నదాన్ని ఇంపోర్ట్ చేయండి. కొన్ని నిమిషాలే పడుతుంది, ఎప్పుడైనా తిరిగి రావచ్చు."
@@ -15647,7 +15674,6 @@ msgid "Stories to bring"
 msgstr "తీసుకెళ్లాల్సిన కథలు"
 
 #: src/features/homepage/header.tsx
-#: src/features/homepage/hero.tsx
 msgid "Story"
 msgstr "కథ"
 
@@ -15742,6 +15768,7 @@ msgstr "మీ ఓపెన్ దరఖాస్తుల సారాంశా
 msgid "Summary"
 msgstr "సమ్మరీ"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Support"
 msgstr "మద్దతు"
@@ -15869,6 +15896,7 @@ msgstr "కామాలతో వేరు చేసిన ట్యాగ్స
 msgid "Tags…"
 msgstr "ట్యాగ్‌లు…"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
@@ -15972,8 +16000,11 @@ msgstr "టెంప్లేట్ {0}కి మార్చబడింది"
 msgid "Template, type and colors follow the resume, so the pair always matches."
 msgstr "టెంప్లేట్, రకం మరియు రంగులు రెజ్యూమ్‌ను అనుసరిస్తాయి, కాబట్టి ఈ జంట ఎల్లప్పుడూ సరిపోలుతుంది."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Templates"
 msgstr "టెంప్లేట్‌లు"
 
@@ -17255,6 +17286,7 @@ msgstr "ఈ భాషలోకి అనువదించు…"
 msgid "Translate the app"
 msgstr "యాప్‌ను అనువదించండి"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Translated into {languageCount} languages."
 msgstr "{languageCount} భాషల్లోకి అనువదించబడింది."
@@ -18630,6 +18662,7 @@ msgid "Worth asking {0}"
 msgstr "{0}ని అడగదగినది"
 
 #. Homepage scene title, one word followed by a full stop
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -18663,6 +18696,7 @@ msgstr "లెటర్ రాయండి…"
 msgid "Write a new reply in {languageName}"
 msgstr "{languageName}‌లో కొత్త ప్రత్యుత్తరం రాయండి"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/remember.tsx
 msgid "Write a story once, with the facts behind it, and the coach uses it in 3 places. Switch a fact off and nothing leans on it."
 msgstr "ఒక కథను దాని వెనుక ఉన్న వాస్తవాలతో ఒకసారి రాయండి, కోచ్ దాన్ని 3 చోట్ల ఉపయోగిస్తుంది. ఒక వాస్తవాన్ని ఆఫ్ చేస్తే, దేనికీ అది ఆధారం కాదు."
@@ -18671,6 +18705,7 @@ msgstr "ఒక కథను దాని వెనుక ఉన్న వాస�
 msgid "Write and review form answers"
 msgstr "ఫారం జవాబులు రాసి సమీక్షించండి"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/write.tsx
 msgid "Write beside a live page. It saves as you type and keeps every version. Ask the assistant for a sharper line: it suggests, you decide."
 msgstr "లైవ్ పేజీ పక్కనే రాయండి. మీరు టైప్ చేస్తుండగానే సేవ్ అవుతుంది, ప్రతి వెర్షన్‌ను ఉంచుతుంది. మెరుగైన వాక్యం కోసం సహాయకుడిని అడగండి: అది సూచిస్తుంది, మీరు నిర్ణయిస్తారు."

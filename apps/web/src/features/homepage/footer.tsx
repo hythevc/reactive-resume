@@ -12,9 +12,8 @@ import { useTheme } from "@/features/theme/provider";
 
 const githubUrl = "https://github.com/reactive-resume/reactive-resume";
 const licenseUrl = `${githubUrl}/blob/main/LICENSE`;
-// On touch, each link is a 44px row; the column gap closes so the columns don't grow.
-const linkClass =
-	"text-ink transition-colors hover:text-accent-text pointer-coarse:inline-flex pointer-coarse:min-h-11 pointer-coarse:items-center";
+// Every directory link has a complete 44px target, including mouse and keyboard layouts.
+const linkClass = "inline-flex min-h-11 items-center rounded-sm text-ink-2 transition-colors hover:text-accent-text";
 
 type FooterLink =
 	| { label: string; href: string }
@@ -26,7 +25,7 @@ const getColumns = (story: boolean): { id: string; title: string; links: FooterL
 		title: t`Product`,
 		links: [
 			{ label: t`Templates`, to: "/resume-templates" },
-			{ label: t`Features`, href: story ? "#write" : "https://rxresu.me/#write" },
+			{ label: t`Features`, href: story ? "#write" : "/#write" },
 			{ label: t`ATS checker`, to: "/ats-checker" },
 			{ label: t`Get started`, to: "/auth/register" },
 			{ label: t`Sign in`, to: "/auth/login" },
@@ -78,6 +77,58 @@ function FooterLinkItem({ link }: { link: FooterLink }): ReactNode {
 		<a href={link.href} className={linkClass}>
 			{link.label}
 		</a>
+	);
+}
+
+/** Complete public directory with the same legal, community and language access in every public route. */
+export function CompactLandingFooter() {
+	return (
+		<footer className="border-t border-line">
+			<div className="home-container py-12">
+				<div className="grid gap-8 lg:grid-cols-[1fr_3fr] lg:gap-14">
+					<div>
+						<a
+							href="/"
+							className="inline-flex min-h-11 items-center rounded-md text-xl font-semibold tracking-[-.025em]"
+						>
+							Reactive Resume
+						</a>
+						<p className="mt-2 max-w-[24ch] text-sm leading-6 text-ink-2">{t`By the community, for the community.`}</p>
+					</div>
+					<div className="grid grid-cols-2 gap-x-5 gap-y-7 sm:grid-cols-4">
+						{getColumns(false).map((column) => (
+							<nav key={column.id} aria-labelledby={`footer-${column.id}`}>
+								<h2 id={`footer-${column.id}`} className="mb-2 text-sm font-semibold">
+									{column.title}
+								</h2>
+								<ul className="grid text-sm leading-5 text-ink-2">
+									{column.links.map((link) => (
+										<li key={link.label} className="flex min-h-11 items-center">
+											<FooterLinkItem link={link} />
+										</li>
+									))}
+								</ul>
+							</nav>
+						))}
+					</div>
+				</div>
+				<div className="mt-8 flex flex-wrap items-center justify-between gap-x-8 gap-y-3 border-t border-line pt-5 text-sm text-ink-2">
+					<LanguageDoorway story={false} className="min-h-11 gap-2 rounded-md px-2" />
+					<p className="flex flex-wrap items-center gap-5">
+						<Trans>
+							Licensed under{" "}
+							<a
+								href={licenseUrl}
+								className="inline-flex min-h-11 items-center rounded-sm text-accent-text underline underline-offset-3"
+							>
+								MIT
+							</a>
+						</Trans>
+						<span className="font-mono text-xs">v{__APP_VERSION__}</span>
+					</p>
+				</div>
+			</div>
+		</footer>
 	);
 }
 

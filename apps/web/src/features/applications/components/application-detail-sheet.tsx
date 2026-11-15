@@ -198,7 +198,7 @@ function Detail({ application, onEditDetails, onDeleted }: DetailProps) {
 							{application.company.slice(0, 1).toUpperCase()}
 						</span>
 						<div className="grid min-w-0 flex-1 gap-0.5">
-							<SheetTitle tabIndex={-1} dir="auto" className="font-display text-[22px] leading-7">
+							<SheetTitle tabIndex={-1} dir="auto" className="font-ui text-[22px] leading-7">
 								{application.role}
 							</SheetTitle>
 							<SheetDescription className="flex flex-wrap items-center gap-x-1.5 text-sm text-ink-2">

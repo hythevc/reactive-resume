@@ -299,7 +299,7 @@ function ColorField({ label, value, disabled, onChange }: ColorFieldProps) {
 						backgroundColor: colors.raised,
 						borderRadius: radius.rLg,
 						borderWidth: 1,
-						borderColor: invalid ? colors.dangerText : colors.lineStrong,
+						borderColor: invalid ? colors.dangerText : colors.controlLine,
 					}}
 				/>
 			</View>
@@ -509,7 +509,7 @@ export function StylesScreen({ data, write, disabled }: GroupProps) {
 					backgroundColor: colors.raised,
 					borderRadius: radius.rLg,
 					borderWidth: 1,
-					borderColor: errors.length > 0 ? colors.dangerText : colors.lineStrong,
+					borderColor: errors.length > 0 ? colors.dangerText : colors.controlLine,
 				}}
 			/>
 			{errors.length > 0 ? (

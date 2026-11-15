@@ -18,21 +18,19 @@ export type TextProps = NativeTextProps & {
 	color?: ColorToken | undefined;
 	/**
 	 * Figtree weight for UI variants, where tokens.md names one (field labels 600, document names 600).
-	 * Ignored for the Instrument Serif (single weight) and mono variants.
+	 * Ignored for the mono variant. Document typography is owned separately.
 	 */
 	weight?: 400 | 500 | 600 | 700 | undefined;
 	align?: "auto" | "left" | "center" | "right" | undefined;
 	children?: ReactNode;
 };
 
-const displayVariants = new Set<TextVariant>(["largeIOS", "largeAnd", "display", "heading", "mono"]);
-
 export function Text({ variant = "body", color = "ink", weight, align, style, ...props }: TextProps) {
 	const { colors, fonts, type } = useTheme();
 	const { maxFontSizeMultiplier, ...font } = type[variant] as (typeof type)[TextVariant] & {
 		maxFontSizeMultiplier?: number;
 	};
-	const fontFamily = weight && !displayVariants.has(variant) ? fonts.ui[weight] : font.fontFamily;
+	const fontFamily = weight && variant !== "mono" ? fonts.ui[weight] : font.fontFamily;
 
 	return (
 		<NativeText

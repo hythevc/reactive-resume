@@ -7453,10 +7453,6 @@ msgstr "Skapa länk"
 msgid "Make primary"
 msgstr "Gör till primärt"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Gör plats för nästa steg."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Gör öppningen starkare"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "Omlokalisering"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Kom ihåg"
@@ -13923,6 +13920,7 @@ msgstr "Tillåt aviseringar i enhetens inställningar för att få en påminnels
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

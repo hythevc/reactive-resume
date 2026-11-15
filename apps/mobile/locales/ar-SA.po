@@ -7453,10 +7453,6 @@ msgstr "إنشاء رابط"
 msgid "Make primary"
 msgstr "جعلها أساسية"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "إفساح المجال للخطوة التالية."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "جعل الافتتاح أقوى"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "الانتقال إلى مكان آخر"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "تذكّر"
@@ -13923,6 +13920,7 @@ msgstr "للحصول على تذكير، اسمح بالإشعارات في إع
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

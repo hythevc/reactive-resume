@@ -3,7 +3,7 @@ import { LegacyWorkspaceRedirect } from "@/components/legacy-workspace-redirect"
 import { HomePage } from "@/components/marketing/home";
 
 export const metadata: Metadata = {
-	title: { absolute: "CareerOS — Your next move, in one place" },
+	title: { absolute: "CareerOS — Resumes, applications and your next step" },
 	description:
 		"Build your resume, review your LinkedIn writing, prepare applications and organize your job search in a free local workspace.",
 };

@@ -1236,12 +1236,16 @@ const applicationCard = nodes(sectionList.props.renderItem({ item: applications[
 );
 const applicationCardTree = ApplicationCardView(applicationCard.props);
 const applicationCardAction = nodes(applicationCardTree).find((node) => node.type === "Pressable");
-for (const fact of ["Example", "Engineer", "Example city", "design, remote", "+1", "Resume"])
+for (const fact of ["Example", "Engineer", "Example city", "design, remote, product", "Resume"])
 	assert.ok(
 		applicationCardAction.props.accessibilityLabel.includes(fact),
 		`Application card retains accessible ${fact}`,
 	);
 assert.ok(nodes(applicationCardTree).some((node) => node.props.children?.includes("Review details")));
+assert.ok(
+	nodes(applicationCardTree).some((node) => node.props.children?.includes("design, remote +1 · Resume")),
+	"Compact metadata retains the remaining-tag count",
+);
 applicationCard.props.onPress();
 assert.equal(
 	calls.pop(),
@@ -1256,6 +1260,9 @@ const listCard = () => {
 };
 assert.equal(listCard().props.selected, true, "ellipsis enters explicit bulk selection");
 assert.equal(listCard().props.selecting, true);
+const selectedCardAction = nodes(ApplicationCardView(listCard().props)).find((node) => node.type === "Pressable");
+assert.equal(selectedCardAction.props.accessibilityRole, "checkbox");
+assert.equal(selectedCardAction.props.accessibilityState.checked, true);
 assert.ok(
 	nodes(ApplicationCardView(listCard().props)).some((node) => node.props.children?.includes("Toggle selection")),
 	"Selection mode describes the actual card action",
@@ -2481,6 +2488,7 @@ let todayOffers = [];
 let todayOfferState = { isPending: false, isError: false };
 let todayNow = new Date("2026-11-04T12:00:00Z");
 let todaySchedules = [];
+let todayOpportunities = discovered;
 const { TodayScreen } = load("features/career/today.tsx", {
 	"./prepare-now": { PrepareNow: "PrepareNow" },
 	"@/features/applications/stage-actions": { useOfferHints: () => undefined, offerHintFor: () => undefined },
@@ -2506,7 +2514,7 @@ const { TodayScreen } = load("features/career/today.tsx", {
 		useOffers: () => ({ data: todayOffers, ...todayOfferState }),
 		useTodayQueries: () => ({
 			schedules: { data: todaySchedules },
-			opportunities: { data: discovered },
+			opportunities: { data: todayOpportunities },
 			notifications: { data: [] },
 			briefings: { data: [] },
 		}),
@@ -2529,6 +2537,30 @@ const { TodayScreen } = load("features/career/today.tsx", {
 		},
 	},
 });
+todayOpportunities = [];
+const emptyToday = render(TodayScreen);
+assert.equal(
+	nodes(emptyToday).some((node) => node.props.title === "Coming up"),
+	false,
+	"A confirmed empty schedule needs no second empty section",
+);
+assert.equal(
+	nodes(emptyToday).some((node) => node.props.label === "Show read"),
+	false,
+);
+assert.equal(nodes(emptyToday).filter((node) => node.props.title === "Your job search starts here").length, 1);
+assert.ok(control(emptyToday, "Set up discovery"));
+assert.ok(control(emptyToday, "Add schedule"));
+nodes(emptyToday)
+	.find((node) => node.props.action?.label === "Set your preferences")
+	.props.action.onPress();
+assert.deepEqual(
+	calls.pop(),
+	{ pathname: routes.career("knowledge"), params: { tab: "preferences" } },
+	"Preferences action opens Preferences, not the default Facts tab",
+);
+todayOpportunities = discovered;
+reset();
 let triageTree = render(TodayScreen);
 control(triageTree, "Select all roles").onPress();
 triageTree = render(TodayScreen);
@@ -3615,13 +3647,34 @@ for (const state of [{ isPending: true }, { isError: true }]) {
 factsReadState = {};
 reset();
 {
+	const collapsed = factsHeader();
+	assert.equal(
+		nodes(collapsed).some((node) => node.props.label === "Search facts"),
+		false,
+		"A confirmed empty library has no irrelevant search filter",
+	);
+	assert.equal(
+		nodes(collapsed).some((node) => node.props.label === "Remember"),
+		false,
+		"Optional memory controls start collapsed",
+	);
+	const disclosure = nodes(collapsed).find(
+		(node) => node.props.accessibilityLabel === "Remember facts from my messages",
+	);
+	assert.equal(disclosure.props.accessibilityState.expanded, false);
+	disclosure.props.onPress();
+	assert.equal(
+		nodes(factsHeader()).find((node) => node.props.accessibilityLabel === "Remember facts from my messages").props
+			.accessibilityState.expanded,
+		true,
+	);
 	const memoryMode = "off";
 	let header = factsHeader();
-	assert.equal(control(header, "Remember facts from my messages").value, memoryProfile.memoryMode);
-	control(header, "Remember facts from my messages").onChange(memoryMode);
-	control(header, "Remember facts from my messages").onChange(memoryMode);
+	assert.equal(control(header, "Remember").value, memoryProfile.memoryMode);
+	control(header, "Remember").onChange(memoryMode);
+	control(header, "Remember").onChange(memoryMode);
 	header = factsHeader();
-	assert.equal(control(header, "Remember facts from my messages").disabled, true);
+	assert.equal(control(header, "Remember").disabled, true);
 	assert.equal(calls.length, 1, "pending consent writes cannot repeat");
 	assert.deepEqual(calls[0], {
 		input: { memoryMode },
@@ -3629,31 +3682,31 @@ reset();
 	});
 	finishMemory();
 	await settle();
-	assert.equal(control(factsHeader(), "Remember facts from my messages").value, memoryMode);
+	assert.equal(control(factsHeader(), "Remember").value, memoryMode);
 	assert.equal(memoryProfile.priorities, "Mentoring");
 	calls.length = 0;
 }
-control(factsHeader(), "Remember facts from my messages").onChange("auto");
+control(factsHeader(), "Remember").onChange("auto");
 rejectMemory(new Error("Offline"));
 await settle();
-assert.equal(control(factsHeader(), "Remember facts from my messages").value, "off");
+assert.equal(control(factsHeader(), "Remember").value, "off");
 assert.ok(nodes(factsHeader()).some((node) => node.type === "Banner" && node.props.message === "Offline"));
-control(factsHeader(), "Remember facts from my messages").onChange("auto");
+control(factsHeader(), "Remember").onChange("auto");
 finishMemory();
 await settle();
-assert.equal(control(factsHeader(), "Remember facts from my messages").value, "auto");
+assert.equal(control(factsHeader(), "Remember").value, "auto");
 assert.equal(
 	nodes(factsHeader()).some((node) => node.type === "Banner"),
 	false,
 );
 memoryAccount = undefined;
-assert.equal(control(factsHeader(), "Remember facts from my messages").disabled, true);
+assert.equal(control(factsHeader(), "Remember").disabled, true);
 calls.length = 0;
-control(factsHeader(), "Remember facts from my messages").onChange("auto");
+control(factsHeader(), "Remember").onChange("auto");
 assert.equal(calls.length, 0);
 memoryAccount = { id: "owner" };
 memoryServer = "changed";
-control(factsHeader(), "Remember facts from my messages").onChange("auto");
+control(factsHeader(), "Remember").onChange("auto");
 assert.equal(calls.length, 0);
 memoryServer = "test";
 memoryProfile = undefined;

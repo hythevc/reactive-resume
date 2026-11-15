@@ -1,72 +1,51 @@
 ---
-version: 7.0.0
-name: Reactive Resume · Desk & Paper
-description: A warm, quiet interface around bright paper. Moss green marks primary actions, selection, and progress. Light and dark themes keep document paper white.
+version: 8.0.0
+name: Reactive Resume · Working Record
+description: Cool paper, slate ink, and a restrained teal action color. Functional Figtree titles organize the work; resume and letter paper retain their own typography.
 colors:
   light:
-    bg: "#F8F7F3"
-    surface: "#FEFDFC"
+    bg: "#F5F7F8"
+    surface: "#FFFFFF"
     raised: "#FFFFFF"
-    sunken: "#F0EFEB"
-    line: "#DCE2DA"
-    line-2: "#BECBBF"
-    control-border: "#7B8B7D"
-    ink: "#202B25"
-    ink-2: "#4F5A53"
-    ink-3: "#626B65"
-    accent: "#286343"
-    accent-hover: "#1F5036"
+    sunken: "#ECF1F3"
+    line: "#DCE4E8"
+    line-2: "#8CA2AD"
+    control-border: "#708995"
+    ink: "#172B32"
+    ink-2: "#3F535C"
+    ink-3: "#5B6E77"
+    accent: "#0B6E75"
+    accent-hover: "#07555B"
     on-accent: "#FFFFFF"
-    accent-soft: "#E7EFE2"
-    accent-text: "#1B4D34"
-    on-danger: "#FFFFFF"
-    danger: "#BA3630"
-    danger-soft: "#FFE7E4"
-    danger-text: "#A92321"
-    warn: "#D29922"
-    warn-soft: "#FCEDCD"
-    warn-text: "#81520A"
-    warn-ink: "#22190A"
-    info-soft: "#E0F1FF"
-    info-text: "#1D5B92"
+    accent-soft: "#E4F3F2"
+    accent-text: "#075E64"
   dark:
-    bg: "#101713"
-    surface: "#17201B"
-    raised: "#202B24"
-    sunken: "#0D120F"
-    line: "#334639"
-    line-2: "#59705E"
-    control-border: "#6E8372"
-    ink: "#EEF5EE"
-    ink-2: "#C2CFC3"
-    ink-3: "#9CAC9D"
-    accent: "#91CCA0"
-    accent-hover: "#A4D9B0"
-    on-accent: "#102315"
-    accent-soft: "#223C2A"
-    accent-text: "#A6DDB1"
-    on-danger: "#07150A"
-    danger: "#D9544B"
-    danger-soft: "#47211D"
-    danger-text: "#FDA297"
-    warn: "#E4B750"
-    warn-soft: "#3E2D10"
-    warn-text: "#EFCC83"
-    warn-ink: "#22190A"
-    info-soft: "#192F46"
-    info-text: "#9DC9F7"
+    bg: "#101A20"
+    surface: "#17262E"
+    raised: "#20323B"
+    sunken: "#0B1419"
+    line: "#314B57"
+    line-2: "#526F7D"
+    control-border: "#6D8A98"
+    ink: "#EFF5F6"
+    ink-2: "#C0D0D8"
+    ink-3: "#9CB0BA"
+    accent: "#7DD2D4"
+    accent-hover: "#94DFE0"
+    on-accent: "#082E33"
+    accent-soft: "#153E45"
+    accent-text: "#A5E6E6"
   paper: "#FFFFFF"
-  stages:
-    saved: "#908C7F"
-    applied: "#5590CC"
-    screening: "#00A0A6"
-    interview: "#AF8433"
-    offer: "#579F68"
-    closed: "#C67067"
 typography:
-  display: { fontFamily: Instrument Serif, fontSize: 44px, lineHeight: 48px, fontWeight: 400, letterSpacing: -0.01em }
-  title: { fontFamily: Instrument Serif, fontSize: "34px mobile / 44px desktop", lineHeight: 1.1, fontWeight: 400 }
-  sheet-title: { fontFamily: Instrument Serif, fontSize: 22px, lineHeight: 28px, fontWeight: 400 }
+  title:
+    {
+      fontFamily: Figtree,
+      fontSize: "28px mobile / 32px desktop",
+      lineHeight: 1.15,
+      fontWeight: 600,
+      letterSpacing: -0.02em,
+    }
+  sheet-title: { fontFamily: Figtree, fontSize: 20px, lineHeight: 28px, fontWeight: 600 }
   heading: { fontFamily: Figtree, fontSize: 20px, lineHeight: 28px, fontWeight: 600 }
   section-heading: { fontFamily: Figtree, fontSize: 17px, lineHeight: 24px, fontWeight: 600 }
   label: { fontFamily: Figtree, fontSize: 15px, lineHeight: 22px, fontWeight: 600 }
@@ -79,9 +58,9 @@ typography:
 rounded:
   xs: 4px
   sm: 4px
-  md: 8px
-  lg: 12px
-  xl: 16px
+  md: 6px
+  lg: 8px
+  xl: 12px
   2xl: 16px
   3xl: 20px
   4xl: 24px
@@ -92,212 +71,93 @@ motion:
   emphasized: 320ms
   easing: cubic-bezier(0.2, 0.8, 0.2, 1)
   exit: 70% of the entering duration
-  movement-easing: cubic-bezier(0.77, 0, 0.175, 1)
 marketing:
   typography:
-    display: { fontFamily: Instrument Serif, fontWeight: 400 }
-    write-title: { fontFamily: Instrument Serif, fontSize: "clamp(72px, 9vw, 160px)", lineHeight: 0.9, fontWeight: 300 }
-    numeral:
-      {
-        fontFamily: Instrument Serif,
-        fontSize: "clamp(56px, 7.5vw, 136px)",
-        fontWeight: 300,
-        fontVariantNumeric: tabular-nums,
-      }
-    body: { fontFamily: Instrument Serif, fontSize: "16–21px", lineHeight: "1.45–1.5", fontWeight: 400 }
-    accent: { fontFamily: Instrument Serif, fontStyle: italic, color: accent-text }
-    label: { fontFamily: Figtree, fontSize: 13px, fontWeight: 500 }
-  colors:
-    graphite: { light: "oklch(0.38 0.01 95 / .3)", dark: "oklch(0.9 0.01 95 / .18)" }
-    night-1: "oklch(0.24 0.03 265)"
-    night-2: "oklch(0.15 0.02 265)"
-    night-accent: "oklch(0.8 0.13 150)"
-    star: "oklch(0.72 0.14 80)"
-    receipt: "#FDFCF8"
-    bulb-glass: "oklch(0.95 0.11 92)"
-    bulb-filament: "oklch(0.7 0.16 60)"
-  shadow:
-    paper:
-      light: "0 1px 2px oklch(0.2 0.01 95 / 0.12), 0 40px 80px -30px oklch(0.2 0.01 95 / 0.5), 0 0 0 1px oklch(0.2 0.01 95 / 0.04)"
-      dark: "0 1px 2px oklch(0 0 0 / 0.5), 0 40px 80px -30px oklch(0 0 0 / 0.8)"
-  motion:
-    pull-easing: cubic-bezier(0.3, 1.7, 0.5, 1)
-  doodles: { opacity: { light: 0.92, dark: 0.8 }, darkFilter: "brightness(0.92)" }
+    title: { fontFamily: Figtree, fontSize: "40–42px mobile / 60–64px desktop", lineHeight: 1.05, fontWeight: 600 }
+    body: { fontFamily: Figtree, fontSize: "16–18px", lineHeight: 1.6, fontWeight: 400 }
 ---
 
-## Overview
+## Purpose and ownership
 
-Reactive Resume uses “Desk & Paper”: a warm, quiet interface around a bright resume or letter. Low-contrast surfaces, thin rules, and a moss-green accent keep attention on the document.
+Reactive Resume uses Working Record: a compact professional workspace around a distinct document. Cool neutral surfaces, slate text, thin separators, and teal primary actions organize the work. Figtree names tasks and screens. The resume, letter, and real template previews keep their own fonts and colors.
 
-This reference covers the current app and homepage. Implementation details live in the source files named below; [REDESIGN_PLAN.md](REDESIGN_PLAN.md) records the redesign milestones and deviations from the original handoff.
+This is the current parent web and shared UI reference. Semantic tokens live in `packages/ui/src/styles/globals.css`; shared primitives live in `packages/ui/src/components`; feature UI belongs in its owning `apps/web` feature. Native equivalents live in `apps/mobile/src/ui`. Keep the public homepage, account workspace, and native app in the same visual family without changing their auth, persistence, or API contracts.
 
-Five principles guide decisions:
+1. **Show the work.** Keep documents visible when editing and collection actions beside the collection name.
+2. **Name the next step.** Use a clear primary action, specific row labels, and explicit sort choices.
+3. **Preserve control.** Keep manual entry, undo, import, settings, and reviewable AI proposals reachable.
+4. **Reveal detail when useful.** Collapse optional configuration before adding another nested card.
+5. **Use actual evidence.** Show real templates and sample documents. Never invent customer counts, results, account states, activity, or synchronization claims.
 
-1. **The page is the interface.** Keep the live document visible while editing. Selecting a supported block opens its fields.
-2. **One obvious next step.** Each app view has one primary action. Reserve accent fills for that action, selection, and progress.
-3. **Nothing is lost.** Edits autosave, reversible changes offer undo, and confirmations are reserved for irreversible actions.
-4. **Detail on demand.** Make defaults useful; put advanced controls one disclosure deeper.
-5. **AI proposes, you decide.** Show AI edits as reviewable proposals before applying them.
+## Tokens and typography
 
-Resume templates retain their Pokémon names, fonts, and palettes. App typography and control styling do not dictate template appearance.
+- Use semantic utilities such as `bg-bg`, `bg-surface`, `border-line`, `text-ink`, and `bg-accent`. Legacy `background`, `foreground`, `primary`, and `sidebar-*` names are not defined.
+- Use `bg` for the workspace, `surface` for a task panel, `raised` for menus and inputs, and `sunken` for tracks and the editor canvas. Avoid a card inside a card when spacing and a separator express the relationship.
+- `ink` is primary text, `ink-2` secondary text, and `ink-3` readable metadata. Check text contrast on every tinted surface.
+- `line` separates content; `line-2` is a decorative stronger rule. **Interactive boundaries use `control-border`**, whose light value is `#708995`: the lighter decorative rule does not provide sufficient control contrast against every surface.
+- Native `controlLine` maps to web `control-border`; native `lineStrong` maps to the decorative strong line. Native also has an intermediate weak line. Match roles rather than assuming property names are identical.
+- `danger`, `warn`, and `info` tokens retain their established meanings. Use `warn-ink` on solid warning fills. Stage colors appear with stage names; color alone never communicates an application state.
+- `--paper` remains white in both themes. Theme changes must not invert a resume or letter.
+- Figtree (`font-ui` / `font-sans`) is the app font, including page, sheet, dialog, and empty-state titles. Page titles use 28px on phones and 32px on larger screens, weight 600. Title spacing is tighter than body copy; text must wrap.
+- Instrument Serif (`font-display`) is available for actual paper/specimen typography. It has one weight (400 and italic); never request synthetic bold. Resume templates retain their established fonts, Pokémon names, and palettes.
+- Geist Mono (`font-mono`) is for shortcuts, URLs, slugs, filenames, and counts. Labels are sentence case and at least 12px. Avoid uppercase eyebrows and decorative tracking.
+- Rich text uses the owned shadcn Typeset stylesheet at `packages/ui/src/styles/typeset.css`, with `typeset-chat` or `typeset-field`. Use `not-typeset` to opt a nested component out.
+- Self-host Figtree, Instrument Serif, and Geist Mono through the existing font packages. Touch inputs use at least 16px text to prevent iOS zoom.
 
-## Tokens
+## Layout and controls
 
-`packages/ui/src/styles/globals.css` defines light tokens on `:root` and dark overrides on `.dark`. The shared foundation uses the exact sRGB values in the front matter; scene and status colors may use OKLCH. Tailwind exposes semantic utilities such as `bg-bg`, `bg-surface`, `border-line`, `text-ink`, and `bg-accent`.
+Use the 4px spacing scale. Phone pages have 16px margins; desktop content typically has 32–40px margins. Favor readable rows with a direct title/action relationship over a grid of status cards. A document may use a visual paper preview; metadata must remain readable in the list alternative.
 
-- **Surfaces:** `bg` for the app desk; `surface` for panels and cards; `raised` for menus, dialogs, and inputs; `sunken` for wells, tracks, and the page canvas.
-- **Text:** `ink` for primary text, `ink-2` for secondary text, and `ink-3` for metadata and placeholders. Use no lighter text token, and check contrast on tinted backgrounds.
-- **Signals:** `danger` for errors and irreversible actions; `warn` for issues to review; `warn-ink` for text on a solid `warn` fill, such as issue-marker numbers; `info-soft` and `info-text` for neutral guidance. Success uses `accent-soft` and `accent-text`.
-- **Overlays:** `hover` and `press` are translucent interaction states; `scrim` and `scrim-sheet` dim the background behind layers.
-- **Paper:** `--paper` remains white in both themes. Switching the app theme must not invert documents.
-- **Stages:** `stage-saved`, `stage-applied`, `stage-screening`, `stage-interview`, `stage-offer`, and `stage-closed` identify application stages. Use small dots or stepper bars beside stage names.
+- Small marks use 4px corners, controls 6px, work panels 8–12px, dialogs 16px, and native bottom sheets 20px. Real paper keeps its own geometry.
+- Default buttons and inputs are 44px high. Compact 32px buttons remain available for dense desktop contexts; `touch-target` expands compact hit areas to 44×44px. Android controls use at least 48px targets.
+- Reserve elevation for floating menus, layers, toasts, dragged items, and document paper. A stationary collection card does not need a shadow.
+- Keep a contextual New action in the Documents header as well as global creation access. Creation must preserve the current collection context.
+- Search, filters, sort, and view controls sit together beneath a collection title. Sorting presents named choices and the selected value, including on native.
+- When a collection is genuinely empty, show one explanation and its useful action. Hide filters that have no items to filter. Preserve loading, error/retry, filtered-empty, selected-item, and forgotten-item recovery states.
+- Facts starts with manual entry and resume import. Optional memory preferences sit behind a named disclosure; every preference remains available. Stories uses one fresh-empty action and restores the list/editor arrangement once work exists.
 
-Use semantic tokens in app code. Legacy names such as `background`, `foreground`, `primary`, `muted`, and `sidebar-*` are no longer defined.
+Phosphor regular icons come through the shared `Icon` registry; add new glyphs there. App icons are 20px on desktop and 24px on touch. Pair icons with text when useful. `IconButton` requires an accessible name; decorative icons are hidden from assistive technology. Directional arrows and chevrons mirror in RTL. Icons stored in resume data remain a separate Phosphor web-font contract.
 
-## Typography
+## Component behavior
 
-The front matter records the app type scale. Field labels use the separate `field-label` size.
+- Buttons use `primary`, `secondary`, `ghost`, `danger`, or `link`. Loading sets `aria-busy`, blocks repeat activation, and uses a progress label.
+- Inputs use `raised` and `control-border`; focus adds the accent boundary and soft ring. Keep labels, error associations, and explicit remedies.
+- Use `SwitchRow` so labels remain clickable; use `SegmentedControl` for short radio groups and `Tabs` for distinct panels. Native sort choices use the existing `SelectSheet`.
+- Menus contain content-sized choices, with destructive actions last after a separator. Dialogs hold short create forms or decisions; sheets hold longer tasks. A New document form uses a bottom sheet on phones, fixed for the lifetime of the open task so a resize cannot discard work.
+- Reversible actions offer undo. Confirm irreversible actions and explain what Cancel keeps. Closing a modal restores focus to its trigger.
+- Toasts show one at a time, bottom center, with `bg-ink` / `text-bg`; default timeout is six seconds. Undo closes its toast after the handler; repeat activation during exit does nothing.
+- Chats use the existing `MessageScroller` following/Latest behavior. AI proposals remain reviewable and provider configuration remains explicit. A visual cleanup must not remove functioning manual or AI controls.
+- Empty-state headings use 20px Figtree 600 with concise body copy. Use an unframed or compact state inside an existing section instead of adding another panel.
+- Preserve every primitive's `data-slot`; styles and behavior tests depend on it.
 
-- **Instrument Serif:** page, dialog, and sheet titles; empty-state headlines; large statistics. Use `font-display`. It has one weight (400 and italic): never set it semibold or bold, which the browser would fake.
-- **Figtree:** functional UI and body text. Use `font-sans` or `font-ui`.
-- **Geist Mono:** shortcuts, URLs, slugs, filenames and counts. Use `font-mono`.
-- No all-caps labels or title caps: headings, eyebrows, group labels and buttons are sentence case at 12px or larger, with normal tracking.
-- Field labels are 12px, medium weight, in `ink-2`, with a 6px gap above the control. Group eyebrows are 12px, semibold, in `ink-3`.
-- Rendered rich text (assistant and coach replies, the rich-text editor) uses shadcn Typeset: `packages/ui/src/styles/typeset.css`, an owned copy reading the app tokens. Wrap content in `typeset` plus a preset: `typeset-chat` or `typeset-field`. It styles only the elements those surfaces render (no images, `kbd`, `details`, definition lists or math). Opt a component out with `not-typeset`.
-- Touch inputs use at least 16px text to prevent iOS zoom.
-- Fonts are self-hosted through `@fontsource-variable/figtree`, `@fontsource/instrument-serif` and `@fontsource-variable/geist-mono`.
+## Accessibility, themes, and localization
 
-## Iconography
+Target WCAG 2.2 AA. Show focus, name controls, pair status colors with words, provide keyboard/menu alternatives to drag, and trap focus only in modal layers. Escape closes the top layer; closing returns focus. Routine save feedback is polite; assertive announcements are for urgent errors. The application navigation focus manager may focus a heading after a route change; retain this behavior.
 
-App icons use **Phosphor** (regular weight) through `Icon` from `@reactive-resume/ui/components/icon`. `Icon` takes the glyph's Phosphor name (`x`, `gear-six`, `magnifying-glass`), the same names the [Phosphor catalog](https://phosphoricons.com) and resume icons use. To use another glyph, add it to the `icons` map in that file.
+Every `DndContext` uses `dndContextProps()` so announcements name the item and its destination in the UI language. Test pointer, keyboard, text expansion, phone widths, and dark mode; source inspection or a web-rendered native gallery does not substitute for actual iOS/Android device testing.
 
-Use 20px icons on desktop and 24px on touch interfaces. Regular weight is the default; reserve filled app icons for selected navigation. Marketing illustrations may use filled icons, such as the GitHub star.
+The `theme` cookie stores light, dark, or system. `ThemeProvider` and the prepaint script apply the shared preference; the homepage follows the same mechanism. Preserve light document paper in all themes.
 
-Pair icons with text. Back, close, more, undo/redo, history, assistant, and zoom controls may use `IconButton`, which requires an accessible label and supplies a tooltip with an optional shortcut. `Icon` is decorative (`aria-hidden`) and sized by its font size, so containers can resize it with `text-*`. Directional arrows, chevrons, undo, and redo mirror in RTL layouts.
-
-Icons inside resumes use Phosphor names stored in resume data, drawn by the Phosphor web font; they remain separate from app icons.
-
-## Space, shape, and elevation
-
-- **Spacing:** use the 4px scale in the front matter. Cards typically have 16px padding, panels 16–24px, mobile pages 16px margins, and desktop pages 32–40px margins.
-- **Radius:** 4px (`rounded-sm`) for small marks; 8px (`rounded-md`) for controls; 12px (`rounded-lg`) for surfaces and menus; 16px (`rounded-xl`) for dialogs. Native bottom sheets use 20px. Keep real document paper distinct from the surrounding app surface.
-- **Elevation:** `shadow-e1` for cards; `shadow-e2` for menus and popovers; `shadow-e3` for dialogs, sheets, and toasts; `shadow-page` for editor paper.
-- **Controls:** button heights are 32px (`sm`), 40px (`default`), and 44px (`lg`). Icon button sizes range from 28px to 44px. Inputs grow from 40px to 44px on touch devices; `touch-target` expands smaller controls' hit areas to at least 44×44px.
-- **Layout variables:** `--editor-bar: 56px`, `--editor-panel: 400px`, `--app-sidebar: 256px`, `--sheet-share: 440px`, `--sheet-detail: 480px`, and `--assistant: 400px`.
+Translate copy and accessible labels through Lingui. Shared primitives receive translated labels as props. Locales come from `packages/utils/src/locale.ts`; root routing sets `lang`, `dir`, and Base UI direction. Prefer logical properties (`ps`, `pe`, `start`, `end`) and allow 30–50% expansion. Reuse existing IDs when rearranging copy; coordinate one extraction pass after parallel source changes settle.
 
 ## Motion
 
-| Token                 | Duration | Use                                                    |
-| --------------------- | -------- | ------------------------------------------------------ |
-| `duration-quick`      | 120ms    | Hover, press, toggles, checkboxes, and focus           |
-| `duration-standard`   | 200ms    | Menus, popovers, expansion, content swaps, and dialogs |
-| `duration-emphasized` | 320ms    | Sheets, toasts, and the assistant column               |
+Use 120ms for hover/focus/toggles, 200ms for menus and content swaps, and 320ms for sheets/toasts, with `cubic-bezier(0.2,0.8,0.2,1)`. Exits take 70% of entrance duration. App timing helpers remain in `apps/web/src/libs/motion.ts`.
 
-- Entering and changing state use `ease-enter` (`cubic-bezier(0.2, 0.8, 0.2, 1)`). Exits take 70% of the entry duration.
-- Sliding indicators, reordering, and settling use `ease-in-out-strong` (`cubic-bezier(0.77, 0, 0.175, 1)`). Swipe-dismissed bottom sheets use `ease-drawer`.
-- Keep app motion brief and purposeful. Small entrance fades, status transitions, and the mobile tab indicator's spring are supported. Loading placeholders stay still; document reflow is never animated. Keyboard mode switches are instant.
-- Reduced motion removes spatial movement, stagger and decorative animation. Known layer/content state changes retain a short 120ms opacity fade; page snapshot transitions and explicit instant controls stay instant, and status spinners continue turning. Native custom fades follow the same policy; native system sheets keep their platform accessibility behavior.
-- A pathname change fades through: the old page fades out over 140ms, then the new one fades up 6px over 200ms, so the two never show at once. The builder's own pending shell (its bar, panel placeholders and a blank page at the canvas's size) stands in while a resume loads; the logo loader covers only the app's first load.
-- Dragging auto-scrolls a list only from its outer 8%, gently (`DRAG_AUTO_SCROLL`).
-- `apps/web/src/libs/motion.ts` mirrors CSS timings. `MotionConfig reducedMotion="user"` removes transform/layout animations while preserving opacity. CSS keeps unknown effects instant and allows opacity alone on known layer/content transitions.
+Keep loading placeholders still and document reflow instant. Reduced motion removes spatial movement, stagger, and decorative effects; known layer changes may retain a short opacity transition. Native system sheets retain platform accessibility behavior. Preserve existing navigation and drag timing contracts.
 
-The homepage has separate motion rules below.
+## Public homepage
 
-## Components
+`apps/web/src/features/homepage/page.tsx` composes the compact public page. Its hero puts the translated product promise and account-aware CTA beside the actual rendered sample resume. Factual capabilities follow as compact sections and separator rows, with real template thumbnails, language access, FAQ, support, and footer navigation.
 
-Generic primitives live in `packages/ui/src/components`, using Base UI and cmdk for the command palette. Feature-specific UI belongs in its owning `apps/web` feature.
+- Use Figtree for public headings and body copy; large titles are 40–42px on phones and 60–64px on desktop. The rendered sample and template previews keep their document typography.
+- Repeat the existing primary CTA in useful entry/exit positions. Preserve signed-in, signed-out, and guest destinations. Do not fabricate marketing statistics or convert decorative mock data into product claims.
+- Use solid matte surfaces and buttons, restrained separators, and real product evidence. Avoid pinned scroll scenes, ambient particles, cursor glows, decorative theme cords, texture, gradients, and a repeated card grid for factual paragraphs.
+- The active homepage does not mount the legacy scroll-story engine. Legacy scene modules may remain for compatibility, but their pinning and illustration choreography are not the active design contract.
+- Use one `h1`, semantic sections/landmarks, a skip link, native links, and named controls. FAQ and locale controls must work with keyboard and touch. Nothing relies on hover or animation.
+- The same `Homepage` composition feeds client routing and build-time prerender. Keep headings and body copy in initial HTML; public page content and the CTA must not wait for animation or client hydration.
+- `apps/server/src/static/web.ts` serves locale-specific HTML and canonical, OpenGraph, hreflang, and structured data. Preserve the public ATS checker, routing fallbacks, support links, locale links, metadata, and the factual zero-price offer.
 
-- **Buttons:** `primary`, `secondary`, `ghost`, `danger`, and `link`. `loading` adds a spinner, sets `aria-busy`, and blocks activation. Use a progress label such as “Preparing…”.
-- **Inputs:** `raised` background and `control-border` border; focus adds an accent border and a 3px `accent-soft` ring. Invalid fields use danger styling. Show errors after blur or submission, with an icon and a specific remedy.
-- **Switches:** prefer `SwitchRow` so the label is part of the target. Checkboxes are 18px with a 4px radius; radios are 18px with an 8px accent dot.
-- **Segments and tabs:** use `SegmentedControl` for 2–4 options in a radio group. Use `Tabs` to switch panels; set `TabsList variant="line"` for underline tabs.
-- **Menus:** 12px radius and 36px items. Size popups for their content and trigger; put destructive items last, after a separator.
-- **Layers:** menus and popovers provide lightweight choices; sheets hold tasks beside the document and use the bottom variant on mobile; dialogs hold decisions. Use `AlertDialog` for destructive confirmation and name what cancel keeps.
-- **Creating things:** a short create form (up to about six fields, such as New document or Save a job) is a dialog. New document uses a bottom sheet on phones, matching the native creation form; its presentation stays fixed while open so a resize cannot discard work. A long form, or one that needs the page behind it, is a sheet (New schedule, Add offer on Offers). A form tied to one item already on screen opens in place beside it (Add fact, Add offer in a job's Offer stage).
-- **Toasts:** one visible at a time, bottom center, with `bg-ink` and `text-bg`. The default timeout is six seconds; `timeout: 0` keeps a toast visible. Undo is an optional underlined action. Pressing an action closes its toast after the action's handler runs, and a second press while it leaves does nothing.
-- **Chats:** the assistant and career coach transcripts use `MessageScroller` (shadcn, behaviour from `@shadcn/react`): it follows a streaming reply only while the reader is at the latest message, settles each question near the top, reopens a saved thread on its last question, and shows a “Latest” button after scrolling away. Agent steps are `Trace` lines: spinner and shimmer while running, check when done, danger when failed, dimmed dash when unfinished. Mobile mirrors both.
-- **Alerts:** `info`, `success`, `warn`, and `error`; only the error variant adds `role="alert"` by default.
-- **Empty states:** a 22px Instrument Serif headline, concise 14px body text, and a primary action. Add a secondary action only when useful.
-
-## Accessibility
-
-Target WCAG 2.2 AA:
-
-- Show a 2px accent focus outline with a 2px gap on `:focus-visible`. Inputs use their border and soft ring instead.
-- Provide at least 24px pointer targets and 44px touch targets. Every drag operation needs keyboard and menu alternatives. Each `DndContext` takes `dndContextProps()` (`apps/web/src/libs/dnd.ts`): drags are announced in the UI language by the item's visible name and its page or column, never by an id.
-- Pair color signals with text; add icons where they clarify status.
-- Trap focus in modal sheets and dialogs. Escape closes the top layer; closing returns focus to its trigger.
-- Announce save state and routine feedback politely. Reserve assertive announcements for errors that need immediate attention.
-
-## Themes
-
-The shared `theme` cookie stores `light`, `dark`, or `system` (the default). System mode follows `prefers-color-scheme` live. `ThemeProvider` manages the `.dark` class on `<html>`; an inline script in `apps/web/index.html` applies it before first paint. The homepage uses this same preference.
-
-## Internationalization
-
-- Translate user-facing text and accessible labels through Lingui (`t`, `msg`, or `<Trans>`). Catalogs live in `apps/web/locales`.
-- UI primitives receive translated labels as props, such as `closeLabel`; they do not depend on Lingui.
-- Supported locales come from `packages/utils/src/locale.ts`. The root route updates `<html lang>` and `<html dir>` and passes direction to Base UI's `DirectionProvider`.
-- Prefer logical properties and utilities (`ps`, `pe`, `ms`, `me`, `start`, `end`, `inset-s`, `inset-e`).
-- Allow 30–50% text expansion; avoid fixed widths for translated labels.
-
-## Marketing site
-
-The opening hero is a static split composition: the real translated promise and account-aware CTA sit beside the rendered Classic sample resume. It is present in server prerender, readable without scroll animation, and stacks on phones. The sample is illustrative rather than a customer result. Write, Design, and Tailor links enter the existing interactive story.
-
-The public homepage in `apps/web/src/features/homepage` shares app colors and themes but has its own typography, illustrations, and motion. `landing.css` defines its fonts, graphite color, paper shadows, and ambient animations. Other illustration colors in the front matter are scene values, not global app tokens.
-
-### Brand and type
-
-- **Header:** a 30px logomark from `apps/web/public/icon/{light,dark}.svg`. Show the Reactive Resume wordmark beside it from the small breakpoint; retain the name for assistive technology at every width.
-- **Footer:** a 140px logo from `apps/web/public/logo/{light,dark}.svg` above the hero's promise (its two highlighted phrases in `accent-text`), the link columns, then a line of community, MIT license and version copy.
-- **Footer desk:** two drawings of the same writing desk in front of an open window, day (`apps/web/public/illustrations/footer-desk-light.webp`, moss and charcoal on white) and night (`footer-desk-dark.webp`, silver and amber on black). The light one multiplies and the dark one lightens into the page, so their white or black wall vanishes and the desk seems to stand on the footer; their far edges fade out. As the desk scrolls into view it paints itself in from the window down, just ahead of the fold, while it rises and settles from a 4% zoom; it completes exactly when the page ends (`--dp`, written by `scroll.ts`; 1 under reduced motion). In the light theme a soft morning glow rises behind the window with it. Its objects are links back into the story, each showing its scene number and name on hover or focus: the resume to Write, the glasses to Check, the letters to Share, the calendar to Prepare, the window to Remember. The lamp switches the theme, like the header's cord. Below 700px the desk crops to its middle and the hotspots hide (the columns carry the same links). Hotspot boxes are percentages of the drawing (`getDeskSpots` in `footer.tsx`): re-measure them if the drawing changes. The wall must be pure white in the day drawing and pure black in the night one: multiply and lighten only make those disappear, and any tint shows as a band. Flatten with `magick in.png -background white -alpha remove -alpha off flat.png` (black for the night one); if the wall came back tinted, lift it to white per channel (e.g. `-channel R -level 0,97% -channel G -level 0,96.6% -channel B -level 0,95% +channel` for a #F8F7F3 wall), then `cwebp -q 74 -m 6 -sharp_yuv flat.png -o out.webp`. The 3200px drawing also ships at 1600px and 2400px (`footer-desk-<theme>-1600.webp`, `-2400.webp`; `magick -filter Lanczos -resize 1600x`, same `cwebp` settings), listed in the images' `srcSet`.
-- **Instrument Serif (`font-anybody`):** hero and closing headlines, selected scene titles, and large numerals. `font-anybody` is an alias of `font-display`.
-- **Instrument Serif:** body copy, italic accents, and serif title treatments in the Design scene.
-- **Labels (`font-martian`, an alias of `font-ui`):** Figtree 13px, weight 500, sentence case (`labelClass`).
-- **Figtree:** buttons and mock app UI. The receipt keeps IBM Plex Mono (`public/fonts`).
-
-### Controls
-
-- Repeat the same primary CTA, “Build your resume,” in the header, hero, and closing section. Buttons have 8px corners and Figtree 600 labels: at least 44px in the header and 48px in the hero and closing section.
-- Scene navigation appears from 1240px. Sentence-case labels use `ink` when active and `ink-3` when inactive; a 6px accent dot marks the active scene. The Share night scene uses its own light inks.
-- The GitHub link appears from 1024px, with the GitHub mark and, when available, a filled gold star and live compact count. Format counts with the locale's `Intl.NumberFormat`; include the full count in the accessible name. Failed counts leave the GitHub link available without a star or number.
-- Community totals need at least two eligible rows. Hide failed totals and values below 100; reserve loading placeholders and announcements for pending queries.
-- The homepage theme control is a fixed 30px pull-cord button at the top end corner. Its height is 92px at rest, 112px on hover, and 124px during a pull. It uses a 450ms spring curve, toggles the shared theme after 170ms, and sways every seven seconds until first activated. The bulb glows in dark mode.
-
-### Motion
-
-The hero flows with its content and does not pin. The later pinned scenes contain a sticky `100svh` stage. Scroll progress is `p = clamp(0, −top / max(1, height − viewportHeight), 1)`; `scroll.ts` writes it to `--p` through one animation-frame-throttled scroll listener. CSS derives continuous motion from progress; React receives only coarse scene and step changes.
-
-| Scene   | Below 900px    | From 900px                  |
-| ------- | -------------- | --------------------------- |
-| Hero    | Content height | At least min(900px, 100svh) |
-| Write   | 280vh          | 330vh                       |
-| Design  | 280vh          | 320vh                       |
-| Check   | 245vh          | 295vh                       |
-| Tailor  | 260vh          | 300vh                       |
-| Share   | 240vh          | 300vh                       |
-| Prepare | 310vh          | 330vh                       |
-
-Light mode combines breathing window light (16 seconds), a drifting mullion shadow (90 seconds), and 18 dust motes. Dark mode adds a neutral 620px cursor glow at 6% opacity. These are decorative and must not obscure text.
-
-Scroll performance (Firefox and phones dropped frames here): the mullion shadow's softness is drawn into its gradients, never `filter: blur()`; backdrop blur uses the `blur-ok` variant (fine pointer, non-Gecko only) and falls back to the plain tinted backdrop; components that follow fast-changing scroll steps (Check's score, Prepare's clock and countdown) subscribe to `useLanding` on their own so the scene around them doesn't re-render.
-
-Scene navigation scrolls smoothly within a scene or to the next one, since scrubbing through is the story. A longer jump cuts to the scene, fading through like a page change, instead of fast-forwarding through every scene between; reduced motion always cuts. Pinned scenes skip rendering offscreen (`content-visibility: auto`); the scroll engine renders a scene and decodes its images while it is within about two screens (`data-warm`) and lets it skip again once it is further away.
-
-Reduced motion fixes scenes at their end state and collapses pinned sections to `100svh` at every width (one rule in `landing.css`). Disable scroll scrubbing, parallax, ambient movement, cord sway, and count animations. The Languages word rotation has a pause control and stays still with reduced motion.
-
-### Illustration
-
-- Ten watercolour doodles live in `apps/web/public/doodles/` as transparent WebP (up to 800px, plus a half-size `-small` and a quarter-size `-tiny`, each resized from the full file with `magick -filter Lanczos` and encoded with the same `cwebp` settings): pencil, paperclip, eraser, curve, magnifier, scissors, plane, globe, jar, and note. They share the footer desk's style: soft washes, thin blue-grey pen lines, cream, sage, moss, slate blue, terracotta and ochre. Prompts and references for regenerating them are kept outside the repo; each is trimmed to its content and its faint background alpha cleaned (`-channel A -level 4%,100%`) before encoding losslessly in alpha (`cwebp -q 82 -alpha_q 100 -exact`), and its size goes in `doodleSizes` (`ui.tsx`). The magnifier is not trimmed: its empty glass is the Check lens, so `check.tsx` positions it from the lens's measured centre and radius in the 1024px source.
-- Doodles appear through a 110° mask wipe with subtle parallax. They keep their colours in both themes: opacity 0.92 in light mode, 0.8 and slightly dimmed (`brightness(0.92)`) in dark. No drop shadows: a hard shadow draws the image's box against the paper texture. The Share plane fades in with the night sky.
-- Most doodles hide below 900px; pencil and plane remain. Keep them decorative, noninteractive, and clear of readable text.
-- Construction guides use `graphite` lines with an SVG turbulence filter for a pencil effect.
-
-### Content and delivery
-
-- Prerender the homepage and public ATS checker per locale at build time through `prerender.tsx` and `apps/web/vite.config.ts`. The app is a client-rendered SPA; `apps/server/src/static/web.ts` serves the generated HTML and adds canonical, Open Graph, `hreflang`, and structured data. Keep headings and body copy in the initial HTML. Prerendered pages start the app's JavaScript only after the first contentful paint (the loader in `vite.config.ts`), so their first screen must not depend on it, and must not fade in on load: the largest paint would wait for the fade.
-- Include title and description metadata and `SoftwareApplication` structured data with a zero-price offer.
 - **Template previews** come from each template's sample PDF (`apps/web/public/templates/pdf/<id>.pdf`), never at print resolution: `templates/jpg/<id>.jpg` at 600×848 (builder and letter cards, the mobile picker and the README; old mobile builds load this URL, so it stays a JPEG), and `templates/thumb/<id>.webp` at 596×843 with a 300×424 `<id>-small.webp` (homepage and gallery). Regenerate them with the server's sharp:
 
   ```sh
@@ -314,15 +174,6 @@ Reduced motion fixes scenes at their end state and collapses pinned sections to 
   ' "$id")
   ```
 
-- Use one `h1`, section headings, landmarks, and a skip link. Animated character treatments expose the complete string once to assistive technology. Nothing relies on hover alone.
-- Translate copy, accessible labels, and demo resume text through Lingui. Names and addresses may stay literal; the Languages display intentionally preserves native words and language names. Allow text expansion and RTL layouts.
+## Review before shipping
 
-## Do and don't
-
-- **Do** make the primary action obvious and reserve accent for actions and state.
-- **Do** keep text readable and pair color signals with words.
-- **Do** provide empty, loading, error, and success states; keep loading placeholders at their final size.
-- **Don't** introduce arbitrary app colors or palette classes such as `amber-600`; use semantic tokens.
-- **Don't** use Instrument Serif for small functional app text or at bold weights, set labels in all caps, or use arbitrary corner radii. Homepage prose follows its separate type rules.
-- **Don't** confirm reversible actions; offer undo.
-- **Don't** omit `data-slot` on UI primitives; styles and tests rely on it.
+Verify the actual affected flows: create/import, filters and pagination, sort selection, empty recovery, modal focus, and manual/settings controls. Check representative populated and empty states in light/dark, phone/desktop, expanded text, and RTL. Run appropriate behavior tests and typechecks. Record native runtime limits plainly; host tests, Hermes exports, and RNWeb gallery evidence are different kinds of proof.

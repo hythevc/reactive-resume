@@ -7453,10 +7453,6 @@ msgstr "ലിങ്ക് ഉണ്ടാക്കുക"
 msgid "Make primary"
 msgstr "പ്രാഥമികമാക്കുക"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "അടുത്ത ഘട്ടത്തിന് ഇടം നൽകുക."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "ഓപ്പണിംഗ് ശക്തമാക്കുക"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "റീലൊക്കേഷൻ"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "ഓർമ്മിക്കുക"
@@ -13923,6 +13920,7 @@ msgstr "ഒരു റിമൈൻഡർ ലഭിക്കാൻ, നിങ്�
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

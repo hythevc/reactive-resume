@@ -7453,10 +7453,6 @@ msgstr "አገናኝ ፍጠር"
 msgid "Make primary"
 msgstr "ዋና አድርግ"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "ለቀጣዩ ደረጃ ቦታ ይስጡ."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "መክፈቻውን የበለጠ ጠንካራ ያድርጉት"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "መዛወር"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "አስታውስ"
@@ -13923,6 +13920,7 @@ msgstr "አስታዋሽ ለማግኘት በመሣሪያዎ ቅንብሮች ው�
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

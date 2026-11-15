@@ -38,7 +38,7 @@ export function ApplicationCard({
 		<div
 			data-application-id={application.id}
 			className={cn(
-				"group relative grid gap-3 rounded-lg border border-line bg-surface p-4 shadow-e1 transition-[border-color,scale] duration-quick ease-enter hover:border-line-2 active:not-has-[[data-slot=button]:active]:scale-[0.98]",
+				"group relative grid gap-3 rounded-lg border border-line bg-surface p-4 transition-[border-color,scale] duration-quick ease-enter hover:border-line-2 active:not-has-[[data-slot=button]:active]:scale-[0.98]",
 				// The overlay card lifts as it's picked up and settles flat again while the drop animation flies it home.
 				dragging &&
 					"scale-[1.02] rotate-1 cursor-grabbing shadow-e3 transition-[rotate,scale,box-shadow] duration-quick ease-enter **:cursor-grabbing in-[.is-dropping]:scale-100 in-[.is-dropping]:rotate-0 in-[.is-dropping]:shadow-e1 starting:scale-100 starting:rotate-0 starting:shadow-e1",

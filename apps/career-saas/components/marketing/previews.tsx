@@ -1,4 +1,4 @@
-import { Check, FileText, Mail, MapPin, Compass, Image, CheckCheck } from "lucide-react";
+import { FileText, Mail, MapPin, ClipboardCheck, ArrowRight } from "lucide-react";
 import { createWorkspace } from "@/lib/workspace";
 
 const example = createWorkspace();
@@ -7,7 +7,7 @@ export function ResumePreview({ compact = false }: { compact?: boolean }) {
 	const { profile } = example;
 	return (
 		<div className={`m-resume-sheet${compact ? " m-resume-compact" : ""}`}>
-			<h3>{profile.name}</h3>
+			<p className="m-doc-name">{profile.name}</p>
 			<p className="m-doc-role">{profile.role}</p>
 			<div className="m-doc-contact">
 				<span>
@@ -19,16 +19,7 @@ export function ResumePreview({ compact = false }: { compact?: boolean }) {
 					{profile.location}
 				</span>
 			</div>
-			<h4>Skills</h4>
-			<div className="m-doc-skills">
-				{profile.skills
-					.split(", ")
-					.slice(0, 4)
-					.map((skill) => (
-						<span key={skill}>{skill}</span>
-					))}
-			</div>
-			<h4>Experience</h4>
+			<p className="m-doc-section">Experience</p>
 			<p className="m-doc-position">Senior Product Designer</p>
 			<p className="m-doc-company">Northstar Studio · 2022 – Present</p>
 			<p className="m-doc-description">
@@ -36,7 +27,9 @@ export function ResumePreview({ compact = false }: { compact?: boolean }) {
 			</p>
 			{!compact && (
 				<>
-					<h4>Education</h4>
+					<p className="m-doc-section">Skills</p>
+					<p className="m-doc-description">{profile.skills}</p>
+					<p className="m-doc-section">Education</p>
 					<p className="m-doc-description">
 						BFA, Interaction Design
 						<br />
@@ -49,36 +42,43 @@ export function ResumePreview({ compact = false }: { compact?: boolean }) {
 }
 
 export function WorkspacePreview() {
+	const job = example.jobs[0];
 	return (
-		<figure className="m-workspace-preview" aria-label="Resume and saved roles, fictional example">
-			<div className="m-preview-top">
-				<span>
-					<FileText size={18} aria-hidden="true" />
-					Resume / {example.profile.name}
-				</span>
-				<span className="m-preview-label">Workspace preview</span>
-			</div>
-			<div className="m-preview-columns">
-				<ResumePreview compact />
-				<div className="m-preview-jobs">
-					<h3>Saved roles</h3>
-					{example.jobs.slice(0, 2).map((job) => (
-						<div className="m-preview-job" key={job.id}>
-							<FileText size={17} aria-hidden="true" />
-							<div>
-								<strong>{job.company}</strong>
-								<p>{job.role}</p>
-							</div>
-							<span className="m-mini-status">{job.status}</span>
-						</div>
-					))}
-					<div className="m-preview-note">
-						<Check size={15} aria-hidden="true" />
-						<span>Your documents and next steps, together.</span>
+		<figure className="m-workspace-preview" aria-label="A selected role, source resume and review steps">
+			<div className="m-proof-columns">
+				<div className="m-proof-role">
+					<p className="m-proof-heading">Selected role</p>
+					<div className="m-selected-role">
+						<strong>{job.role}</strong>
+						<span>{job.company}</span>
+						<span className="m-record-status">Saved</span>
 					</div>
+					<p className="m-proof-label">Role details</p>
+					<p className="m-proof-detail">
+						<MapPin size={15} aria-hidden="true" />
+						{job.location}
+					</p>
+					<p className="m-proof-detail">
+						<FileText size={15} aria-hidden="true" />
+						Source: saved posting
+					</p>
+				</div>
+				<div className="m-proof-document">
+					<p className="m-proof-heading">Source resume / {example.profile.name}</p>
+					<ResumePreview compact />
+				</div>
+				<div className="m-proof-review">
+					<p className="m-proof-heading">Review before sharing</p>
+					<ClipboardCheck size={24} aria-hidden="true" />
+					<ul>
+						<li>Check the role and company</li>
+						<li>Choose relevant experience</li>
+						<li>Read every document</li>
+					</ul>
+					<p className="m-review-state">Your review is required</p>
 				</div>
 			</div>
-			<figcaption>Fictional example</figcaption>
+			<figcaption>Fictional example · read-only preview</figcaption>
 		</figure>
 	);
 }
@@ -87,76 +87,59 @@ export function LinkedInPreview() {
 	return (
 		<figure className="m-profile-preview">
 			<div className="m-preview-top">
-				<span>Profile review</span>
-				<span className="m-preview-label">Writing checklist</span>
+				<span>LinkedIn review</span>
+				<span className="m-record-status">Editable text</span>
 			</div>
 			<div className="m-profile-summary">
 				<span className="m-initials" aria-hidden="true">
 					AM
 				</span>
 				<div>
-					<h3>{example.profile.name}</h3>
+					<strong>{example.profile.name}</strong>
 					<p>{example.profile.role}</p>
 				</div>
 			</div>
 			<div className="m-profile-text">
-				<h4>About</h4>
+				<p className="m-proof-label">About draft</p>
 				<p>{example.profile.summary}</p>
 			</div>
-			<div className="m-check-lines">
-				<p>
-					<Check size={17} aria-hidden="true" />
-					Describe the work you do
-				</p>
-				<p>
-					<Check size={17} aria-hidden="true" />
-					Keep your experience specific
-				</p>
-				<p>
-					<Check size={17} aria-hidden="true" />
-					Use skills you can stand behind
-				</p>
+			<div className="m-writing-note">
+				<strong>Writing check: be specific</strong>
+				<p>Name the work you do, the people you work with and the skills you can support with experience.</p>
 			</div>
-			<figcaption>Illustrative checklist · fictional profile</figcaption>
+			<figcaption>Fictional profile · illustrative writing check</figcaption>
 		</figure>
 	);
 }
 
 export function JobsPreview() {
-	const stages = ["Saved", "Draft", "Interview"] as const;
 	return (
 		<figure className="m-tracker-preview">
 			<div className="m-preview-top">
 				<span>Applications</span>
-				<span className="m-preview-label">Your next steps</span>
+				<span className="m-proof-label">Saved role → next action</span>
 			</div>
-			<div className="m-tracker-columns">
-				{stages.map((stage) => {
+			<div className="m-job-records">
+				{["Saved", "Draft", "Interview"].map((stage) => {
 					const job = example.jobs.find((item) => item.status === stage);
-					if (!job) return null;
-					return (
-						<div className="m-tracker-stage" key={stage}>
-							<h3>
-								<span className={`m-stage-dot m-stage-${stage.toLowerCase()}`} />
-								{stage}
-							</h3>
-							<div className="m-job-paper">
-								<strong>{job.company}</strong>
-								<h4>{job.role}</h4>
+					return job ? (
+						<div className="m-job-record" key={stage}>
+							<div>
+								<strong>{job.role}</strong>
 								<p>
-									<MapPin size={13} aria-hidden="true" />
-									{job.location}
+									{job.company} · {job.location}
 								</p>
-								<span>
-									{stage === "Saved"
-										? "Review the posting"
-										: stage === "Draft"
-											? "Review your documents"
-											: "Add interview details"}
-								</span>
 							</div>
+							<span className="m-record-status">{stage}</span>
+							<p className="m-record-next">
+								{stage === "Saved"
+									? "Review the posting"
+									: stage === "Draft"
+										? "Review your documents"
+										: "Add interview details"}
+							</p>
 						</div>
-					);
+					) : null;
 				})}
 			</div>
 			<figcaption>Fictional examples · stages are user records</figcaption>
@@ -167,24 +150,30 @@ export function JobsPreview() {
 export function BriefPreview() {
 	return (
 		<figure className="m-brief-preview">
-			<Compass size={27} aria-hidden="true" />
-			<h3>Your next chapter</h3>
-			<p>A brief for the work you want next.</p>
+			<div className="m-preview-top">
+				<span>Career brief</span>
+				<span className="m-record-status">Your preferences</span>
+			</div>
 			<dl>
 				<div>
-					<dt>The problem</dt>
-					<dd>What would you like to work on?</dd>
+					<dt>Work to focus on</dt>
+					<dd>What problems would you like to solve?</dd>
 				</div>
 				<div>
-					<dt>The team</dt>
-					<dd>Who helps you do your best work?</dd>
+					<dt>Team and scope</dt>
+					<dd>Who do you want to work with, and how?</dd>
 				</div>
 				<div>
-					<dt>The environment</dt>
-					<dd>Where and how do you want to work?</dd>
+					<dt>Environment</dt>
+					<dd>Where and how do you do your best work?</dd>
 				</div>
 			</dl>
-			<figcaption>Prompts from the career brief</figcaption>
+			<div className="m-brief-next">
+				<span>Review a role you saved</span>
+				<ArrowRight size={17} aria-hidden="true" />
+				<span>Shortlist or pass</span>
+			</div>
+			<figcaption>Prompts from the career brief · saved roles only</figcaption>
 		</figure>
 	);
 }
@@ -194,11 +183,8 @@ export function OutreachPreview() {
 	return (
 		<figure className="m-outreach-preview">
 			<div className="m-preview-top">
-				<span>
-					<Mail size={17} aria-hidden="true" />
-					Outreach draft
-				</span>
-				<span className="m-preview-label">For your review</span>
+				<span>Recruiter outreach</span>
+				<span className="m-record-status">Draft · not sent</span>
 			</div>
 			<div className="m-mail-recipient">
 				<span>To</span>
@@ -213,35 +199,44 @@ export function OutreachPreview() {
 				<p>I’d like to learn about product design opportunities at Forma.</p>
 				<p>Alex</p>
 			</div>
-			<figcaption>Fictional example · no message is sent</figcaption>
+			<figcaption>Fictional example · you review and send your own message</figcaption>
 		</figure>
+	);
+}
+
+function FramingSample({ round = false }: { round?: boolean }) {
+	return (
+		<div className={`m-framing-sample${round ? " m-framing-round" : ""}`} aria-hidden="true">
+			<span className="m-framing-head" />
+			<span className="m-framing-shoulders" />
+		</div>
 	);
 }
 
 export function PhotoPreview() {
 	return (
 		<figure className="m-photo-preview">
-			<div className="m-photo-stages">
-				<span>
-					<Image size={17} aria-hidden="true" />
-					Source
-				</span>
-				<span>Polish</span>
-				<span>
-					<CheckCheck size={17} aria-hidden="true" />
-					Download
-				</span>
+			<div className="m-preview-top">
+				<span>Profile photo</span>
+				<span className="m-proof-label">Framing guide</span>
 			</div>
-			<div className="m-photo-canvas">
-				<div className="m-photo-frame">
-					<Image size={46} strokeWidth={1.2} aria-hidden="true" />
-					<span>Your photo, thoughtfully framed.</span>
+			<div className="m-photo-comparison">
+				<div>
+					<FramingSample />
+					<strong>Square PNG</strong>
+					<p>The file you download</p>
 				</div>
-				<div className="m-photo-round" aria-hidden="true">
-					<Image size={23} strokeWidth={1.2} />
+				<div>
+					<FramingSample round />
+					<strong>Circle preview</strong>
+					<p>Check the visible crop</p>
 				</div>
 			</div>
-			<figcaption>Bring your own image · local crop and adjustments</figcaption>
+			<figcaption>
+				Illustrated framing guide, not a generated headshot.
+				<br />
+				Choose your own image to crop and adjust locally.
+			</figcaption>
 		</figure>
 	);
 }

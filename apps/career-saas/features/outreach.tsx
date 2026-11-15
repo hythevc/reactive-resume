@@ -1,19 +1,6 @@
 "use client";
 
-import {
-	ArrowUpRight,
-	Check,
-	Copy,
-	Mail,
-	MessageSquare,
-	Pencil,
-	Plus,
-	Search,
-	Sparkles,
-	Trash2,
-	Users,
-	X,
-} from "lucide-react";
+import { ArrowUpRight, Check, Copy, Mail, MessageSquare, Pencil, Plus, Search, Trash2, Users, X } from "lucide-react";
 import { useMemo, useRef, useState, type FormEvent } from "react";
 import { outboundBlockReason, outreachReviewKey } from "@/lib/workflow-safety";
 import { buildOutreach, CONTACT_CONTEXT_MAX_LENGTH, CONTACT_SOURCE_MAX_LENGTH, type Contact } from "@/lib/workspace";
@@ -232,8 +219,8 @@ export function OutreachView() {
 		<div>
 			<div className="feature-heading">
 				<div>
-					<h1>Good things start with a hello.</h1>
-					<p className="muted">Build real connections with recruiters and the people behind your next role.</p>
+					<h1>Recruiter outreach</h1>
+					<p className="muted">Keep contact context, review a message draft and record your follow-up.</p>
 				</div>
 				<button className="button primary" type="button" onClick={() => openForm()} disabled={!ready}>
 					<Plus size={16} /> Add a contact
@@ -252,7 +239,7 @@ export function OutreachView() {
 			{showForm ? (
 				<section className="panel" style={{ marginBottom: 24 }} aria-label={editingId ? "Edit contact" : "Add contact"}>
 					<div className="section-title">
-						<h2>{editingId ? "Edit your contact" : "A new connection"}</h2>
+						<h2>{editingId ? "Edit your contact" : "Add contact"}</h2>
 						<button
 							className="button secondary small"
 							type="button"
@@ -380,7 +367,7 @@ export function OutreachView() {
 						/>
 					</label>
 					<div className="table-wrap">
-						<table className="data-table">
+						<table className="data-table outreach-table">
 							<thead>
 								<tr>
 									<th>Connection</th>
@@ -441,7 +428,7 @@ export function OutreachView() {
 					{!filtered.length ? (
 						<div className="empty">
 							<Users size={25} />
-							<h3>{data.contacts.length ? "No contacts found" : "Make your first connection"}</h3>
+							<h3>{data.contacts.length ? "No contacts found" : "No contacts yet"}</h3>
 							<p className="muted">
 								{data.contacts.length
 									? "Try another name, company or role."
@@ -462,7 +449,7 @@ export function OutreachView() {
 								<p className="muted" style={{ fontSize: 12, marginBottom: 6 }}>
 									A note to {selected.name}
 								</p>
-								<h2>A personal introduction</h2>
+								<h2>Message draft</h2>
 							</div>
 							<MessageSquare size={19} />
 						</div>
@@ -544,7 +531,7 @@ export function OutreachView() {
 								maxLength={50000}
 								value={selected.message}
 								onChange={(event) => updateMessage(selected.id, event.target.value)}
-								placeholder="Write a thoughtful, specific introduction."
+								placeholder="Write a specific introduction based on this contact’s role."
 								style={{ lineHeight: 1.8 }}
 							/>
 						</label>
@@ -583,7 +570,7 @@ export function OutreachView() {
 								type="button"
 								onClick={() => (selected.message.trim() ? setRefreshId(selected.id) : regenerate(selected))}
 							>
-								<Sparkles size={14} /> {selected.message.trim() ? "Refresh draft" : "Create draft"}
+								<Pencil size={14} /> {selected.message.trim() ? "Refresh draft" : "Create draft"}
 							</button>
 						</div>
 						{refreshId === selected.id ? (
@@ -636,8 +623,8 @@ export function OutreachView() {
 				) : (
 					<section className="panel empty" style={{ background: "var(--lime)" }}>
 						<Mail size={30} />
-						<h2>A little context goes a long way.</h2>
-						<p className="muted">Add a contact to draft a thoughtful introduction using your career profile.</p>
+						<h2>Select a contact</h2>
+						<p className="muted">Add or select a contact to prepare a message from your shared career profile.</p>
 						<button className="button primary" type="button" onClick={() => openForm()}>
 							Add your first contact
 						</button>

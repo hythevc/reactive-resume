@@ -7470,10 +7470,6 @@ msgstr "ଲିଙ୍କ୍ ତିଆରନ୍ତୁ"
 msgid "Make primary"
 msgstr "ପ୍ରାଥମିକ କରନ୍ତୁ"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "ପରବର୍ତ୍ତୀ ପଦକ୍ଷେପ ପାଇଁ ସ୍ଥାନ ପ୍ରସ୍ତୁତ କରନ୍ତୁ।"
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "ଖୋଲିବାକୁ ଅଧିକ ଶକ୍ତିଶାଳୀ କର |"
@@ -10349,6 +10345,7 @@ msgid "Relocation"
 msgstr "ସ୍ଥାନାନ୍ତରଣ"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "ମନେ ରଖନ୍ତୁ"
@@ -13961,6 +13958,7 @@ msgstr "ସ୍ମାରକ ପାଇଁ ଡିଭାଇସ୍ ସେଟିଂସ
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

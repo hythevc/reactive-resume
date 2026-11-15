@@ -16,27 +16,27 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Desk & Paper v7 semantic tokens. Approved sRGB values are shared with native UI.
+ * Working Record v8 semantic tokens. Approved sRGB values are shared with native UI.
  * The resume page (--paper) is white in both themes and never inverts.
  */
 :root {
 	color-scheme: light;
 
-	--bg: #f8f7f3;
-	--surface: #fefdfc;
+	--bg: #f5f7f8;
+	--surface: #ffffff;
 	--raised: #ffffff;
-	--sunken: #f0efeb;
-	--line: #dce2da;
-	--line-2: #becbbf;
-	--control-border: #7b8b7d;
-	--ink: #202b25;
-	--ink-2: #4f5a53;
-	--ink-3: #626b65;
-	--accent: #286343;
-	--accent-hover: #1f5036;
+	--sunken: #ecf1f3;
+	--line: #dce4e8;
+	--line-2: #8ca2ad;
+	--control-border: #708995;
+	--ink: #172b32;
+	--ink-2: #3f535c;
+	--ink-3: #5b6e77;
+	--accent: #0b6e75;
+	--accent-hover: #07555b;
 	--on-accent: #ffffff;
-	--accent-soft: #e7efe2;
-	--accent-text: #1b4d34;
+	--accent-soft: #e4f3f2;
+	--accent-text: #075e64;
 	--danger: oklch(0.53 0.17 27); /* #BA3630 */
 	--on-danger: #ffffff;
 	--danger-soft: oklch(0.95 0.03 27); /* #FFE7E4 */
@@ -47,8 +47,8 @@
 	--warn-ink: oklch(0.22 0.03 80); /* #22190A text on a warn fill */
 	--info-soft: oklch(0.95 0.03 250); /* #E0F1FF neutral guidance, assistant question */
 	--info-text: oklch(0.46 0.11 250); /* #1D5B92 */
-	--hover: oklch(0.22 0.01 95 / 0.05);
-	--press: oklch(0.22 0.01 95 / 0.09);
+	--hover: #172b320d;
+	--press: #172b3217;
 	--scrim: oklch(0.2 0.01 95 / 0.32);
 	--scrim-sheet: oklch(0.2 0.01 95 / 0.18);
 	--paper: #ffffff;
@@ -84,21 +84,21 @@
 .dark {
 	color-scheme: dark;
 
-	--bg: #101713;
-	--surface: #17201b;
-	--raised: #202b24;
-	--sunken: #0d120f;
-	--line: #334639;
-	--line-2: #59705e;
-	--control-border: #6e8372;
-	--ink: #eef5ee;
-	--ink-2: #c2cfc3;
-	--ink-3: #9cac9d;
-	--accent: #91cca0;
-	--accent-hover: #a4d9b0;
-	--on-accent: #102315;
-	--accent-soft: #223c2a;
-	--accent-text: #a6ddb1;
+	--bg: #101a20;
+	--surface: #17262e;
+	--raised: #20323b;
+	--sunken: #0b1419;
+	--line: #314b57;
+	--line-2: #526f7d;
+	--control-border: #6d8a98;
+	--ink: #eff5f6;
+	--ink-2: #c0d0d8;
+	--ink-3: #9cb0ba;
+	--accent: #7dd2d4;
+	--accent-hover: #94dfe0;
+	--on-accent: #082e33;
+	--accent-soft: #153e45;
+	--accent-text: #a5e6e6;
 	--danger: oklch(0.62 0.17 27); /* #D9544B */
 	--on-danger: #07150a;
 	--danger-soft: oklch(0.3 0.06 27); /* #47211D */
@@ -127,13 +127,13 @@
 	--font-sans: var(--font-ui);
 	--font-mono: "Geist Mono Variable", ui-monospace, monospace;
 
-	/* Small marks 4px · controls 8px · surfaces 12px · dialogs 16px · large sheets 20px. */
-	--radius: 8px;
+	/* Small marks 4px · controls 6px · work surfaces 8–12px · dialogs 16px. */
+	--radius: 6px;
 	--radius-xs: 4px;
 	--radius-sm: 4px;
-	--radius-md: 8px;
-	--radius-lg: 12px;
-	--radius-xl: 16px;
+	--radius-md: 6px;
+	--radius-lg: 8px;
+	--radius-xl: 12px;
 	--radius-2xl: 16px;
 	--radius-3xl: 20px;
 	--radius-4xl: 24px;
@@ -222,7 +222,7 @@
 	}
 
 	h1 {
-		@apply font-display;
+		@apply font-ui font-semibold;
 	}
 
 	/* A 2px accent ring with a 2px gap on every interactive element; never removed. */

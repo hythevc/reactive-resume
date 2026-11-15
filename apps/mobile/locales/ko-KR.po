@@ -7453,10 +7453,6 @@ msgstr "링크 만들기"
 msgid "Make primary"
 msgstr "대표로 설정"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "다음 단계를 위한 공간을 확보하세요."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "오프닝을 더욱 강하게 만들어라"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "근무지 이전"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "기억하기"
@@ -13923,6 +13920,7 @@ msgstr "알림을 받으려면 기기 설정에서 알림을 허용하세요."
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

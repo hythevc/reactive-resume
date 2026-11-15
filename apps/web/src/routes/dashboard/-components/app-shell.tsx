@@ -190,7 +190,7 @@ function Sidebar() {
 		>
 			<Link to="/" className="flex h-12 items-center gap-2.5 px-1">
 				<BrandIcon variant="icon" alt="" className="size-8 shrink-0" />
-				<span className="font-display text-[23px] leading-none">Reactive Resume</span>
+				<span className="font-ui text-xl leading-none font-semibold tracking-[-0.02em]">Reactive Resume</span>
 			</Link>
 
 			<button
@@ -388,7 +388,7 @@ function MobileTabs() {
 				<Icon name={icon} size={24} filled={current} />
 				<span
 					className={cn(
-						"text-center text-xs [overflow-wrap:anywhere]",
+						"text-center text-xs text-balance break-all",
 						current ? "font-semibold text-ink" : "text-ink-2",
 					)}
 				>
@@ -401,7 +401,7 @@ function MobileTabs() {
 	return (
 		<nav
 			aria-label={t`App`}
-			className="sticky bottom-0 z-30 grid grid-cols-5 border-t border-line bg-surface pb-[env(safe-area-inset-bottom)] [view-transition-name:app-nav]"
+			className="sticky bottom-0 z-30 grid grid-cols-[1.1fr_1.3fr_0.8fr_0.9fr_1fr] border-t border-line bg-surface pb-[env(safe-area-inset-bottom)] [view-transition-name:app-nav]"
 		>
 			{tabs.slice(0, 2).map(link)}
 			<button
@@ -413,7 +413,7 @@ function MobileTabs() {
 				<span className="grid h-[26px] w-[34px] place-items-center rounded-sm bg-accent text-on-accent">
 					<Icon name="plus" size={20} />
 				</span>
-				<span className="text-center text-xs [overflow-wrap:anywhere] text-ink-2">
+				<span className="text-center text-xs text-balance break-all text-ink-2">
 					<Trans>New</Trans>
 				</span>
 			</button>

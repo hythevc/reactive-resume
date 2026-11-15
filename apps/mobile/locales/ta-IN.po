@@ -7453,10 +7453,6 @@ msgstr "இணைப்பை உருவாக்கு"
 msgid "Make primary"
 msgstr "முதன்மையாக்கு"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "அடுத்த படிக்கு இடமளிக்கவும்."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "திறப்பை பலப்படுத்தவும்"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "இடம்பெயர்வு"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "நினைவில் வை"
@@ -13923,6 +13920,7 @@ msgstr "நினைவூட்டலைப் பெற, உங்கள் �
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

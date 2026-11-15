@@ -937,6 +937,8 @@ msgstr "{name} をメイン列に移動"
 msgid "{name} never prints"
 msgstr "{name} は印刷されません"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "{name} resume template preview"
 msgstr "{name} の履歴書テンプレートのプレビュー"
@@ -1596,10 +1598,6 @@ msgstr "{suggestion} を追加"
 #: src/features/career/knowledge/search-regions-field.tsx
 msgid "Add a country"
 msgstr "国を追加"
-
-#: src/features/career/knowledge/facts.tsx
-msgid "Add a fact"
-msgstr "事実を追加する"
 
 #: src/features/career/knowledge/facts.tsx
 msgid "Add a fact, for example “I mentored two associate PMs in 2025”"
@@ -2317,6 +2315,7 @@ msgstr "{0} のカバーレターもダウンロードしてください"
 msgid "Also email {0}"
 msgstr "{0}にもメールで送る"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Also on mobile"
 msgstr "モバイルでも利用可能"
@@ -2828,6 +2827,7 @@ msgstr "Northwind Labsでは、新規チームの多くがセットアップを�
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 #: src/features/homepage/sections.tsx
 msgid "ATS checker"
 msgstr "ATSチェッカー"
@@ -3355,6 +3355,7 @@ msgstr "接続を変更する"
 msgid "Change it in Design."
 msgstr "デザインで変更します。"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Change language"
 msgstr "言語を変更"
@@ -3445,6 +3446,7 @@ msgstr "チャット"
 #. Homepage scene title, one word followed by a full stop
 #. The resume builder mode that reviews the resume for problems. Not the Screening application stage.
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -3466,6 +3468,7 @@ msgid "Check another file"
 msgstr "別のファイルを確認してください"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check any PDF, no account needed"
 msgstr "PDF をチェックしてください。アカウントは必要ありません"
 
@@ -3501,6 +3504,7 @@ msgid "check numbers and names before using it"
 msgstr "使う前に数字と名前を確認してください"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check reads your resume the way hiring software does and explains what to fix in plain words. It runs in your browser, so the file stays with you: 0 uploads."
 msgstr "チェック 機能は、採用ソフトウェアと同じ方法で履歴書を読み取り、修正すべき点を簡単な言葉で説明します。ブラウザで実行されるため、ファイルはデバイス上に残ります: アップロード数は 0 です。"
 
@@ -4028,6 +4032,7 @@ msgstr "ほかのオファーと比較しましょう"
 msgid "Compare offers"
 msgstr "オファーを比較"
 
+#: src/features/homepage/compact.tsx
 #: src/features/templates/gallery.tsx
 msgid "Compare real resume layouts before you sign up. Every template is free to customize, with PDF and Word downloads and no watermark."
 msgstr "サインアップする前に、実際の履歴書のレイアウトを比較してください。すべてのテンプレートは無料でカスタマイズでき、PDF と Microsoft Word をダウンロードでき、透かしはありません。"
@@ -5838,6 +5843,7 @@ msgstr "説明"
 msgid "Description of role {0}"
 msgstr "役割の説明 {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -6118,6 +6124,7 @@ msgstr "現在の PDF をダウンロード"
 msgid "Download failed. Try again."
 msgstr "ダウンロードに失敗しました。もう一度お試しください。"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Download on the"
 msgstr "こちらからダウンロード"
@@ -6981,7 +6988,9 @@ msgstr "高速モデル"
 msgid "Fast: {0} · Capable: {1}"
 msgstr "高速: {0} · 高性能: {1}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/hero.tsx
 msgid "Features"
 msgstr "機能"
 
@@ -7490,6 +7499,7 @@ msgstr "ドイツ語"
 msgid "Get a key at <0>{0}</0>. It's stored encrypted and used only for your requests."
 msgstr "<0>{0}</0> でキーを取得します。暗号化されて保存され、リクエストにのみ使用されます。"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/prepare.tsx
 msgid "Get a plan for the interview, built from the posting and your own stories. Practice out loud, then write down how it went."
 msgstr "求人情報とあなた自身のストーリーから作った面接プランを用意します。声に出して練習し、どうだったかを書き留めましょう。"
@@ -7506,6 +7516,7 @@ msgstr "エンドポイントの運営者からAPIキーを取得してくださ
 msgid "Get feedback"
 msgstr "フィードバックをもらう"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Get it on"
 msgstr "こちらからダウンロード"
@@ -7518,6 +7529,7 @@ msgstr "毎朝ここで新しい求人を受け取る"
 msgid "Get resume feedback on Discord"
 msgstr "Discord で履歴書へのフィードバックをもらう"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 msgid "Get started"
 msgstr "始めましょう"
@@ -7715,6 +7727,7 @@ msgstr "今あるオファーを、私の希望と照らし合わせて検討す
 msgid "Help translate"
 msgstr "翻訳を手伝ってください"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Help translate it into yours."
 msgstr "お使いの言語への翻訳にご協力ください。"
@@ -8502,6 +8515,7 @@ msgstr "山田 太郎"
 msgid "Join Discord"
 msgstr "Discord に参加"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Join the Discord community"
 msgstr "Discord コミュニティに参加"
@@ -11638,6 +11652,7 @@ msgstr "求人リンクまたは求人情報を貼り付けて、役割と会社
 msgid "Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
 msgstr "求人リンクを貼り付けます。求人情報は保存され、Check、アシスタント、およびあなたの手紙が使用できるようになります。"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Paste a job posting once. It feeds a tailored copy of your resume, a fit check against each requirement, a cover letter draft and a place to track the role."
 msgstr "求人情報を一度貼り付けるだけ。それをもとに、テーラリングしたレジュメのコピー、要件ごとの適合度チェック、カバーレターの下書き、そしてその求人を追跡する場所が用意されます。"
@@ -11825,6 +11840,7 @@ msgstr "現在より後の時刻を選んでください。"
 msgid "Pick an icon"
 msgstr "アイコンを選択してください"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 msgid "Pick from {templateCount} templates, then set the type, color and spacing. The words stay put, so try as many looks as you like."
 msgstr "{templateCount} 個のテンプレートから選択し、フォント、色、間隔を設定します。テキストは同じままなので、好きなだけデザインを試してください。"
@@ -12064,6 +12080,7 @@ msgctxt "Career preferences: the roles, places, pay and ways of working you want
 msgid "Preferences"
 msgstr "希望条件"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/prepare.tsx
@@ -12133,6 +12150,8 @@ msgstr "<0>{RETURN_KEY}</0>を押すと、現在のキーワードを追加ま�
 msgid "Press <0>Enter</0> to open"
 msgstr "<0>Enter</0>キーを押して開く"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "Preview {name} sample PDF"
 msgstr "{name} のサンプル PDF をプレビューする"
@@ -12209,6 +12228,7 @@ msgid "Private. Only you can see it."
 msgstr "プライベート。あなただけがそれを見ることができます。"
 
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 msgid "Product"
 msgstr "プロダクト"
 
@@ -12439,6 +12459,7 @@ msgid "Question removed"
 msgstr "質問を削除しました"
 
 #: src/features/homepage/faq.tsx
+#: src/features/homepage/header.tsx
 msgid "Questions"
 msgstr "質問"
 
@@ -12501,6 +12522,7 @@ msgstr "Re: Senior Product Designer"
 msgid "Reactive Resume {__APP_VERSION__} · MIT"
 msgstr "Reactive Resume {__APP_VERSION__} · MIT"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Reactive Resume is open source under the MIT License. Amruth Pillai and a community of contributors keep it running, and donations pay for hosting and development. There’s no paid tier."
 msgstr "Reactive ResumeはMITライセンスのオープンソースです。Amruth Pillaiとコントリビューターのコミュニティが運営を支え、寄付がホスティングと開発の費用をまかなっています。有料プランはありません。"
@@ -12931,6 +12953,7 @@ msgstr "転居"
 
 #: src/features/assistant/remember-message.tsx
 #: src/features/career/shared.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/remember.tsx
@@ -14733,6 +14756,7 @@ msgstr "影の色"
 msgid "Shadow width"
 msgstr "影の幅"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/share.tsx
@@ -14743,6 +14767,7 @@ msgstr "影の幅"
 msgid "Share"
 msgstr "共有"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/share.tsx
 msgid "Share a public link, add a password or keep it private. Choose from 3 visibility options. Export to PDF or Word, or take all your data with you as JSON."
 msgstr "公開リンクを共有し、パスワードを追加するか、非公開にしてください。 3 つの表示オプションから選択します。 PDF または Word にエクスポートするか、すべてのデータを JSON として持ち歩きます。"
@@ -15344,6 +15369,7 @@ msgstr "スペイン語(B2)"
 msgid "Speak"
 msgstr "話す"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Speaks your language"
 msgstr "あなたの言語を話します"
@@ -15480,6 +15506,7 @@ msgstr "以前のレターから始める"
 msgid "Start from one you have and link the application."
 msgstr "既存のものから始めて、応募をリンクしてください。"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Start from scratch or import what you have. It takes a few minutes, and you can come back to it anytime."
 msgstr "ゼロから始めるか、手持ちのものをインポートしましょう。数分で済み、いつでも戻ってこられます。"
@@ -15647,7 +15674,6 @@ msgid "Stories to bring"
 msgstr "持っていくストーリー"
 
 #: src/features/homepage/header.tsx
-#: src/features/homepage/hero.tsx
 msgid "Story"
 msgstr "話"
 
@@ -15742,6 +15768,7 @@ msgstr "進行中の応募の概要"
 msgid "Summary"
 msgstr "サマリー"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Support"
 msgstr "サポート"
@@ -15869,6 +15896,7 @@ msgstr "タグ（カンマ区切り）"
 msgid "Tags…"
 msgstr "タグ…"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
@@ -15972,8 +16000,11 @@ msgstr "テンプレートが {0} に変更されました"
 msgid "Template, type and colors follow the resume, so the pair always matches."
 msgstr "テンプレート、タイプ、色は履歴書に従うため、ペアは常に一致します。"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Templates"
 msgstr "テンプレート"
 
@@ -17255,6 +17286,7 @@ msgstr "別の言語に翻訳…"
 msgid "Translate the app"
 msgstr "アプリを翻訳する"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Translated into {languageCount} languages."
 msgstr "{languageCount}言語に翻訳されています。"
@@ -18630,6 +18662,7 @@ msgid "Worth asking {0}"
 msgstr "{0}に確認したいこと"
 
 #. Homepage scene title, one word followed by a full stop
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -18663,6 +18696,7 @@ msgstr "レターを書く…"
 msgid "Write a new reply in {languageName}"
 msgstr "{languageName}で新しい返信を書く"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/remember.tsx
 msgid "Write a story once, with the facts behind it, and the coach uses it in 3 places. Switch a fact off and nothing leans on it."
 msgstr "事実を添えてストーリーを一度書けば、コーチがそれを3つの場面で使います。事実をオフにすれば、それに頼るものはなくなります。"
@@ -18671,6 +18705,7 @@ msgstr "事実を添えてストーリーを一度書けば、コーチがそれ
 msgid "Write and review form answers"
 msgstr "フォームの回答を作成して確認"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/write.tsx
 msgid "Write beside a live page. It saves as you type and keeps every version. Ask the assistant for a sharper line: it suggests, you decide."
 msgstr "ライブページの横で書きましょう。入力しながら保存され、すべてのバージョンが残ります。アシスタントにより良い一文を頼めます。提案するのはアシスタント、決めるのはあなたです。"

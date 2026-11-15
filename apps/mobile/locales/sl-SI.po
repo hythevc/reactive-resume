@@ -7453,10 +7453,6 @@ msgstr "Ustvari povezavo"
 msgid "Make primary"
 msgstr "Nastavi kot glavnega"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Naredite prostor za naslednji korak."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Naredite odprtino močnejšo"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "Selitev"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Zapomni si"
@@ -13923,6 +13920,7 @@ msgstr "Če želite prejeti opomnik, dovolite obvestila v nastavitvah naprave."
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

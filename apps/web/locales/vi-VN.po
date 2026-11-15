@@ -937,6 +937,8 @@ msgstr "{name} đã chuyển sang cột chính"
 msgid "{name} never prints"
 msgstr "{name} không bao giờ in"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "{name} resume template preview"
 msgstr "Xem trước mẫu CV của {name}"
@@ -1596,10 +1598,6 @@ msgstr "Thêm {suggestion}"
 #: src/features/career/knowledge/search-regions-field.tsx
 msgid "Add a country"
 msgstr "Thêm một quốc gia"
-
-#: src/features/career/knowledge/facts.tsx
-msgid "Add a fact"
-msgstr "Thêm một sự thật"
 
 #: src/features/career/knowledge/facts.tsx
 msgid "Add a fact, for example “I mentored two associate PMs in 2025”"
@@ -2317,6 +2315,7 @@ msgstr "Đồng thời tải xuống thư xin việc {0}"
 msgid "Also email {0}"
 msgstr "Gửi thêm email tới {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Also on mobile"
 msgstr "Cũng có trên di động"
@@ -2828,6 +2827,7 @@ msgstr "Tại Northwind Labs, hầu hết các nhóm mới đều bị kẹt tr�
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 #: src/features/homepage/sections.tsx
 msgid "ATS checker"
 msgstr "Máy kiểm tra ATS"
@@ -3355,6 +3355,7 @@ msgstr "Thay đổi kết nối"
 msgid "Change it in Design."
 msgstr "Thay đổi nó trong Thiết kế."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Change language"
 msgstr "Đổi ngôn ngữ"
@@ -3445,6 +3446,7 @@ msgstr "Trò chuyện"
 #. Homepage scene title, one word followed by a full stop
 #. The resume builder mode that reviews the resume for problems. Not the Screening application stage.
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -3466,6 +3468,7 @@ msgid "Check another file"
 msgstr "Kiểm tra tập tin khác"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check any PDF, no account needed"
 msgstr "Kiểm tra bất kỳ PDF nào, không cần tài khoản"
 
@@ -3501,6 +3504,7 @@ msgid "check numbers and names before using it"
 msgstr "hãy kiểm tra số liệu và tên trước khi dùng"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check reads your resume the way hiring software does and explains what to fix in plain words. It runs in your browser, so the file stays with you: 0 uploads."
 msgstr "Tính năng Kiểm tra đọc sơ yếu lý lịch của bạn theo cách mà phần mềm tuyển dụng thực hiện và giải thích những điều cần khắc phục bằng những từ ngữ đơn giản. Nó chạy trong trình duyệt của bạn, vì vậy tệp của bạn vẫn ở trên thiết bị của bạn: 0 lượt tải lên."
 
@@ -4028,6 +4032,7 @@ msgstr "So sánh với các lời đề nghị khác của bạn"
 msgid "Compare offers"
 msgstr "So sánh các lời đề nghị"
 
+#: src/features/homepage/compact.tsx
 #: src/features/templates/gallery.tsx
 msgid "Compare real resume layouts before you sign up. Every template is free to customize, with PDF and Word downloads and no watermark."
 msgstr "So sánh bố cục CV thực tế trước khi bạn đăng ký. Mọi mẫu đều có thể tùy chỉnh miễn phí, có thể tải xuống PDF và Microsoft Word và không có hình mờ."
@@ -5838,6 +5843,7 @@ msgstr "Mô tả"
 msgid "Description of role {0}"
 msgstr "Mô tả vai trò {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -6118,6 +6124,7 @@ msgstr "Tải xuống PDF hiện tại"
 msgid "Download failed. Try again."
 msgstr "Tải xuống không thành công. Hãy thử lại."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Download on the"
 msgstr "Tải về trên"
@@ -6981,7 +6988,9 @@ msgstr "Mô hình nhanh"
 msgid "Fast: {0} · Capable: {1}"
 msgstr "Nhanh: {0} · Mạnh: {1}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/hero.tsx
 msgid "Features"
 msgstr "Tính năng"
 
@@ -7490,6 +7499,7 @@ msgstr "Tiếng Đức"
 msgid "Get a key at <0>{0}</0>. It's stored encrypted and used only for your requests."
 msgstr "Nhận chìa khóa tại <0>{0}</0>. Nó được lưu trữ được mã hóa và chỉ được sử dụng cho các yêu cầu của bạn."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/prepare.tsx
 msgid "Get a plan for the interview, built from the posting and your own stories. Practice out loud, then write down how it went."
 msgstr "Nhận kế hoạch cho buổi phỏng vấn, được xây dựng từ tin tuyển dụng và chính câu chuyện của bạn. Luyện tập thành tiếng, rồi ghi lại buổi phỏng vấn đã diễn ra thế nào."
@@ -7506,6 +7516,7 @@ msgstr "Lấy khóa API từ đơn vị vận hành endpoint của bạn."
 msgid "Get feedback"
 msgstr "Xin nhận xét"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Get it on"
 msgstr "Tải xuống trên"
@@ -7518,6 +7529,7 @@ msgstr "Nhận vị trí mới tại đây mỗi sáng"
 msgid "Get resume feedback on Discord"
 msgstr "Nhận góp ý về CV trên Discord"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 msgid "Get started"
 msgstr "Bắt đầu"
@@ -7715,6 +7727,7 @@ msgstr "Giúp tôi cân nhắc lời đề nghị tôi có so với những gì 
 msgid "Help translate"
 msgstr "Trợ giúp dịch"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Help translate it into yours."
 msgstr "Hãy giúp dịch sang ngôn ngữ của bạn."
@@ -8502,6 +8515,7 @@ msgstr "John Doe"
 msgid "Join Discord"
 msgstr "Tham gia Discord"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Join the Discord community"
 msgstr "Tham gia cộng đồng Discord"
@@ -11638,6 +11652,7 @@ msgstr "Dán liên kết công việc hoặc tin tuyển dụng, sau đó kiểm
 msgid "Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
 msgstr "Dán một liên kết công việc. Chúng tôi sẽ lưu tin tuyển dụng để Kiểm tra, trợ lý và thư của bạn có thể sử dụng."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Paste a job posting once. It feeds a tailored copy of your resume, a fit check against each requirement, a cover letter draft and a place to track the role."
 msgstr "Dán tin tuyển dụng một lần. Nó sẽ tạo ra bản sao sơ yếu lý lịch được điều chỉnh, bản kiểm tra mức độ phù hợp với từng yêu cầu, bản nháp thư xin việc và nơi để theo dõi vị trí đó."
@@ -11825,6 +11840,7 @@ msgstr "Hãy chọn thời điểm sau hiện tại."
 msgid "Pick an icon"
 msgstr "Chọn một biểu tượng"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 msgid "Pick from {templateCount} templates, then set the type, color and spacing. The words stay put, so try as many looks as you like."
 msgstr "Chọn từ {templateCount} mẫu, sau đó đặt phông chữ, màu sắc và khoảng cách. Văn bản của bạn vẫn giữ nguyên, vì vậy hãy thử bao nhiêu thiết kế tùy thích."
@@ -12064,6 +12080,7 @@ msgctxt "Career preferences: the roles, places, pay and ways of working you want
 msgid "Preferences"
 msgstr "Mong muốn"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/prepare.tsx
@@ -12133,6 +12150,8 @@ msgstr "Nhấn <0>{RETURN_KEY}</0> để thêm hoặc lưu từ khóa hiện t�
 msgid "Press <0>Enter</0> to open"
 msgstr "Nhấn <0>phím Enter</0> để mở"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "Preview {name} sample PDF"
 msgstr "Xem trước bản PDF mẫu của {name}"
@@ -12209,6 +12228,7 @@ msgid "Private. Only you can see it."
 msgstr "Riêng tư. Chỉ có bạn mới có thể nhìn thấy nó."
 
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 msgid "Product"
 msgstr "Sản phẩm"
 
@@ -12439,6 +12459,7 @@ msgid "Question removed"
 msgstr "Đã xóa câu hỏi"
 
 #: src/features/homepage/faq.tsx
+#: src/features/homepage/header.tsx
 msgid "Questions"
 msgstr "Câu hỏi"
 
@@ -12501,6 +12522,7 @@ msgstr "Re: Nhà thiết kế sản phẩm cao cấp"
 msgid "Reactive Resume {__APP_VERSION__} · MIT"
 msgstr "Reactive Resume {__APP_VERSION__} · MIT"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Reactive Resume is open source under the MIT License. Amruth Pillai and a community of contributors keep it running, and donations pay for hosting and development. There’s no paid tier."
 msgstr "Reactive Resume là mã nguồn mở theo Giấy phép MIT. Amruth Pillai và cộng đồng người đóng góp duy trì dự án, còn tiền quyên góp chi trả cho lưu trữ và phát triển. Không có gói trả phí."
@@ -12931,6 +12953,7 @@ msgstr "Chuyển nơi ở"
 
 #: src/features/assistant/remember-message.tsx
 #: src/features/career/shared.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/remember.tsx
@@ -14733,6 +14756,7 @@ msgstr "Màu bóng"
 msgid "Shadow width"
 msgstr "Độ rộng bóng"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/share.tsx
@@ -14743,6 +14767,7 @@ msgstr "Độ rộng bóng"
 msgid "Share"
 msgstr "Chia sẻ"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/share.tsx
 msgid "Share a public link, add a password or keep it private. Choose from 3 visibility options. Export to PDF or Word, or take all your data with you as JSON."
 msgstr "Chia sẻ liên kết công khai, thêm mật khẩu hoặc giữ nó ở chế độ riêng tư. Chọn từ 3 tùy chọn hiển thị. Xuất sang PDF hoặc Word hoặc mang theo tất cả dữ liệu của bạn dưới dạng JSON."
@@ -15344,6 +15369,7 @@ msgstr "Tiếng Tây Ban Nha (B2)"
 msgid "Speak"
 msgstr "Nói"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Speaks your language"
 msgstr "Nói ngôn ngữ của bạn"
@@ -15480,6 +15506,7 @@ msgstr "Bắt đầu từ một bức thư trước đó"
 msgid "Start from one you have and link the application."
 msgstr "Bắt đầu từ cái bạn có và liên kết đơn xin việc."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Start from scratch or import what you have. It takes a few minutes, and you can come back to it anytime."
 msgstr "Bắt đầu từ đầu hoặc nhập những gì bạn đã có. Chỉ mất vài phút và bạn có thể quay lại bất cứ lúc nào."
@@ -15647,7 +15674,6 @@ msgid "Stories to bring"
 msgstr "Câu chuyện nên mang theo"
 
 #: src/features/homepage/header.tsx
-#: src/features/homepage/hero.tsx
 msgid "Story"
 msgstr "Câu chuyện"
 
@@ -15742,6 +15768,7 @@ msgstr "Tóm tắt các hồ sơ ứng tuyển đang mở của bạn"
 msgid "Summary"
 msgstr "Tóm tắt"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Support"
 msgstr "Ủng hộ"
@@ -15869,6 +15896,7 @@ msgstr "Thẻ, phân tách bằng dấu phẩy"
 msgid "Tags…"
 msgstr "Thẻ…"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
@@ -15972,8 +16000,11 @@ msgstr "Mẫu đã đổi thành {0}"
 msgid "Template, type and colors follow the resume, so the pair always matches."
 msgstr "Mẫu, loại và màu sắc tuân theo sơ yếu lý lịch nên luôn phù hợp với nhau."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Templates"
 msgstr "Mẫu"
 
@@ -17255,6 +17286,7 @@ msgstr "Dịch sang…"
 msgid "Translate the app"
 msgstr "Dịch ứng dụng"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Translated into {languageCount} languages."
 msgstr "Đã được dịch sang {languageCount} ngôn ngữ."
@@ -18630,6 +18662,7 @@ msgid "Worth asking {0}"
 msgstr "Nên hỏi {0}"
 
 #. Homepage scene title, one word followed by a full stop
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -18663,6 +18696,7 @@ msgstr "Viết thư…"
 msgid "Write a new reply in {languageName}"
 msgstr "Viết câu trả lời mới bằng {languageName}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/remember.tsx
 msgid "Write a story once, with the facts behind it, and the coach uses it in 3 places. Switch a fact off and nothing leans on it."
 msgstr "Viết một câu chuyện một lần, kèm các dữ kiện đằng sau, và cố vấn sẽ dùng nó ở 3 nơi. Tắt một dữ kiện và không gì còn dựa vào nó."
@@ -18671,6 +18705,7 @@ msgstr "Viết một câu chuyện một lần, kèm các dữ kiện đằng sa
 msgid "Write and review form answers"
 msgstr "Viết và xem xét câu trả lời cho biểu mẫu"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/write.tsx
 msgid "Write beside a live page. It saves as you type and keeps every version. Ask the assistant for a sharper line: it suggests, you decide."
 msgstr "Viết ngay cạnh trang hiển thị trực tiếp. Mọi thứ được lưu khi bạn gõ và giữ lại mọi phiên bản. Nhờ trợ lý gợi ý câu chữ sắc sảo hơn: trợ lý gợi ý, bạn quyết định."

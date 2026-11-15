@@ -7,7 +7,7 @@ import { useLingui } from "@lingui/react/macro";
 import { useQuery } from "@tanstack/react-query";
 import * as Crypto from "expo-crypto";
 import { memo, useCallback, useDeferredValue, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { RefreshControl, View } from "react-native";
+import { Pressable, RefreshControl, View } from "react-native";
 import Animated from "react-native-reanimated";
 import { factCategorySchema } from "@reactive-resume/schema/career";
 import { categoryLabel, factCategories } from "./fact-categories";
@@ -23,6 +23,7 @@ import {
 	Card,
 	Chip,
 	EmptyState,
+	Icon,
 	SelectSheet,
 	Sheet,
 	Text,
@@ -58,6 +59,7 @@ export function Facts({ children, onRefresh }: FactsProps) {
 	const { facts, profile } = useCareerQueries();
 	const pull = usePullRefresh(onRefresh);
 	const [search, setSearch] = useState("");
+	const [memoryOpen, setMemoryOpen] = useState(false);
 	// Typing stays responsive; the list filters in a deferred render.
 	const query = useDeferredValue(search).trim().toLocaleLowerCase();
 	const [category, setCategory] = useState("all");
@@ -97,6 +99,8 @@ export function Facts({ children, onRefresh }: FactsProps) {
 			),
 		[facts.data, undo.hidden, category, query],
 	);
+	const empty = facts.data?.length === 0 && !facts.isPending && !facts.isError;
+	const showFilters = !empty || Boolean(search) || category !== "all";
 	const firstAppearance = useFirstAppearance(!facts.isPending);
 
 	// Rows get one set of callbacks for the screen's life, so a change re-renders only the row it touches.
@@ -142,11 +146,66 @@ export function Facts({ children, onRefresh }: FactsProps) {
 			}}
 		>
 			{children}
+			{facts.data?.length || facts.isPending || facts.isError ? (
+				<Button label={t`Add a fact`} onPress={() => setEditor({ fact: null })} />
+			) : null}
+			{showFilters ? (
+				<>
+					<TextField label={t`Search facts`} value={search} onChangeText={setSearch} />
+					<SelectSheet
+						label={t`Type`}
+						value={category}
+						onChange={setCategory}
+						options={[{ value: "all", label: t`All` }, ...factCategories()]}
+					/>
+				</>
+			) : null}
+			<LoadState query={facts} />
+			{failed ? (
+				<Banner tone="danger" message={t`Couldn't save that change. Check your connection and try again.`} />
+			) : null}
+			{!facts.isPending && !facts.isError && !rows.length ? (
+				<EmptyState
+					variant="compact"
+					title={!facts.data?.length ? t`No facts yet` : t`No facts match`}
+					message={
+						!facts.data?.length
+							? t`Add things you've done, with numbers when you have them, such as “Cut checkout errors by 30% in 2025”. The coach backs its answers and your stories with them.`
+							: t`Try another word or type.`
+					}
+					action={
+						!facts.data?.length
+							? { label: t`Add a fact`, onPress: () => setEditor({ fact: null }) }
+							: category !== "all"
+								? { label: t`Show all types`, onPress: () => setCategory("all") }
+								: undefined
+					}
+				/>
+			) : null}
+			<ResumeFacts />
 			<LoadState query={profile} />
 			{profile.data ? (
+				<Pressable
+					accessibilityRole="button"
+					accessibilityLabel={t`Remember facts from my messages`}
+					accessibilityState={{ expanded: memoryOpen }}
+					onPress={() => setMemoryOpen(!memoryOpen)}
+					style={({ pressed }) => ({
+						minHeight: size.hit,
+						flexDirection: "row",
+						alignItems: "center",
+						gap: space.s2,
+						backgroundColor: pressed ? colors.press : undefined,
+					})}
+				>
+					<Text variant="callout" color="ink2" style={{ flex: 1 }}>{t`Remember facts from my messages`}</Text>
+					<Icon name={memoryOpen ? "caret-down" : "caret-right"} size={size.icon.meta} color={colors.ink3} />
+				</Pressable>
+			) : null}
+			{profile.data && memoryOpen ? (
 				<>
 					<SelectSheet
-						label={t`Remember facts from my messages`}
+						label={t`Remember`}
 						value={profile.data.memoryMode}
 						disabled={memory.pending || !account.data?.id}
 						onChange={(memoryMode) => {
@@ -170,41 +229,8 @@ export function Facts({ children, onRefresh }: FactsProps) {
 				</>
 			) : null}
 			{memory.error ? <Banner tone="danger" message={memory.error} /> : null}
-			<TextField label={t`Search facts`} value={search} onChangeText={setSearch} />
-			<SelectSheet
-				label={t`Type`}
-				value={category}
-				onChange={setCategory}
-				options={[{ value: "all", label: t`All` }, ...factCategories()]}
-			/>
-			<ResumeFacts />
-			{facts.data?.length || facts.isPending || facts.isError ? (
-				<Button label={t`Add a fact`} onPress={() => setEditor({ fact: null })} />
-			) : null}
 			<SwitchRow label={t`Show forgotten`} value={showForgotten} onValueChange={setShowForgotten} />
 			{showForgotten ? <ForgottenFacts /> : null}
-			<LoadState query={facts} />
-			{failed ? (
-				<Banner tone="danger" message={t`Couldn't save that change. Check your connection and try again.`} />
-			) : null}
-			{!facts.isPending && !facts.isError && !rows.length ? (
-				<EmptyState
-					variant={facts.data?.length ? "compact" : "card"}
-					title={!facts.data?.length ? t`No facts yet` : t`No facts match`}
-					message={
-						!facts.data?.length
-							? t`Add things you've done, with numbers when you have them, such as “Cut checkout errors by 30% in 2025”. The coach backs its answers and your stories with them.`
-							: t`Try another word or type.`
-					}
-					action={
-						!facts.data?.length
-							? { label: t`Add a fact`, onPress: () => setEditor({ fact: null }) }
-							: category !== "all"
-								? { label: t`Show all types`, onPress: () => setCategory("all") }
-								: undefined
-					}
-				/>
-			) : null}
 		</View>
 	);
 

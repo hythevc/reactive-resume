@@ -73,7 +73,7 @@ type InputBoxProps = Omit<TextFieldProps, "label" | "helper"> & {
 	maxHeight?: number | undefined;
 };
 
-/** The bordered box: 1 pt `lineStrong`, 2 pt `accent` while focused, 2 pt `dangerText` with an error. */
+/** The bordered box: 1 pt `controlLine`, 2 pt `accent` while focused, 2 pt `dangerText` with an error. */
 function InputBox({
 	accessibilityLabel,
 	ref: inputRef,
@@ -118,7 +118,7 @@ function InputBox({
 				paddingHorizontal: space.s3 - (border - 1),
 				paddingVertical: multiline ? space.s3 - (border - 1) : 0,
 				borderWidth: border,
-				borderColor: error ? colors.dangerText : focused ? colors.accent : colors.lineStrong,
+				borderColor: error ? colors.dangerText : focused ? colors.accent : colors.controlLine,
 				borderRadius: radius.rMd,
 				backgroundColor: colors.raised,
 			}}
@@ -270,7 +270,7 @@ export function SelectSheet<T extends string>({
 							minHeight: size.input,
 							paddingHorizontal: space.s3,
 							borderWidth: 1,
-							borderColor: colors.lineStrong,
+							borderColor: colors.controlLine,
 							borderRadius: radius.rMd,
 							backgroundColor: pressed && !android ? colors.sunken : colors.raised,
 							overflow: "hidden",
@@ -497,7 +497,7 @@ export function Chip({ label, selected, onPress, icon, onRemove }: ChipProps) {
 				paddingEnd: onRemove ? space.s1 + space.s0 : space.s3,
 				borderRadius: radius.rMd,
 				borderWidth: 1,
-				borderColor: selected ? colors.accent : colors.lineStrong,
+				borderColor: selected ? colors.accent : colors.controlLine,
 				backgroundColor: pressed && onPress && !android ? colors.sunken : selected ? colors.accentSoft : colors.raised,
 				overflow: "hidden",
 			})}

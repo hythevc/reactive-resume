@@ -402,6 +402,7 @@ function NeedsYou({ now, onReview, className }: NeedsYouProps) {
 						/>
 					) : (
 						<EmptyState
+							variant="compact"
 							title={<Trans>You're up to date</Trans>}
 							description={<Trans>New roles, reminders and finished briefings appear here.</Trans>}
 							secondary={
@@ -858,7 +859,7 @@ function ComingUp({ now, className }: ComingUpProps) {
 			<div className="flex items-start gap-3">
 				<span className="flex min-w-[2.75rem] shrink-0 flex-col items-center rounded-lg bg-sunken py-1.5">
 					<span className="font-mono text-xs font-medium text-ink-3">{format(start, { weekday: "short" })}</span>
-					<span className="font-display text-[22px] leading-[26px]">{format(start, { day: "numeric" })}</span>
+					<span className="font-ui text-[22px] leading-[26px]">{format(start, { day: "numeric" })}</span>
 				</span>
 				<div className="grid min-w-0 gap-0.5">
 					<p className="flex items-center gap-1.5 text-sm font-semibold">

@@ -937,6 +937,8 @@ msgstr "{name} əsas sütuna köçürüldü"
 msgid "{name} never prints"
 msgstr "{name} heç vaxt çap etmir"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "{name} resume template preview"
 msgstr "{name} CV şablonunun önizləməsi"
@@ -1596,10 +1598,6 @@ msgstr "{suggestion} teqini əlavə et"
 #: src/features/career/knowledge/search-regions-field.tsx
 msgid "Add a country"
 msgstr "Ölkə əlavə edin"
-
-#: src/features/career/knowledge/facts.tsx
-msgid "Add a fact"
-msgstr "Bir fakt əlavə edin"
 
 #: src/features/career/knowledge/facts.tsx
 msgid "Add a fact, for example “I mentored two associate PMs in 2025”"
@@ -2317,6 +2315,7 @@ msgstr "Həmçinin {0} örtük məktubunu endirin"
 msgid "Also email {0}"
 msgstr "{0} ünvanına da e-poçt göndər"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Also on mobile"
 msgstr "Mobil cihazlarda da"
@@ -2828,6 +2827,7 @@ msgstr "Northwind Labs-da yeni komandaların çoxu quraşdırmanı bitirməzdən
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 #: src/features/homepage/sections.tsx
 msgid "ATS checker"
 msgstr "ATS yoxlayıcı"
@@ -3355,6 +3355,7 @@ msgstr "Əlaqəni dəyişdirin"
 msgid "Change it in Design."
 msgstr "Dizaynda dəyişdirin."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Change language"
 msgstr "Dili dəyiş"
@@ -3445,6 +3446,7 @@ msgstr "Söhbət"
 #. Homepage scene title, one word followed by a full stop
 #. The resume builder mode that reviews the resume for problems. Not the Screening application stage.
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -3466,6 +3468,7 @@ msgid "Check another file"
 msgstr "Başqa bir faylı yoxlayın"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check any PDF, no account needed"
 msgstr "Hər hansı PDF yoxlayın, hesaba ehtiyac yoxdur"
 
@@ -3501,6 +3504,7 @@ msgid "check numbers and names before using it"
 msgstr "istifadə etməzdən əvvəl rəqəmləri və adları yoxlayın"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check reads your resume the way hiring software does and explains what to fix in plain words. It runs in your browser, so the file stays with you: 0 uploads."
 msgstr "Yoxlama xüsusiyyəti işə götürmə proqramının etdiyi kimi CV-nizi oxuyur və sadə sözlərlə nəyi düzəltməyi izah edir. O, brauzerinizdə işləyir, ona görə də faylınız cihazınızda qalacaq: 0 yükləmə."
 
@@ -4028,6 +4032,7 @@ msgstr "Digər təkliflərinizlə müqayisə edin"
 msgid "Compare offers"
 msgstr "Təklifləri müqayisə et"
 
+#: src/features/homepage/compact.tsx
 #: src/features/templates/gallery.tsx
 msgid "Compare real resume layouts before you sign up. Every template is free to customize, with PDF and Word downloads and no watermark."
 msgstr "Qeydiyyatdan keçməzdən əvvəl real CV tərtibatlarını müqayisə edin. Hər bir şablon PDF və Microsoft Word yükləmələri ilə və su nişanı olmadan fərdiləşdirmək üçün pulsuzdur."
@@ -5838,6 +5843,7 @@ msgstr "Təsvir"
 msgid "Description of role {0}"
 msgstr "{0} rolunun təsviri"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -6118,6 +6124,7 @@ msgstr "Hazırkı PDF-i endir"
 msgid "Download failed. Try again."
 msgstr "Endirmə uğursuz oldu. Yenidən cəhd edin."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Download on the"
 msgstr "Buradan endirin"
@@ -6981,7 +6988,9 @@ msgstr "Sürətli model"
 msgid "Fast: {0} · Capable: {1}"
 msgstr "Sürətli: {0} · Güclü: {1}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/hero.tsx
 msgid "Features"
 msgstr "Funksiyalar"
 
@@ -7490,6 +7499,7 @@ msgstr "Alman"
 msgid "Get a key at <0>{0}</0>. It's stored encrypted and used only for your requests."
 msgstr "<0>{0}</0> ünvanında açar əldə edin. O, şifrələnmiş şəkildə saxlanılır və yalnız sorğularınız üçün istifadə olunur."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/prepare.tsx
 msgid "Get a plan for the interview, built from the posting and your own stories. Practice out loud, then write down how it went."
 msgstr "İş elanı və öz hekayələriniz əsasında müsahibə planı alın. Səsli məşq edin, sonra necə keçdiyini yazın."
@@ -7506,6 +7516,7 @@ msgstr "Son nöqtənizin operatorundan API açarı əldə edin."
 msgid "Get feedback"
 msgstr "Rəy al"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Get it on"
 msgstr "Buradan endirin"
@@ -7518,6 +7529,7 @@ msgstr "Hər səhər yeni vəzifələri burada alın"
 msgid "Get resume feedback on Discord"
 msgstr "Discord-da CV-niz barədə rəy alın"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 msgid "Get started"
 msgstr "Başlayın"
@@ -7715,6 +7727,7 @@ msgstr "Əlimdəki təklifi istədiklərimlə tutuşdırmaqda mənə kömək et.
 msgid "Help translate"
 msgstr "Tərcümə etməyə kömək edin"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Help translate it into yours."
 msgstr "Onu öz dilinizə tərcümə etməyə kömək edin."
@@ -8502,6 +8515,7 @@ msgstr "Con Do"
 msgid "Join Discord"
 msgstr "Discord-a qoşulun"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Join the Discord community"
 msgstr "Discord icmasına qoşulun"
@@ -11638,6 +11652,7 @@ msgstr "İş linkini və ya iş elanını yapışdırın, sonra rolu və şirkə
 msgid "Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
 msgstr "İş linkini yapışdırın. Biz iş elanını saxlayacağıq ki, Check, köməkçi və məktubunuz ondan istifadə edə bilsin."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Paste a job posting once. It feeds a tailored copy of your resume, a fit check against each requirement, a cover letter draft and a place to track the role."
 msgstr "İş elanını bir dəfə yapışdırın. Bu, CV-nizin uyğunlaşdırılmış nüsxəsini, hər tələb üzrə uyğunluq yoxlamasını, müşayiət məktubu qaralaması və vəzifəni izləmək üçün bir yer verir."
@@ -11825,6 +11840,7 @@ msgstr "İndidən sonrakı vaxtı seçin."
 msgid "Pick an icon"
 msgstr "Bir ikon seçin"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 msgid "Pick from {templateCount} templates, then set the type, color and spacing. The words stay put, so try as many looks as you like."
 msgstr "{templateCount} şablondan birini seçin, sonra şriftləri, rəngi və məsafəni təyin edin. Mətniniz eyni qalır, ona görə də istədiyiniz qədər dizaynı sınayın."
@@ -12064,6 +12080,7 @@ msgctxt "Career preferences: the roles, places, pay and ways of working you want
 msgid "Preferences"
 msgstr "Tərcihlər"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/prepare.tsx
@@ -12133,6 +12150,8 @@ msgstr "Cari açar sözü əlavə etmək və ya saxlamaq üçün <0>{RETURN_KEY}
 msgid "Press <0>Enter</0> to open"
 msgstr "Açmaq üçün <0>Enter düyməsini</0> basın"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "Preview {name} sample PDF"
 msgstr "{name} PDF nümunəsinə önizləmə"
@@ -12209,6 +12228,7 @@ msgid "Private. Only you can see it."
 msgstr "Şəxsi. Onu yalnız siz görə bilərsiniz."
 
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 msgid "Product"
 msgstr "Məhsul"
 
@@ -12439,6 +12459,7 @@ msgid "Question removed"
 msgstr "Sual silindi"
 
 #: src/features/homepage/faq.tsx
+#: src/features/homepage/header.tsx
 msgid "Questions"
 msgstr "Suallar"
 
@@ -12501,6 +12522,7 @@ msgstr "Re: Baş məhsul dizayneri"
 msgid "Reactive Resume {__APP_VERSION__} · MIT"
 msgstr "Reactive Resume {__APP_VERSION__} · MIT"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Reactive Resume is open source under the MIT License. Amruth Pillai and a community of contributors keep it running, and donations pay for hosting and development. There’s no paid tier."
 msgstr "Reactive Resume MIT Lisenziyası ilə açıq mənbəlidir. Amruth Pillai və töhfəçilər icması onu işlək saxlayır, ianələr isə hostinq və inkişafı maliyyələşdirir. Ödənişli plan yoxdur."
@@ -12931,6 +12953,7 @@ msgstr "Yerdəyişmə"
 
 #: src/features/assistant/remember-message.tsx
 #: src/features/career/shared.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/remember.tsx
@@ -14733,6 +14756,7 @@ msgstr "Kölgə rəngi"
 msgid "Shadow width"
 msgstr "Kölgə qalınlığı"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/share.tsx
@@ -14743,6 +14767,7 @@ msgstr "Kölgə qalınlığı"
 msgid "Share"
 msgstr "Paylaşın"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/share.tsx
 msgid "Share a public link, add a password or keep it private. Choose from 3 visibility options. Export to PDF or Word, or take all your data with you as JSON."
 msgstr "İctimai bir keçid paylaşın, parol əlavə edin və ya gizli saxlayın. 3 görünmə variantından birini seçin. PDF və ya Word-ə ixrac edin və ya JSON kimi bütün məlumatlarınızı özünüzlə aparın."
@@ -15344,6 +15369,7 @@ msgstr "İspan (B2)"
 msgid "Speak"
 msgstr "Danış"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Speaks your language"
 msgstr "Sizin dilinizdə danışır"
@@ -15480,6 +15506,7 @@ msgstr "Əvvəlki məktubdan başla"
 msgid "Start from one you have and link the application."
 msgstr "Sahib olduğunuz birindən başlayın və iş ərizəsini əlaqələndirin."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Start from scratch or import what you have. It takes a few minutes, and you can come back to it anytime."
 msgstr "Sıfırdan başlayın və ya mövcud olanı idxal edin. Bir neçə dəqiqə çəkir və istənilən vaxt geri qayıda bilərsiniz."
@@ -15647,7 +15674,6 @@ msgid "Stories to bring"
 msgstr "Gətiriləcək hekayələr"
 
 #: src/features/homepage/header.tsx
-#: src/features/homepage/hero.tsx
 msgid "Story"
 msgstr "Hekayə"
 
@@ -15742,6 +15768,7 @@ msgstr "Açıq müraciətlərinizin xülasələri"
 msgid "Summary"
 msgstr "Xülasə"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Support"
 msgstr "Dəstək"
@@ -15869,6 +15896,7 @@ msgstr "Teqlər, vergüllə ayrılmış"
 msgid "Tags…"
 msgstr "Teqlər…"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
@@ -15972,8 +16000,11 @@ msgstr "Şablon {0} olaraq dəyişdirildi"
 msgid "Template, type and colors follow the resume, so the pair always matches."
 msgstr "Şablon, növ və rənglər CV-yə uyğundur, buna görə də cütlük həmişə uyğun gəlir."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Templates"
 msgstr "Şablonlar"
 
@@ -17255,6 +17286,7 @@ msgstr "Bu dilə tərcümə et…"
 msgid "Translate the app"
 msgstr "Tətbiqi tərcümə edin"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Translated into {languageCount} languages."
 msgstr "{languageCount} dilə tərcümə edilib."
@@ -18630,6 +18662,7 @@ msgid "Worth asking {0}"
 msgstr "Soruşmağa dəyər: {0}"
 
 #. Homepage scene title, one word followed by a full stop
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -18663,6 +18696,7 @@ msgstr "Məktub yaz…"
 msgid "Write a new reply in {languageName}"
 msgstr "{languageName} dilində yeni cavab yaz"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/remember.tsx
 msgid "Write a story once, with the facts behind it, and the coach uses it in 3 places. Switch a fact off and nothing leans on it."
 msgstr "Hekayəni arxasındakı faktlarla bir dəfə yazın və kouç ondan 3 yerdə istifadə edəcək. Faktı söndürün, heç nə ona söykənməyəcək."
@@ -18671,6 +18705,7 @@ msgstr "Hekayəni arxasındakı faktlarla bir dəfə yazın və kouç ondan 3 ye
 msgid "Write and review form answers"
 msgstr "Forma cavablarını yaz və nəzərdən keçir"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/write.tsx
 msgid "Write beside a live page. It saves as you type and keeps every version. Ask the assistant for a sharper line: it suggests, you decide."
 msgstr "Canlı səhifənin yanında yazın. Yazdıqca saxlanılır və hər versiya qorunur. Köməkçidən daha kəskin ifadə istəyin: o təklif edir, siz qərar verirsiniz."

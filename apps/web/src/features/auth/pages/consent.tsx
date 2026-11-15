@@ -90,7 +90,7 @@ export function OAuthConsentPage({ oauthQuery, email, isAnonymous, disableSignup
 	return (
 		<>
 			<div className="space-y-2 text-center">
-				<h1 className="font-display text-[34px] leading-[1.15] font-normal text-balance">
+				<h1 className="font-ui text-[28px] leading-[1.15] font-semibold tracking-[-0.02em] text-balance sm:text-[32px]">
 					<Trans>Connect an application</Trans>
 				</h1>
 				{!isAnonymous && (

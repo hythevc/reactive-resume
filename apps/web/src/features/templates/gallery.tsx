@@ -4,37 +4,29 @@ import { Link } from "@tanstack/react-router";
 import { templateLayouts, templateSchema } from "@reactive-resume/schema/templates";
 import { cn } from "@reactive-resume/utils/style";
 import { templates } from "@/dialogs/resume/template/data";
-import { LandingBackground } from "@/features/homepage/background";
-import { CtaLink, Doodle, labelClass } from "@/features/homepage/ui";
+import { CtaLink, labelClass } from "@/features/homepage/ui";
 
-const linkClass = "text-accent-text underline underline-offset-4 transition-colors hover:text-accent-hover";
+const linkClass =
+	"inline-flex min-h-11 items-center rounded-sm text-accent-text underline underline-offset-4 transition-colors hover:text-accent-hover";
 
-/** The template gallery, on the homepage's desk: its grain and window light, paper shadows, type and French curve. */
+/** A public comparison of actual document layouts, with account-aware template selection. */
 export function TemplateGallery() {
 	const { i18n } = useLingui();
 	const count = i18n.number(templateSchema.options.length);
 
 	return (
-		<div className="landing relative isolate overflow-x-clip bg-bg font-ui text-ink">
-			<LandingBackground />
-			<main id="main-content" className="relative px-5 pt-28 pb-16 sm:px-8">
-				<div className="relative mx-auto max-w-6xl">
-					<Doodle
-						name="curve"
-						wipe="1"
-						sizes="(min-width: 900px) 14vw, 1px"
-						className="end-0 top-4 w-[clamp(140px,14vw,220px)] rotate-[8deg] max-[900px]:hidden"
-					/>
-
+		<div className="relative bg-bg font-ui text-ink">
+			<main id="main-content" className="home-container py-12 sm:py-14">
+				<div>
 					<div className="relative max-w-3xl">
-						<h1 className="font-anybody text-[clamp(40px,6vw,80px)] leading-[1.02] font-light tracking-[-.03em] text-balance">
+						<h1 className="font-ui text-[40px] leading-[1.04] font-semibold tracking-[-.035em] text-balance sm:text-[clamp(48px,4.5vw,64px)]">
 							{t`${count} free resume templates. Find your fit.`}
 						</h1>
-						<p className="mt-6 max-w-2xl font-display text-[clamp(17px,1.4vw,21px)] leading-normal text-pretty text-ink-2">
+						<p className="mt-5 max-w-2xl text-base leading-7 text-pretty text-ink-2">
 							{t`Compare real resume layouts before you sign up. Every template is free to customize, with PDF and Word downloads and no watermark.`}
 						</p>
 
-						<div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+						<div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
 							<CtaLink size="hero" />
 							<a
 								href="https://docs.rxresu.me/guides/choosing-a-template"
@@ -46,26 +38,11 @@ export function TemplateGallery() {
 						<p className="mt-3 text-sm text-ink-3">
 							{t`Pick a template below to start with it, or choose later in Design. Switch layouts anytime without rewriting your content.`}
 						</p>
-
-						<section aria-labelledby="layout-advice" className="mt-10 max-w-2xl">
-							<h2 id="layout-advice" className={cn(labelClass, "text-ink-3")}>
-								{t`One column or two?`}
-							</h2>
-							<p className="mt-2 font-display text-[clamp(17px,1.4vw,21px)] leading-normal text-pretty text-ink-2">
-								{t`One-column templates give hiring software a simple top-to-bottom reading order. Two-column templates put supporting details in a sidebar and leave more room for visual hierarchy. Choose for your content, then check the exported PDF.`}
-							</p>
-							<p className="mt-2 text-sm text-ink-3">
-								<Link to="/ats-checker" className={linkClass}>
-									{t`Check your resume’s ATS readability`}
-								</Link>{" "}
-								{t`Readability does not guarantee an interview or a particular ATS result.`}
-							</p>
-						</section>
 					</div>
 
 					{/* Two side by side even on phones, so the page compares layouts; the description and the sample PDF link
 					    join from sm up. */}
-					<div className="mt-16 grid grid-cols-2 gap-x-3 gap-y-10 sm:gap-x-8 sm:gap-y-14 lg:grid-cols-3">
+					<div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-8 sm:gap-y-10 lg:grid-cols-3">
 						{templateSchema.options.map((id, index) => {
 							const template = templates[id];
 							const name = template.name;
@@ -88,16 +65,14 @@ export function TemplateGallery() {
 											loading={index < 3 ? "eager" : "lazy"}
 											fetchPriority={index === 0 ? "high" : "auto"}
 											decoding="async"
-											className="aspect-[298/420] w-full rounded-sm bg-paper object-contain shadow-paper dark:brightness-[.93]"
+											className="aspect-[298/420] w-full rounded-sm border border-line bg-paper object-contain shadow-e1"
 										/>
 									</a>
-									<h2 className="font-anybody mt-4 text-[22px] leading-tight font-light tracking-[-.02em] sm:mt-6 sm:text-[32px]">
-										{name}
-									</h2>
+									<h2 className="mt-4 font-ui text-lg leading-tight font-semibold sm:text-[22px]">{name}</h2>
 									<p className={cn(labelClass, "mt-1 text-ink-3")}>
 										{layout.columns === 1 ? t`One column` : t`Two columns`}
 									</p>
-									<p className="mt-3 hidden font-display text-[17px] leading-[1.45] text-pretty text-ink-2 sm:block">
+									<p className="mt-3 hidden text-[15px] leading-6 text-pretty text-ink-2 sm:block">
 										{i18n._(template.description)}
 									</p>
 									<div className="mt-2 flex flex-wrap items-center gap-x-5">
@@ -124,17 +99,28 @@ export function TemplateGallery() {
 						})}
 					</div>
 
+					<section aria-labelledby="layout-advice" className="mt-12 max-w-3xl border-t border-line pt-7">
+						<h2 id="layout-advice" className="text-lg font-semibold">
+							{t`One column or two?`}
+						</h2>
+						<p className="mt-3 text-[15px] leading-7 text-pretty text-ink-2">
+							{t`One-column templates give hiring software a simple top-to-bottom reading order. Two-column templates put supporting details in a sidebar and leave more room for visual hierarchy. Choose for your content, then check the exported PDF.`}
+						</p>
+						<p className="mt-2 text-sm text-ink-3">
+							<Link to="/ats-checker" className={linkClass}>
+								{t`Check your resume’s ATS readability`}
+							</Link>{" "}
+							{t`Readability does not guarantee an interview or a particular ATS result.`}
+						</p>
+					</section>
 					<section
-						className="mt-20 flex flex-col items-start gap-5 border-t border-line pt-10"
+						className="mt-10 flex flex-col items-start gap-5 border-t border-line pt-8"
 						aria-labelledby="make-it-yours"
 					>
-						<h2
-							id="make-it-yours"
-							className="font-anybody text-[clamp(36px,4vw,56px)] leading-[1.02] font-light tracking-[-.03em] text-balance"
-						>
+						<h2 id="make-it-yours" className="home-title">
 							{t`Make it yours, then take it with you.`}
 						</h2>
-						<p className="max-w-[34em] font-display text-[clamp(17px,1.4vw,21px)] leading-normal text-pretty text-ink-2">
+						<p className="max-w-[58ch] text-base leading-7 text-pretty text-ink-2">
 							{t`Adjust fonts, colors, spacing and sections in the resume builder. Export your finished resume to PDF or Word, or share a link. The PDFs above are examples to help you compare designs.`}
 						</p>
 						<CtaLink size="closing" />

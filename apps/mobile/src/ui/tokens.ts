@@ -1,4 +1,4 @@
-// Desk & Paper tokens for React Native.
+// Working Record tokens for React Native.
 // Screens use these and nothing else; add a missing token here rather than hard-coding a value.
 import { Easing, Platform } from "react-native";
 
@@ -6,22 +6,23 @@ export type ColorScheme = "light" | "dark";
 
 // §1 Colours and §1.1 named tints. Alpha is the last two hex digits (#RRGGBBAA).
 const light = {
-	bg: "#F8F7F3",
-	surface: "#FEFDFC",
+	bg: "#F5F7F8",
+	surface: "#FFFFFF",
 	raised: "#FFFFFF",
-	sunken: "#F0EFEB",
-	line: "#DCE2DA",
-	line2: "#BECBBF",
-	lineStrong: "#7B8B7D",
-	ink: "#202B25",
-	ink2: "#4F5A53",
-	ink3: "#626B65",
-	accent: "#286343",
-	accentHover: "#1F5036",
+	sunken: "#ECF1F3",
+	line: "#DCE4E8",
+	line2: "#B8CBD3",
+	lineStrong: "#8CA2AD",
+	controlLine: "#708995",
+	ink: "#172B32",
+	ink2: "#3F535C",
+	ink3: "#5B6E77",
+	accent: "#0B6E75",
+	accentHover: "#07555B",
 	onAccent: "#FFFFFF",
 	onDanger: "#FFFFFF",
-	accentSoft: "#E7EFE2",
-	accentText: "#1B4D34",
+	accentSoft: "#E4F3F2",
+	accentText: "#075E64",
 	danger: "#BA3630",
 	dangerSoft: "#FFE7E4",
 	dangerText: "#A92321",
@@ -30,8 +31,8 @@ const light = {
 	warnText: "#81520A",
 	infoSoft: "#E0F1FF",
 	infoText: "#1D5B92",
-	hover: "#202B250D",
-	press: "#202B2517",
+	hover: "#172B320D",
+	press: "#172B3217",
 	scrim: "#17161152",
 	scrimSheet: "#1716112E",
 	paper: "#FFFFFF",
@@ -46,33 +47,34 @@ const light = {
 	stageInterv: "#AF8433",
 	stageOffer: "#579F68",
 	stageClosed: "#C67067",
-	pageSelectFill: "#2863431F",
-	pageSelectLine: "#286343",
+	pageSelectFill: "#0B6E751F",
+	pageSelectLine: "#0B6E75",
 	pageIssueFill: "#D2992238",
 	pageProposalFill: "#3373441F",
-	selectedFill: "#E7EFE2",
+	selectedFill: "#E4F3F2",
 };
 
 export type ColorToken = keyof typeof light;
 export type Colors = Record<ColorToken, string>;
 
 const dark: Colors = {
-	bg: "#101713",
-	surface: "#17201B",
-	raised: "#202B24",
-	sunken: "#0D120F",
-	line: "#334639",
-	line2: "#59705E",
-	lineStrong: "#6E8372",
-	ink: "#EEF5EE",
-	ink2: "#C2CFC3",
-	ink3: "#9CAC9D",
-	accent: "#91CCA0",
-	accentHover: "#A4D9B0",
-	onAccent: "#102315",
+	bg: "#101A20",
+	surface: "#17262E",
+	raised: "#20323B",
+	sunken: "#0B1419",
+	line: "#314B57",
+	line2: "#526F7D",
+	lineStrong: "#6D8A98",
+	controlLine: "#6D8A98",
+	ink: "#EFF5F6",
+	ink2: "#C0D0D8",
+	ink3: "#9CB0BA",
+	accent: "#7DD2D4",
+	accentHover: "#94DFE0",
+	onAccent: "#082E33",
 	onDanger: "#07150A",
-	accentSoft: "#223C2A",
-	accentText: "#A6DDB1",
+	accentSoft: "#153E45",
+	accentText: "#A5E6E6",
 	danger: "#D9544B",
 	dangerSoft: "#47211D",
 	dangerText: "#FDA297",
@@ -101,7 +103,7 @@ const dark: Colors = {
 	pageSelectLine: "#337344",
 	pageIssueFill: "#D2992238",
 	pageProposalFill: "#3373441F",
-	selectedFill: "#223C2A",
+	selectedFill: "#153E45",
 };
 
 export const colors: Record<ColorScheme, Colors> = { light, dark };
@@ -133,10 +135,10 @@ type TextStyleToken = {
 };
 
 export const type = {
-	largeIOS: { fontFamily: fonts.display[400], fontSize: 34, lineHeight: 41, letterSpacing: -0.3 },
-	largeAnd: { fontFamily: fonts.display[400], fontSize: 34, lineHeight: 41, letterSpacing: -0.3 },
-	display: { fontFamily: fonts.display[400], fontSize: 34, lineHeight: 41, letterSpacing: -0.3 },
-	heading: { fontFamily: fonts.display[400], fontSize: 22, lineHeight: 28, letterSpacing: 0 },
+	largeIOS: { fontFamily: fonts.ui[600], fontSize: 28, lineHeight: 34, letterSpacing: -0.3 },
+	largeAnd: { fontFamily: fonts.ui[600], fontSize: 28, lineHeight: 34, letterSpacing: -0.3 },
+	display: { fontFamily: fonts.ui[600], fontSize: 28, lineHeight: 34, letterSpacing: -0.3 },
+	heading: { fontFamily: fonts.ui[600], fontSize: 22, lineHeight: 28, letterSpacing: -0.2 },
 	title: { fontFamily: fonts.ui[600], fontSize: 17, lineHeight: 24, letterSpacing: 0 },
 	bodyLarge: { fontFamily: fonts.ui[400], fontSize: 16, lineHeight: 24, letterSpacing: 0 },
 	body: { fontFamily: fonts.ui[400], fontSize: 16, lineHeight: 24, letterSpacing: 0 },
@@ -187,11 +189,11 @@ export const size = {
 export const radius = {
 	rSm: 4,
 	/** Inputs, buttons and other controls. */
-	rMd: 8,
+	rMd: 6,
 	/** Cards, grouped lists and feedback surfaces. */
 	rLg: 12,
 	rXl: 16,
-	rSheet: 20,
+	rSheet: 16,
 } as const;
 
 // §5 Shadows. `boxShadow` first; `ios` and `elevation` are the legacy fallback for Android below API 28.

@@ -84,7 +84,7 @@ function Adjustment({ id, label, value, min, max, step = 1, display, disabled, o
 				value={value}
 				disabled={disabled}
 				onChange={(event) => onChange(Number(event.target.value))}
-				style={{ width: "100%", accentColor: "#173f35" }}
+				style={{ width: "100%", accentColor: "var(--green)" }}
 			/>
 		</label>
 	);
@@ -260,8 +260,8 @@ export function PhotoView() {
 		<div className="feature-view photo-view">
 			<div className="feature-heading">
 				<div>
-					<h1>Put your best face forward.</h1>
-					<p className="muted">A polished profile photo, made from a photo of your own.</p>
+					<h1>Profile photo</h1>
+					<p className="muted">Crop and adjust a photo, then download a 1,024 × 1,024 PNG.</p>
 				</div>
 				<button className="button secondary" onClick={() => inputRef.current?.click()} disabled={loading}>
 					<Upload size={16} />
@@ -271,9 +271,8 @@ export function PhotoView() {
 			<div className="notice">
 				<ShieldCheck size={18} />
 				<span>
-					Photo editing runs on this device. Download your result before leaving Photo studio: the photo and adjustments
-					are cleared when you navigate away and are not included in workspace backups. AI headshots require a connected
-					image provider.
+					Edits stay on this device and are cleared when you leave. Download your photo first; workspace backups exclude
+					photos. AI headshot generation is not connected.
 				</span>
 			</div>
 			<ol className="photo-steps" aria-label="Photo editing progress">
@@ -286,7 +285,7 @@ export function PhotoView() {
 					aria-current={image && !downloaded ? "step" : undefined}
 				>
 					<span>{downloaded ? <Check size={15} /> : "2"}</span>
-					<strong>Polish</strong>
+					<strong>Adjust</strong>
 				</li>
 				<li className={`photo-step ${downloaded ? "done active" : ""}`} aria-current={downloaded ? "step" : undefined}>
 					<span>{downloaded ? <Check size={15} /> : "3"}</span>
@@ -312,10 +311,10 @@ export function PhotoView() {
 				hidden
 				onChange={uploadPhoto}
 			/>
-			<div className="photo-layout">
+			<div className={`photo-layout ${image ? "" : "photo-layout-empty"}`}>
 				<section className="panel photo-preview-panel" aria-label="Profile photo preview">
 					<div className="panel-heading">
-						<h2 className="section-title">Your new first impression</h2>
+						<h2 className="section-title">Photo preview</h2>
 						<span className="status">1:1 PNG export</span>
 					</div>
 					{image ? (
@@ -391,9 +390,9 @@ export function PhotoView() {
 							<div className="feature-icon">
 								<Camera size={38} />
 							</div>
-							<h2>Start with a photo you love.</h2>
+							<h2>Choose a photo</h2>
 							<p className="muted">
-								Upload a well-lit photo with your face clearly visible. Frame it, find your tone, and make it yours.
+								Choose a well-lit photo with your face clearly visible. Crop and exposure controls appear after upload.
 							</p>
 							<button className="button primary" onClick={() => inputRef.current?.click()} disabled={loading}>
 								<ImagePlus size={17} />
@@ -414,92 +413,94 @@ export function PhotoView() {
 						) : null}
 					</div>
 				</section>
-				<section className="panel photo-controls" aria-label="Photo adjustments">
-					<div className="panel-heading">
-						<div>
-							<h2 className="section-title">Find your best angle.</h2>
-							<p className="muted">Small changes. A more confident introduction.</p>
+				{image ? (
+					<section className="panel photo-controls" aria-label="Photo adjustments">
+						<div className="panel-heading">
+							<div>
+								<h2 className="section-title">Adjust photo</h2>
+								<p className="muted">Set the crop, finish and exposure.</p>
+							</div>
+							<SlidersHorizontal size={19} />
 						</div>
-						<SlidersHorizontal size={19} />
-					</div>
-					<h3 className="section-title">Choose a finish</h3>
-					<div className="preset-grid">
-						{presets.map((item) => (
-							<button
-								key={item.id}
-								className={`preset-button ${preset === item.id ? "active" : ""}`}
-								aria-pressed={preset === item.id}
-								disabled={!image}
-								onClick={() => setPreset(item.id)}
-							>
-								<strong>{item.label}</strong>
-								<small>{item.description}</small>
-								{preset === item.id ? <Check size={15} /> : null}
+						<h3 className="section-title">Choose a finish</h3>
+						<div className="preset-grid">
+							{presets.map((item) => (
+								<button
+									key={item.id}
+									className={`preset-button ${preset === item.id ? "active" : ""}`}
+									aria-pressed={preset === item.id}
+									disabled={!image}
+									onClick={() => setPreset(item.id)}
+								>
+									<strong>{item.label}</strong>
+									<small>{item.description}</small>
+									{preset === item.id ? <Check size={15} /> : null}
+								</button>
+							))}
+						</div>
+						<h3 className="section-title" style={{ marginTop: 28 }}>
+							Framing & light
+						</h3>
+						<Adjustment
+							id="photo-zoom"
+							label="Zoom"
+							value={zoom}
+							min={1}
+							max={3}
+							step={0.01}
+							display={`${zoom.toFixed(2)}×`}
+							disabled={!image}
+							onChange={setZoom}
+						/>
+						<Adjustment
+							id="photo-horizontal"
+							label="Horizontal framing"
+							value={focalX}
+							min={-100}
+							max={100}
+							display={focalX === 0 ? "Centered" : `${focalX > 0 ? "Right" : "Left"} ${Math.abs(focalX)}%`}
+							disabled={!image}
+							onChange={setFocalX}
+						/>
+						<Adjustment
+							id="photo-vertical"
+							label="Vertical framing"
+							value={focalY}
+							min={-100}
+							max={100}
+							display={focalY === 0 ? "Centered" : `${focalY > 0 ? "Bottom" : "Top"} ${Math.abs(focalY)}%`}
+							disabled={!image}
+							onChange={setFocalY}
+						/>
+						<Adjustment
+							id="photo-exposure"
+							label="Exposure"
+							value={exposure}
+							min={65}
+							max={145}
+							display={`${exposure}%`}
+							disabled={!image}
+							onChange={setExposure}
+						/>
+						<p className="muted">
+							Zoom in to create room for reframing. Keep your eyes near the upper third of the square.
+						</p>
+						<div className="resume-actions" style={{ marginTop: 24 }}>
+							<button className="button primary" disabled={!image || loading || downloading} onClick={downloadPhoto}>
+								<Download size={16} />
+								{downloading ? "Preparing PNG…" : "Download photo"}
 							</button>
-						))}
-					</div>
-					<h3 className="section-title" style={{ marginTop: 28 }}>
-						Framing & light
-					</h3>
-					<Adjustment
-						id="photo-zoom"
-						label="Zoom"
-						value={zoom}
-						min={1}
-						max={3}
-						step={0.01}
-						display={`${zoom.toFixed(2)}×`}
-						disabled={!image}
-						onChange={setZoom}
-					/>
-					<Adjustment
-						id="photo-horizontal"
-						label="Horizontal framing"
-						value={focalX}
-						min={-100}
-						max={100}
-						display={focalX === 0 ? "Centered" : `${focalX > 0 ? "Right" : "Left"} ${Math.abs(focalX)}%`}
-						disabled={!image}
-						onChange={setFocalX}
-					/>
-					<Adjustment
-						id="photo-vertical"
-						label="Vertical framing"
-						value={focalY}
-						min={-100}
-						max={100}
-						display={focalY === 0 ? "Centered" : `${focalY > 0 ? "Bottom" : "Top"} ${Math.abs(focalY)}%`}
-						disabled={!image}
-						onChange={setFocalY}
-					/>
-					<Adjustment
-						id="photo-exposure"
-						label="Exposure"
-						value={exposure}
-						min={65}
-						max={145}
-						display={`${exposure}%`}
-						disabled={!image}
-						onChange={setExposure}
-					/>
-					<p className="muted">
-						Zoom in to create room for reframing. Keep your eyes near the upper third of the square.
-					</p>
-					<div className="resume-actions" style={{ marginTop: 24 }}>
-						<button className="button primary" disabled={!image || loading || downloading} onClick={downloadPhoto}>
-							<Download size={16} />
-							{downloading ? "Preparing PNG…" : "Download photo"}
-						</button>
-						<button className="button secondary" disabled={!image} onClick={resetAdjustments}>
-							<RotateCcw size={15} />
-							Reset adjustments
-						</button>
-					</div>
-					<p className="muted" style={{ fontSize: 12, marginTop: 20 }}>
-						This editor crops and adjusts your photo. It does not generate a new headshot or change your face. Uploaded
-						photos are held in memory and cleared when you leave this page.
-					</p>
-				</section>
+							<button className="button secondary" disabled={!image} onClick={resetAdjustments}>
+								<RotateCcw size={15} />
+								Reset adjustments
+							</button>
+						</div>
+						<p className="muted" style={{ fontSize: 12, marginTop: 20 }}>
+							This editor crops and adjusts your photo. It does not generate a new headshot or change your face.
+							Uploaded photos are held in memory and cleared when you leave this page.
+						</p>
+					</section>
+				) : null}
 			</div>
 		</div>
 	);

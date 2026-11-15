@@ -238,7 +238,7 @@ export function LanguageDoorway({ className, nameClassName, story = true }: Lang
  * Every language the app speaks, each in its own name and script, as plain links to the page in that language. They
  * work before the app's script runs, and the server stores the choice (`?locale=`) for sign-up and the app.
  */
-function LanguageIndex() {
+export function LanguageIndex() {
 	const { i18n } = useLingui();
 
 	return (

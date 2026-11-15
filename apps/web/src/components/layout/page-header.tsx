@@ -19,7 +19,7 @@ export function PageHeader({ title, description, back, actions, children }: Page
 			<header className="flex flex-wrap items-center justify-between gap-4">
 				<div className="grid min-w-0 gap-2">
 					{back && <div className="mb-2">{back}</div>}
-					<h1 className="font-display text-[34px] leading-[1.1] font-normal tracking-[-0.02em] sm:text-[44px]">
+					<h1 className="font-ui text-[28px] leading-[1.15] font-semibold tracking-[-0.02em] text-balance sm:text-[32px]">
 						{title}
 					</h1>
 					{description && <p className="max-w-[72ch] text-[15px] leading-6 text-pretty text-ink-2">{description}</p>}

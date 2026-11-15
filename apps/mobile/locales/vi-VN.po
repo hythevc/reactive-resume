@@ -7453,10 +7453,6 @@ msgstr "Tạo liên kết"
 msgid "Make primary"
 msgstr "Đặt làm chính"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Nhường chỗ cho bước tiếp theo."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Làm cho phần mở đầu mạnh mẽ hơn"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "Chuyển nơi ở"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Ghi nhớ"
@@ -13923,6 +13920,7 @@ msgstr "Để nhận lời nhắc, hãy cho phép thông báo trong cài đặt 
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

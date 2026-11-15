@@ -1,48 +1,28 @@
-import { CalendarDays, FileText, ListChecks, ChevronDown, Pencil, Laptop, Layers } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import Link from "next/link";
-import {
-	BriefPreview,
-	JobsPreview,
-	LinkedInPreview,
-	OutreachPreview,
-	PhotoPreview,
-	WorkspacePreview,
-} from "./previews";
+import { WorkspacePreview } from "./previews";
 import { MarketingLink, MarketingShell } from "./shell";
 import { ToolShowcase } from "./tool-showcase";
 
 export function WorkflowSteps() {
 	return (
-		<div className="m-workflow-steps">
+		<ol className="m-workflow-steps">
 			{[
-				{
-					icon: FileText,
-					title: "Shape your story",
-					text: "Build a clear, well-structured resume that reflects your experience and goals.",
-				},
-				{
-					icon: ListChecks,
-					title: "Prepare for the role",
-					text: "Tailor your materials for each opportunity with focus and intention.",
-				},
-				{
-					icon: CalendarDays,
-					title: "Keep track of what comes next",
-					text: "Stay organized as you move from saved roles to submitted applications.",
-				},
+				{ title: "Add your experience", text: "Build a shared record of your work, skills and education." },
+				{ title: "Choose a role", text: "Save a posting and prepare documents from your own facts." },
+				{ title: "Review and export", text: "Check every draft, export it and record your next step." },
 			].map((step, index) => (
-				<article key={step.title}>
-					<step.icon size={29} strokeWidth={1.5} aria-hidden="true" />
+				<li key={step.title}>
+					<span className="m-step-number" aria-hidden="true">
+						{index + 1}
+					</span>
 					<div>
-						<h3>
-							<span>0{index + 1}</span>
-							{step.title}
-						</h3>
+						<h3>{step.title}</h3>
 						<p>{step.text}</p>
 					</div>
-				</article>
+				</li>
 			))}
-		</div>
+		</ol>
 	);
 }
 
@@ -55,17 +35,17 @@ const questions = [
 	{
 		question: "Does CareerOS apply to jobs for me?",
 		answer:
-			"No. The current app prepares drafts and tracks the stages you report for each role. It does not submit applications for you or send recruiter emails.",
+			"No. It prepares editable drafts and tracks the stages you report. You review your documents and apply through the employer’s process. CareerOS does not submit applications or send recruiter emails.",
 	},
 	{
-		question: "Can I use it without an AI API key?",
+		question: "Do I need an AI API key?",
 		answer:
-			"Yes. The browser’s local tools require no model API key. If you choose the manual AI handoff, export a private job review packet and provide it to your own configured agent session. The browser makes no model call.",
+			"No. The local tools work without a model API key. An optional review-packet handoff lets you use your own configured agent session. The browser makes no model call; your agent access and any provider costs are separate.",
 	},
 	{
 		question: "Where is my data stored?",
 		answer:
-			"The local workspace saves career data in this browser profile, without a local account lock or CareerOS encryption. Other people using that profile may access it. Export a private backup from Settings. Photos are temporary and are not included in backups. Optional cloud resume copies require a separate action.",
+			"Career data is saved in this browser profile, without a local account lock or CareerOS encryption. Other people using that profile may access it. Export a private backup from Settings. Photos are temporary and are not included in backups. Optional cloud resume copies require a separate action.",
 	},
 ] as const;
 
@@ -73,12 +53,12 @@ export function FAQ() {
 	return (
 		<section className="m-container m-faq" aria-labelledby="faq-title">
 			<div>
-				<h2 id="faq-title">FAQ</h2>
-				<p>Quick answers about how CareerOS works today.</p>
+				<h2 id="faq-title">Questions before you start</h2>
+				<p>How the current workspace works.</p>
 			</div>
 			<div className="m-faq-list">
-				{questions.map((item, index) => (
-					<details key={item.question} open={index === 1}>
+				{questions.map((item) => (
+					<details key={item.question}>
 						<summary>
 							{item.question}
 							<ChevronDown size={18} aria-hidden="true" />
@@ -93,45 +73,30 @@ export function FAQ() {
 
 export function PrivacyStory() {
 	return (
-		<section className="m-container m-trust-story">
-			<h2>
-				Your career
-				<br />
-				facts stay yours.
-			</h2>
-			<div className="m-trust-rows">
-				<article>
-					<Pencil size={27} strokeWidth={1.5} aria-hidden="true" />
-					<div>
-						<h3>Edit before you share</h3>
-						<p>Review and refine every draft. You choose what you copy, download or share.</p>
-					</div>
-				</article>
-				<article>
-					<Laptop size={29} strokeWidth={1.5} aria-hidden="true" />
-					<div>
-						<h3>Local by default</h3>
-						<p>
-							Career data stays in this browser profile until you choose to export it or make an explicit cloud resume
-							copy. Keep backups private.
-						</p>
-					</div>
-				</article>
-				<article>
-					<Layers size={28} strokeWidth={1.5} aria-hidden="true" />
-					<div>
-						<h3>A manual path that works</h3>
-						<p>
-							Export a job review packet for your own agent session. Import its resume and cover-letter drafts, read the
-							report and make the final call.
-						</p>
-					</div>
-				</article>
+		<section className="m-container m-local-facts">
+			<div>
+				<h2>Local preparation. Your final review.</h2>
+				<p>Work without an account. Keep a separate backup, check the drafts and choose what you share.</p>
+				<Link href="/privacy" className="m-text-link">
+					Read how your information is handled
+				</Link>
 			</div>
-			<p className="m-trust-note">
-				There is no local account lock. People using the same browser profile may access the workspace.{" "}
-				<Link href="/privacy">How your information is handled</Link>
-			</p>
+			<dl>
+				<div>
+					<dt>Saved in this browser</dt>
+					<dd>
+						People using the same browser profile may access your workspace. Backups contain readable career
+						information.
+					</dd>
+				</div>
+				<div>
+					<dt>Review it yourself</dt>
+					<dd>
+						Edit and acknowledge your documents before export. An optional agent handoff is available when you want a
+						separate review.
+					</dd>
+				</div>
+			</dl>
 		</section>
 	);
 }
@@ -142,79 +107,42 @@ export function HomePage() {
 			<section className="m-container m-hero">
 				<div className="m-hero-copy">
 					<h1>
-						<span>Your next move,</span>
-						<span>in one place.</span>
+						Build a resume.
+						<br />
+						Keep the search moving.
 					</h1>
-					<p>Build a resume you can stand behind. Prepare thoughtful applications. Keep your search moving.</p>
+					<p>
+						Write a clear resume for each role. Keep your saved jobs, document drafts and next steps in one workspace.
+					</p>
 					<div className="m-hero-actions">
-						<MarketingLink href="/app#resumes">Start with your resume</MarketingLink>
+						<MarketingLink href="/app#resumes">Start a resume</MarketingLink>
 						<MarketingLink href="/app" secondary>
-							Explore the workspace
+							View workspace
 						</MarketingLink>
 					</div>
-					<p className="m-hero-note">Free local workspace. No account or payment required.</p>
+					<p className="m-small-note">Free local workspace. No account or payment required.</p>
 				</div>
 				<WorkspacePreview />
 			</section>
 			<section className="m-container m-workflow" aria-labelledby="workflow-title">
-				<h2 id="workflow-title">From first draft to next conversation</h2>
+				<h2 id="workflow-title">One workflow for each application.</h2>
 				<WorkflowSteps />
 			</section>
-			<section id="tools" className="m-tool-overview">
-				<div className="m-container">
-					<h2>A focused workspace for your job search.</h2>
-					<ToolShowcase
-						items={[
-							{
-								slug: "resume",
-								name: "Resumes",
-								description: "Create and refine tailored resumes for each opportunity.",
-								preview: <WorkspacePreview />,
-							},
-							{
-								slug: "linkedin",
-								name: "LinkedIn studio",
-								description: "Draft and refine your LinkedIn writing with the same clarity as your resume.",
-								preview: <LinkedInPreview />,
-							},
-							{
-								slug: "photo",
-								name: "Photo studio",
-								description: "Crop and adjust your own photo for your job search.",
-								preview: <PhotoPreview />,
-							},
-							{
-								slug: "role-discovery",
-								name: "Role discovery",
-								description: "Find your direction and review the roles you save.",
-								preview: <BriefPreview />,
-							},
-							{
-								slug: "applications",
-								name: "Applications",
-								description: "Keep a clear record of your roles, documents and next steps.",
-								preview: <JobsPreview />,
-							},
-							{
-								slug: "outreach",
-								name: "Recruiter outreach",
-								description: "Draft thoughtful, personalized messages for your own review.",
-								preview: <OutreachPreview />,
-							},
-						]}
-					/>
+			<section id="tools" className="m-container m-tool-overview">
+				<div>
+					<h2>Choose a task.</h2>
+					<p>Each tool uses the career facts, roles or contacts you provide.</p>
 				</div>
+				<ToolShowcase />
 			</section>
 			<PrivacyStory />
 			<FAQ />
-			<section className="m-final-band m-home-final">
-				<div className="m-container">
-					<h2>Make your next move a considered one.</h2>
-					<div>
-						<MarketingLink href="/app">Open workspace</MarketingLink>
-						<p>Free local demo. No account or payment required.</p>
-					</div>
+			<section className="m-container m-page-action">
+				<div>
+					<h2>Start with your experience.</h2>
+					<p>Replace the fictional examples with your own facts.</p>
 				</div>
+				<MarketingLink href="/app#resumes">Build your resume</MarketingLink>
 			</section>
 		</MarketingShell>
 	);

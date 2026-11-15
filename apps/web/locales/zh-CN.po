@@ -937,6 +937,8 @@ msgstr "{name} 移至主栏"
 msgid "{name} never prints"
 msgstr "{name} 从不打印"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "{name} resume template preview"
 msgstr "{name} 简历模板预览"
@@ -1596,10 +1598,6 @@ msgstr "添加 {suggestion}"
 #: src/features/career/knowledge/search-regions-field.tsx
 msgid "Add a country"
 msgstr "添加国家"
-
-#: src/features/career/knowledge/facts.tsx
-msgid "Add a fact"
-msgstr "添加一个事实"
 
 #: src/features/career/knowledge/facts.tsx
 msgid "Add a fact, for example “I mentored two associate PMs in 2025”"
@@ -2317,6 +2315,7 @@ msgstr "另请下载 {0} 求职信"
 msgid "Also email {0}"
 msgstr "同时发送邮件至 {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Also on mobile"
 msgstr "移动端也可使用"
@@ -2828,6 +2827,7 @@ msgstr "在 Northwind Labs，大多数新团队还没完成设置就停滞了。
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 #: src/features/homepage/sections.tsx
 msgid "ATS checker"
 msgstr "ATS检查器"
@@ -3355,6 +3355,7 @@ msgstr "更改连接"
 msgid "Change it in Design."
 msgstr "在设计中更改它。"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Change language"
 msgstr "更改语言"
@@ -3445,6 +3446,7 @@ msgstr "聊天"
 #. Homepage scene title, one word followed by a full stop
 #. The resume builder mode that reviews the resume for problems. Not the Screening application stage.
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -3466,6 +3468,7 @@ msgid "Check another file"
 msgstr "检查另一个文件"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check any PDF, no account needed"
 msgstr "查询任意PDF，无需账户"
 
@@ -3501,6 +3504,7 @@ msgid "check numbers and names before using it"
 msgstr "使用前请核对数字和名称"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check reads your resume the way hiring software does and explains what to fix in plain words. It runs in your browser, so the file stays with you: 0 uploads."
 msgstr "检查功能会像招聘软件一样读取您的简历，并用简单明了的语言说明需要改进的地方。它在您的浏览器中运行，文件始终留在您的设备上：上传次数为 0。"
 
@@ -4028,6 +4032,7 @@ msgstr "与您的其他录用通知进行比较"
 msgid "Compare offers"
 msgstr "比较录用通知"
 
+#: src/features/homepage/compact.tsx
 #: src/features/templates/gallery.tsx
 msgid "Compare real resume layouts before you sign up. Every template is free to customize, with PDF and Word downloads and no watermark."
 msgstr "在注册之前比较真实的简历布局。每个模板都可以免费定制，提供 PDF 和 Microsoft Word 下载且无水印。"
@@ -5838,6 +5843,7 @@ msgstr "描述"
 msgid "Description of role {0}"
 msgstr "角色描述 {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -6118,6 +6124,7 @@ msgstr "下载当前 PDF"
 msgid "Download failed. Try again."
 msgstr "下载失败。请重试。"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Download on the"
 msgstr "立即下载"
@@ -6981,7 +6988,9 @@ msgstr "快速模型"
 msgid "Fast: {0} · Capable: {1}"
 msgstr "快速：{0} · 强力：{1}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/hero.tsx
 msgid "Features"
 msgstr "功能"
 
@@ -7490,6 +7499,7 @@ msgstr "德语"
 msgid "Get a key at <0>{0}</0>. It's stored encrypted and used only for your requests."
 msgstr "在 <0>{0}</0> 获取密钥。它被加密存储并且仅用于您的请求。"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/prepare.tsx
 msgid "Get a plan for the interview, built from the posting and your own stories. Practice out loud, then write down how it went."
 msgstr "根据职位公告和您自己的故事获取面试计划。大声练习，然后记录面试情况。"
@@ -7506,6 +7516,7 @@ msgstr "请向端点运营方获取 API 密钥。"
 msgid "Get feedback"
 msgstr "获取反馈"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Get it on"
 msgstr "立即下载"
@@ -7518,6 +7529,7 @@ msgstr "每天早上在这里获取新职位"
 msgid "Get resume feedback on Discord"
 msgstr "在 Discord 上获取简历反馈"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 msgid "Get started"
 msgstr "开始使用"
@@ -7715,6 +7727,7 @@ msgstr "帮我权衡手上的录用通知是否符合我的期望。"
 msgid "Help translate"
 msgstr "帮忙翻译"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Help translate it into yours."
 msgstr "帮助将它翻译成您的语言。"
@@ -8502,6 +8515,7 @@ msgstr "无名氏"
 msgid "Join Discord"
 msgstr "加入 Discord"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Join the Discord community"
 msgstr "加入 Discord 社区"
@@ -11638,6 +11652,7 @@ msgstr "粘贴职位链接或职位发布，然后检查职位和公司。"
 msgid "Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
 msgstr "粘贴职位链接。我们将保存招聘信息，以便检查、助理和您的信件可以使用它。"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Paste a job posting once. It feeds a tailored copy of your resume, a fit check against each requirement, a cover letter draft and a place to track the role."
 msgstr "只需粘贴一次职位公告。它会用于生成为您定制的简历副本、针对每项要求的匹配度检查、求职信草稿，以及跟踪该职位的位置。"
@@ -11825,6 +11840,7 @@ msgstr "请选择晚于现在的时间。"
 msgid "Pick an icon"
 msgstr "选择一个图标"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 msgid "Pick from {templateCount} templates, then set the type, color and spacing. The words stay put, so try as many looks as you like."
 msgstr "从 {templateCount} 款模板中选择，再设置字体、颜色和间距。文字内容保持不变，您可以随意尝试各种样式。"
@@ -12064,6 +12080,7 @@ msgctxt "Career preferences: the roles, places, pay and ways of working you want
 msgid "Preferences"
 msgstr "偏好"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/prepare.tsx
@@ -12133,6 +12150,8 @@ msgstr "按 <0>{RETURN_KEY}</0> 添加或保存当前关键词。"
 msgid "Press <0>Enter</0> to open"
 msgstr "按<0>Enter 键</0>打开"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "Preview {name} sample PDF"
 msgstr "预览 {name} 示例 PDF"
@@ -12209,6 +12228,7 @@ msgid "Private. Only you can see it."
 msgstr "私人的。只有你能看到它。"
 
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 msgid "Product"
 msgstr "产品"
 
@@ -12439,6 +12459,7 @@ msgid "Question removed"
 msgstr "问题已移除"
 
 #: src/features/homepage/faq.tsx
+#: src/features/homepage/header.tsx
 msgid "Questions"
 msgstr "问题"
 
@@ -12501,6 +12522,7 @@ msgstr "Re: 高级产品设计师"
 msgid "Reactive Resume {__APP_VERSION__} · MIT"
 msgstr "Reactive Resume {__APP_VERSION__} · MIT"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Reactive Resume is open source under the MIT License. Amruth Pillai and a community of contributors keep it running, and donations pay for hosting and development. There’s no paid tier."
 msgstr "Reactive Resume 基于 MIT 许可证开源。Amruth Pillai 和贡献者社区维护着它的运转，捐赠用于支付托管和开发费用。没有付费版本。"
@@ -12931,6 +12953,7 @@ msgstr "搬迁"
 
 #: src/features/assistant/remember-message.tsx
 #: src/features/career/shared.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/remember.tsx
@@ -14733,6 +14756,7 @@ msgstr "阴影颜色"
 msgid "Shadow width"
 msgstr "阴影宽度"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/share.tsx
@@ -14743,6 +14767,7 @@ msgstr "阴影宽度"
 msgid "Share"
 msgstr "分享"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/share.tsx
 msgid "Share a public link, add a password or keep it private. Choose from 3 visibility options. Export to PDF or Word, or take all your data with you as JSON."
 msgstr "分享公开链接、设置密码或保持私密。从 3 种可见性选项中选择。导出为 PDF 或 Word，或以 JSON 格式带走全部数据。"
@@ -15344,6 +15369,7 @@ msgstr "西班牙语（B2）"
 msgid "Speak"
 msgstr "语音"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Speaks your language"
 msgstr "说您的语言"
@@ -15480,6 +15506,7 @@ msgstr "从以前的求职信开始"
 msgid "Start from one you have and link the application."
 msgstr "从您拥有的一份工作申请开始并链接该工作申请。"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Start from scratch or import what you have. It takes a few minutes, and you can come back to it anytime."
 msgstr "从零开始，或导入已有内容。只需几分钟，随时可以回来继续。"
@@ -15647,7 +15674,6 @@ msgid "Stories to bring"
 msgstr "要准备的故事"
 
 #: src/features/homepage/header.tsx
-#: src/features/homepage/hero.tsx
 msgid "Story"
 msgstr "故事"
 
@@ -15742,6 +15768,7 @@ msgstr "您进行中申请的摘要"
 msgid "Summary"
 msgstr "总结"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Support"
 msgstr "支持"
@@ -15869,6 +15896,7 @@ msgstr "标签，用逗号分隔"
 msgid "Tags…"
 msgstr "标签..."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
@@ -15972,8 +16000,11 @@ msgstr "模板更改为{0}"
 msgid "Template, type and colors follow the resume, so the pair always matches."
 msgstr "模板、类型和颜色遵循简历，因此两者始终匹配。"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Templates"
 msgstr "模板"
 
@@ -17255,6 +17286,7 @@ msgstr "翻译为…"
 msgid "Translate the app"
 msgstr "翻译该应用程序"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Translated into {languageCount} languages."
 msgstr "已翻译成 {languageCount} 种语言。"
@@ -18630,6 +18662,7 @@ msgid "Worth asking {0}"
 msgstr "值得问问 {0}"
 
 #. Homepage scene title, one word followed by a full stop
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -18663,6 +18696,7 @@ msgstr "撰写求职信…"
 msgid "Write a new reply in {languageName}"
 msgstr "用{languageName}撰写新回复"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/remember.tsx
 msgid "Write a story once, with the facts behind it, and the coach uses it in 3 places. Switch a fact off and nothing leans on it."
 msgstr "故事只需写一次，附上背后的事实，教练就会在 3 个地方用到它。关闭某个事实，就不会再有内容依赖它。"
@@ -18671,6 +18705,7 @@ msgstr "故事只需写一次，附上背后的事实，教练就会在 3 个地
 msgid "Write and review form answers"
 msgstr "撰写并审阅表单回答"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/write.tsx
 msgid "Write beside a live page. It saves as you type and keeps every version. Ask the assistant for a sharper line: it suggests, you decide."
 msgstr "在实时页面旁边撰写。输入时自动保存，并保留每个版本。让助手给出更好的措辞：它提建议，您来决定。"

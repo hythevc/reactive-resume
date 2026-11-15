@@ -7453,10 +7453,6 @@ msgstr "Создать ссылку"
 msgid "Make primary"
 msgstr "Сделать основным"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Освободите место для следующего шага."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Сделайте открытие сильнее"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "Переезд"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Запомнить"
@@ -13923,6 +13920,7 @@ msgstr "Чтобы получать напоминания, разрешите �
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

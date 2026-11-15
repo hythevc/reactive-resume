@@ -937,6 +937,8 @@ msgstr "{name} به ستون اصلی منتقل شد"
 msgid "{name} never prints"
 msgstr "{name} هرگز چاپ نمی کند"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "{name} resume template preview"
 msgstr "پیش نمایش الگوی CV {name}"
@@ -1596,10 +1598,6 @@ msgstr "افزودن {suggestion}"
 #: src/features/career/knowledge/search-regions-field.tsx
 msgid "Add a country"
 msgstr "یک کشور اضافه کنید"
-
-#: src/features/career/knowledge/facts.tsx
-msgid "Add a fact"
-msgstr "یک واقعیت را اضافه کنید"
 
 #: src/features/career/knowledge/facts.tsx
 msgid "Add a fact, for example “I mentored two associate PMs in 2025”"
@@ -2317,6 +2315,7 @@ msgstr "همچنین جلد نامه {0} را دانلود کنید"
 msgid "Also email {0}"
 msgstr "به {0} هم ایمیل شود"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Also on mobile"
 msgstr "در موبایل هم در دسترس است"
@@ -2828,6 +2827,7 @@ msgstr "در Northwind Labs، بیشتر تیم‌های جدید پیش از ت
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 #: src/features/homepage/sections.tsx
 msgid "ATS checker"
 msgstr "چک کننده ATS"
@@ -3355,6 +3355,7 @@ msgstr "تغییر اتصال"
 msgid "Change it in Design."
 msgstr "آن را در طراحی تغییر دهید."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Change language"
 msgstr "تغییر زبان"
@@ -3445,6 +3446,7 @@ msgstr "گفت‌وگو"
 #. Homepage scene title, one word followed by a full stop
 #. The resume builder mode that reviews the resume for problems. Not the Screening application stage.
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -3466,6 +3468,7 @@ msgid "Check another file"
 msgstr "فایل دیگری را بررسی کنید"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check any PDF, no account needed"
 msgstr "هر PDF را بررسی کنید، بدون نیاز به حساب"
 
@@ -3501,6 +3504,7 @@ msgid "check numbers and names before using it"
 msgstr "پیش از استفاده، اعداد و نام‌ها را بررسی کنید"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check reads your resume the way hiring software does and explains what to fix in plain words. It runs in your browser, so the file stays with you: 0 uploads."
 msgstr "ویژگی بررسی رزومه شما را به روشی که نرم افزار استخدام انجام می دهد می خواند و توضیح می دهد که چه چیزی را باید اصلاح کنید. در مرورگر شما اجرا می شود، بنابراین فایل شما در دستگاه شما باقی می ماند: ۰ بارگذاری."
 
@@ -4028,6 +4032,7 @@ msgstr "مقایسه با پیشنهادهای دیگرتان"
 msgid "Compare offers"
 msgstr "مقایسهٔ پیشنهادها"
 
+#: src/features/homepage/compact.tsx
 #: src/features/templates/gallery.tsx
 msgid "Compare real resume layouts before you sign up. Every template is free to customize, with PDF and Word downloads and no watermark."
 msgstr "قبل از ثبت نام، طرح های CV واقعی را مقایسه کنید. هر قالب برای سفارشی کردن، با دانلود PDF و Microsoft Word و بدون واترمارک رایگان است."
@@ -5838,6 +5843,7 @@ msgstr "توضیحات"
 msgid "Description of role {0}"
 msgstr "شرح نقش {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -6118,6 +6124,7 @@ msgstr "دانلود PDF فعلی"
 msgid "Download failed. Try again."
 msgstr "دانلود انجام نشد. دوباره امتحان کنید."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Download on the"
 msgstr "دانلود از"
@@ -6981,7 +6988,9 @@ msgstr "مدل سریع"
 msgid "Fast: {0} · Capable: {1}"
 msgstr "سریع: {0} · توانمند: {1}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/hero.tsx
 msgid "Features"
 msgstr "ویژگی‌ها"
 
@@ -7490,6 +7499,7 @@ msgstr "آلمانی"
 msgid "Get a key at <0>{0}</0>. It's stored encrypted and used only for your requests."
 msgstr "یک کلید در <0>{0}</0> دریافت کنید. رمزگذاری شده ذخیره می شود و فقط برای درخواست های شما استفاده می شود."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/prepare.tsx
 msgid "Get a plan for the interview, built from the posting and your own stories. Practice out loud, then write down how it went."
 msgstr "برای مصاحبه برنامه‌ای بگیرید که از آگهی شغلی و داستان‌های خودتان ساخته شده است. با صدای بلند تمرین کنید، سپس بنویسید چطور پیش رفت."
@@ -7506,6 +7516,7 @@ msgstr "از گردانندهٔ نقطهٔ پایانی خود یک کلید API
 msgid "Get feedback"
 msgstr "دریافت بازخورد"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Get it on"
 msgstr "دریافت از"
@@ -7518,6 +7529,7 @@ msgstr "هر صبح موقعیت‌های شغلی جدید را اینجا در
 msgid "Get resume feedback on Discord"
 msgstr "در Discord درباره رزومه‌تان بازخورد بگیرید"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 msgid "Get started"
 msgstr "شروع کنید"
@@ -7715,6 +7727,7 @@ msgstr "کمکم کن پیشنهاد فعلی‌ام را با خواسته‌ه
 msgid "Help translate"
 msgstr "کمک به ترجمه"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Help translate it into yours."
 msgstr "به ترجمهٔ آن به زبان خودتان کمک کنید."
@@ -8502,6 +8515,7 @@ msgstr "جان دو"
 msgid "Join Discord"
 msgstr "پیوستن به Discord"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Join the Discord community"
 msgstr "به جامعه Discord بپیوندید"
@@ -11638,6 +11652,7 @@ msgstr "پیوند شغل یا آگهی شغلی را جایگذاری کنید�
 msgid "Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
 msgstr "پیوند شغلی را بچسبانید. ما آگهی کار را ذخیره می‌کنیم تا بررسی، دستیار و نامه شما بتوانند از آن استفاده کنند."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Paste a job posting once. It feeds a tailored copy of your resume, a fit check against each requirement, a cover letter draft and a place to track the role."
 msgstr "آگهی شغلی را یک بار بچسبانید. یک نسخهٔ تطبیق‌یافته از رزومهٔ شما، بررسی تناسب با هر نیازمندی، پیش‌نویس نامهٔ پوششی و جایی برای دنبال‌کردن موقعیت شغلی می‌سازد."
@@ -11825,6 +11840,7 @@ msgstr "زمانی بعد از اکنون انتخاب کنید."
 msgid "Pick an icon"
 msgstr "یک آیکون انتخاب کنید"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 msgid "Pick from {templateCount} templates, then set the type, color and spacing. The words stay put, so try as many looks as you like."
 msgstr "از بین {templateCount} قالب انتخاب کنید، سپس فونت، رنگ و فاصله را تنظیم کنید. متن شما ثابت می ماند، بنابراین هر تعداد طرحی که دوست دارید امتحان کنید."
@@ -12064,6 +12080,7 @@ msgctxt "Career preferences: the roles, places, pay and ways of working you want
 msgid "Preferences"
 msgstr "ترجیحات"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/prepare.tsx
@@ -12133,6 +12150,8 @@ msgstr "برای افزودن یا ذخیرهٔ کلیدواژهٔ فعلی، <0
 msgid "Press <0>Enter</0> to open"
 msgstr "برای باز کردن <0>Enter را</0> فشار دهید"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "Preview {name} sample PDF"
 msgstr "پیش نمایش {name} نمونه PDF"
@@ -12209,6 +12228,7 @@ msgid "Private. Only you can see it."
 msgstr "خصوصی. فقط شما می توانید آن را ببینید."
 
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 msgid "Product"
 msgstr "محصول"
 
@@ -12439,6 +12459,7 @@ msgid "Question removed"
 msgstr "پرسش حذف شد"
 
 #: src/features/homepage/faq.tsx
+#: src/features/homepage/header.tsx
 msgid "Questions"
 msgstr "سوالات"
 
@@ -12501,6 +12522,7 @@ msgstr "Re: طراح ارشد محصول"
 msgid "Reactive Resume {__APP_VERSION__} · MIT"
 msgstr "Reactive Resume {__APP_VERSION__} · MIT"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Reactive Resume is open source under the MIT License. Amruth Pillai and a community of contributors keep it running, and donations pay for hosting and development. There’s no paid tier."
 msgstr "Reactive Resume متن‌باز و تحت مجوز MIT است. Amruth Pillai و جامعه‌ای از مشارکت‌کنندگان آن را سرپا نگه می‌دارند و کمک‌های مالی هزینهٔ میزبانی و توسعه را می‌پردازند. هیچ نسخهٔ پولی وجود ندارد."
@@ -12931,6 +12953,7 @@ msgstr "آمادگی برای جابه‌جایی"
 
 #: src/features/assistant/remember-message.tsx
 #: src/features/career/shared.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/remember.tsx
@@ -14733,6 +14756,7 @@ msgstr "رنگ سایه"
 msgid "Shadow width"
 msgstr "عرض سایه"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/share.tsx
@@ -14743,6 +14767,7 @@ msgstr "عرض سایه"
 msgid "Share"
 msgstr "به اشتراک بگذارید"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/share.tsx
 msgid "Share a public link, add a password or keep it private. Choose from 3 visibility options. Export to PDF or Word, or take all your data with you as JSON."
 msgstr "یک پیوند عمومی را به اشتراک بگذارید، یک رمز عبور اضافه کنید یا آن را خصوصی نگه دارید. از ۳ گزینه دید انتخاب کنید. به PDF یا Word صادر کنید یا تمام داده های خود را به عنوان JSON با خود ببرید."
@@ -15344,6 +15369,7 @@ msgstr "اسپانیایی (B2)"
 msgid "Speak"
 msgstr "گفتن"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Speaks your language"
 msgstr "به زبان شما صحبت می کند"
@@ -15480,6 +15506,7 @@ msgstr "شروع از نامه‌ای پیشین"
 msgid "Start from one you have and link the application."
 msgstr "از یکی که دارید شروع کنید و درخواست کار را پیوند دهید."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Start from scratch or import what you have. It takes a few minutes, and you can come back to it anytime."
 msgstr "از صفر شروع کنید یا آنچه دارید را وارد کنید. چند دقیقه طول می‌کشد و هر وقت بخواهید می‌توانید برگردید."
@@ -15647,7 +15674,6 @@ msgid "Stories to bring"
 msgstr "داستان‌هایی که باید بیاورید"
 
 #: src/features/homepage/header.tsx
-#: src/features/homepage/hero.tsx
 msgid "Story"
 msgstr "داستان"
 
@@ -15742,6 +15768,7 @@ msgstr "خلاصهٔ درخواست‌های باز شما"
 msgid "Summary"
 msgstr "خلاصه"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Support"
 msgstr "پشتیبانی کنید"
@@ -15869,6 +15896,7 @@ msgstr "برچسب‌ها، جداشده با کاما"
 msgid "Tags…"
 msgstr "برچسب ها…"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
@@ -15972,8 +16000,11 @@ msgstr "الگو به {0} تغییر کرد"
 msgid "Template, type and colors follow the resume, so the pair always matches."
 msgstr "الگو، نوع و رنگ ها از رزومه پیروی می کنند، بنابراین این جفت همیشه مطابقت دارد."
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Templates"
 msgstr "قالب‌ها"
 
@@ -17255,6 +17286,7 @@ msgstr "ترجمه به…"
 msgid "Translate the app"
 msgstr "برنامه را ترجمه کنید"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Translated into {languageCount} languages."
 msgstr "به {languageCount} زبان ترجمه شده است."
@@ -18630,6 +18662,7 @@ msgid "Worth asking {0}"
 msgstr "ارزش پرسیدن از {0} را دارد"
 
 #. Homepage scene title, one word followed by a full stop
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -18663,6 +18696,7 @@ msgstr "نوشتن نامه…"
 msgid "Write a new reply in {languageName}"
 msgstr "پاسخ جدیدی به زبان {languageName} بنویسید"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/remember.tsx
 msgid "Write a story once, with the facts behind it, and the coach uses it in 3 places. Switch a fact off and nothing leans on it."
 msgstr "یک بار داستانی را همراه با واقعیت‌های پشتوانه‌اش بنویسید و مربی در ۳ جا از آن استفاده می‌کند. واقعیتی را خاموش کنید تا هیچ چیزی به آن تکیه نکند."
@@ -18671,6 +18705,7 @@ msgstr "یک بار داستانی را همراه با واقعیت‌های پ
 msgid "Write and review form answers"
 msgstr "نوشتن و بازبینی پاسخ‌های فرم"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/write.tsx
 msgid "Write beside a live page. It saves as you type and keeps every version. Ask the assistant for a sharper line: it suggests, you decide."
 msgstr "کنار یک صفحهٔ زنده بنویسید. هنگام تایپ ذخیره می‌شود و همهٔ نسخه‌ها را نگه می‌دارد. از دستیار جملهٔ بهتری بخواهید: او پیشنهاد می‌دهد، شما تصمیم می‌گیرید."

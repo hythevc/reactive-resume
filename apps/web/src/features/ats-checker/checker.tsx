@@ -191,10 +191,10 @@ function Idle({ error, posting, onPosting, onFile }: IdleProps) {
 	return (
 		<div className="mx-auto grid w-full max-w-[640px] gap-5.5 px-4 py-16 sm:py-18">
 			<div className="grid justify-items-center gap-2.5 text-center">
-				<h1 className="font-display text-[34px] leading-10 sm:text-[44px] sm:leading-[48px]">
+				<h1 className="font-ui text-[28px] leading-8 font-semibold tracking-[-0.02em] sm:text-[32px] sm:leading-9">
 					<Trans>Can software read your resume?</Trans>
 				</h1>
-				<p className="max-w-[520px] font-display text-[clamp(17px,1.4vw,21px)] leading-normal text-pretty text-ink-2">
+				<p className="max-w-[520px] font-ui text-[clamp(17px,1.4vw,21px)] leading-normal text-pretty text-ink-2">
 					<Trans>
 						Upload a PDF and see the text an applicant tracking system extracts: what's missing, what's out of order,
 						and how to fix it. Free, no account needed.
@@ -272,7 +272,7 @@ function Idle({ error, posting, onPosting, onFile }: IdleProps) {
 
 			<section aria-labelledby={`${id}-checks`} className="mt-8 grid gap-4 border-t border-line pt-8">
 				<div className="grid gap-1.5">
-					<h2 id={`${id}-checks`} className="font-display text-[22px] leading-7">
+					<h2 id={`${id}-checks`} className="font-ui text-[22px] leading-7">
 						<Trans>What it checks</Trans>
 					</h2>
 					<p className="text-sm leading-[21px] text-ink-2">
@@ -422,7 +422,7 @@ function Result({ result, file, signedIn, importError, onFix, onReset }: ResultP
 							} as CSSProperties
 						}
 					>
-						<span className="grid size-[70px] place-items-center rounded-full bg-surface font-display text-[26px]">
+						<span className="grid size-[70px] place-items-center rounded-full bg-surface font-ui text-[26px]">
 							<RollingNumber value={report.score} duration="480ms" />
 						</span>
 					</div>

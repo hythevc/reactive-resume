@@ -26,17 +26,17 @@ export function Switch({ value, onValueChange, label, disabled }: SwitchProps) {
 		progress.set(withTiming(value ? 1 : 0, { duration: reduced ? 0 : motion.d1 }));
 	}, [value, progress, motion.d1, reduced]);
 
-	const off = android ? colors.sunken : colors.lineStrong;
+	const off = android ? colors.sunken : colors.controlLine;
 	const direction = I18nManager.isRTL ? -1 : 1;
 	const trackStyle = useAnimatedStyle(() => ({
 		backgroundColor: interpolateColor(progress.get(), [0, 1], [off, colors.accent]),
-		borderColor: interpolateColor(progress.get(), [0, 1], [colors.lineStrong, colors.accent]),
+		borderColor: interpolateColor(progress.get(), [0, 1], [colors.controlLine, colors.accent]),
 	}));
 	const thumbStyle = useAnimatedStyle(() => {
 		if (!android) return { transform: [{ translateX: progress.get() * 20 * direction }] };
 		return {
 			transform: [{ translateX: (2 + progress.get() * 20) * direction }, { scale: (16 + progress.get() * 8) / 24 }],
-			backgroundColor: interpolateColor(progress.get(), [0, 1], [colors.lineStrong, colors.onAccent]),
+			backgroundColor: interpolateColor(progress.get(), [0, 1], [colors.controlLine, colors.onAccent]),
 		};
 	});
 	const slop = (size.hit - track.height) / 2;

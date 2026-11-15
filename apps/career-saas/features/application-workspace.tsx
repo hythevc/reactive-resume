@@ -404,8 +404,8 @@ export function ApplicationWorkspace({ job }: ApplicationWorkspaceProps) {
 				<p>
 					{job.company} · {job.role}
 				</p>
-				<h2>Your application, thoughtfully prepared.</h2>
-				<p className="muted">Draft from your career facts. Review every detail before you apply.</p>
+				<h2>Application documents</h2>
+				<p className="muted">Compare the role, prepare your documents and review them before applying.</p>
 			</header>
 			<div className="tabs application-tabs" role="group" aria-label="Application workspace views">
 				{(["fit", "drafts", "review"] as const).map((item) => (

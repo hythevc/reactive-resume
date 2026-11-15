@@ -1,7 +1,7 @@
 import type { ApplicationSummary } from "./types";
 import { useLingui } from "@lingui/react/macro";
 import { Platform, Pressable, View } from "react-native";
-import { Avatar, Icon, IconButton, Text, useTheme } from "@/ui";
+import { Icon, IconButton, Text, useTheme } from "@/ui";
 
 type ApplicationCardProps = {
 	application: Pick<ApplicationSummary, "company" | "role" | "location" | "tags">;
@@ -41,43 +41,41 @@ export function ApplicationCard({
 			style={{
 				borderWidth: focused ? 2 : 1,
 				borderColor: focused || selected ? colors.accent : colors.line,
-				borderRadius: radius.rLg,
+				borderRadius: radius.rMd,
 				backgroundColor: background,
 				overflow: "hidden",
 			}}
 		>
 			<Pressable
-				accessibilityRole="button"
-				accessibilityLabel={[company, role, location, stage.label, next.title, next.sub, metadata]
+				accessibilityRole={selecting ? "checkbox" : "button"}
+				accessibilityLabel={[company, role, location, stage.label, next.title, next.sub, tags.join(", "), documents]
 					.filter(Boolean)
 					.join(". ")}
 				accessibilityHint={selecting ? t`Toggle selection` : t`Open application`}
-				accessibilityState={{ selected, disabled }}
+				accessibilityState={{ selected, disabled, checked: selecting ? selected : undefined }}
 				disabled={disabled}
 				onPress={onPress}
 				android_ripple={{ color: colors.press }}
 				style={({ pressed }) => ({
 					minHeight: size.hit,
-					padding: space.s4,
-					gap: space.s3,
+					padding: space.s3,
+					gap: space.s2,
 					backgroundColor: pressed && Platform.OS !== "android" ? colors.press : background,
 					opacity: disabled ? 0.45 : 1,
 				})}
 			>
 				<View
-					style={{ flexDirection: "row", alignItems: "flex-start", gap: space.s3, paddingEnd: size.hit - space.s2 }}
+					style={{ flexDirection: "row", alignItems: "flex-start", gap: space.s2, paddingEnd: size.hit - space.s3 }}
 				>
-					<View
-						accessibilityElementsHidden
-						importantForAccessibility="no-hide-descendants"
-						style={{ width: size.hit, height: size.hit, alignItems: "center", justifyContent: "center" }}
-					>
-						{selecting ? (
-							<Icon name={selected ? "check-square" : "square"} size={size.icon.bar} color={colors.accentText} />
-						) : (
-							<Avatar name={company} size={size.hit} />
-						)}
-					</View>
+					{selecting ? (
+						<View
+							accessibilityElementsHidden
+							importantForAccessibility="no-hide-descendants"
+							style={{ paddingTop: space.s0 }}
+						>
+							<Icon name={selected ? "check-square" : "square"} size={size.icon.row} color={colors.accentText} />
+						</View>
+					) : null}
 					<View style={{ flex: 1, minWidth: 0, gap: space.s0 }}>
 						<Text variant="title">{company}</Text>
 						<Text>{role}</Text>
@@ -92,18 +90,7 @@ export function ApplicationCard({
 							</Text>
 						</View>
 					) : null}
-					<View
-						style={{
-							maxWidth: "100%",
-							flexDirection: "row",
-							alignItems: "center",
-							gap: space.s1,
-							paddingHorizontal: space.s2,
-							paddingVertical: space.s1,
-							borderRadius: radius.rMd,
-							backgroundColor: colors.accentSoft,
-						}}
-					>
+					<View style={{ maxWidth: "100%", flexDirection: "row", alignItems: "center", gap: space.s1 }}>
 						<View
 							style={{ width: space.s2, height: space.s2, borderRadius: radius.rSm, backgroundColor: stage.color }}
 						/>
@@ -112,32 +99,23 @@ export function ApplicationCard({
 						</Text>
 					</View>
 				</View>
-				<View style={{ gap: space.s1 }}>
-					<Text variant="callout" color="ink2">
+				<View style={{ flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: space.s2 }}>
+					<Text variant="callout" color="ink2" style={{ flexGrow: 1, flexShrink: 1 }}>
 						{next.title}
 						{next.sub ? ` · ${next.sub}` : ""}
 					</Text>
-					{metadata ? (
-						<Text variant="caption" color="ink3">
-							{metadata}
+					<View style={{ flexDirection: "row", alignItems: "center", gap: space.s1, flexShrink: 1 }}>
+						<Text variant="callout" weight={600} color="accentText" style={{ flexShrink: 1 }}>
+							{selecting ? t`Toggle selection` : t`Review details`}
 						</Text>
-					) : null}
+						{!selecting ? <Icon name="caret-right" size={size.icon.row} color={colors.accentText} /> : null}
+					</View>
 				</View>
-				<View
-					style={{
-						flexDirection: "row",
-						alignItems: "center",
-						gap: space.s2,
-						borderTopWidth: 1,
-						borderTopColor: colors.line,
-						paddingTop: space.s3,
-					}}
-				>
-					<Text variant="label" color="accentText" style={{ flex: 1 }}>
-						{selecting ? t`Toggle selection` : t`Review details`}
+				{metadata ? (
+					<Text variant="caption" color="ink3">
+						{metadata}
 					</Text>
-					{!selecting ? <Icon name="caret-right" size={size.icon.row} color={colors.accentText} /> : null}
-				</View>
+				) : null}
 			</Pressable>
 			<View style={{ position: "absolute", top: 0, end: 0 }}>
 				<IconButton

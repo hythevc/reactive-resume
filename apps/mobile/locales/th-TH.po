@@ -7453,10 +7453,6 @@ msgstr "สร้างลิงก์"
 msgid "Make primary"
 msgstr "ตั้งเป็นหลัก"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "จัดพื้นที่สำหรับขั้นตอนต่อไป"
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "ทำให้ช่องเปิดแข็งแรงขึ้น"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "การย้ายถิ่นฐาน"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "จดจำ"
@@ -13923,6 +13920,7 @@ msgstr "หากต้องการรับการแจ้งเตือ
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

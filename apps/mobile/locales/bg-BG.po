@@ -7453,10 +7453,6 @@ msgstr "Създайте връзка"
 msgid "Make primary"
 msgstr "Задаване като основна"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Направете място за следващата стъпка."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Направете отвора по-здрав"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "Преместване"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Запомняне"
@@ -13923,6 +13920,7 @@ msgstr "За да получите напомняне, разрешете изв
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

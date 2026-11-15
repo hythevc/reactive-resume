@@ -536,7 +536,7 @@ function Session({
 						/>
 					)}
 				</div>
-				<h2 className="font-display text-[22px] leading-[29px]">{question.text}</h2>
+				<h2 className="font-ui text-[22px] leading-[29px]">{question.text}</h2>
 				{storyTitle && <p className="text-sm text-ink-2">{t`Practicing your story: ${storyTitle}`}</p>}
 			</section>
 
@@ -1129,7 +1129,7 @@ function FeedbackCard({ data, children }: FeedbackCardProps) {
 				<p className="text-xs font-semibold text-ink-3">
 					<Trans>Try this opening</Trans>
 				</p>
-				<q className="font-display text-base leading-6 md:text-[17px] md:leading-[26px]">{data.opening}</q>
+				<q className="font-ui text-base leading-6 md:text-[17px] md:leading-[26px]">{data.opening}</q>
 			</div>
 			{children}
 		</section>
@@ -1142,7 +1142,7 @@ function SavedAttempt({ item }: { item: Attempt }) {
 		<div className="grid min-w-0 gap-4">
 			<section className="grid gap-3 rounded-xl border border-line bg-surface p-5">
 				<p className="text-xs font-medium text-ink-2">{item.data.origin === "recalled" ? t`Recalled` : t`Practice`}</p>
-				<h2 className="font-display text-[22px] leading-[29px]">{item.data.question}</h2>
+				<h2 className="font-ui text-[22px] leading-[29px]">{item.data.question}</h2>
 			</section>
 			<section className="grid gap-3 rounded-xl border border-line bg-surface p-4 md:p-5">
 				<h2 className="flex items-center gap-1.5 text-sm font-semibold">

@@ -7453,10 +7453,6 @@ msgstr "Buat pautan"
 msgid "Make primary"
 msgstr "Jadikan utama"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Beri ruang untuk langkah seterusnya."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Jadikan pembukaan lebih kuat"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "Penempatan semula"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Ingat"
@@ -13923,6 +13920,7 @@ msgstr "Untuk mendapatkan peringatan, benarkan pemberitahuan dalam tetapan peran
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

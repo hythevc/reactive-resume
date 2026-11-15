@@ -7453,10 +7453,6 @@ msgstr "Creați linkul"
 msgid "Make primary"
 msgstr "Setează ca principal"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Faceți loc pentru următorul pas."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Faceți deschiderea mai puternică"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "Relocare"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Rețineți"
@@ -13923,6 +13920,7 @@ msgstr "Pentru a primi un memento, permiteți notificările în setările dispoz
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

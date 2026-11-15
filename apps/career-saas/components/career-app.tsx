@@ -1,6 +1,9 @@
 "use client";
 
+import type { WorkspaceLocation, WorkspaceNavigationOptions } from "@/lib/workspace-navigation";
+import type { MouseEvent } from "react";
 import {
+	BriefcaseBusiness,
 	Camera,
 	Cloud,
 	Compass,
@@ -13,7 +16,6 @@ import {
 	Menu,
 	Settings,
 	X,
-	Zap,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { CloudView } from "@/features/cloud";
@@ -26,38 +28,51 @@ import { ResumesView } from "@/features/resumes";
 import { RoleDiscoveryView } from "@/features/role-discovery";
 import { SettingsView, PlansView } from "@/features/settings";
 import { useWorkspace } from "@/lib/workspace-context";
+import { readWorkspaceLocation, workspaceHash } from "@/lib/workspace-navigation";
 
 const navigation = [
 	{ id: "overview", name: "Overview", icon: Home },
 	{ id: "discovery", name: "Role discovery", icon: Compass },
 	{ id: "resumes", name: "Resumes", icon: FileText },
-	{ id: "linkedin", name: "LinkedIn studio", icon: Linkedin },
-	{ id: "photo", name: "Photo studio", icon: Camera },
-	{ id: "jobs", name: "Applications", icon: Zap },
+	{ id: "linkedin", name: "LinkedIn review", icon: Linkedin },
+	{ id: "photo", name: "Profile photo", icon: Camera },
+	{ id: "jobs", name: "Applications", icon: BriefcaseBusiness },
 	{ id: "outreach", name: "Recruiter outreach", icon: Mail },
-	{ id: "cloud", name: "Cloud account", icon: Cloud },
 ];
-const valid = new Set([...navigation.map((n) => n.id), "settings", "plans"]);
+const utilities = [
+	{ id: "settings", name: "Settings", icon: Settings },
+	{ id: "cloud", name: "Cloud account", icon: Cloud },
+	{ id: "plans", name: "Plan preview", icon: FileText },
+];
 
 export function CareerApp() {
-	const [page, setPage] = useState("overview");
+	const [location, setLocation] = useState<WorkspaceLocation>({ view: "overview", stage: "All" });
+	const page = location.view;
 	const [mobileOpen, setMobileOpen] = useState(false);
-	const [jobToReview, setJobToReview] = useState<string | undefined>();
+	const [pendingResumeImport, setPendingResumeImport] = useState<File | null>(null);
 	const sidebarRef = useRef<HTMLElement>(null);
 	const mainRef = useRef<HTMLElement>(null);
 	const { data, ready, persistenceStatus } = useWorkspace();
 	useEffect(() => {
 		const sync = () => {
-			const id = window.location.hash.slice(1);
-			setPage(valid.has(id) ? id : "overview");
+			setLocation(readWorkspaceLocation(window.location.hash));
 		};
 		sync();
 		window.addEventListener("hashchange", sync);
 		return () => window.removeEventListener("hashchange", sync);
 	}, []);
 	useEffect(() => {
+		const phoneViewport = window.matchMedia("(max-width: 760px)");
+		const closeOnDesktop = (event: MediaQueryListEvent) => {
+			if (!event.matches) setMobileOpen(false);
+		};
+		phoneViewport.addEventListener("change", closeOnDesktop);
+		return () => phoneViewport.removeEventListener("change", closeOnDesktop);
+	}, []);
+	useEffect(() => {
 		if (!mobileOpen) return;
 		const previous = document.activeElement as HTMLElement | null;
+		const main = mainRef.current;
 		const overflow = document.body.style.overflow;
 		document.body.style.overflow = "hidden";
 		const elements = () =>
@@ -81,18 +96,31 @@ export function CareerApp() {
 		return () => {
 			document.removeEventListener("keydown", onKey);
 			document.body.style.overflow = overflow;
-			previous?.focus();
+			if (previous?.getClientRects().length) previous.focus({ preventScroll: true });
+			else main?.focus({ preventScroll: true });
 		};
 	}, [mobileOpen]);
-	function go(id: string, jobId?: string) {
-		window.location.hash = id;
-		setJobToReview(jobId);
-		setPage(id);
+	function updateLocation(id: string, options: WorkspaceNavigationOptions = {}) {
+		const hash = workspaceHash(id, options);
+		window.location.hash = hash;
+		setLocation(readWorkspaceLocation(hash));
+	}
+	function go(id: string, options?: WorkspaceNavigationOptions) {
+		updateLocation(id, options);
 		setMobileOpen(false);
 		window.scrollTo(0, 0);
 		requestAnimationFrame(() => mainRef.current?.focus({ preventScroll: true }));
 	}
-	const title = navigation.find((n) => n.id === page)?.name ?? (page === "plans" ? "Plans" : "Settings");
+	function follow(event: MouseEvent<HTMLAnchorElement>, id: string) {
+		if (event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+		event.preventDefault();
+		go(id);
+	}
+	function importResume(file: File) {
+		setPendingResumeImport(file);
+		go("resumes");
+	}
+	const title = [...navigation, ...utilities].find((item) => item.id === page)?.name ?? "Overview";
 	const initials =
 		data.profile.name
 			.split(" ")
@@ -122,16 +150,25 @@ export function CareerApp() {
 				aria-modal={mobileOpen || undefined}
 				aria-label="Career workspace navigation"
 			>
-				<a className="brand" href="#overview" onClick={() => go("overview")}>
-					<span className="brand-mark">C</span>CareerOS
-				</a>
+				<div className="sidebar-brand-row">
+					<a className="brand" href="#overview" onClick={(event) => follow(event, "overview")}>
+						<span className="brand-mark">C</span>CareerOS
+					</a>
+					<button
+						className="icon-button mobile-nav-close"
+						aria-label="Close navigation"
+						onClick={() => setMobileOpen(false)}
+					>
+						<X size={20} aria-hidden="true" />
+					</button>
+				</div>
 				<div className="sidebar-label">Workspace</div>
 				<nav aria-label="Workspace">
 					{navigation.map((n) => (
 						<a
 							key={n.id}
 							href={`#${n.id}`}
-							onClick={() => go(n.id)}
+							onClick={(event) => follow(event, n.id)}
 							className={`nav-item ${page === n.id ? "active" : ""}`}
 							aria-current={page === n.id ? "page" : undefined}
 						>
@@ -141,23 +178,20 @@ export function CareerApp() {
 					))}
 				</nav>
 				<div className="sidebar-bottom">
-					<a
-						href="#plans"
-						className="sidebar-plan-link"
-						aria-current={page === "plans" ? "page" : undefined}
-						onClick={() => go("plans")}
-					>
-						Plans preview
-					</a>
-					<a
-						href="#settings"
-						className={`nav-item ${page === "settings" ? "active" : ""}`}
-						aria-current={page === "settings" ? "page" : undefined}
-						onClick={() => go("settings")}
-					>
-						<Settings size={19} />
-						Settings
-					</a>
+					<nav className="sidebar-secondary" aria-label="Settings and account">
+						{utilities.map((item) => (
+							<a
+								key={item.id}
+								href={`#${item.id}`}
+								className={`nav-item ${page === item.id ? "active" : ""}`}
+								aria-current={page === item.id ? "page" : undefined}
+								onClick={(event) => follow(event, item.id)}
+							>
+								<item.icon size={18} aria-hidden="true" />
+								{item.name}
+							</a>
+						))}
+					</nav>
 					<button className="workspace-user" onClick={() => go("settings")}>
 						<span className="avatar subtle">{initials}</span>
 						<span>{data.profile.name || "Your workspace"}</span>
@@ -219,9 +253,13 @@ export function CareerApp() {
 					{!ready ? (
 						<div className="loading-state">Opening your workspace…</div>
 					) : page === "overview" ? (
-						<Overview navigate={go} />
+						<Overview navigate={go} importResume={importResume} />
 					) : page === "resumes" ? (
-						<ResumesView />
+						<ResumesView
+							pendingImport={pendingResumeImport}
+							onImportConsumed={() => setPendingResumeImport(null)}
+							initialResumeId={location.resumeId}
+						/>
 					) : page === "discovery" ? (
 						<RoleDiscoveryView />
 					) : page === "linkedin" ? (
@@ -229,7 +267,11 @@ export function CareerApp() {
 					) : page === "photo" ? (
 						<PhotoView />
 					) : page === "jobs" ? (
-						<JobsView key={jobToReview ?? "list"} initialJobId={jobToReview} />
+						<JobsView
+							initialJobId={location.jobId}
+							initialStage={location.stage}
+							onLocationChange={(options) => updateLocation("jobs", options)}
+						/>
 					) : page === "outreach" ? (
 						<OutreachView />
 					) : page === "cloud" ? (

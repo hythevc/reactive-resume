@@ -937,6 +937,8 @@ msgstr "{name} បានផ្លាស់ទីទៅជួរឈរមេ"
 msgid "{name} never prints"
 msgstr "{name} មិនដែលបោះពុម្ពទេ។"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "{name} resume template preview"
 msgstr "{name} ការមើលគំរូ CV ជាមុន"
@@ -1596,10 +1598,6 @@ msgstr "បន្ថែម {suggestion}"
 #: src/features/career/knowledge/search-regions-field.tsx
 msgid "Add a country"
 msgstr "បន្ថែមប្រទេសមួយ។"
-
-#: src/features/career/knowledge/facts.tsx
-msgid "Add a fact"
-msgstr "បន្ថែមការពិតមួយ។"
 
 #: src/features/career/knowledge/facts.tsx
 msgid "Add a fact, for example “I mentored two associate PMs in 2025”"
@@ -2317,6 +2315,7 @@ msgstr "ទាញយកលិខិតគម្រប {0} ផងដែរ។"
 msgid "Also email {0}"
 msgstr "ផ្ញើអ៊ីមែលទៅ {0} ផងដែរ"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Also on mobile"
 msgstr "ក៏មាននៅលើទូរសព្ទដែរ"
@@ -2828,6 +2827,7 @@ msgstr "នៅ Northwind Labs ក្រុមថ្មីភាគច្រើ�
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 #: src/features/homepage/sections.tsx
 msgid "ATS checker"
 msgstr "ឧបករណ៍ពិនិត្យ ATS"
@@ -3355,6 +3355,7 @@ msgstr "ផ្លាស់ប្តូរការតភ្ជាប់"
 msgid "Change it in Design."
 msgstr "ផ្លាស់ប្តូរវានៅក្នុងការរចនា។"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Change language"
 msgstr "ប្តូរភាសា"
@@ -3445,6 +3446,7 @@ msgstr "ជជែក"
 #. Homepage scene title, one word followed by a full stop
 #. The resume builder mode that reviews the resume for problems. Not the Screening application stage.
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -3466,6 +3468,7 @@ msgid "Check another file"
 msgstr "ពិនិត្យឯកសារផ្សេងទៀត។"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check any PDF, no account needed"
 msgstr "ពិនិត្យ PDF ណាមួយ មិនចាំបាច់មានគណនីទេ។"
 
@@ -3501,6 +3504,7 @@ msgid "check numbers and names before using it"
 msgstr "ពិនិត្យលេខ និងឈ្មោះ មុនពេលប្រើវា"
 
 #: src/features/homepage/check.tsx
+#: src/features/homepage/compact.tsx
 msgid "Check reads your resume the way hiring software does and explains what to fix in plain words. It runs in your browser, so the file stays with you: 0 uploads."
 msgstr "មុខងារ ពិនិត្យ អានប្រវត្តិរូបសង្ខេបរបស់អ្នកតាមរបៀបដែលកម្មវិធីជ្រើសរើសបុគ្គលិកធ្វើ និងពន្យល់ពីអ្វីដែលត្រូវជួសជុលដោយពាក្យសាមញ្ញ។ វាដំណើរការក្នុងកម្មវិធីរុករកតាមអ៊ីនធឺណិតរបស់អ្នក ដូច្នេះឯកសាររបស់អ្នកនៅតែមាននៅលើឧបករណ៍របស់អ្នក៖ 0 ការបង្ហោះ។"
 
@@ -4028,6 +4032,7 @@ msgstr "ប្រៀបធៀបវាជាមួយការផ្តល់ក
 msgid "Compare offers"
 msgstr "ប្រៀបធៀបការផ្តល់ការងារ"
 
+#: src/features/homepage/compact.tsx
 #: src/features/templates/gallery.tsx
 msgid "Compare real resume layouts before you sign up. Every template is free to customize, with PDF and Word downloads and no watermark."
 msgstr "ប្រៀបធៀបប្លង់ CV ពិតប្រាកដ មុនពេលអ្នកចុះឈ្មោះ។ គំរូនីមួយៗអាចប្ដូរតាមបំណងដោយសេរី ដោយមានការទាញយកជា PDF និង Microsoft Word ហើយមិនមាន watermark ទេ។"
@@ -5838,6 +5843,7 @@ msgstr "សេចក្ដី​ពិពណ៌នា"
 msgid "Description of role {0}"
 msgstr "ការពិពណ៌នាអំពីតួនាទី {0}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -6118,6 +6124,7 @@ msgstr "ទាញយក PDF បច្ចុប្បន្ន"
 msgid "Download failed. Try again."
 msgstr "ការទាញយកបរាជ័យ។ ព្យាយាមម្តងទៀត។"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Download on the"
 msgstr "ទាញយកពី"
@@ -6981,7 +6988,9 @@ msgstr "ម៉ូដែលលឿន"
 msgid "Fast: {0} · Capable: {1}"
 msgstr "លឿន៖ {0} · មានសមត្ថភាព៖ {1}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/hero.tsx
 msgid "Features"
 msgstr "មុខងារ"
 
@@ -7490,6 +7499,7 @@ msgstr "ភាសាអាល្លឺម៉ង់"
 msgid "Get a key at <0>{0}</0>. It's stored encrypted and used only for your requests."
 msgstr "ទទួលបានសោនៅ <0>{0}</0> ។ វាត្រូវបានរក្សាទុកដោយអ៊ិនគ្រីប និងប្រើសម្រាប់តែសំណើរបស់អ្នកប៉ុណ្ណោះ។"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/prepare.tsx
 msgid "Get a plan for the interview, built from the posting and your own stories. Practice out loud, then write down how it went."
 msgstr "ទទួលបានផែនការសម្រាប់ការសម្ភាសន៍ ដែលបង្កើតពីការប្រកាសការងារ និងរឿងរបស់អ្នកផ្ទាល់។ ហាត់និយាយឮៗ បន្ទាប់មកកត់ត្រាថាវាដំណើរការយ៉ាងដូចម្តេច។"
@@ -7506,6 +7516,7 @@ msgstr "ទទួលសោ API ពីប្រតិបត្តិករចំ�
 msgid "Get feedback"
 msgstr "ទទួលមតិកែលម្អ"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Get it on"
 msgstr "ទាញយកពី"
@@ -7518,6 +7529,7 @@ msgstr "ទទួលតួនាទីថ្មីៗនៅទីនេះរៀ
 msgid "Get resume feedback on Discord"
 msgstr "ទទួលមតិលើប្រវត្តិរូបសង្ខេបរបស់អ្នកនៅលើ Discord"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 msgid "Get started"
 msgstr "ចាប់ផ្តើម"
@@ -7715,6 +7727,7 @@ msgstr "ជួយខ្ញុំថ្លឹងថ្លែងការផ្ត
 msgid "Help translate"
 msgstr "ជួយបកប្រែ"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Help translate it into yours."
 msgstr "ជួយបកប្រែវាជាភាសារបស់អ្នក។"
@@ -8502,6 +8515,7 @@ msgstr "ចន ដូ"
 msgid "Join Discord"
 msgstr "ចូលរួម Discord"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Join the Discord community"
 msgstr "ចូលរួមសហគមន៍ Discord"
@@ -11638,6 +11652,7 @@ msgstr "បិទភ្ជាប់តំណការងារ ឬការប�
 msgid "Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
 msgstr "បិទភ្ជាប់តំណការងារ។ យើងនឹងរក្សាទុកការប្រកាសការងារ ដូច្នេះ ពិនិត្យ ជំនួយការ និងសំបុត្ររបស់អ្នកអាចប្រើវាបាន។"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Paste a job posting once. It feeds a tailored copy of your resume, a fit check against each requirement, a cover letter draft and a place to track the role."
 msgstr "បិទភ្ជាប់ប្រកាសការងារម្ដង។ វាផ្តល់ទិន្នន័យដល់ច្បាប់ចម្លងប្រវត្តិរូបសង្ខេបដែលបានសម្រប ការពិនិត្យភាពសមស្របធៀបនឹងតម្រូវការនីមួយៗ សេចក្តីព្រាងលិខិតអម និងកន្លែងសម្រាប់តាមដានមុខតំណែងនេះ។"
@@ -11825,6 +11840,7 @@ msgstr "ជ្រើសរើសពេលវេលាក្រោយពេលន
 msgid "Pick an icon"
 msgstr "ជ្រើសរើសរូបតំណាង"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 msgid "Pick from {templateCount} templates, then set the type, color and spacing. The words stay put, so try as many looks as you like."
 msgstr "ជ្រើសរើសពី {templateCount} គំរូ បន្ទាប់មកកំណត់ពុម្ពអក្សរ ពណ៌ និងគម្លាត។ អត្ថបទរបស់អ្នកនៅដដែល ដូច្នេះព្យាយាមរចនាឱ្យបានច្រើនតាមដែលអ្នកចូលចិត្ត។"
@@ -12064,6 +12080,7 @@ msgctxt "Career preferences: the roles, places, pay and ways of working you want
 msgid "Preferences"
 msgstr "ចំណង់ចំណូលចិត្ត"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/prepare.tsx
@@ -12133,6 +12150,8 @@ msgstr "ចុច <0>{RETURN_KEY}</0> ដើម្បីបន្ថែម ឬ�
 msgid "Press <0>Enter</0> to open"
 msgstr "ចុច <0>Enter</0> ដើម្បីបើក"
 
+#: src/features/homepage/compact.tsx
+#: src/features/homepage/hero.tsx
 #: src/features/templates/gallery.tsx
 msgid "Preview {name} sample PDF"
 msgstr "មើលគំរូ {name} ជា PDF"
@@ -12209,6 +12228,7 @@ msgid "Private. Only you can see it."
 msgstr "ឯកជន។ មានតែអ្នកទេដែលអាចឃើញវា។"
 
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
 msgid "Product"
 msgstr "ផលិតផល"
 
@@ -12439,6 +12459,7 @@ msgid "Question removed"
 msgstr "បានដកសំណួរចេញ"
 
 #: src/features/homepage/faq.tsx
+#: src/features/homepage/header.tsx
 msgid "Questions"
 msgstr "សំណួរ"
 
@@ -12501,6 +12522,7 @@ msgstr "Re: Senior Product Designer"
 msgid "Reactive Resume {__APP_VERSION__} · MIT"
 msgstr "Reactive Resume {__APP_VERSION__} · MIT"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Reactive Resume is open source under the MIT License. Amruth Pillai and a community of contributors keep it running, and donations pay for hosting and development. There’s no paid tier."
 msgstr "Reactive Resume គឺជាកូដចំហក្រោមអាជ្ញាប័ណ្ណ MIT។ Amruth Pillai និងសហគមន៍អ្នករួមចំណែកធ្វើឱ្យវាដំណើរការ ហើយការបរិច្ចាគចំណាយលើការបង្ហោះ និងការអភិវឌ្ឍ។ មិនមានកម្រិតបង់ប្រាក់ទេ។"
@@ -12931,6 +12953,7 @@ msgstr "ការផ្លាស់ទីលំនៅ"
 
 #: src/features/assistant/remember-message.tsx
 #: src/features/career/shared.tsx
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/remember.tsx
@@ -14733,6 +14756,7 @@ msgstr "ពណ៌ស្រមោល"
 msgid "Shadow width"
 msgstr "ទទឹងស្រមោល"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/share.tsx
@@ -14743,6 +14767,7 @@ msgstr "ទទឹងស្រមោល"
 msgid "Share"
 msgstr "ចែករំលែក"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/share.tsx
 msgid "Share a public link, add a password or keep it private. Choose from 3 visibility options. Export to PDF or Word, or take all your data with you as JSON."
 msgstr "ចែករំលែកតំណសាធារណៈ បន្ថែមពាក្យសម្ងាត់ ឬរក្សាវាទុកជាឯកជន។ ជ្រើសរើសពីជម្រើសមើលឃើញចំនួន 3 ។ នាំចេញទៅ PDF ឬ Word ឬយកទិន្នន័យរបស់អ្នកទាំងអស់ជាមួយអ្នកជា JSON ។"
@@ -15344,6 +15369,7 @@ msgstr "ភាសាអេស្ប៉ាញ (B2)"
 msgid "Speak"
 msgstr "និយាយ"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Speaks your language"
 msgstr "និយាយភាសារបស់អ្នក។"
@@ -15480,6 +15506,7 @@ msgstr "ចាប់ផ្តើមពីលិខិតមុន"
 msgid "Start from one you have and link the application."
 msgstr "ចាប់ផ្តើមពីមួយដែលអ្នកមាន ហើយភ្ជាប់ពាក្យសុំការងារ។"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Start from scratch or import what you have. It takes a few minutes, and you can come back to it anytime."
 msgstr "ចាប់ផ្តើមពីសូន្យ ឬនាំចូលអ្វីដែលអ្នកមាន។ វាចំណាយពេលតែប៉ុន្មាននាទី ហើយអ្នកអាចត្រឡប់មកវិញនៅពេលណាក៏បាន។"
@@ -15647,7 +15674,6 @@ msgid "Stories to bring"
 msgstr "រឿងដែលត្រូវយកមក"
 
 #: src/features/homepage/header.tsx
-#: src/features/homepage/hero.tsx
 msgid "Story"
 msgstr "រឿង"
 
@@ -15742,6 +15768,7 @@ msgstr "សេចក្តីសង្ខេបនៃពាក្យសុំដ
 msgid "Summary"
 msgstr "សង្ខេប"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Support"
 msgstr "គាំទ្រ"
@@ -15869,6 +15896,7 @@ msgstr "ស្លាក បំបែកដោយសញ្ញាក្បៀស"
 msgid "Tags…"
 msgstr "ស្លាក…"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
 #: src/features/homepage/tailor.tsx
@@ -15972,8 +16000,11 @@ msgstr "ពុម្ពបានប្តូរទៅ {0}"
 msgid "Template, type and colors follow the resume, so the pair always matches."
 msgstr "គំរូ ប្រភេទ និងពណ៌ធ្វើតាមប្រវត្តិរូបសង្ខេប ដូច្នេះគូតែងតែត្រូវគ្នា។"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/design.tsx
 #: src/features/homepage/footer.tsx
+#: src/features/homepage/header.tsx
+#: src/features/homepage/hero.tsx
 msgid "Templates"
 msgstr "ពុម្ព"
 
@@ -17255,6 +17286,7 @@ msgstr "បកប្រែទៅជា…"
 msgid "Translate the app"
 msgstr "បកប្រែកម្មវិធី"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/sections.tsx
 msgid "Translated into {languageCount} languages."
 msgstr "បានបកប្រែជា {languageCount} ភាសា។"
@@ -18630,6 +18662,7 @@ msgid "Worth asking {0}"
 msgstr "គួរសួរ {0}"
 
 #. Homepage scene title, one word followed by a full stop
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 #: src/features/homepage/hero.tsx
@@ -18663,6 +18696,7 @@ msgstr "សរសេរលិខិត…"
 msgid "Write a new reply in {languageName}"
 msgstr "សរសេរការឆ្លើយតបថ្មីជា {languageName}"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/remember.tsx
 msgid "Write a story once, with the facts behind it, and the coach uses it in 3 places. Switch a fact off and nothing leans on it."
 msgstr "សរសេររឿងម្តង ជាមួយការពិតដែលគាំទ្រវា ហើយគ្រូបង្វឹកប្រើវានៅ 3 កន្លែង។ បិទការពិតមួយ ហើយគ្មានអ្វីពឹងផ្អែកលើវាទៀតទេ។"
@@ -18671,6 +18705,7 @@ msgstr "សរសេររឿងម្តង ជាមួយការពិត�
 msgid "Write and review form answers"
 msgstr "សរសេរ និងពិនិត្យចម្លើយទម្រង់"
 
+#: src/features/homepage/compact.tsx
 #: src/features/homepage/write.tsx
 msgid "Write beside a live page. It saves as you type and keeps every version. Ask the assistant for a sharper line: it suggests, you decide."
 msgstr "សរសេរនៅក្បែរទំព័របង្ហាញផ្ទាល់។ វារក្សាទុកនៅពេលអ្នកវាយ ហើយរក្សាគ្រប់កំណែ។ សុំឃ្លាដែលមុតស្រួចជាងពីជំនួយការ៖ វាណែនាំ អ្នកសម្រេច។"

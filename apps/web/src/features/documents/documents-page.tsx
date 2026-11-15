@@ -327,6 +327,34 @@ export function DocumentsPage({ search, onSearchChange }: DocumentsPageProps) {
 				title={<Trans>Documents</Trans>}
 				actions={
 					!firstRun && (
+						<Button
+							data-document-new-trigger=""
+							onClick={() => openDialog("document.new", search.type === "letter" ? { context: "letters" } : undefined)}
+						>
+							<Icon name="plus" />
+							<Trans>New document</Trans>
+						</Button>
+					)
+				}
+			>
+				{!firstRun && (
+					<>
+						<Tabs value={search.type} onValueChange={(type) => onSearchChange({ type: type as DocumentTypeFilter })}>
+							<TabsList variant="line" aria-label={t`Document type`}>
+								<TabsTrigger value="all">
+									<Trans>All</Trans>
+									<TabsCount>{i18n.number(counts.all)}</TabsCount>
+								</TabsTrigger>
+								<TabsTrigger value="resume">
+									<Trans>Resumes</Trans>
+									<TabsCount>{i18n.number(counts.resume)}</TabsCount>
+								</TabsTrigger>
+								<TabsTrigger value="letter">
+									<Trans>Letters</Trans>
+									<TabsCount>{i18n.number(counts.letter)}</TabsCount>
+								</TabsTrigger>
+							</TabsList>
+						</Tabs>
 						<div className="ms-auto flex flex-wrap items-center gap-2 max-sm:ms-0 max-sm:w-full">
 							<InputGroup className="w-60 max-sm:w-full">
 								<InputGroupAddon>
@@ -368,7 +396,7 @@ export function DocumentsPage({ search, onSearchChange }: DocumentsPageProps) {
 									</InputGroupAddon>
 								) : null}
 							</InputGroup>
-							<div className="w-[150px]">
+							<div className="min-w-[150px] flex-1 sm:flex-none">
 								<NativeSelect
 									aria-label={t`Sort`}
 									value={search.sort}
@@ -392,27 +420,6 @@ export function DocumentsPage({ search, onSearchChange }: DocumentsPageProps) {
 								</SegmentedControlItem>
 							</SegmentedControl>
 						</div>
-					)
-				}
-			>
-				{!firstRun && (
-					<>
-						<Tabs value={search.type} onValueChange={(type) => onSearchChange({ type: type as DocumentTypeFilter })}>
-							<TabsList variant="line" aria-label={t`Document type`}>
-								<TabsTrigger value="all">
-									<Trans>All</Trans>
-									<TabsCount>{i18n.number(counts.all)}</TabsCount>
-								</TabsTrigger>
-								<TabsTrigger value="resume">
-									<Trans>Resumes</Trans>
-									<TabsCount>{i18n.number(counts.resume)}</TabsCount>
-								</TabsTrigger>
-								<TabsTrigger value="letter">
-									<Trans>Letters</Trans>
-									<TabsCount>{i18n.number(counts.letter)}</TabsCount>
-								</TabsTrigger>
-							</TabsList>
-						</Tabs>
 					</>
 				)}
 			</PageHeader>
@@ -471,7 +478,7 @@ export function DocumentsPage({ search, onSearchChange }: DocumentsPageProps) {
 						) : (
 							<div className="grid justify-items-center gap-2 py-16 text-center">
 								<Icon name="magnifying-glass" size={28} className="text-ink-3" />
-								<p className="font-display text-[22px] leading-7">
+								<p className="font-ui text-[22px] leading-7">
 									{search.q.trim() ? (
 										<Trans>Nothing matches “{search.q.trim()}”</Trans>
 									) : (
@@ -620,7 +627,7 @@ export function DocumentsPage({ search, onSearchChange }: DocumentsPageProps) {
 const VIEW_KEY = "documents-view";
 // Longest stagger (150ms) plus the D2 entrance (200ms), with room to spare: then the intro classes come off.
 const INTRO_MS = 400;
-const GRID_CLASS = "grid grid-cols-[repeat(auto-fill,minmax(200px,228px))] gap-5 max-sm:grid-cols-2 max-sm:gap-4";
+const GRID_CLASS = "grid grid-cols-[repeat(auto-fill,minmax(200px,228px))] gap-5 max-sm:grid-cols-1 max-sm:gap-3";
 
 type GroupHeadingProps = {
 	group: Extract<DocumentGroup<DocumentSummary>, { kind: "application" }>;
@@ -1005,9 +1012,12 @@ export function LibrarySkeleton({ view }: { view: "grid" | "list" }) {
 		);
 	}
 	return (
-		<div className="grid grid-cols-[repeat(auto-fill,minmax(200px,228px))] gap-5 max-sm:grid-cols-2 max-sm:gap-4">
+		<div className="grid grid-cols-[repeat(auto-fill,minmax(200px,228px))] gap-5 max-sm:grid-cols-1 max-sm:gap-3">
 			{Array.from({ length: 6 }, (_, index) => (
-				<div key={index} className="grid content-start gap-3 rounded-lg border border-line bg-surface p-3 shadow-e1">
+				<div
+					key={index}
+					className="grid content-start gap-3 rounded-lg border border-line bg-surface p-3 max-sm:grid-cols-[64px_minmax(0,1fr)]"
+				>
 					<Skeleton className="aspect-page rounded-md" />
 					<div className="grid gap-1">
 						<Skeleton className="h-5 w-3/4 rounded" />

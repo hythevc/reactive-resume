@@ -7453,10 +7453,6 @@ msgstr "צור קישור"
 msgid "Make primary"
 msgstr "הגדר כראשי"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "פנה מקום לשלב הבא."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "הפוך את הפתח לחזק יותר"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "רילוקיישן"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "זכור"
@@ -13923,6 +13920,7 @@ msgstr "כדי לקבל תזכורת, אפשר הודעות בהגדרות המ�
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

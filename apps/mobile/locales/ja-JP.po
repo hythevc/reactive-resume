@@ -7453,10 +7453,6 @@ msgstr "リンクを作成"
 msgid "Make primary"
 msgstr "プライマリに設定"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "次のステップに向けて整理しましょう。"
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "開口部を強くする"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "転居"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "記憶する"
@@ -13923,6 +13920,7 @@ msgstr "リマインダーを取得するには、デバイスの設定で通知
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

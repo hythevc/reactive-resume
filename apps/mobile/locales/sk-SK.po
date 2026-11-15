@@ -7453,10 +7453,6 @@ msgstr "Vytvoriť odkaz"
 msgid "Make primary"
 msgstr "Nastaviť ako primárny"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Urobte priestor pre ďalší krok."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Urobte otvor silnejší"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "Presťahovanie"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Zapamätať"
@@ -13923,6 +13920,7 @@ msgstr "Ak chcete dostávať pripomienky, povoľte upozornenia v nastaveniach za
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

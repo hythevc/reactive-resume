@@ -447,7 +447,7 @@ export function ColorGroup({ data, write, disabled }: GroupProps) {
 						backgroundColor: colors.raised,
 						borderRadius: radius.rLg,
 						borderWidth: 1,
-						borderColor: colors.lineStrong,
+						borderColor: colors.controlLine,
 					}}
 				/>
 				{/* An unreadable value has no ratio: the one shown would be the old colour's. */}
@@ -558,7 +558,7 @@ export function PageGroup({ data, write, disabled, pick }: GroupProps) {
 						paddingHorizontal: space.s3,
 						borderRadius: radius.rLg,
 						borderWidth: 1,
-						borderColor: colors.lineStrong,
+						borderColor: colors.controlLine,
 						backgroundColor: colors.raised,
 						opacity: disabled ? 0.45 : 1,
 					}}

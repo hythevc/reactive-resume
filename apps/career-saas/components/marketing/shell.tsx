@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { MobileMarketingNav } from "./mobile-nav";
 
 export function MarketingLink({
 	href,
@@ -38,22 +39,7 @@ export function MarketingShell({ children }: { children: ReactNode }) {
 					<Link href="/pricing">Pricing</Link>
 					<MarketingLink href="/app">Open workspace</MarketingLink>
 				</nav>
-				<details className="m-mobile-nav">
-					<summary>
-						Menu
-						<ChevronDown size={17} aria-hidden="true" />
-					</summary>
-					<nav aria-label="Mobile navigation">
-						<Link href="/#tools">Tools</Link>
-						<Link href="/how-it-works">How it works</Link>
-						<Link href="/pricing">Pricing</Link>
-						<Link href="/about">About CareerOS</Link>
-						<Link href="/app">
-							Open workspace
-							<ArrowRight size={16} aria-hidden="true" />
-						</Link>
-					</nav>
-				</details>
+				<MobileMarketingNav />
 			</header>
 			<main id="marketing-main" tabIndex={-1}>
 				{children}
@@ -76,7 +62,7 @@ export function MarketingShell({ children }: { children: ReactNode }) {
 				</div>
 				<div className="m-container m-footer-bottom">
 					<span>Built on Reactive Resume and the Next.js SaaS Starter.</span>
-					<span>Free local workspace. Your next step is yours.</span>
+					<span>Free local workspace. Review before sharing.</span>
 				</div>
 			</footer>
 		</div>

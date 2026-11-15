@@ -1,9 +1,11 @@
 export const tools = [
 	{
 		slug: "resume",
+		output: "A resume version, live preview and printable document.",
+		closing: "Put your experience on the page.",
 		name: "Resume builder",
 		hash: "resumes",
-		title: "Tell your story. Keep it yours.",
+		title: "Build a resume for each role.",
 		description:
 			"Turn your career facts into a clear resume, with a live preview and versions for the roles you choose.",
 		intro:
@@ -25,9 +27,11 @@ export const tools = [
 	},
 	{
 		slug: "linkedin",
+		output: "Editable headline, about, experience and skills drafts.",
+		closing: "Make your next profile edit.",
 		name: "LinkedIn review",
 		hash: "linkedin",
-		title: "Make your profile sound like you.",
+		title: "Review your LinkedIn writing.",
 		description:
 			"Review the writing in your headline, about section, experience and skills, then shape a stronger introduction.",
 		intro:
@@ -49,9 +53,11 @@ export const tools = [
 	},
 	{
 		slug: "photo",
+		output: "A square PNG with a circle framing preview.",
+		closing: "Prepare a photo you already have.",
 		name: "Profile photo",
 		hash: "photo",
-		title: "A little polish. Still you.",
+		title: "Crop and adjust your profile photo.",
 		description:
 			"Crop and adjust a photo you already have, preview its framing and download a profile-ready square PNG.",
 		intro:
@@ -73,9 +79,11 @@ export const tools = [
 	},
 	{
 		slug: "applications",
-		name: "Application workspace",
+		output: "Saved postings, document drafts and your next action.",
+		closing: "Bring your application records together.",
+		name: "Applications",
 		hash: "jobs",
-		title: "Put care into every application.",
+		title: "Track each role and its documents.",
 		description:
 			"Keep saved roles, fit notes, documents and application stages together, with a deliberate review before you share.",
 		intro:
@@ -97,9 +105,11 @@ export const tools = [
 	},
 	{
 		slug: "outreach",
+		output: "Contact notes and a message ready for your review.",
+		closing: "Write your next introduction.",
 		name: "Recruiter outreach",
 		hash: "outreach",
-		title: "Start a thoughtful conversation.",
+		title: "Prepare your recruiter outreach.",
 		description:
 			"Keep the people, source notes and message drafts behind your search in one place, ready for your review.",
 		intro:
@@ -121,9 +131,11 @@ export const tools = [
 	},
 	{
 		slug: "role-discovery",
+		output: "A career brief and a shortlist of roles you saved.",
+		closing: "Consider the roles you have saved.",
 		name: "Role discovery",
 		hash: "discovery",
-		title: "Make room for the right work.",
+		title: "Review saved roles against your goals.",
 		description:
 			"Put what matters to you into words, then review saved roles one at a time with a clearer sense of direction.",
 		intro:
@@ -141,7 +153,7 @@ export const tools = [
 		],
 		limit:
 			"Role discovery works with postings you save. It is not a live job feed, AI recruiter or employer network. Passing on a role keeps it out of draft preparation.",
-		action: "Find your direction",
+		action: "Review your saved roles",
 	},
 ] as const;
 

@@ -1,103 +1,133 @@
 "use client";
 
-import { ArrowRight, Bookmark, CalendarDays, ChevronRight, Clock3, FileText, MapPin, Pencil } from "lucide-react";
+import type { WorkspaceNavigationOptions } from "@/lib/workspace-navigation";
+import type { ChangeEvent, MouseEvent } from "react";
+import { ArrowRight, Bookmark, CalendarDays, ChevronRight, Clock3, FileText, MapPin, Upload } from "lucide-react";
+import { useRef } from "react";
 import { useWorkspace } from "@/lib/workspace-context";
+import { matchesApplicationStage, workspaceHash } from "@/lib/workspace-navigation";
 
-export function Overview({ navigate }: { navigate: (page: string, jobId?: string) => void }) {
+type OverviewProps = {
+	navigate: (page: string, options?: WorkspaceNavigationOptions) => void;
+	importResume: (file: File) => void;
+};
+
+export function Overview({ navigate, importResume }: OverviewProps) {
 	const { data } = useWorkspace();
-	const resume = data.resumes[0];
+	const importRef = useRef<HTMLInputElement>(null);
+	const resume = [...data.resumes].sort((a, b) => (Date.parse(b.updatedAt) || 0) - (Date.parse(a.updatedAt) || 0))[0];
 	const recent = data.jobs.slice(0, 3);
 	const sample = data.profile.email.toLowerCase().endsWith("@example.test");
 	const summary = [
-		{ label: "Saved", count: data.jobs.filter((job) => job.status === "Saved").length, icon: Bookmark },
+		{
+			label: "Saved",
+			stage: "Saved" as const,
+			count: data.jobs.filter((job) => job.status === "Saved").length,
+			icon: Bookmark,
+		},
 		{
 			label: "In progress",
-			count: data.jobs.filter((job) => ["Draft", "Applied"].includes(job.status)).length,
+			stage: "In progress" as const,
+			count: data.jobs.filter((job) => matchesApplicationStage(job.status, "In progress")).length,
 			icon: Clock3,
 		},
-		{ label: "Interview", count: data.jobs.filter((job) => job.status === "Interview").length, icon: CalendarDays },
+		{
+			label: "Interview",
+			stage: "Interview" as const,
+			count: data.jobs.filter((job) => job.status === "Interview").length,
+			icon: CalendarDays,
+		},
 	];
+	function follow(event: MouseEvent<HTMLAnchorElement>, view: string, options?: WorkspaceNavigationOptions) {
+		if (event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+		event.preventDefault();
+		navigate(view, options);
+	}
+	function chooseImport(event: ChangeEvent<HTMLInputElement>) {
+		const file = event.target.files?.[0];
+		event.target.value = "";
+		if (file) importResume(file);
+	}
 	return (
 		<div className="overview-view">
-			<header className="overview-heading">
+			<input
+				ref={importRef}
+				type="file"
+				accept=".json,application/json"
+				hidden
+				onChange={chooseImport}
+				aria-label="Import resume JSON"
+			/>
+			<header className="feature-heading overview-heading">
 				<div>
-					<h1>
-						A little progress,
-						<br />a clearer next move.
-					</h1>
-					<p>Pick up where you left off, or start with your career facts.</p>
+					<h1>Your search</h1>
+					<p>
+						{data.jobs.length} recorded {data.jobs.length === 1 ? "role" : "roles"} · {data.resumes.length} resume{" "}
+						{data.resumes.length === 1 ? "version" : "versions"}
+					</p>
 				</div>
-				<a className="text-button" href="#settings" onClick={() => navigate("settings")}>
-					Edit career profile <Pencil size={17} aria-hidden="true" />
+				<a className="button secondary" href="#settings" onClick={(event) => follow(event, "settings")}>
+					Edit career profile
 				</a>
 			</header>
-			<div className="overview-start-grid">
-				<section className="panel next-step-panel" aria-labelledby="next-step-title">
-					<h2 id="next-step-title" className="editorial-title">
-						Your next step
-					</h2>
-					<div className="next-step-content">
-						<div className="resume-miniature" aria-hidden="true">
-							<strong>{resume?.profile.name || "Your name"}</strong>
-							<span>{resume?.profile.role || "Your professional title"}</span>
-							<i />
-							<small>Profile</small>
-							<p>{resume?.profile.summary || "Your story starts with your experience."}</p>
-							<small>Experience</small>
-							<p className="miniature-experience">
-								{resume?.profile.experience || "Add your roles, responsibilities and accomplishments."}
-							</p>
-						</div>
-						<div className="next-step-copy">
-							<h3>{resume ? "Make this resume yours" : "Start with your story"}</h3>
-							<p>Review your experience and contact details before sharing.</p>
-							<a className="button primary" href="#resumes" onClick={() => navigate("resumes")}>
-								<FileText size={18} aria-hidden="true" />
-								{resume ? "Open resume" : "Create a resume"}
-							</a>
-							<a className="text-button" href="#resumes" onClick={() => navigate("resumes")}>
-								Import a resume instead
-							</a>
-						</div>
+			<nav className="overview-metrics" aria-label="Application stages">
+				{summary.map(({ label, stage, count, icon: Icon }) => (
+					<a
+						className="overview-metric"
+						href={workspaceHash("jobs", { stage })}
+						onClick={(event) => follow(event, "jobs", { stage })}
+						key={stage}
+					>
+						<Icon size={20} aria-hidden="true" />
+						<span>{label}</span>
+						<strong>{count}</strong>
+						<ChevronRight size={16} aria-hidden="true" />
+					</a>
+				))}
+			</nav>
+			{sample ? (
+				<p className="overview-sample-note">
+					Example workspace. Replace the career profile with your details or import your resume before sharing
+					documents.
+				</p>
+			) : null}
+			<section className="panel overview-next" aria-labelledby="next-step-title">
+				<div className="overview-next-title">
+					<FileText size={24} aria-hidden="true" />
+					<div>
+						<h2 id="next-step-title">{resume ? "Continue your resume" : "Create your first resume"}</h2>
+						<p>{resume?.title || "Start with your own experience and contact details."}</p>
 					</div>
-				</section>
-				<section className="panel search-summary" aria-labelledby="search-summary-title">
-					<h2 id="search-summary-title" className="editorial-title">
-						Your search
-					</h2>
-					{summary.map(({ label, count, icon: Icon }) => (
-						<a href="#jobs" onClick={() => navigate("jobs")} className="search-summary-row" key={label}>
-							<span className="summary-icon">
-								<Icon size={23} strokeWidth={1.6} aria-hidden="true" />
-							</span>
-							<span>{label}</span>
-							<strong>{count}</strong>
-							<ChevronRight size={17} aria-hidden="true" />
-						</a>
-					))}
-					<p className="summary-footnote">
-						{sample
-							? "Example workspace · replace the sample facts with yours."
-							: `${data.resumes.length} resume${data.resumes.length === 1 ? "" : "s"} · ${data.contacts.length} contact${data.contacts.length === 1 ? "" : "s"} in this workspace.`}
-					</p>
-				</section>
-			</div>
-			<section className="panel recent-applications" aria-labelledby="recent-applications-title">
+				</div>
+				<div className="button-row">
+					<a
+						className="button primary"
+						href={workspaceHash("resumes", { resumeId: resume?.id })}
+						onClick={(event) => follow(event, "resumes", { resumeId: resume?.id })}
+					>
+						{resume ? "Open resume" : "Open resume builder"}
+						<ArrowRight size={16} aria-hidden="true" />
+					</a>
+					<button className="button secondary" type="button" onClick={() => importRef.current?.click()}>
+						<Upload size={16} aria-hidden="true" />
+						Import JSON
+					</button>
+				</div>
+			</section>
+			<section className="overview-recent" aria-labelledby="recent-applications-title">
 				<div className="panel-heading">
-					<h2 id="recent-applications-title" className="editorial-title">
-						Recent applications
-					</h2>
-					<a className="text-button" href="#jobs" onClick={() => navigate("jobs")}>
-						View all applications <ArrowRight size={18} aria-hidden="true" />
+					<h2 id="recent-applications-title">Recent applications</h2>
+					<a className="text-button" href="#jobs" onClick={(event) => follow(event, "jobs")}>
+						View all applications
+						<ArrowRight size={16} aria-hidden="true" />
 					</a>
 				</div>
 				{recent.length ? (
-					<table className="data-table recent-table">
+					<table className="data-table overview-records">
 						<thead>
 							<tr>
-								<th>Company</th>
 								<th>Role</th>
-								<th>Location</th>
+								<th>Company / location</th>
 								<th>Stage</th>
 								<th>
 									<span className="sr-only">Review application</span>
@@ -108,43 +138,47 @@ export function Overview({ navigate }: { navigate: (page: string, jobId?: string
 							{recent.map((job) => (
 								<tr key={job.id}>
 									<td>
+										<strong>{job.role || "Untitled role"}</strong>
+									</td>
+									<td>
 										<span className="company-cell">
 											<span className="company-logo" aria-hidden="true">
 												{job.company[0] || "?"}
 											</span>
-											<strong>{job.company || "Untitled company"}</strong>
-										</span>
-									</td>
-									<td>{job.role || "Untitled role"}</td>
-									<td>
-										<span className="location-cell">
-											<MapPin size={15} aria-hidden="true" />
-											{job.location || "Location not set"}
+											<span>
+												<strong>{job.company || "Untitled company"}</strong>
+												<span className="location-cell">
+													<MapPin size={13} aria-hidden="true" />
+													{job.location || "Location not set"}
+												</span>
+											</span>
 										</span>
 									</td>
 									<td>
 										<span className={`status ${job.status.toLowerCase()}`}>{job.status}</span>
 									</td>
 									<td>
-										<button
+										<a
 											className="button secondary small"
 											aria-label={`Review ${job.role} at ${job.company}`}
-											onClick={() => navigate("jobs", job.id)}
+											href={workspaceHash("jobs", { jobId: job.id })}
+											onClick={(event) => follow(event, "jobs", { jobId: job.id })}
 										>
 											Review
-										</button>
+											<ArrowRight size={14} aria-hidden="true" />
+										</a>
 									</td>
 								</tr>
 							))}
 						</tbody>
 					</table>
 				) : (
-					<div className="empty">
-						<Bookmark size={28} aria-hidden="true" />
-						<h3>Make room for your next opportunity.</h3>
-						<p className="muted">Save a job to keep its details and your next steps together.</p>
-						<a className="button primary" href="#jobs" onClick={() => navigate("jobs")}>
-							Save your first job <ArrowRight size={16} aria-hidden="true" />
+					<div className="empty-state">
+						<Bookmark size={24} aria-hidden="true" />
+						<h3>No saved roles</h3>
+						<p>Add a job to keep its posting, documents and next step together.</p>
+						<a className="button secondary" href="#jobs" onClick={(event) => follow(event, "jobs")}>
+							Open applications
 						</a>
 					</div>
 				)}

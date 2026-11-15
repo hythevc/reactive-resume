@@ -7453,10 +7453,6 @@ msgstr "Keçid yarat"
 msgid "Make primary"
 msgstr "Əsas et"
 
-#: src/features/career/today.tsx
-msgid "Make room for the next step."
-msgstr "Növbəti addım üçün yer açın."
-
 #: src/features/assistant/assistant-screen.tsx
 msgid "Make the opening stronger"
 msgstr "Açılışı daha güclü edin"
@@ -10323,6 +10319,7 @@ msgid "Relocation"
 msgstr "Yerdəyişmə"
 
 #: src/features/assistant/messages.tsx
+#: src/features/career/facts.tsx
 #: src/features/workspace/tabs/debrief.tsx
 msgid "Remember"
 msgstr "Yadda saxla"
@@ -13923,6 +13920,7 @@ msgstr "Xatırlatma almaq üçün cihaz ayarlarında bildirişlərə icazə veri
 
 #: app/(tabs)/career/_layout.tsx
 #: src/features/applications-board/calendar-screen.tsx
+#: src/features/career/today.tsx
 #: src/features/letters/write.tsx
 #: src/features/search/search-screen.tsx
 #: src/features/share/link.tsx

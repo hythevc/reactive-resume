@@ -320,6 +320,7 @@ const { DocumentsLibrary } = load(
 			...ui,
 			Screen: "Screen",
 			ListRow: "ListRow",
+			SelectSheet: "SelectSheet",
 			Chip: "Chip",
 			Banner: "Banner",
 			listItemMotion: () => ({}),
@@ -461,6 +462,27 @@ assert.ok(nodes(list.props.ListHeaderComponent).some((node) => node.props.title 
 assert.ok(!nodes(list.props.ListHeaderComponent).some((node) => node.props.title === "Queued 0"));
 pendingDocuments = [];
 console.log("PASS native large-library page bound, navigation, debounced filter reset and account-scoped recovery");
+
+// Named sort options select the requested mode directly and return the existing page owner to its first page.
+hooks.length = 0;
+list = nodes(render(DocumentsLibrary)).find((node) => node.type === "FlatList");
+const documentSort = nodes(list.props.ListHeaderComponent).find((node) => node.props.label === "Sort");
+assert.equal(documentSort.type, "SelectSheet");
+assert.equal(documentSort.props.value, "edited");
+assert.deepEqual(
+	documentSort.props.options.map((option) => option.value),
+	["edited", "name", "created"],
+);
+nodes(list.props.ListFooterComponent)
+	.find((node) => node.props.label === "Next")
+	.props.onPress();
+render(DocumentsLibrary);
+assert.equal(documentInput.offset, 100);
+documentSort.props.onChange("created");
+render(DocumentsLibrary);
+assert.equal(documentInput.sort, "created");
+assert.equal(documentInput.offset, 0);
+console.log("PASS native explicit document sort chooses mode directly and resets pagination");
 
 for (const trashed of [false, true]) {
 	hooks.length = 0;

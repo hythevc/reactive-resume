@@ -116,7 +116,7 @@ function ScoreSummary({ report }: { report: AtsReport }) {
 					} as CSSProperties
 				}
 			>
-				<span className="grid size-[70px] place-items-center rounded-full bg-surface font-display text-[26px]">
+				<span className="grid size-[70px] place-items-center rounded-full bg-surface font-ui text-[26px]">
 					<RollingNumber value={score} />
 				</span>
 			</div>
