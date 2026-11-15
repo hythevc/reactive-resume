@@ -981,6 +981,15 @@
 	}
 }
 @media print {
+	html:has(.app-shell),
+	body:has(.app-shell) {
+		background: white;
+	}
+	.app-shell,
+	.app-shell .app-main {
+		background: white;
+		min-height: 0;
+	}
 	.app-shell .main-content {
 		padding: 0;
 		max-width: none;
